@@ -4,31 +4,17 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var router = express.Router();
 var pageController = require('./controllers/page');
-
-
-
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-
-
-
 mongoose.connect('mongodb://localhost:27017/kyg');
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-
-
-
-
-
-
-
 
 app.use(cookieParser());
 app.use(require('express-session')({
@@ -38,7 +24,6 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-// passport config
 var Account = require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
@@ -48,6 +33,14 @@ router.post('/api/login', passport.authenticate('local'), function(req, res) {
     res.send({ user : req.user.username, password : req.user.hash })
 });
 
+//  NOTE: Uncomment the designated section and follow the instructions
+//  make a POST request to knowyourglass.com/api/register 
+
+//  header : content-type: application/json
+//  body   : { "username":"youruser", "password":"yourpassword"}
+
+//uncomment the below section and restart server to create a new user
+/*
 router.post('/api/register', function(req, res) {
     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
         passport.authenticate('local')(req, res, function () {
@@ -55,6 +48,8 @@ router.post('/api/register', function(req, res) {
         });
     });
 });
+*/
+//uncomment the above section and restart server to create a new user
 
 router.route('/api/pages')
   .post(passport.authenticate('local'), pageController.postPage)

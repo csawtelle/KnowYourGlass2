@@ -149,7 +149,18 @@ app.controller('LoginCtrl',
             });
         };
     }]);
-app.controller('mainCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+app.controller('mainCtrl', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+        $scope.data = {};
+        $scope.data.pageList = {};
+        $http({
+            method: 'GET',
+            url: "http://knowyourglass.com/api/pages",
+        }).then(function successCallback(response) {
+            $scope.data.pageList = response.data.data;
+            console.log($scope.data.pageList);
+        }, function errorCallback(response) {
+            return("Failed to make transaction with database.");
+        });
 
 }])
 app.controller('reviewCtrl', ['$scope', '$rootScope', '$http', '$routeParams', function($scope, $rootScope, $http, $routeParams) {
