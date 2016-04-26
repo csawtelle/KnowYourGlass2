@@ -1,49 +1,77 @@
 var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
-var http = require('http');
-var mongoose = require('mongoose');
-var ejs = ('ejs');
-var session = require('express-session');
-var passport = require('passport');
-var mainController = require('./controllers/main');
-var userController = require('./controllers/user');
-var authController = require('./controllers/auth');
-var oauth2Controller = require('./controllers/oauth2');
-var clientController = require('./controllers/client');
-var routes = require('./routes');
-
 var app = express();
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var router = express.Router();
+var pageController = require('./controllers/page');
+var authController = require('./controllers/auth');
+
+
+
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+
+
+
+mongoose.connect('mongodb://localhost:27017/kyg');
+
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/api', router);
 
-// Create endpoint handlers for /users
-router.route('/users')
-  .post(userController.postUsers)
-  .get(userController.getUsers);
 
-// Create endpoint handlers for /clients
-router.route('/clients')
-  .post(authController.isAuthenticated, clientController.postClients)
-  .get(authController.isAuthenticated, clientController.getClients);
 
-app.use('/public', express.static(__dirname + '/public'));
 
+
+
+
+
+
+app.use(cookieParser());
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+// passport config
+var Account = require('./models/account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
+router.post('/api/login', passport.authenticate('local'), function(req, res) {
+    res.send({ user : req.user.username, password : req.user.hash })
+});
+
+router.post('/api/register', function(req, res) {
+	console.log(req.body);
+    Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
+        passport.authenticate('local')(req, res, function () {
+            res.redirect('/');
+        });
+    });
+});
+
+router.route('/api/pages')
+  .post(passport.authenticate('local'), pageController.postPage)
+  .get(passport.authenticate('local'), pageController.getPages);
+
+// Create endpoint handlers for /pages/:page_id
+router.route('/api/pages/:name')
+  .get(pageController.getPage)
+  .delete(pageController.deletePage);
+
+app.use(router);
+
+//angular part of the web page
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/homepage.html'));
+	res.sendFile('/index.html');
 });
-
-app.get('/admin/:page', function(req, res) {
-    var page = req.params.page;
-    res.sendFile(path.join(__dirname + '/views/' + page + '.html'));
-});
-
-app.get('/reviews/:brand/:lens', function(req, res) {
-    var brand = req.params.brand;
-    var lens = req.params.lens;
-    res.sendFile(path.join(__dirname + '/reviews/' + '/' + brand + '/' + lens + '.html'));
-});
-
 
 app.listen(8080);

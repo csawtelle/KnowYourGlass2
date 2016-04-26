@@ -1,0 +1,104 @@
+<div ng-controller="reviewCtrl">
+    <div class="submission_container">
+        <div 
+            class="page_title" 
+            ng-bind="blogPostData.lensName"
+        ></div>
+        <div class="left_column">
+            <div
+                class="lens_image_path"
+                ng-bind="blogPostData.lensIP"
+            ></div>
+        </div>
+        <div class="right_column">
+            <div class="top_row">
+                <div 
+                    class="lens_brand" 
+                    ng-bind="blogPostData.lensBrand">
+                </div>
+                <div 
+                    class="lens_catagory" 
+                    ng-bind="blogPostData.lensCatagory">
+                </div>
+                <div 
+                    class="star_rating" 
+                    ng-bind="blogPostData.ratingIP">
+                </div>
+            </div>
+            <div class="bottom_row">
+                <div
+                    class="summary_text"
+                    ng-bind="blogPostData.introSummary"
+                ></div>
+            </div>
+        </div>
+        <div
+            class="start_text"
+            ng-bind="blogPostData.introSection"
+        ></div>
+        <div class="left_column">
+            <div class="top_row">
+                <div
+                    class="image1l"
+                    ng-bind="blogPostData.left1IP"
+                ></div>
+            </div>
+            <div class="bottom_row"> 
+                <div 
+                    class="description1l"
+                    ng-bind="blogPostData.description1L"
+                ></div>
+            </div>
+        </div>
+        <div class="right_column">
+            <div class="top_row">
+                <div
+                    class="image1r"
+                    ng-bind="blogPostData.right1IP"
+                ></div>
+            </div>
+            <div class="bottom_row">
+                <div 
+                    class="description1r"
+                    ng-bind="blogPostData.description1R"
+                ></div>
+            </div>
+        </div>
+        <div
+            class="middle_text"
+            ng-bind="blogPostData.middleSection"
+        ></div>
+        <div class="left_column">
+            <div class="top_row">
+                <div
+                    class="image2l"
+                    ng-bind="blogPostData.left2IP"
+                ></div>
+            </div>
+            <div class="bottom_row">
+                <div 
+                    class="description2l"
+                    ng-bind="blogPostData.description2L"
+                ></div>
+            </div>
+        </div>
+        <div class="right_column">
+            <div class="top_row">
+                 <div
+                    class="image2r"
+                    ng-bind="blogPostData.right2IP"
+                ></div>
+            </div>
+            <div class="bottom_row">
+                <div 
+                    class="description2r"
+                    ng-bind="blogPostData.description2R"
+                ></div>
+            </div>
+        </div>
+        <div
+            class="end_text"
+            ng-bind="blogPostData.endSection"
+        ></div>
+    </div>
+</div>

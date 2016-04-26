@@ -1,0 +1,143 @@
+/* Blog Post page CSS */
+.submission_container {
+    width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.left_column {
+    width: 50%;
+    height: 400px;
+    float: left;
+}
+.right_column {
+    width: 50%;
+    height: 400px;
+    float: right;
+}
+.top_row {
+    height: 50%;
+}
+.bottom_row {
+    height: 50%;
+}
+.page_title {
+    width: 100%;
+} 
+.lens_image {
+    height: 100%;
+    width: 100%;
+}
+.star_rating {
+    width: 400px;
+    margin: auto;
+} 
+.summary_text {
+    width: 100%;
+    height: 100%;
+}
+.start_text {
+    width: 100%;
+    height: 200px;
+}
+.image1l {
+    width: 100%;
+    height: 100%;
+}
+.image1r {
+    width: 100%;
+    height: 100%;
+}
+.description1l {
+    width: 100%;
+    height: 100%;
+}
+.description1r {
+    width: 100%;
+    height: 100%;
+}
+.middle_text {
+    width: 100%;
+    height: 200px;
+}
+.image2l {
+    width: 100%;
+    height: 100%;
+}
+.image2r {
+    width: 100%;
+    height: 100%;
+}
+.description2l {
+    width: 100%;
+    height: 100%;
+}
+.description2r {
+    width: 100%;
+    height: 100%;
+}
+.end_text {
+    width: 100%;
+    height: 200px;
+}
+
+/* Submission page CSS */
+.submission_form_container {
+    width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.page_title_form {
+    width: 100%;
+} 
+.lens_image_path {
+    height: 100%;
+    width: 100%;
+}
+.star_rating_form {
+    width: 400px;
+    margin: auto;
+} 
+.start_text_form {
+    width: 100%;
+    height: 200px;
+}
+.image1l_form {
+    width: 100%;
+    height: 100%;
+}
+.image1r_form {
+    width: 100%;
+    height: 100%;
+}
+.description1l_form {
+    width: 100%;
+    height: 100%;
+}
+.description1r_form {
+    width: 100%;
+    height: 100%;
+}
+.middle_text_form {
+    width: 100%;
+    height: 200px;
+}
+.image2l_form {
+    width: 100%;
+    height: 100%;
+}
+.image2r_form {
+    width: 100%;
+    height: 100%;
+}
+.description2l_form {
+    width: 100%;
+    height: 100%;
+}
+.description2r_form {
+    width: 100%;
+    height: 100%;
+}
+.end_text_form {
+    width: 100%;
+    height: 200px;
+}
