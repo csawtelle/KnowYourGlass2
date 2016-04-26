@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var router = express.Router();
 var pageController = require('./controllers/page');
-var authController = require('./controllers/auth');
 
 
 
@@ -50,7 +49,6 @@ router.post('/api/login', passport.authenticate('local'), function(req, res) {
 });
 
 router.post('/api/register', function(req, res) {
-	console.log(req.body);
     Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
         passport.authenticate('local')(req, res, function () {
             res.redirect('/');
@@ -60,12 +58,12 @@ router.post('/api/register', function(req, res) {
 
 router.route('/api/pages')
   .post(passport.authenticate('local'), pageController.postPage)
-  .get(passport.authenticate('local'), pageController.getPages);
+  .get(pageController.getPages);
 
 // Create endpoint handlers for /pages/:page_id
 router.route('/api/pages/:name')
   .get(pageController.getPage)
-  .delete(pageController.deletePage);
+  .delete(passport.authenticate('local'), pageController.deletePage);
 
 app.use(router);
 

@@ -166,8 +166,10 @@ app.controller('reviewCtrl', ['$scope', '$rootScope', '$http', '$routeParams', f
     });
 
 }])
-app.controller('submissionCtrl', ['$scope', '$rootScope',  '$http', function($scope, $rootScope, $http) {
+app.controller('submissionCtrl', ['$scope', '$rootScope', '$http', 'Base64', '$cookieStore',
+ function($scope, $rootScope, $http, Base64, $cookieStore) {
     $scope.data = {};
+    $scope.data.blogPostData = {};
     $scope.data.starRatings = [
       {id: '1', name: 'One Star'},
       {id: '2', name: 'Two Stars'},
@@ -191,16 +193,14 @@ app.controller('submissionCtrl', ['$scope', '$rootScope',  '$http', function($sc
       {id: '3', name: 'Telephot'},
       {id: '4', name: 'Macro'}
     ];
-    $scope.data.blogPostData = {};
-
-    var blogPost = function(blogPostData) {
-        $http({
+    var blogPost = function() {
+       $http({
             method: 'POST',
             url: "http://knowyourglass.com/api/pages",
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: blogPostData
+            data: $scope.data.blogPostData
         }).then(function successCallback(response) {
         }, function errorCallback(response) {
             return("Failed to make transaction with database.");
@@ -208,6 +208,10 @@ app.controller('submissionCtrl', ['$scope', '$rootScope',  '$http', function($sc
     };
 
     $scope.saveBlogPost = function() {
+        var authdata = Base64.decode($cookieStore.get('globals').currentUser.authdata);
+        var auth = authdata.split(":");
+        $scope.data.blogPostData.username = auth[0];
+        $scope.data.blogPostData.password = auth[1];
         blogPost($scope.data.blogPostData);
     };
 }])
