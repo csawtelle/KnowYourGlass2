@@ -1,4 +1,13 @@
 <div ng-controller="submissionCtrl">
+    <droplet ng-model="interface">
+        <ul class="files">
+            <li ng-repeat="file in interface.getFiles(interface.FILE_TYPES.VALID)">
+                <droplet-preview ng-model="file"></droplet-preview>
+                <div class="delete" ng-click="file.deleteFile()">&times;</div>
+                <div class="size">{{file.file.size / 1024 / 1024 | number: 1}}MB</div>
+            </li>
+        </ul>
+    </droplet>
     <div class="submission_form_container">
         <input 
             class="page_title_form" 
@@ -124,5 +133,5 @@
             placeholder="End Blog Text"
         ></textarea>
     </div>
-    <button ng-click="saveBlogPost()">Save and Submit Blog Post</button>
+    <button ng-click="interface.uploadFiles(); saveBlogPost()">Save and Submit Blog Post</button>
 </div>

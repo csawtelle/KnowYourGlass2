@@ -5,10 +5,9 @@
             ng-bind="blogPostData.lensName"
         ></div>
         <div class="left_column">
-            <div
-                class="lens_image_path"
-                ng-bind="blogPostData.lensIP"
-            ></div>
+            <div class="lens_image_path">
+                <a href='#'><img ng-src="{{blogPostData.lensIP}}"/></a>
+            </div>
         </div>
         <div class="right_column">
             <div class="top_row">
@@ -20,9 +19,8 @@
                     class="lens_catagory" 
                     ng-bind="blogPostData.lensCatagory">
                 </div>
-                <div 
-                    class="star_rating" 
-                    ng-bind="blogPostData.ratingIP">
+                <div class="star_rating">
+                    <a href='#'><img ng-src="{{blogPostData.ratingIP}}"/></a>
                 </div>
             </div>
             <div class="bottom_row">
@@ -38,10 +36,9 @@
         ></div>
         <div class="left_column">
             <div class="top_row">
-                <div
-                    class="image1l"
-                    ng-bind="blogPostData.left1IP"
-                ></div>
+                <div class="image1l">
+                    <a href='#'><img ng-src="{{blogPostData.left1IP}}"/></a>
+                </div>
             </div>
             <div class="bottom_row"> 
                 <div 
@@ -52,10 +49,9 @@
         </div>
         <div class="right_column">
             <div class="top_row">
-                <div
-                    class="image1r"
-                    ng-bind="blogPostData.right1IP"
-                ></div>
+                <div class="image1r">
+                    <a href='#'><img ng-src="{{blogPostData.right1IP}}"/></a>
+                </div>
             </div>
             <div class="bottom_row">
                 <div 
@@ -70,10 +66,9 @@
         ></div>
         <div class="left_column">
             <div class="top_row">
-                <div
-                    class="image2l"
-                    ng-bind="blogPostData.left2IP"
-                ></div>
+                <div class="image2l">
+                    <a href='#'><img ng-src="{{blogPostData.left2IP}}"/></a>
+                </div>
             </div>
             <div class="bottom_row">
                 <div 
@@ -84,10 +79,9 @@
         </div>
         <div class="right_column">
             <div class="top_row">
-                 <div
-                    class="image2r"
-                    ng-bind="blogPostData.right2IP"
-                ></div>
+                 <div class="image2r">
+                    <a href='#'><img ng-src="{{blogPostData.right2IP}}"/></a>
+                </div>
             </div>
             <div class="bottom_row">
                 <div 

@@ -1,5 +1,6 @@
 var app = angular.module('app', [
     'ngRoute',
+	'ngDroplet',
     'ngCookies'
 ])
 app.config(function($routeProvider) {
@@ -178,9 +179,25 @@ app.controller('reviewCtrl', ['$scope', '$rootScope', '$http', '$routeParams', f
 
 }])
 app.controller('submissionCtrl', ['$scope', '$rootScope', '$http', 'Base64', '$cookieStore',
- function($scope, $rootScope, $http, Base64, $cookieStore) {
+ function($scope, $rootScope, $http, Base64, $cookieStore, ngDroplet) {
     $scope.data = {};
     $scope.data.blogPostData = {};
+    $scope.interface = {};
+    $scope.$on('$dropletReady', function whenDropletReady() {
+        $scope.interface.allowedExtensions(['png', 'jpg', 'bmp', 'gif']);
+        $scope.interface.setRequestUrl('/api/upload');
+        $scope.interface.defineHTTPSuccess([/2.{2}/]);
+        $scope.interface.useArray(true);
+    });
+    // Listen for when the files have been successfully uploaded.
+    $scope.$on('$dropletSuccess', function onDropletSuccess(event, response, files) {
+        alert('Success!');
+    });
+    // Listen for when the files have failed to upload.
+    $scope.$on('$dropletError', function onDropletError(event, response) {
+        alert('Fail!');
+    });
+
     $scope.data.starRatings = [
       {id: '1', name: 'One Star'},
       {id: '2', name: 'Two Stars'},
