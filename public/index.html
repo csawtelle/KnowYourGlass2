@@ -1,15 +1,73 @@
 <html ng-app="app"> 
 <head>
     <title>Know Your Glass</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/angular-animate.min.js"></script>
+<!--    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-cookies.js"></script>
+-->    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-cookies.js"></script>
+    <!-- Testing controllers in different folder -->
+    <!-- Font -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
+
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--    <link href="css/bootstrap.css" rel="stylesheet">
+-->
+
+    <!-- Libraries for form validation -->
+    <script src="js/angular-animate.min.js"></script>
+    <!-- Add mousewheel plugin (this is optional) -->
+    <script type="text/javascript" src="js/fancybox/jquery.mousewheel.pack.js"></script>
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css"/>
+    <script type="text/javascript" src="js/fancybox/jquery.fancybox.pack.js"></script>
+
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <link rel="stylesheet" href="js/fancybox/jquery.fancybox-buttons.css" type="text/css"/>
+    <script type="text/javascript" src="js/fancybox/jquery.fancybox-buttons.js"></script>
+    <script type="text/javascript" src="js/fancybox/jquery.fancybox-media.js"></script>
+
+    <link rel="stylesheet" href="js/fancybox/jquery.fancybox-thumbs.css" type="text/css"/>
+    <script type="text/javascript" src="js/fancybox/jquery.fancybox-thumbs.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.fancybox').fancybox({
+                padding : 0,
+                openEffect  : 'elastic',
+                closeBtn: false
+            });
+        });
+    </script>
     <script type="text/javascript" src="js/ngDroplet.js"></script>
     <script src="app.js"></script>
+
+    <!-- Directives -->
+    <script src="directives/toolbar.js"></script>
+    <script src="services/base64.js"></script>
+
+
+    <!-- Services -->
+    <script src="services/authentication.js"></script>
+
+    <!-- Controllers -->
+    <script src="controllers/admin.js"></script>
+    <script src="controllers/login.js"></script>
+    <script src="controllers/main.js"></script>
+    <script src="controllers/registration.js"></script>
+    <script src="controllers/review.js"></script>
+    <script src="controllers/submission.js"></script>
+    <script src="controllers/success.js"></script>
+    <script src="controllers/toolbar.js"></script>
+
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
-<body>
-    <div ng-view></div>
-</body>
+    <body>
+            <div ng-view></div>
+    </body>
 </html>
 

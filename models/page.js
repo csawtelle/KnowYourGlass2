@@ -19,7 +19,8 @@ var PageSchema   = new mongoose.Schema({
     description1R: {type: String, required: true},
     description2L: {type: String, required: true},
     description2R: {type: String, required: true},
-    introSummary: {type: String, required: true}
+    introSummary: {type: String, required: true},
+    postDate: {type: String, required: true, unique:true}
 });
 
 // Export the Mongoose model

@@ -8,7 +8,7 @@
             </li>
         </ul>
     </droplet>
-    <div class="submission_form_container">
+    <div class="content_container">
         <input 
             class="page_title_form" 
             type="text" 
@@ -18,7 +18,7 @@
         <div class="left_column">
             <input
                 type="text"
-                class="lens_image_path"
+                class="lens_image"
                 ng-model="data.blogPostData.lensIP"
                 placeholder"Lens Image"
             ></input>
@@ -28,17 +28,17 @@
                 <select 
                     class="lens_brand" 
                     ng-model="data.blogPostData.lensBrand">
-                    <option ng-repeat="option in data.brandList" value="{{option.id}}">{{option.name}}</option>
+                    <option ng-repeat="option in data.brandList" value="{{option.name}}">{{option.name}}</option>
                 </select>
                 <select 
                     class="lens_catagory" 
                     ng-model="data.blogPostData.lensCatagory">
-                    <option ng-repeat="option in data.catagoryList" value="{{option.id}}">{{option.name}}</option>
+                    <option ng-repeat="option in data.catagoryList" value="{{option.name}}">{{option.name}}</option>
                 </select>
                 <select 
                     class="star_rating_form" 
                     ng-model="data.blogPostData.ratingIP">
-                    <option ng-repeat="option in data.starRatings" value="{{option.id}}">{{option.name}}</option>
+                    <option ng-repeat="option in data.starRatings" value="{{option.name}}">{{option.name}}</option>
                 </select>
             </div>
             <div class="bottom_row">
@@ -50,7 +50,7 @@
             </div>
         </div>
         <textarea
-            class="start_text_form"
+            class="blog_section"
             ng-model="data.blogPostData.introSection"
             placeholder="Introduction Blog Text"
         ></textarea>
@@ -58,14 +58,14 @@
             <div class="top_row">
                 <input
                     type="text"
-                    class="image1l_form"
+                    class="sample_image"
                     ng-model="data.blogPostData.left1IP"
                     placeholder="First Image: Left"
                 ></input>
             </div>
             <div class="bottom_row"> 
                 <textarea 
-                    class="description1l_form"
+                    class="description"
                     ng-model="data.blogPostData.description1L"
                     placeholder="First Image Description: Left"
                 ></textarea>
@@ -75,21 +75,21 @@
             <div class="top_row">
                 <input
                     type="text"
-                    class="image1r_form"
+                    class="sample_image"
                     ng-model="data.blogPostData.right1IP"
                     placeholder="First Image: Right"
                 ></input>
             </div>
             <div class="bottom_row">
                 <textarea 
-                    class="description1r_form"
+                    class="description"
                     ng-model="data.blogPostData.description1R"
                     placeholder="First Image Description: Right"
                 ></textarea>
             </div>
         </div>
         <textarea
-            class="middle_text_form"
+            class="blog_section"
             ng-model="data.blogPostData.middleSection"
             placeholder="Middle Blog Text"
         ></textarea>
@@ -97,14 +97,14 @@
             <div class="top_row">
                 <input
                     type="text"
-                    class="image2l_form"
+                    class="sample_image"
                     ng-model="data.blogPostData.left2IP"
                     placeholder="Second Image: Left"
                 ></input>
             </div>
             <div class="bottom_row">
                 <textarea 
-                    class="description2l_form"
+                    class="description"
                     ng-model="data.blogPostData.description2L"
                     placeholder="Second Image Description: Left"
                 ></textarea>
@@ -114,21 +114,21 @@
             <div class="top_row">
                  <input
                     type="text"
-                    class="image2r_form"
+                    class="sample_image"
                     ng-model="data.blogPostData.right2IP"
                     placeholder="Second Image: Right"
                 ></input>
             </div>
             <div class="bottom_row">
                 <textarea 
-                    class="description2r_form"
+                    class="description"
                     ng-model="data.blogPostData.description2R"
                     placeholder="Second Image Description: Right"
                 ></textarea>
             </div>
         </div>
         <textarea
-            class="end_text_form"
+            class="blog_section"
             ng-model="data.blogPostData.endSection"
             placeholder="End Blog Text"
         ></textarea>

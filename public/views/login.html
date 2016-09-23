@@ -1,5 +1,7 @@
+<section class="card login">
+<!--
 <form name="form" ng-submit="login()" role="form">
-    <div >
+    <div>
         <label for="username">Username</label>
         <input type="text" name="username" id="username" ng-model="username" required />
     </div>
@@ -11,3 +13,19 @@
         <button type="submit">Login</button>
     </div>
 </form>
+-->
+  <form name="myform" novalidate>
+    <div class="textintro">
+      <h1>Welcome to the login.</h1>
+      <p>Enter your creds. Okthx.</p>
+    </div>
+    <fieldset>
+      <input ng-model="username" ng-required="true" placeholder="Username">
+      <input ng-model="password" ng-required="true" placeholder="Password">
+    </fieldset>
+
+    <button ng-click="login()" class="btn">Login</button>
+    <p>or <a href="#/register">register</a></p>
+  </form>
+</section>
+<span ng-bind="response"></span>
