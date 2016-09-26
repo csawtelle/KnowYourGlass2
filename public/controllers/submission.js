@@ -29,16 +29,17 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
     });
 
     $scope.data.starRatings = [
-      {id: 'onestar.jpg', name: 'One Star'},
-      {id: 'twostar.jpg', name: 'Two Stars'},
-      {id: 'threestar.jpg', name: 'Three Stars'},
-      {id: 'fourstar.jpg', name: 'Four Stars'},
-      {id: 'fivestar.jpg', name: 'Five Stars'},
-      {id: 'sixstar.jpg', name: 'Six Star'},
-      {id: 'sevenstar.jpg', name: 'Seven Stars'},
-      {id: 'eightstar.jpg', name: 'Eight Stars'},
-      {id: 'ninestar.jpg', name: 'Nine Stars'},
-      {id: 'tenstar.jpg', name: 'Ten Stars'}
+      {id: 'rating0', name: 'Zero Star'},
+      {id: 'rating1', name: 'One Star'},
+      {id: 'rating2', name: 'Two Stars'},
+      {id: 'rating3', name: 'Three Stars'},
+      {id: 'rating4', name: 'Four Stars'},
+      {id: 'rating5', name: 'Five Stars'},
+      {id: 'rating6', name: 'Six Star'},
+      {id: 'rating7', name: 'Seven Stars'},
+      {id: 'rating8', name: 'Eight Stars'},
+      {id: 'rating9', name: 'Nine Stars'},
+      {id: 'rating10', name: 'Ten Stars'}
     ];
     $scope.data.brandList = [
       {name: 'Canon'},
@@ -49,4 +50,43 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
       {name: 'Wide Angle'},
       {name: 'Normal'},
     ];
+
+	var blogPost = function() {
+        if(lensReview) {
+            $http({
+                method: 'PUT',
+                url: "http://knowyourglass.com/api/pages/" + lensReview,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: $scope.data.blogPostData
+            }).then(function successCallback(response) {
+                $location.path('#/admin');
+            }, function errorCallback(response) {
+                return("Failed to make transaction with database.");
+            });
+        } else {
+            $http({
+                method: 'POST',
+                url: "http://knowyourglass.com/api/pages",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: $scope.data.blogPostData
+            }).then(function successCallback(response) {
+                $location.path('#/admin');
+            }, function errorCallback(response) {
+                return("Failed to make transaction with database.");
+            });
+        };
+    };
+
+    $scope.saveBlogPost = function() {
+        var authdata = Base64.decode($cookieStore.get('globals').currentUser.authdata);
+        var auth = authdata.split(":");
+        $scope.data.blogPostData.username = auth[0];
+        $scope.data.blogPostData.password = auth[1];
+        blogPost($scope.data.blogPostData);
+    };
+
 }])

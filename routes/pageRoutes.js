@@ -10,7 +10,7 @@ exports.postPage = function(req, res) {
     page.lensBrand = req.body.lensBrand;
     page.lensCatagory = req.body.lensCatagory;
     page.lensIP = '/images' + req.body.lensIP;
-    page.ratingIP = '/images' + req.body.ratingIP;
+    page.ratingIP = req.body.starRating;
     page.introSummary = req.body.introSummary;
     page.introSection = req.body.introSection;
     page.middleSection = req.body.middleSection;
@@ -37,6 +37,7 @@ exports.postPage = function(req, res) {
 
 // Create endpoint /api/pages for GET
 exports.getPages = function(req, res) {
+  console.log(req);
   // Use the Page model to find all pages
   Page.find({}, function(err, pages) {
         if(err) {
@@ -63,13 +64,13 @@ exports.getPage = function(req, res) {
 
 // Create endpoint /api/pages/:page_id for PUT
 exports.putPage = function(req, res) {
-  Page.update({ lensName: req.params.name }, { 
+  Page.update({lensName: req.params.name }, { 
 
 	lensName : req.body.lensName,
     lensBrand : req.body.lensBrand,
     lensCatagory : req.body.lensCatagory,
     lensIP : req.body.lensIP,
-    ratingIP : req.body.ratingIP,
+    ratingIP : req.body.starRating,
     introSummary : req.body.introSummary,
     introSection : req.body.introSection,
     middleSection : req.body.middleSection,

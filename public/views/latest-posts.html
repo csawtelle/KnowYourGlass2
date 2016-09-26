@@ -1,0 +1,24 @@
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="post-preview text-center" ng-repeat="page in data.pageList">
+                    <a ng-href="#/reviews/{{page.lensName}}">
+                        <h2 class="post-title postheading">
+                            {{ page.lensName }}
+                        </h2>
+                        <h3 class="post-subtitle postsubheading">
+                            We need to add subheading/posttitle objects
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by <a href="#/">Usergoeshere</a> on Dategoeshere</p>
+                <hr>
+                </div>
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="next">
+                        <a href="#/">all previous posts</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>

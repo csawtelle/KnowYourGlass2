@@ -1,4 +1,10 @@
 <div>
+    <p>Test the star rating drop box</p>
+    <select ng-model="data.starRating">
+        <option ng-repeat="option in data.starRatings" value="{{option.id}}">{{option.name}}</option>
+    </select>
+    <div class="{{data.starRating}}"></div>
+    <p></p>
     <a href="#/admin/create"><button>Create New Post</button></a>
     <div class="blog_post_link" ng-repeat="page in data.pageList">
         <a ng-href="#/reviews/{{page.lensName}}">{{page.lensName}}</a>

@@ -28,17 +28,17 @@
                 <select 
                     class="lens_brand" 
                     ng-model="data.blogPostData.lensBrand">
-                    <option ng-repeat="option in data.brandList" value="{{option.name}}">{{option.name}}</option>
+                    <option ng-repeat="option in data.brandList" value="{{option.id}}">{{option.name}}</option>
                 </select>
                 <select 
                     class="lens_catagory" 
                     ng-model="data.blogPostData.lensCatagory">
-                    <option ng-repeat="option in data.catagoryList" value="{{option.name}}">{{option.name}}</option>
+                    <option ng-repeat="option in data.catagoryList" value="{{option.id}}">{{option.name}}</option>
                 </select>
                 <select 
                     class="star_rating_form" 
-                    ng-model="data.blogPostData.ratingIP">
-                    <option ng-repeat="option in data.starRatings" value="{{option.name}}">{{option.name}}</option>
+                    ng-model="data.blogPostData.starRating">
+                    <option ng-repeat="option in data.starRatings" value="{{option.id}}">{{option.name}}</option>
                 </select>
             </div>
             <div class="bottom_row">

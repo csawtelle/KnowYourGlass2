@@ -43,10 +43,10 @@ angular.module('app').factory('Base64', function () {
             }
             input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
             do {
-                enc1 = this.keyStr.indexOf(input.charAt(i++));
-                enc2 = this.keyStr.indexOf(input.charAt(i++));
-                enc3 = this.keyStr.indexOf(input.charAt(i++));
-                enc4 = this.keyStr.indexOf(input.charAt(i++));
+                enc1 = keyStr.indexOf(input.charAt(i++));
+                enc2 = keyStr.indexOf(input.charAt(i++));
+                enc3 = keyStr.indexOf(input.charAt(i++));
+                enc4 = keyStr.indexOf(input.charAt(i++));
                 chr1 = (enc1 << 2) | (enc2 >> 4);
                 chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
                 chr3 = ((enc3 & 3) << 6) | enc4;
@@ -61,4 +61,8 @@ angular.module('app').factory('Base64', function () {
                 enc1 = enc2 = enc3 = enc4 = "";
             } while (i < input.length);
             return output;
-        }}});
+        }
+    };
+});
+
+                   
