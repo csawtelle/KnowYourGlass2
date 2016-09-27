@@ -1,98 +1,21 @@
-    <div ng-controller="reviewCtrl">
-       <div class="content_container">
-            <div 
-                class="page_title text" 
-                ng-bind="blogPostData.lensName"
-            ></div>
-            <div class="left_column">
-                <div class="lens_image">
-                        <a href="{{blogPostData.lensIP}}" class="fancybox" rel="gallery"><img ng-src="{{blogPostData.lensIP}}"/></a>
-                </div>
-            </div>
-            <div class="right_column">
-                <div class="top_row">
-                    <div 
-                        class="lens_brand text" 
-                        ng-bind="blogPostData.lensBrand">
-                    </div>
-                    <div 
-                        class="lens_catagory text" 
-                        ng-bind="blogPostData.lensCatagory">
-                    </div>
-                    <div class="star_rating">
-                        <div class="{{blogPostData.ratingIP}}"></div>
-                    </div>
-                </div>
-                <div class="bottom_row">
-                    <div
-                        class="summary_text text"
-                        ng-bind="blogPostData.introSummary">
-                    </div>
-                </div>
-            </div>
-            <div
-                class="blog_section text"
-                ng-bind="blogPostData.introSection"
-            ></div>
-            <div class="left_column">
-                <div class="top_row">
-                    <div class="sample_image">
-                        <a href="{{blogPostData.left1IP}}" class="fancybox" rel="gallery"><img ng-src="{{blogPostData.left1IP}}"/></a>
-                    </div>
-                </div>
-                <div class="bottom_row"> 
-                    <div 
-                        class="description text"
-                        ng-bind="blogPostData.description1L"
-                    ></div>
-                </div>
-            </div>
-            <div class="right_column">
-                <div class="top_row">
-                    <div class="sample_image">
-                        <a href="{{blogPostData.right1IP}}" class="fancybox" rel="gallery"><img ng-src="{{blogPostData.right1IP}}"/></a>
-                    </div>
-                </div>
-                <div class="bottom_row">
-                    <div 
-                        class="description text"
-                        ng-bind="blogPostData.description1R"
-                    ></div>
-                </div>
-            </div>
-            <div
-                class="blog_section text"
-                ng-bind="blogPostData.middleSection"
-            ></div>
-            <div class="left_column">
-                <div class="top_row">
-                    <div class="sample_image">
-                        <a href="{{blogPostData.left2IP}}" class="fancybox" rel="gallery"><img ng-src="{{blogPostData.left2IP}}"/></a>
-                    </div>
-                </div>
-                <div class="bottom_row">
-                    <div 
-                        class="description text"
-                        ng-bind="blogPostData.description2L"
-                    ></div>
-                </div>
-            </div>
-            <div class="right_column">
-                <div class="top_row">
-                     <div class="sample_image">
-                        <a href="{{blogPostData.right2IP}}" class="fancybox" rel="gallery"><img ng-src="{{blogPostData.right2IP}}"/></a>
-                    </div>
-                </div>
-                <div class="bottom_row">
-                    <div 
-                        class="description text"
-                        ng-bind="blogPostData.description2R"
-                    ></div>
-                </div>
-            </div>
-            <div
-                class="blog_section text"
-                ng-bind="blogPostData.endSection"
-            ></div>
-        </div>
-    </div>
+
+<div ng-controller="reviewCtrl">
+    <div class="container">
+     <div class="jumbotron well text-center">
+     <h1>Postheading</h1>
+     <h3>Subheadings</h3>
+     </div><!-- END Jumbotron -->
+    
+    <div class="row">
+     <div class="col-lg-6">
+      {{blogPostData.lensName}}
+     </div><!-- COL END -->
+     <div class="col-lg-6">
+        <a href="{{blogPostData.lensIP}}" class="fancybox" rel="gallery">
+            <img ng-src="{{blogPostData.lensIP}}"/>
+        </a>
+     </div><!-- COL END-->
+    </div><!-- END ROW -->
+
+    </div><!-- END CONTAINER -->
+</div>
