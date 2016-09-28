@@ -1,24 +1,37 @@
-        <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <div class="post-preview text-center" ng-repeat="page in data.pageList">
-                    <a ng-href="#/reviews/{{page.lensName}}">
-                        <h2 class="post-title postheading">
-                            {{ page.lensName }}
-                        </h2>
-                        <h3 class="post-subtitle postsubheading">
-                            We need to add subheading/posttitle objects
-                        </h3>
-                    </a>
-                    <p class="post-meta">Posted by <a href="#/">Usergoeshere</a> on Dategoeshere</p>
-                <hr>
-                </div>
-                <!-- Pager -->
+
+<div class="container">
+    <div class="row" ng-repeat="page in data.pageList">
+        <div class="col-xs-12" ng-controller="TabController as tabCtrl">
+            <div class="post-preview text-center" ng-class="{'col-xs-12':tabCtrl.isSet(0), 'col-xs-8':!tabCtrl.isSet(0)}">
+             
+             <a ng-href="#/reviews/{{page.lensName}}">
+              <h2 class="post-title postheading">Right now tab is: {{tabCtrl.tab}} {{ page.lensName }}</h2>
+              <h3 class="post-subtitle postsubheading">We need to add subheading/posttitle objects</h3>
+             </a>
+             <hr ng-show="tabCtrl.isSet(0)">
+            </div><!-- end heading/subheading -->
+
+         <div ng-show="tabCtrl.isSet(1)" ng-class={'col-xs-3':tabCtrl.isSet(1)}>
+            <p>{{ page.introSummary }} </p>
+         </div>
+         <div ng-show="tabCtrl.isSet(2)" ng-class={'col-xs-3':tabCtrl.isSet(2)}>
+            <p>{{ page.lensName}}</p>
+         </div>
+
+<div class="row">
+        <ul class="nav nav-pills col-xs-4 col-xs-offset-4">
+          <li style="margin:5px 0 0 0;padding:4.5px 0 0 0">Quick Info: </li>
+          <li ng-class="{active: tabCtrl.isSet(1)}">
+            <a ng-click="tabCtrl.setTab(1)" href>Description</a></li>
+          <li ng-class="{active: tabCtrl.isSet(2)}">
+            <a ng-click="tabCtrl.setTab(2)" href>Specs</a></li>
+        </ul>
+</div> <!-- END div for quick info -->
+        </div> <!-- end col-xs-12 main -->
+           </div><!-- end row -->
                 <ul class="pager">
                     <li class="next">
                         <a href="#/">all previous posts</a>
                     </li>
                 </ul>
-            </div>
-        </div>
-    </div>
+</div><!-- end container -->
