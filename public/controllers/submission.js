@@ -5,7 +5,7 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
     $scope.data.blogPostData = {};
     $http({
         method: 'GET',
-        url: "http://knowyourglass.com/api/pages/" + lensReview,
+        url: "/api/pages/" + lensReview,
     }).then(function successCallback(response) {
         $scope.data.blogPostData  = response.data.data[0];
     }, function errorCallback(response) {

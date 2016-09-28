@@ -1,6 +1,6 @@
 angular.module('app').controller('reviewCtrl', ['$scope', '$rootScope', '$http', '$routeParams', function($scope, $rootScope, $http, $routeParams) {
     var lensReview = $routeParams.lens;
-    var url = "http://knowyourglass.com/api/pages/" + lensReview;
+    var url = "/api/pages/" + lensReview;
     $scope.blogPostData = {};
     $http({
         method: 'GET',

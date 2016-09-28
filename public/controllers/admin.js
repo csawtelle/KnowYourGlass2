@@ -30,7 +30,7 @@ angular.module('app').controller('adminCtrl', ['$scope', '$rootScope', '$http', 
         $scope.data.deletePost = function(name) {
            $http({
                 method: 'DELETE',
-                url: "http://knowyourglass.com/api/pages/" + name
+                url: "/api/pages/" + name
             }).then(function successCallback(response) {
                 $window.location.reload();
             }, function errorCallback(response) {
