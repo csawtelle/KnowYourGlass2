@@ -411,3 +411,13 @@ hr {
  * #FFF800 Yellow
  * #E9A401 Orange-Yellow
  */
+
+/* Modified Bootstrap */
+a {
+  color: #680894;
+  text-decoration: none;
+}
+.navbar-default .navbar-brand {
+  color: #30013E;
+}
+

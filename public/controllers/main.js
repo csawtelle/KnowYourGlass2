@@ -4,7 +4,7 @@ angular.module('app').controller('mainCtrl', ['$scope', '$rootScope', '$http', f
          
         $http({
             method: 'GET',
-            url: "http://knowyourglass.com/api/pages",
+            url: "/api/pages",
         }).then(function successCallback(response) {
             $scope.data.pageList = response.data.data;
 

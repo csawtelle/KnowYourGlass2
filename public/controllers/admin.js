@@ -21,7 +21,7 @@ angular.module('app').controller('adminCtrl', ['$scope', '$rootScope', '$http', 
 
         $http({
             method: 'GET',
-            url: "http://knowyourglass.com/api/pages",
+            url: "/api/pages",
         }).then(function successCallback(response) {
             $scope.data.pageList = response.data.data;
         }, function errorCallback(response) {
