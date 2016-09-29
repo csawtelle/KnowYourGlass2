@@ -2,6 +2,9 @@
   "name": "KnowYourGlass",
   "main": "KnowYourGlass.js",
   "dependencies": {
+    "connect-flash": "*",
+    "cookie-parser": "*",
+    "multer": "*",
     "express": "*",
     "mongoose": "*",
     "body-parser": "*",
@@ -11,6 +14,7 @@
     "passport-http-bearer": "*",
     "oauth2orize": "*",
     "express-session": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "passport-local-mongoose": "*"
   }
 }
