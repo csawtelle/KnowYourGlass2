@@ -22,7 +22,6 @@ droplet ul.files li {
 	width: 100px;
 	height: 100px;
 	padding: 1px;
-	display: inline-block;
 	position: relative;
 	margin: 5px;
 }
@@ -470,7 +469,6 @@ a {
 /* hover effect */
 .hovereffect {
   width: 100%;
-  height: 100%;
   float: left;
   overflow: hidden;
   position: relative;
@@ -478,18 +476,8 @@ a {
   cursor: default;
 }
 
-.hovereffect .overlay {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-}
-
 .hovereffect img {
   display: block;
-  position: relative;
 }
 
 .hovereffect h2 {
@@ -523,7 +511,7 @@ a {
 .hovereffect h2,
 .hovereffect p {
   position: absolute;
-  top: 50%;
+  top: 80%;
   left: 50%;
   -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
   transition: opacity 0.35s, transform 0.35s;

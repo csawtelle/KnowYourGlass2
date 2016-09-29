@@ -1,4 +1,61 @@
+<!--
+    name: {type: String, required:true, unique:true},
+    brand: {type: String, required: true},
+    catagory: {type: String, required: true},
+    image: {type: String, required: true},
+    pictures: [{type: String, required: true}],
+    picture_descriptions: [{type: String, required: true}],
+    page_paragraphs: [{type: String, required: true}],
+    date: {type: String, required: true, unique:true},
+    rating: {type: String, required: true}
+-->
+
 <div ng-controller="submissionCtrl">
+    <div class="content_container">
+        <input 
+            class="page_title_form" 
+            type="text" 
+            ng-model="data.blogPostData.name"
+            placeholder="Page Title"
+        ></input>
+        <div class="left_column">
+            <input
+                type="text"
+                class="lens_image"
+                ng-model="data.blogPostData.image"
+                placeholder"Lens Image"
+            ></input>
+        </div>
+        <div class="right_column">
+            <div class="top_row">
+                <select 
+                    class="lens_brand" 
+                    ng-model="data.blogPostData.brand">
+                    <option ng-repeat="option in data.brandList" value="{{option.id}}">{{option.name}}</option>
+                </select>
+                <select 
+                    class="lens_catagory" 
+                    ng-model="data.blogPostData.catagory">
+                    <option ng-repeat="option in data.catagoryList" value="{{option.id}}">{{option.name}}</option>
+                </select>
+                <select 
+                    class="star_rating_form" 
+                    ng-model="data.blogPostData.rating">
+                    <option ng-repeat="option in data.starRatings" value="{{option.id}}">{{option.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+<!-- TODO finish this repeat for adding multiple paragraphs -->
+    <div>
+        <ul class="page_paragraphs">
+            <div ng-repeat="paragraph in data.page_paragraphs track by $index">
+              <input type="text" ng-model="data.page_paragraphs[$index]">
+            </div>
+       </ul>
+       <button ng-click="addMoreText()">+</button>
+       <button ng-click="removeMoreText()">-</button>
+    </div>
     <droplet ng-model="interface">
         <ul class="files">
             <li ng-repeat="file in interface.getFiles(interface.FILE_TYPES.VALID)">
@@ -8,130 +65,13 @@
             </li>
         </ul>
     </droplet>
-    <div class="content_container">
-        <input 
-            class="page_title_form" 
-            type="text" 
-            ng-model="data.blogPostData.lensName"
-            placeholder="Page Title"
-        ></input>
-        <div class="left_column">
-            <input
-                type="text"
-                class="lens_image"
-                ng-model="data.blogPostData.lensIP"
-                placeholder"Lens Image"
-            ></input>
-        </div>
-        <div class="right_column">
-            <div class="top_row">
-                <select 
-                    class="lens_brand" 
-                    ng-model="data.blogPostData.lensBrand">
-                    <option ng-repeat="option in data.brandList" value="{{option.id}}">{{option.name}}</option>
-                </select>
-                <select 
-                    class="lens_catagory" 
-                    ng-model="data.blogPostData.lensCatagory">
-                    <option ng-repeat="option in data.catagoryList" value="{{option.id}}">{{option.name}}</option>
-                </select>
-                <select 
-                    class="star_rating_form" 
-                    ng-model="data.blogPostData.starRating">
-                    <option ng-repeat="option in data.starRatings" value="{{option.id}}">{{option.name}}</option>
-                </select>
-            </div>
-            <div class="bottom_row">
-                <textarea
-                    class="summary_text"
-                    ng-model="data.blogPostData.introSummary"
-                    placeholder="Summary Text"
-                ></textarea>
-            </div>
-        </div>
-        <textarea
-            class="blog_section"
-            ng-model="data.blogPostData.introSection"
-            placeholder="Introduction Blog Text"
-        ></textarea>
-        <div class="left_column">
-            <div class="top_row">
-                <input
-                    type="text"
-                    class="sample_image"
-                    ng-model="data.blogPostData.left1IP"
-                    placeholder="First Image: Left"
-                ></input>
-            </div>
-            <div class="bottom_row"> 
-                <textarea 
-                    class="description"
-                    ng-model="data.blogPostData.description1L"
-                    placeholder="First Image Description: Left"
-                ></textarea>
-            </div>
-        </div>
-        <div class="right_column">
-            <div class="top_row">
-                <input
-                    type="text"
-                    class="sample_image"
-                    ng-model="data.blogPostData.right1IP"
-                    placeholder="First Image: Right"
-                ></input>
-            </div>
-            <div class="bottom_row">
-                <textarea 
-                    class="description"
-                    ng-model="data.blogPostData.description1R"
-                    placeholder="First Image Description: Right"
-                ></textarea>
-            </div>
-        </div>
-        <textarea
-            class="blog_section"
-            ng-model="data.blogPostData.middleSection"
-            placeholder="Middle Blog Text"
-        ></textarea>
-        <div class="left_column">
-            <div class="top_row">
-                <input
-                    type="text"
-                    class="sample_image"
-                    ng-model="data.blogPostData.left2IP"
-                    placeholder="Second Image: Left"
-                ></input>
-            </div>
-            <div class="bottom_row">
-                <textarea 
-                    class="description"
-                    ng-model="data.blogPostData.description2L"
-                    placeholder="Second Image Description: Left"
-                ></textarea>
-            </div>
-        </div>
-        <div class="right_column">
-            <div class="top_row">
-                 <input
-                    type="text"
-                    class="sample_image"
-                    ng-model="data.blogPostData.right2IP"
-                    placeholder="Second Image: Right"
-                ></input>
-            </div>
-            <div class="bottom_row">
-                <textarea 
-                    class="description"
-                    ng-model="data.blogPostData.description2R"
-                    placeholder="Second Image Description: Right"
-                ></textarea>
-            </div>
-        </div>
-        <textarea
-            class="blog_section"
-            ng-model="data.blogPostData.endSection"
-            placeholder="End Blog Text"
-        ></textarea>
+<!-- TODO finish this repeat for adding multiple image descriptions -->
+    <div>
+        <ul class="picture_descriptions">
+            <li ng-repeat="description in interface.getFiles(interface.FILE_TYPES.VALID) track by $index">
+                <input type="text" ng-model="data.picture_descriptions[$index]">
+            </li>
+        </ul>
     </div>
     <button ng-click="interface.uploadFiles(); saveBlogPost()">Save and Submit Blog Post</button>
 </div>

@@ -3,6 +3,7 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
     var lensReview = $routeParams.lens;
     $scope.data = {};
     $scope.data.blogPostData = {};
+
     $http({
         method: 'GET',
         url: "/api/pages/" + lensReview,
@@ -21,11 +22,9 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
     });
     // Listen for when the files have been successfully uploaded.
     $scope.$on('$dropletSuccess', function onDropletSuccess(event, response, files) {
-        alert('Success!');
     });
     // Listen for when the files have failed to upload.
     $scope.$on('$dropletError', function onDropletError(event, response) {
-        alert('Fail!');
     });
 
     $scope.data.starRatings = [
@@ -51,11 +50,13 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
       {name: 'Normal'},
     ];
 
+    $scope.data.page_paragraphs =  [];
+
 	var blogPost = function() {
         if(lensReview) {
             $http({
                 method: 'PUT',
-                url: "http://knowyourglass.com/api/pages/" + lensReview,
+                url: "/api/pages/" + lensReview,
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -68,7 +69,7 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
         } else {
             $http({
                 method: 'POST',
-                url: "http://knowyourglass.com/api/pages",
+                url: "/api/pages",
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -88,5 +89,11 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
         $scope.data.blogPostData.password = auth[1];
         blogPost($scope.data.blogPostData);
     };
+	$scope.addMoreText = function() {
+		$scope.data['page_paragraphs'].push("");
+	};
+	$scope.removeMoreText = function() {
+		$scope.data['page_paragraphs'].pop();
+	};
 
 }])
