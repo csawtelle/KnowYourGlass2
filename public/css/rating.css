@@ -1,0 +1,34 @@
+/* Star ratings */
+.rating0 {
+   content:url(../images/rating/0stars.png);
+}
+.rating1 {
+   content:url(../images/rating/1stars.png);
+}
+.rating2 {
+   content:url(../images/rating/2stars.png);
+}
+.rating3 {
+   content:url(../images/rating/3stars.png);
+}
+.rating4 {
+   content:url(../images/rating/4stars.png);
+}
+.rating5 {
+   content:url(../images/rating/5stars.png);
+}
+.rating6 {
+   content:url(../images/rating/6stars.png);
+}
+.rating7 {
+   content:url(../images/rating/7stars.png);
+}
+.rating8 {
+   content:url(../images/rating/8stars.png);
+}
+.rating9 {
+   content:url(../images/rating/9stars.png);
+}
+.rating10 {
+   content:url(../images/rating/10stars.png);
+}
