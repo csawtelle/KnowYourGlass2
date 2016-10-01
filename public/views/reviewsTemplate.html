@@ -1,21 +1,45 @@
+<!--
+    name: {type: String, required:true, unique:true},
+    brand: {type: String, required: true},
+    catagory: {type: String, required: true},
+    image: {type: String, required: true},
+    pictures: [{type: String, required: true}],
+    picture_descriptions: [{type: String, required: true}],
+    page_paragraphs: [{type: String, required: true}],
+    date: {type: String, required: true, unique:true},
+    rating: {type: String, required: true}
+-->
 
 <div ng-controller="reviewCtrl">
-    <div class="container">
-     <div class="jumbotron well text-center">
-     <h1>Postheading</h1>
-     <h3>Subheadings</h3>
-     </div><!-- END Jumbotron -->
     
-    <div class="row">
-     <div class="col-lg-6">
-      {{blogPostData.lensName}}
-     </div><!-- COL END -->
-     <div class="col-lg-6">
-        <a href="{{blogPostData.lensIP}}" class="fancybox" rel="gallery">
-            <img ng-src="{{blogPostData.lensIP}}"/>
-        </a>
-     </div><!-- COL END-->
-    </div><!-- END ROW -->
+    <div>
+        <a href="{{blogPostData.pictures[0]}}" class="fancybox" rel="gallery"><img ng-src="{{blogPostData.pictures[0]}}"/>
+    </div>
 
-    </div><!-- END CONTAINER -->
-</div>
+    <div class="text" ng-bind="blogPostData.page_paragrapgs[0]"></div> 
+
+    <div class="row">
+        <div class="text" ng-bind="blogPostData.name"</div>
+    </div>
+ 
+    <div class="row">
+        <div class="text" ng-bind="blogPostData.brand"</div>
+    </div>
+    
+    <div class="{{data.rating}}"></div>
+
+    <div class="text" ng-bind="blogPostData.catagory"></div>
+
+    <div>
+        <a href="{{blogPostData.image}}" class="fancybox" rel="gallery"><img ng-src="{{blogPostData.image}}"/>
+    </div>
+
+
+    <div class="row">
+        <div ng-repeat="picture in blogPostData.pictures | startFrom:1 track by $index">
+            <a href="{{blogPostData.image}}" class="fancybox" rel="gallery"><img ng-src="{{blogPostData.image}}"/>
+            <div class="text" ng-bind="blogPostData.picture_descriptions[$index]"></div>
+            <div class="text" ng-bind="blogPostData.page_paragraphs[$index]"></div>
+        </div>
+    </div>
+

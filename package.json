@@ -15,6 +15,7 @@
     "oauth2orize": "*",
     "express-session": "*",
     "passport-local": "*",
-    "passport-local-mongoose": "*"
+    "passport-local-mongoose": "*",
+    "norch": "*"
   }
 }
