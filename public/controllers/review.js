@@ -7,7 +7,6 @@ angular.module('app').controller('reviewCtrl', ['$scope', '$rootScope', '$http',
         url: url,
     }).then(function successCallback(response) {
         $scope.blogPostData = response.data.data[0];
-        console.log($scope.blogPostData);
     }, function errorCallback(response) {
         return("Failed to make transaction with database.");
     });
