@@ -52,7 +52,6 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
       {name: 'Wide Angle'},
       {name: 'Normal'},
     ];
-
     var blogPost = function() {
         if(lensReview) {
             $http({
@@ -86,8 +85,6 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
     $scope.saveBlogPost = function() {
         var authdata = Base64.decode($cookieStore.get('globals').currentUser.authdata);
         var auth = authdata.split(":");
-        console.log(authdata);
-        console.log(auth);
         $scope.data.blogPostData.username = auth[0];
         $scope.data.blogPostData.password = auth[1];
         blogPost($scope.data.blogPostData);

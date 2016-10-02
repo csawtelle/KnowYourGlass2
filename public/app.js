@@ -23,7 +23,7 @@ app.config(function($routeProvider) {
         })
 
         .when('/reviews/:lens?', {
-            templateUrl: 'views/reviewsTemplate.html',
+            templateUrl: 'views/review.html',
             controller: 'reviewCtrl'
         })
         .when('/admin', {
