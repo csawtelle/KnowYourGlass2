@@ -2,16 +2,21 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
  function($scope, $rootScope, $http, Base64, $cookieStore, $location, $routeParams) {
     var lensReview = $routeParams.lens;
     $scope.data = {};
-    $scope.data.blogPostData = {};
-    $scope.data.page_paragraphs =  [];
+    $scope.data.formData = {
+        pictures: [],
+        pageParagraphsIndex: []
+    };
+    $scope.data.newData = {
+        image: '',
+        pictures: [],
+        picture_descriptions: [],
+        page_paragraphs: []
+    };
     $http({
         method: 'GET',
         url: "/api/pages/" + lensReview,
     }).then(function successCallback(response) {
-        $scope.data.blogPostData  = response.data.data[0];
-        $scope.data.blogPostData.username = '';
-        $scope.data.blogPostData.password = '';
-        $scope.data.page_paragraphs = $scope.data.blogPostData.page_paragraphs;
+        $scope.data.existingData  = response.data.data[0];
     }, function errorCallback(response) {
         return("Failed to make transaction with database.");
     });
@@ -30,7 +35,7 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
     $scope.$on('$dropletError', function onDropletError(event, response) {
     });
 
-    $scope.data.starRatings = [
+    $scope.data.formData.starRatings = [
       {id: 'rating0', name: 'Zero Star'},
       {id: 'rating1', name: 'One Star'},
       {id: 'rating2', name: 'Two Stars'},
@@ -43,12 +48,12 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
       {id: 'rating9', name: 'Nine Stars'},
       {id: 'rating10', name: 'Ten Stars'}
     ];
-    $scope.data.brandList = [
+    $scope.data.formData.brandList = [
       {name: 'Canon'},
       {name: 'Nikon'},
       {name: 'Sigma'}
     ];
-    $scope.data.categoryList = [
+    $scope.data.formData.categoryList = [
       {name: 'Wide Angle'},
       {name: 'Normal'},
     ];
@@ -60,7 +65,7 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: $scope.data.blogPostData
+                data: $scope.data.newData
             }).then(function successCallback(response) {
                 $location.path('#/admin');
             }, function errorCallback(response) {
@@ -73,7 +78,7 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: $scope.data.blogPostData
+                data: $scope.data.newData
             }).then(function successCallback(response) {
                 $location.path('#/admin');
             }, function errorCallback(response) {
@@ -85,15 +90,25 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
     $scope.saveBlogPost = function() {
         var authdata = Base64.decode($cookieStore.get('globals').currentUser.authdata);
         var auth = authdata.split(":");
-        $scope.data.blogPostData.username = auth[0];
-        $scope.data.blogPostData.password = auth[1];
-        blogPost($scope.data.blogPostData);
+        $scope.data.newData.username = auth[0];
+        $scope.data.newData.password = auth[1];
+        blogPost($scope.data.newData);
     };
 	$scope.addMoreText = function() {
-		$scope.data['page_paragraphs'].push("");
+		$scope.data.formData.pageParagraphsIndex.push("");
 	};
 	$scope.removeMoreText = function() {
-		$scope.data['page_paragraphs'].pop();
+		$scope.data.formData.pageParagraphsIndex.pop("");
 	};
-
+    $scope.removeDroppedFile = function(index) {
+        $scope.data.newData.pictures.splice(index, 1);
+    }
+    $scope.fileDropped = function(file) {
+        if($scope.data.newData.image) {
+            $scope.data.newData.pictures.push(file.file.name);
+        } else {
+            $scope.data.newData.image = file.file.name;
+        }
+        $scope.interface.uploadFiles();
+    };
 }])

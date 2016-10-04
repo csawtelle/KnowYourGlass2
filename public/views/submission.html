@@ -15,7 +15,7 @@
             <input 
                 type="text" 
                 class="form-control"
-                ng-model="data.blogPostData.date"
+                ng-model="data.newData.date"
                 placeholder="Post Date">
             </input>
         </div>
@@ -23,7 +23,7 @@
             <input 
                 type="text" 
                 class="form-control"
-                ng-model="data.blogPostData.name"
+                ng-model="data.newData.name"
                 placeholder="Page Title">
             </input>
         </div>
@@ -31,78 +31,52 @@
             <input
                 type="text"
                 class="form-control"
-                ng-model="data.blogPostData.image"
+                ng-model="data.newData.image"
                 placeholder="Lens Image">
             </input>
         </div>
         <div class="row">
             <select 
                 class="lens_brand" 
-                ng-model="data.blogPostData.brand">
-                <option ng-repeat="option in data.brandList" value="{{option.name}}">{{option.name}}</option>
+                ng-model="data.newData.brand">
+                <option ng-repeat="option in data.formData.brandList" value="{{option.name}}">{{option.name}}</option>
             </select>
             <select 
                 class="lens_category" 
-                ng-model="data.blogPostData.category">
-                <option ng-repeat="option in data.categoryList" value="{{option.name}}">{{option.name}}</option>
+                ng-model="data.newData.category">
+                <option ng-repeat="option in data.formData.categoryList" value="{{option.name}}">{{option.name}}</option>
             </select>
             <select 
                 class="star_rating_form" 
-                ng-model="data.blogPostData.rating">
-                <option ng-repeat="option in data.starRatings" value="{{option.id}}">{{option.name}}</option>
+                ng-model="data.newData.rating">
+                <option ng-repeat="option in data.formData.starRatings" value="{{option.id}}">{{option.name}}</option>
             </select>
         </div>
     </div>
+    <droplet ng-model="interface" on-add="fileDropped(file)"></droplet>
     <div class="row">
         <div>
            <button type=button class="btn btn-primary" ng-click="addMoreText()">Add Paragraph</button>
            <button type=button class="btn btn-primary" ng-click="removeMoreText()">Remove Paragraph</button>
            <ul>
-                <li ng-repeat="paragraph in data.page_paragraphs track by $index">
+                <li ng-repeat="paragraph in data.formData.pageParagraphsIndex track by $index">
                   {{$index}}
-                  <input type="text" ng-model="data.blogPostData.page_paragraphs[$index]">
+                  <input type="text" ng-model="data.newData.page_paragraphs[$index]">
                 </li>
            </ul>
         </div>
     </div>
     <div class="row">
         <div class="col-md-2">
-            <div ng-repeat="picture in data.blogPostData.pictures track by $index">
-                <a href="{{data.blogPostData.pictures[$index]}}" class="fancybox" rel="gallery"><img ng-src="{{data.blogPostData.pictures[$index]}}"/>
-                 <div class="form-group">
-                        Filename:<textarea class="form-control" rows="3" style="resize:none;" ng-model="data.blogPostData.pictures[$index]"></textarea>
-                        Description:<textarea class="form-control" rows="3" style="resize:none;" ng-model="data.blogPostData.picture_descriptions[$index]"></textarea>
-                    </li>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <droplet ng-model="interface">
-                <ul class="files">
-                    <li ng-repeat="file in interface.getFiles(interface.FILE_TYPES.VALID)">
-                        <droplet-preview ng-model="file"></droplet-preview>
-                        <div class="delete" ng-click="file.deleteFile()">&times;</div>
-                        <div class="size">{{file.file.size / 1024 / 1024 | number: 1}}MB</div>
-                    </li>
-                </ul>
-            </droplet>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
+            <li ng-repeat="picture in data.newData.pictures track by $index">
+                <img ng-src="{{data.pictures[$index]}}"/>
+                <button class="btn btn-primary" type=button ng-click="removeDroppedFile($index)">Remove Picture/Description</button>
                 <div class="form-group">
-                    <li ng-repeat="description in interface.getFiles(interface.FILE_TYPES.VALID) track by $index">
-                        Filename:<textarea class="form-control" rows="3" style="resize:none;" ng-model="data.blogPostData.pictures[$index]"></textarea>
-                    </li>
+                    Filename:<textarea class="form-control" rows="3" style="resize:none;" ng-bind="data.newData.pictures[$index]"></textarea>
+                    Description:<textarea class="form-control" rows="3" style="resize:none;" ng-model="data.newData.picture_descriptions[$index]"></textarea>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <li ng-repeat="description in interface.getFiles(interface.FILE_TYPES.VALID) track by $index">
-                        Description:<textarea class="form-control" rows="3" style="resize:none;" ng-model="data.blogPostData.picture_descriptions[$index]"></textarea>
-                    </li>
-                </div>
-            </div>
+            </li>
         </div>
     </div>
-    <button ng-click="interface.uploadFiles(); saveBlogPost()">Save and Submit Blog Post</button>
+    <button ng-click="saveBlogPost()">Save and Submit Blog Post</button>
 </div>
