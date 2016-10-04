@@ -34,6 +34,10 @@ app.config(function($routeProvider) {
             templateUrl: 'views/submission.html',
             controller: 'submissionCtrl',
         })
+        .when('/admin/edit/:lens?', {
+            templateUrl: 'views/submissionEdit.html',
+            controller: 'submissionEditCtrl',
+        })
         .otherwise({ redirectTo: '/' });
 })
 app.run(['$rootScope', '$location', '$cookieStore', '$http',

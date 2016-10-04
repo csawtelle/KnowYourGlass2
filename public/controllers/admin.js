@@ -22,7 +22,7 @@ angular.module('app').controller('adminCtrl', ['$scope', '$rootScope', '$http', 
             });
         };
         $scope.data.editPost = function(name) {
-            $window.location.href = '/#/admin/create/' + name;
+            $window.location.href = '/#/admin/edit/' + name;
         };
 }])
 
