@@ -1,10 +1,9 @@
-angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$http', 'Base64', '$cookieStore', '$location', '$routeParams',
+angular.module('app').controller('submissionEditCtrl', ['$scope', '$rootScope', '$http', 'Base64', '$cookieStore', '$location', '$routeParams',
  function($scope, $rootScope, $http, Base64, $cookieStore, $location, $routeParams) {
     var lensReview = $routeParams.lens;
     $scope.data = {};
     $scope.data.formData = {
         pictures: [],
-        pageParagraphsIndex: []
     };
     $scope.data.newData = {
         image: '',
@@ -12,6 +11,15 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
         picture_descriptions: [],
         page_paragraphs: []
     };
+    $http({
+        method: 'GET',
+        url: "/api/pages/" + lensReview,
+    }).then(function successCallback(response) {
+        $scope.data.newData  = response.data.data[0];
+
+    }, function errorCallback(response) {
+        return("Failed to make transaction with database.");
+    });
 
     $scope.interface = {};
     $scope.$on('$dropletReady', function whenDropletReady() {
@@ -50,9 +58,9 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
       {name: 'Normal'},
     ];
     var blogPost = function() {
-       $http({
-            method: 'POST',
-            url: "/api/pages",
+        $http({
+            method: 'PUT',
+            url: "/api/pages/" + lensReview,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -72,10 +80,10 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
         blogPost($scope.data.newData);
     };
 	$scope.addMoreText = function() {
-		$scope.data.formData.pageParagraphsIndex.push("");
+		$scope.data.newData.page_paragraphs.push("");
 	};
 	$scope.removeMoreText = function() {
-		$scope.data.formData.pageParagraphsIndex.pop("");
+		$scope.data.newData.page_paragraphs.pop();
 	};
     $scope.removeDroppedFile = function(index) {
         $scope.data.newData.pictures.splice(index, 1);
