@@ -1,5 +1,7 @@
 /* Color Scheme */		
 /*		
+* #172333 Dark Blue
+* #464348 Grey
 * #30013E Deep Purple		
 * #680894 Middle Purple		
 * #BA7DAF Light Purple		
@@ -317,5 +319,5 @@ a {
 .primarybg {
     background-color: #eee;
     padding: 50px;
-    color: #6b369a;
+    color: #696969;
 }

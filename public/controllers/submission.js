@@ -48,7 +48,7 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
       {name: 'Nikon'},
       {name: 'Sigma'}
     ];
-    $scope.data.catagoryList = [
+    $scope.data.categoryList = [
       {name: 'Wide Angle'},
       {name: 'Normal'},
     ];

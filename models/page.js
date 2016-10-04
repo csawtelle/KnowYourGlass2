@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var PageSchema   = new mongoose.Schema({
     name: {type: String, required:true, unique:true},
     brand: {type: String, required: true},
-    catagory: {type: String, required: true},
+    category: {type: String, required: true},
     image: {type: String, required: true},
     pictures: [{type: String, required: true}],
     picture_descriptions: [{type: String, required: true}],

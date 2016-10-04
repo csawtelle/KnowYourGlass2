@@ -2,7 +2,7 @@
 <!--
     name: {type: String, required:true, unique:true},
     brand: {type: String, required: true},
-    catagory: {type: String, required: true},
+    category: {type: String, required: true},
     image: {type: String, required: true},
     pictures: [{type: String, required: true}],
     picture_descriptions: [{type: String, required: true}],
@@ -24,7 +24,7 @@ exports.postPage = function(req, res) {
     page.date = req.body.date;
 	page.name = req.body.name;
     page.brand = req.body.brand;
-    page.catagory = req.body.catagory;
+    page.category = req.body.category;
     page.image = '/images/' + req.body.image;
     page.rating = req.body.rating;
     page.page_paragraphs = req.body.page_paragraphs;
@@ -76,7 +76,7 @@ exports.putPage = function(req, res) {
     date: req.body.date,
 	name: req.body.name,
     brand: req.body.brand,
-    catagory: req.body.catagory,
+    category: req.body.category,
     image: req.body.image,
     rating: req.body.rating,
     page_paragraphs: req.body.page_paragraphs,

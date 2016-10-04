@@ -1,7 +1,7 @@
 <!--
     name: {type: String, required:true, unique:true},
     brand: {type: String, required: true},
-    catagory: {type: String, required: true},
+    category: {type: String, required: true},
     image: {type: String, required: true},
     pictures: [{type: String, required: true}],
     picture_descriptions: [{type: String, required: true}],
@@ -28,7 +28,7 @@
     
     <div class="{{blogPostData.rating}}"></div>
 
-    <div class="text" ng-bind="blogPostData.catagory"></div>
+    <div class="text" ng-bind="blogPostData.category"></div>
 
     <div>
         <a href="{{blogPostData.image}}" class="fancybox" rel="gallery"><img ng-src="{{blogPostData.image}}"/>
