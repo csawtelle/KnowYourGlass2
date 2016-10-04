@@ -2,20 +2,21 @@
   "name": "KnowYourGlass",
   "main": "KnowYourGlass.js",
   "dependencies": {
+    "bcrypt-nodejs": "*",
+    "body-parser": "*",
     "connect-flash": "*",
     "cookie-parser": "*",
-    "multer": "*",
     "express": "*",
+    "express-session": "*",
     "mongoose": "*",
-    "body-parser": "*",
-    "bcrypt-nodejs": "*",
+    "multer": "*",
+    "ng-droplet": "^0.5.17",
+    "norch": "*",
+    "oauth2orize": "*",
     "passport": "*",
     "passport-http": "*",
     "passport-http-bearer": "*",
-    "oauth2orize": "*",
-    "express-session": "*",
     "passport-local": "*",
-    "passport-local-mongoose": "*",
-    "norch": "*"
+    "passport-local-mongoose": "*"
   }
 }
