@@ -28,6 +28,7 @@
             </input>
         </div>
         <div class="col-xs-4">
+            <img ng-src="{{data.newData.image}}"/>
             <input
                 type="text"
                 class="form-control"
@@ -69,10 +70,10 @@
     <div class="row">
         <div class="col-md-2">
             <li ng-repeat="picture in data.newData.pictures track by $index">
-                <img ng-src="{{data.pictures[$index]}}"/>
+                <img ng-src="{{data.newData.pictures[$index]}}"/>
                 <button class="btn btn-primary" type=button ng-click="removeDroppedFile($index)">Remove Picture/Description</button>
                 <div class="form-group">
-                    Filename:<textarea class="form-control" rows="3" style="resize:none;" ng-bind="data.newData.pictures[$index]"></textarea>
+                    Filename:<textarea class="form-control" rows="3" style="resize:none;" ng-model="data.newData.pictures[$index]"></textarea>
                     Description:<textarea class="form-control" rows="3" style="resize:none;" ng-model="data.newData.picture_descriptions[$index]"></textarea>
                 </div>
             </li>
