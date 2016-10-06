@@ -358,7 +358,8 @@ a {
     font-family:"Open Sans";
 }
 .reviewbackground{
-    background-color:#172333;
+    background: linear-gradient(#304869,#172333);
+    /*background-color:#172333;*/
 }
 .reviewimage{
     border-radius:15px;
