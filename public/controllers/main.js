@@ -7,7 +7,7 @@ angular.module('app').controller('mainCtrl', ['$scope', '$rootScope', '$http', f
             url: "/api/pages",
         }).then(function successCallback(response) {
             $scope.data.pageList = response.data.data;
-
+            console.log($scope.data.pageList);
         }, function errorCallback(response) {
             return("Failed to make transaction with database.");
         });

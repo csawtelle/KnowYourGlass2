@@ -34,34 +34,17 @@
 </section>
 <div class="container">
     <div class="row" ng-repeat="page in data.pageList">
-        <div class="col-xs-12" ng-controller="TabController as tabCtrl">
             <div class="post-preview text-center col-xs-12">
-             
              <a ng-href="#/reviews/{{page.name}}">
-              <h2 class="post-title postheading">{{ page.lensName }}</h2>
+              <h2 class="post-title postheading">{{ page.name }}</h2></a>
               <h3 class="post-subtitle postsubheading">We need to add subheading/posttitle objects</h3>
-             </a>
-             <hr ng-show="tabCtrl.isSet(0)">
-            </div><!-- end heading/subheading -->
+             <hr>
+            </div><!-- END COL -->
+    </div><!-- END ROW -->
+</div><!-- END CONTAINER -->
 
-         <div ng-show="tabCtrl.isSet(1)" class="col-xs-3">
-            <p>{{ page.introSummary }} </p>
-         </div>
-         <div ng-show="tabCtrl.isSet(2)" class="col-xs-3">
-            <p>{{ page.lensName}}</p>
-         </div>
 
-<div class="row">
-        <ul class="nav nav-pills col-xs-4 col-xs-offset-4">
-          <li style="margin:5px 0 0 0;padding:4.5px 0 0 0">Quick Info: </li>
-          <li>
-            <a href="#/">Description</a></li>
-          <li>
-            <a href="#/">Specs</a></li>
-        </ul>
-</div> <!-- END div for quick info -->
-        </div> <!-- end col-xs-12 main -->
-           </div><!-- end row -->
+
                 <ul class="pager">
                     <li class="next">
                         <a href="#/">all previous posts</a>

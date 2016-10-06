@@ -1,3 +1,5 @@
+
+
 <!--
     name: {type: String, required:true, unique:true},
     brand: {type: String, required: true},
@@ -10,8 +12,8 @@
     rating: {type: String, required: true}
 -->
 
-<div ng-controller="reviewCtrl">
-    
+<div ng-controller="reviewCtrl" class="reviewbackground">
+<!--    
     <div>
         <a href="{{blogPostData.pictures[0]}}" class="fancybox" rel="gallery"><img ng-src="{{blogPostData.pictures[0]}}"/>
     </div>
@@ -33,13 +35,28 @@
     <div>
         <a href="{{blogPostData.image}}" class="fancybox" rel="gallery"><img ng-src="{{blogPostData.image}}"/>
     </div>
+-->
 
-
+<div class="container-fluid" style="padding: 80px 0 0 0;">
     <div class="row">
-        <div ng-repeat="picture in blogPostData.pictures track by $index">
-            <a href="{{blogPostData.pictures[$index+1]}}" class="fancybox" rel="gallery"><img ng-src="{{blogPostData.pictures[$index+1]}}"/>
-            <div class="text" ng-bind="blogPostData.picture_descriptions[$index+1]"></div>
-            <div class="text" ng-bind="blogPostData.page_paragraphs[$index+1]"></div>
+    <div class="col-xs-10 col-xs-offset-1">
+        <div class="jumbotron well text-center">
+        <h1>Title Goes Here</h1>
         </div>
-    </div>
-
+    </div><!-- END COL -->
+    </div><!-- END ROW -->
+</div><!-- END CONTAINER -->
+<div class="container">
+    <div class="row">
+    <div class="col-xs-8 col-xs-offset-2"
+        <div ng-repeat="picture in blogPostData.pictures track by $index">
+            <a href="{{blogPostData.pictures[$index+1]}}" class="fancybox" rel="gallery">
+            <img class="img-responsive reviewimage" ng-src="/images/{{blogPostData.pictures[$index+1]}}"/>
+            </a>
+            <div class="text posttext" ng-bind="blogPostData.picture_descriptions[$index+1]"></div>
+            <div class="text posttext" ng-bind="blogPostData.page_paragraphs[$index+1]"></div>
+        </div>
+    </div><!-- END COL -->
+    </div><!-- END ROW -->
+</div><!-- END CONTAINER -->
+</div><!-- END CONTROLLER -->
