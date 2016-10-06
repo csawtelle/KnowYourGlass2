@@ -313,8 +313,9 @@ a {
     font-size:25px;
     font-family: "Open Sans";
     text-align: center;
-    height:300px;
+    height:350px;
     opacity: 1;
+    background-color:rgba(0,0,0,0);
     text-align: center;
     -webkit-transition: all 0.35s;
     -moz-transition: all 0.35s;
@@ -367,4 +368,21 @@ a {
 }
 .solidtext {
     opacity: 1;
+}
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+    text-align:center;
+}
+.latestposttext {
+    color:#fff;
+    text-shadow:2px 3px 6px #000;
 }

@@ -7,43 +7,21 @@
         </div>
     </div>
 </div> <!-- end container fluid -->
-    <section class="no-padding">
+<!-- TESTING final latest posts -->
+<section class="no-padding">
 <div class="container-fluid">
     <div class="row no-gutter">
-        <div style="background: url(../images/homepage.jpg); background-size:cover" class="col-xs-4 latestpostbg" >
-        <p>Lens Name</p>
+        <div ng-repeat="page in data.pageList">
+        <div style="background: url(..{{page.image}}); background-size:cover;text-shadow:2px 3px 6px #000;" class="col-xs-4 latestpostbg" >
+        <a ng-href="#reviews/{{page.name}}">
+        <p class="latestposttext">{{page.name}}</p>
+        </a>
         <hr>
-        <p class="latestpostsubheading">Subheading</p>
-        </div>
-<div class="container-fluid">
-    <div class="row no-gutter">
-        <div style="background: url(../images/IMG_9770.jpg); background-size:cover" class="col-xs-4 latestpostbg" >
-        <p>Lens Name</p>
-        <hr>
-        <p class="latestpostsubheading">Subheading</p>
-        </div>
-<div class="container-fluid">
-    <div class="row no-gutter">
-        <div style="background: url(../images/IMG_9831.jpg); background-size:cover" class="col-xs-4 latestpostbg" >
-        <p>Lens Name</p>
-        <hr>
-        <p class="latestpostsubheading">Subheading</p>
-        </div>
-    </div>
-</div>
-</section>
-<div class="container">
-    <div class="row" ng-repeat="page in data.pageList">
-            <div class="post-preview text-center col-xs-12">
-             <a ng-href="#/reviews/{{page.name}}">
-              <h2 class="post-title postheading">{{ page.name }}</h2></a>
-              <h3 class="post-subtitle postsubheading">We need to add subheading/posttitle objects</h3>
-             <hr>
-            </div><!-- END COL -->
-    </div><!-- END ROW -->
+
+        </div><!-- end ng repeat -->
+    </div><!-- END ROW no-gutter -->
 </div><!-- END CONTAINER -->
-
-
+</section>
 
                 <ul class="pager">
                     <li class="next">
