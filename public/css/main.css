@@ -1,3 +1,4 @@
+
 /* Color Scheme */		
 /*		
 * #172333 Dark Blue
@@ -44,7 +45,8 @@
     font-family: "Open Sans", "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;		
     font-weight: 700;		
 }		
-		
+
+	
 .intro-divider {		
     width: 400px;		
     border-top: 1px solid #f8f8f8;		
@@ -175,10 +177,23 @@ input[type=radio] {
     -webkit-transition: all .5s; 
     transition: all .5s;
 }
+.btn2 {
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    padding: 10px 25px;
+    font-size: 20px;
+    margin: 25px 5px;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    background-color:#172333;
+    color:white;
+}
 .btn:hover{
     padding:20px 40px;
-    opacity:.5;
-
+    /*opacity:.5;*/
+    background-color: rgba(255, 255, 255, .5);
 }
 /* TOOLBAR CSS */
 .toolbar {
@@ -329,11 +344,26 @@ a {
     -webkit-transition: all 2s;
     transition: all 1s;
 }
-.primarybginverse:hover {
-    padding:120px 0px;
-}
 .socialicons {
     color: #eee;
     padding: 0px 10px;
     text-shadow: 2px 3px 6px #000;
+
+}
+
+/*review section css*/
+
+.posttext {
+    color:#eee;
+    font-family:"Open Sans";
+}
+.reviewbackground{
+    background-color:#172333;
+}
+.reviewimage{
+    border-radius:15px;
+    margin:20px 0 20px 0;
+}
+.solidtext {
+    opacity: 1;
 }
