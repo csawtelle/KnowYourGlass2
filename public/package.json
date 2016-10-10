@@ -1,0 +1,13 @@
+{
+  "name": "KnowYourGlass",
+  "main": "KnowYourGlass.js",
+  "dependencies": {
+    "angular": "*",
+    "angular-ui-bootstrap": "*",
+    "angular-ui-validate": "*",
+    "angular-ui-scroll": "*",
+    "angular-ui-router": "*",
+    "ng-droplet": "*"
+
+  }
+}
