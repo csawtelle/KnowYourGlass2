@@ -2,6 +2,7 @@ var app = angular.module('app', [
     'ngRoute',
     'ngDroplet',
     'ngCookies',
+    'ui.bootstrap'
 ])
 app.config(function($routeProvider) {
     $routeProvider

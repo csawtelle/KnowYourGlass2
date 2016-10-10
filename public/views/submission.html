@@ -12,7 +12,7 @@
 <div ng-controller="submissionCtrl" style="padding-top:100px">
     <div class="form-group">
         <div class="col-xs-4">
-            <input 
+            <input required
                 type="text" 
                 class="form-control"
                 ng-model="data.newData.date"
@@ -20,7 +20,7 @@
             </input>
         </div>
         <div class="col-xs-4">
-            <input 
+            <input required
                 type="text" 
                 class="form-control"
                 ng-model="data.newData.name"
@@ -28,7 +28,7 @@
             </input>
         </div>
         <div class="col-xs-4">
-            <input
+            <input required
                 type="text"
                 class="form-control"
                 ng-model="data.newData.image"
@@ -36,17 +36,17 @@
             </input>
         </div>
         <div class="row">
-            <select 
+            <select required
                 class="lens_brand" 
                 ng-model="data.newData.brand">
                 <option ng-repeat="option in data.formData.brandList" value="{{option.name}}">{{option.name}}</option>
             </select>
-            <select 
+            <select required
                 class="lens_category" 
                 ng-model="data.newData.category">
                 <option ng-repeat="option in data.formData.categoryList" value="{{option.name}}">{{option.name}}</option>
             </select>
-            <select 
+            <select required
                 class="star_rating_form" 
                 ng-model="data.newData.rating">
                 <option ng-repeat="option in data.formData.starRatings" value="{{option.id}}">{{option.name}}</option>
@@ -61,7 +61,7 @@
            <ul>
                 <li ng-repeat="paragraph in data.formData.pageParagraphsIndex track by $index">
                   {{$index}}
-                  <input type="text" ng-model="data.newData.page_paragraphs[$index]">
+                  <input required type="text" ng-model="data.newData.page_paragraphs[$index]">
                 </li>
            </ul>
         </div>
@@ -72,8 +72,8 @@
                 <img ng-src="{{data.pictures[$index]}}"/>
                 <button class="btn btn-primary" type=button ng-click="removeDroppedFile($index)">Remove Picture/Description</button>
                 <div class="form-group">
-                    Filename:<textarea class="form-control" rows="3" style="resize:none;" ng-bind="data.newData.pictures[$index]"></textarea>
-                    Description:<textarea class="form-control" rows="3" style="resize:none;" ng-model="data.newData.picture_descriptions[$index]"></textarea>
+                    Filename:<textarea required class="form-control" rows="3" style="resize:none;" ng-bind="data.newData.pictures[$index]"></textarea>
+                    Description:<textarea required class="form-control" rows="3" style="resize:none;" ng-model="data.newData.picture_descriptions[$index]"></textarea>
                 </div>
             </li>
         </div>

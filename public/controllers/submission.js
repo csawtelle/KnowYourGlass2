@@ -10,7 +10,7 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
         image: '',
         pictures: [],
         picture_descriptions: [],
-        page_paragraphs: []
+        page_paragraphs: ['']
     };
 
     $scope.interface = {};
