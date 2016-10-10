@@ -2,6 +2,7 @@
   "name": "KnowYourGlass",
   "main": "KnowYourGlass.js",
   "dependencies": {
+    "angular-ui-bootstrap": "*",
     "bcrypt-nodejs": "*",
     "body-parser": "*",
     "connect-flash": "*",
