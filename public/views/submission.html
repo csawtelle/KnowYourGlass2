@@ -9,8 +9,7 @@
     date: {type: String, required: true, unique:true},
     rating: {type: String, required: true}
 -->
-<div ng-controller="submissionCtrl" style="padding-top:100px">
-    <div class="form-group">
+<form ng-controller="submissionCtrl" style="padding-top:100px" ng-submit="save()">
         <div class="col-xs-4">
             <input required
                 type="text" 
@@ -77,6 +76,5 @@
                 </div>
             </li>
         </div>
-    </div>
-    <button ng-submit="saveBlogPost()">Save and Submit Blog Post</button>
-</div>
+    <input type="submit" value="Save"/>
+</form>
