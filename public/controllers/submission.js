@@ -59,14 +59,7 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
             data: $scope.data.newData
         }).then(function successCallback(response) {
 
-            var modalOptions = {
-                closeButtonText: 'Cancel',
-                actionButtonText: 'Delete Customer',
-                headerText: 'Delete ' + custName + '?',
-                bodyText: response
-            };
-
-            modalService.showModal({}, modalOptions).then(function (result) {}, processError);
+            modalService.show({});
 
         }, function errorCallback(response) {
             return("Failed to make transaction with database.");
