@@ -1,5 +1,5 @@
-angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$http', 'Base64', '$cookieStore', '$location', '$routeParams',
- function($scope, $rootScope, $http, Base64, $cookieStore, $location, $routeParams) {
+angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$http', 'Base64', '$cookieStore', '$location', '$routeParams', 'modalService',
+ function($scope, $rootScope, $http, Base64, $cookieStore, $location, $routeParams, modalService) {
     var lensReview = $routeParams.lens;
     $scope.data = {};
     $scope.data.formData = {
@@ -58,7 +58,16 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
             },
             data: $scope.data.newData
         }).then(function successCallback(response) {
-            $location.path('#/admin');
+
+            var modalOptions = {
+                closeButtonText: 'Cancel',
+                actionButtonText: 'Delete Customer',
+                headerText: 'Delete ' + custName + '?',
+                bodyText: response
+            };
+
+            modalService.showModal({}, modalOptions).then(function (result) {}, processError);
+
         }, function errorCallback(response) {
             return("Failed to make transaction with database.");
         });

@@ -5,7 +5,8 @@ var app = angular.module('app', [
     'ui.bootstrap',
     'ui.scroll',
     'ui.validate',
-    'ui.router'    
+    'ui.router',    
+    'ui.grid'
 ])
 app.config(function($routeProvider) {
     $routeProvider
