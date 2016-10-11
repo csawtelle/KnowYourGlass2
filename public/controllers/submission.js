@@ -64,7 +64,7 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
         });
     };
 
-    $scope.saveBlogPost = function() {
+    $scope.save = function() {
         var authdata = Base64.decode($cookieStore.get('globals').currentUser.authdata);
         var auth = authdata.split(":");
         $scope.data.newData.username = auth[0];
