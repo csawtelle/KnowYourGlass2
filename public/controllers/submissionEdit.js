@@ -24,6 +24,14 @@ angular.module('app')
                 $scope.status = 'Unable to load review data: ' + error.message;
             });
     }
+    function updateReview(id, data) {
+        reviewFactory.updateReview(id, data)
+            .then(function (response) {
+                console.log(response);
+            }, function (error) {
+                $scope.status = 'Unable to update review data: ' + error.message;
+            });
+    }
 
     $scope.interface = {};
     $scope.$on('$dropletReady', function whenDropletReady() {
@@ -62,18 +70,7 @@ angular.module('app')
       {name: 'Normal'},
     ];
     var blogPost = function() {
-        $http({
-            method: 'PUT',
-            url: "/api/pages/" + lensReview,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: $scope.data.newData
-        }).then(function successCallback(response) {
-            $location.path('#/admin');
-        }, function errorCallback(response) {
-            return("Failed to make transaction with database.");
-        });
+        updateReview(lensReview, $scope.data.newData);
     };
 
     $scope.saveBlogPost = function() {
