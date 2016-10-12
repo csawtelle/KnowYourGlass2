@@ -21,7 +21,7 @@ angular.module('app')
     };
 
     reviewFactory.deleteReview = function (id, data) {
-        return $http.post(url + id, data);
+        return $http.delete(url + id, data);
     };
 
     return reviewFactory; 
