@@ -8,9 +8,20 @@ angular.module('app')
         return $http.get(url + id);
     };
 
-
     reviewFactory.getReviews = function () {
         return $http.get(url);
+    };
+
+    reviewFactory.updateReview = function (id, data) {
+        return $http.put(url + id, data);
+    };
+
+    reviewFactory.newReview = function (data) {
+        return $http.post(url, data);
+    };
+
+    reviewFactory.deleteReview = function (id, data) {
+        return $http.post(url + id, data);
     };
 
     return reviewFactory; 
