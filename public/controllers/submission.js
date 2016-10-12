@@ -58,8 +58,10 @@ angular.module('app').controller('submissionCtrl', ['$scope', '$rootScope', '$ht
             },
             data: $scope.data.newData
         }).then(function successCallback(response) {
-
-            modalService.show({});
+            $scope.options = {};
+            $scope.options.body = '';
+            $scope.options.body = "This is a test";
+            modalService.show({}, response);
 
         }, function errorCallback(response) {
             return("Failed to make transaction with database.");
