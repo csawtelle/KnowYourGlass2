@@ -1,15 +1,15 @@
 angular.module('app').service('modalService', ['$uibModal',
     function ($uibModal) {
-
-        var modalDefaults = {
+    this.show = function({}, response) {
+        var options = {
             backdrop: true,
             keyboard: true,
             modalFade: true,
-            templateUrl: '/partials/modal.html'
+            templateUrl: '/partials/modal.html',
+            controller: 'modalCtrl'
         };
 
-        this.show = function() {
-            return $uibModal.open(modalDefaults).result;
-        };
+        return $uibModal.open(options);
+    };
 
-    }]);
+}]);

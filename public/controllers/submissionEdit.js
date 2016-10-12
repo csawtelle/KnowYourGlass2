@@ -1,5 +1,7 @@
-angular.module('app').controller('submissionEditCtrl', ['$scope', '$rootScope', '$http', 'Base64', '$cookieStore', '$location', '$routeParams',
- function($scope, $rootScope, $http, Base64, $cookieStore, $location, $routeParams) {
+angular.module('app')
+    .controller('submissionEditCtrl', ['$scope', '$rootScope', '$http', 'Base64', '$cookieStore', '$location', '$routeParams', 'reviewFactory',
+        function($scope, $rootScope, $http, Base64, $cookieStore, $location, $routeParams, reviewFactory) {
+
     var lensReview = $routeParams.lens;
     $scope.data = {};
     $scope.data.formData = {
@@ -11,15 +13,17 @@ angular.module('app').controller('submissionEditCtrl', ['$scope', '$rootScope', 
         picture_descriptions: [],
         page_paragraphs: []
     };
-    $http({
-        method: 'GET',
-        url: "/api/pages/" + lensReview,
-    }).then(function successCallback(response) {
-        $scope.data.newData  = response.data.data[0];
 
-    }, function errorCallback(response) {
-        return("Failed to make transaction with database.");
-    });
+    getReview();
+    function getReview() {
+        reviewFactory.getReview(lensReview)
+            .then(function (response) {
+                console.log(response.data.data[0]);
+                $scope.data.newData = response.data.data[0];
+            }, function (error) {
+                $scope.status = 'Unable to load review data: ' + error.message;
+            });
+    }
 
     $scope.interface = {};
     $scope.$on('$dropletReady', function whenDropletReady() {
