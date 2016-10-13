@@ -1,106 +1,28 @@
-
-<!DOCTYPE html>
-<html ng-app="app"> 
-<head>
-    <title>Know Your Glass</title>
-
-
-    <!-- Angular-UI -->
-    <script src="node_modules/angular/angular.js"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
-    <script src="node_modules/angular-ui-validate/dist/validate.js"></script>
-    <script src="node_modules/angular-ui-scroll/dist/ui-scroll.js"></script>
-    <script src="js/angular-touch.js"></script>
-    <link rel="stylesheet" type="text/css" href="node_modules/angular-ui-grid/ui-grid.min.css">
-    <script src="node_modules/angular-ui-grid/ui-grid.min.js"></script>
-
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
-    <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="node_modules/ng-droplet/dist/ng-droplet.js"></script>
-
-    <script src="js/angular-animate.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-cookies.js"></script>
-
-    <!-- Add jQuery library -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-    <!-- Testing controllers in different folder -->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
-
+<html>
+  <head>
+    <title>Angular QuickStart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
     <!-- Need Bootstrap CSS for angularUI -->
     <link rel="stylesheet" href="css/bootstrap.css">
-    <!-- Add mousewheel plugin (this is optional) -->
-    <script type="text/javascript" src="js/fancybox/jquery.mousewheel.pack.js"></script>
-    <!-- Add fancyBox -->
-    <link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css"/>
-    <script type="text/javascript" src="js/fancybox/jquery.fancybox.pack.js"></script>
-
-    <!-- Optionally add helpers - button, thumbnail and/or media -->
-    <link rel="stylesheet" href="js/fancybox/jquery.fancybox-buttons.css" type="text/css"/>
-    <script type="text/javascript" src="js/fancybox/jquery.fancybox-buttons.js"></script>
-    <script type="text/javascript" src="js/fancybox/jquery.fancybox-media.js"></script>
-    <!-- Adding Custom Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="js/fancybox/jquery.fancybox-thumbs.css" type="text/css"/>
-    <script type="text/javascript" src="js/fancybox/jquery.fancybox-thumbs.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.fancybox').fancybox({
-                padding : 0,
-                openEffect  : 'elastic',
-                closeBtn: false
-            });
-        });
-    </script>
-    <script type="text/javascript" src="js/ngDroplet.js"></script>
-    <script src="app.js"></script>
-
-    <!-- Directives -->
-    <script src="directives.js"></script>
-    <script src="services/base64.js"></script>
-    <!-- Services -->
-    <script src="services/authentication.js"></script>
-    <script src="services.js"></script>
-
-    <!-- Controllers -->
-    <script src="controllers/admin.js"></script>
-    <script src="controllers/login.js"></script>
-    <script src="controllers/main.js"></script>
-    <script src="controllers/registration.js"></script>
-    <script src="controllers/review.js"></script>
-    <script src="controllers/submission.js"></script>
-    <script src="controllers/submissionEdit.js"></script>
-    <script src="controllers/success.js"></script>
-    <script src="controllers/toolbar.js"></script>
-    <script src="controllers/modal.js"></script>
-    <script src="factory.js"></script>
-
-    <!-- Testing Pop Over -->
-    <link rel="stylesheet" type="text/css" href="css/FA/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/FA/css/font-awesome.min.css">
-    <link href="css/FA/fonts/fontawesome-webfont.tff">
-    <link href="css/FA/fonts/fontawesome-webfont.woff">
-
-    <!-- Main CSS -->
+    <!-- Adding main.css for custom css -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/rating.css">
-    <link rel="stylesheet" type="text/css" href="css/hover.css">
-    <link rel="stylesheet" type="text/css" href="css/droplet.css">
-    <link rel="stylesheet" type="text/css" href="css/old-ui.css">
-
-</head>
-    <body>
-            <toolbar></toolbar>
-            <div ng-view></div>
-            <footer>
-                <div class="container">
-                <div class="row">
-                <div class="col-lg-12 text-center">
-                    Know Your Glass Copyright 2016 Christopher Sawtelle and Gerard Ramos
-                </div>
-                </div>
-            </footer>
-   </body>
+    <!-- 1. Load libraries -->
+     <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
+  </head>
+  <!-- 3. Display the application -->
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
 </html>
 
