@@ -12,6 +12,14 @@ export class ReviewService {
   private apiUrl = 'api/pages';  // URL to web api
   constructor(private http: Http) { }
 
+  getReview(name: string): Promise<Review[]> {
+    return this.http.get(this.apiUrl + '/' + name)
+               .toPromise()
+               .then(response => response.json().data as Review[])
+               .catch(this.handleError);
+  }
+
+ 
   getReviews(): Promise<Review[]> {
     return this.http.get(this.apiUrl)
                .toPromise()

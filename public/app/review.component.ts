@@ -9,9 +9,10 @@ import { Review } from './models/review';
 })
 export class ReviewComponent { 
   reviews: Review[];
-
+  sreview: Review[];
   constructor(private reviewService: ReviewService) { } //?
   ngOnInit(): void {
     this.reviewService.getReviews().then( reviews => this.reviews = reviews); //when the review component loads, run getReviews
+    this.reviewService.getReview('test').then( sreview => this.sreview = sreview);
   }
 }
