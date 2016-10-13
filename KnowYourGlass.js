@@ -93,9 +93,10 @@ app.post('/api/upload', upload.any(), function(req, res) {
 //
 //angular part of the web page
 //
+
 app.use(router);
-app.get('/', function(req, res) {
-	res.sendFile('/index.html');
+app.get('*', function(req, res) {
+  res.sendFile('./public/index.html', { root: __dirname });
 });
 console.log('Listening');
 app.listen(8080);
