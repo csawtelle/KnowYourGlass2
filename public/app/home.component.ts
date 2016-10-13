@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'my-app',
+  selector: 'kyg-app',
   templateUrl: 'views/home.html'
 })
-export class AppComponent { }
+export class HomeComponent { 
+  title = "Know Your Glass";
+}

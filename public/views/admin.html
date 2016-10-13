@@ -1,0 +1,12 @@
+<div style="padding-top:70px"></div>
+
+
+<div class="container">
+    <div class="row text-right">
+    <div class="col-xs-8 col-xs-offset-2">
+    <div class="blog_post_link" ng-repeat="page in data.pageList">
+        <button class="btn2 " ng-click="data.editPost(page.name)">Edit Post</button>
+        <button class="btn2" ng-click="data.deletePost(page.name)">Delete Post</button>
+   </div><!-- END COL -->
+   </div><!-- END ROW -->
+</div><!-- END CONTAINER-->
