@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ReviewService } from './review.service'; //import review service code
 import { Review } from './models/review';
+import { ReviewService } from './review.service';
 
 @Component({
   selector: 'kyg-app',
   templateUrl: 'views/review.html',
-  providers: [ReviewService] // tell the code that the review service is a provider?
 })
 export class ReviewComponent { 
+
+  title = "Know Your Glass";
   reviews: Review[];
   sreview: Review[];
-  constructor(private reviewService: ReviewService) { } //?
-  ngOnInit(): void {
-    this.reviewService.getReviews().then( reviews => this.reviews = reviews); //when the review component loads, run getReviews
-    this.reviewService.getReview('test').then( sreview => this.sreview = sreview);
+
+  constructor(private reviewService: ReviewService) { 
+    this.reviewService.reviews.subscribe((observer) => {
+      console.log(observer);
+    });
   }
 }

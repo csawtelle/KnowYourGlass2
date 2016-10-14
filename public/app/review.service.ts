@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Headers, Http, Response} from '@angular/http';
+import {Headers, Http, Response, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import {Review} from './models/review';
 
@@ -7,10 +7,14 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ReviewService { 
+  reviews: any;
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private apiUrl = 'api/pages';  // URL to web api
-  constructor(private http: Http) { }
+  constructor(private http: Http) { 
+      this.http = http;
+      this.reviews = this.http.get('/api/pages');
+  }
 
   getReview(name: string): Promise<Review[]> {
     return this.http.get(this.apiUrl + '/' + name)
@@ -51,6 +55,11 @@ export class ReviewService {
                .toPromise()
                .then(response => response.json().data as Review[])
                .catch(this.handleError);
+  }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body.data || { };
   }
 
   private handleError(error: any): Promise<any> {
