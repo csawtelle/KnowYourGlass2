@@ -11,9 +11,10 @@ export class ReviewService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private apiUrl = 'api/pages';  // URL to web api
+  private auth = '?username=admin&password=admin';
   constructor(private http: Http) { 
       this.http = http;
-      this.reviews = this.http.get('/api/pages');
+      this.reviews = this.http.get('/api/pages' + this.auth);
   }
 
   getReview(name: string): Promise<Review[]> {
