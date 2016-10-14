@@ -1,6 +1,6 @@
 var multer = require('multer');
 var express = require('express');
-
+var oauth2Controller = require('./controllers/oauth2Ctrl');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var router = express.Router();
@@ -14,8 +14,6 @@ var flash = require('connect-flash');
 
 var app = express();
 
-app.set('env', 'development');
-
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json({limit: '500mb'}));
@@ -26,9 +24,9 @@ mongoose.connect('mongodb://localhost:27017/kyg');
 
 app.use(cookieParser());
 app.use(require('express-session')({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false
+    secret: 'keyboard cat is cool guy',
+    resave: true,
+    saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -37,6 +35,19 @@ passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 passport.authenticate('local', { failureFlash: 'Invalid username or password.' });
+
+
+// Create endpoint handlers for oauth2 authorize
+router.route('/oauth2/authorize')
+  .get(authController.isAuthenticated, oauth2Controller.authorization)
+  .post(authController.isAuthenticated, oauth2Controller.decision);
+
+// Create endpoint handlers for oauth2 token
+router.route('/oauth2/token')
+  .post(authController.isClientAuthenticated, oauth2Controller.token); 
+
+
+
 
 router.post('/api/login', passport.authenticate('local'), function(req, res) {
     res.send({ user : req.user.username, password : req.user.hash })
