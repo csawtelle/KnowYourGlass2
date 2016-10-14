@@ -10,5 +10,6 @@ import { Component } from '@angular/core';
       <router-outlet></router-outlet>
     </div>
   `
+  /* templateUrl: 'views/toolbar.html' */
 })
 export class AppComponent { }

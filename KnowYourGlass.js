@@ -1,6 +1,10 @@
 var multer = require('multer');
 var express = require('express');
-var oauth2Controller = require('./controllers/oauth2Ctrl');
+
+var authController = require('./controllers/authCtrl');
+var oauth2Controller = require('./controllers/auth2Ctrl');
+var clientController = require('./controllers/clientCtrl');
+
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var router = express.Router();
@@ -36,18 +40,19 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 passport.authenticate('local', { failureFlash: 'Invalid username or password.' });
 
+// Create endpoint handlers for /clients
+router.route('/clients')
+  .post(authController.isAuthenticated, clientController.postClients)
+  .get(authController.isAuthenticated, clientController.getClients);
 
 // Create endpoint handlers for oauth2 authorize
-router.route('/oauth2/authorize')
+router.route('/api/oauth2/authorize')
   .get(authController.isAuthenticated, oauth2Controller.authorization)
   .post(authController.isAuthenticated, oauth2Controller.decision);
 
 // Create endpoint handlers for oauth2 token
-router.route('/oauth2/token')
+router.route('/api/oauth2/token')
   .post(authController.isClientAuthenticated, oauth2Controller.token); 
-
-
-
 
 router.post('/api/login', passport.authenticate('local'), function(req, res) {
     res.send({ user : req.user.username, password : req.user.hash })
