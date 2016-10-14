@@ -49,10 +49,7 @@ passport.use(new DigestStrategy(
   }
 ));
 
-passport.use(new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'pass'
-  },
+passport.use(new LocalStrategy(
   function(username, password, callback) {
     User.findOne({ username: username }, function (err, user) {
       if (err) { return callback(err); }
@@ -110,5 +107,6 @@ passport.use(new BearerStrategy(
 ));
 
 exports.isAuthenticated = passport.authenticate(['local', 'bearer'], { session : false });
+exports.isBasicAuthenticated = passport.authenticate(['basic', 'bearer'], { session : false });
 exports.isClientAuthenticated = passport.authenticate('client-basic', { session : false });
 exports.isBearerAuthenticated = passport.authenticate('bearer', { session: false });

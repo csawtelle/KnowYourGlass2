@@ -4,6 +4,7 @@ var express = require('express');
 var authController = require('./controllers/authCtrl');
 var oauth2Controller = require('./controllers/auth2Ctrl');
 var clientController = require('./controllers/clientCtrl');
+var userController = require('./controllers/userCtrl');
 
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
@@ -26,58 +27,35 @@ app.use(flash());
 
 mongoose.connect('mongodb://localhost:27017/kyg');
 
-app.use(cookieParser());
+app.use(passport.initialize());
 app.use(require('express-session')({
     secret: 'keyboard cat is cool guy',
     resave: true,
     saveUninitialized: true
 }));
-app.use(passport.initialize());
-app.use(passport.session());
-var Account = require('./models/account');
-passport.use(new LocalStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
-passport.authenticate('local', { failureFlash: 'Invalid username or password.' });
 
-// Create endpoint handlers for /clients
-router.route('/clients')
-  .post(authController.isAuthenticated, clientController.postClients)
-  .get(authController.isAuthenticated, clientController.getClients);
+// Create endpoint handlers for /users
+router.route('/api/users')
+  .post(userController.postUsers)
+  .get(authController.isAuthenticated, userController.getUsers);
 
 // Create endpoint handlers for oauth2 authorize
-router.route('/api/oauth2/authorize')
+router.route('/api/authorize')
   .get(authController.isAuthenticated, oauth2Controller.authorization)
   .post(authController.isAuthenticated, oauth2Controller.decision);
 
 // Create endpoint handlers for oauth2 token
-router.route('/api/oauth2/token')
+router.route('/api/token')
   .post(authController.isClientAuthenticated, oauth2Controller.token); 
 
 router.post('/api/login', passport.authenticate('local'), function(req, res) {
     res.send({ user : req.user.username, password : req.user.hash })
 });
-//  NOTE: Uncomment the designated section and follow the instructions
-//  make a POST request to knowyourglass.com/api/register 
 
-//  header : content-type: application/json
-//  body   : { "username":"youruser", "password":"yourpassword"}
-
-//uncomment the below section and restart server to create a new user
-/********************************************************************
-
-router.post('/api/register', function(req, res) {
-    Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
-        passport.authenticate('local')(req, res, function () {
-            res.redirect('/');
-        });
-    });
-});
-
-********************************************************************/
-//uncomment the above section and restart server to create a new user
-
-
+// Create endpoint handlers for /clients
+router.route('/api/clients')
+  .post(authController.isAuthenticated, clientController.postClients)
+  .get(authController.isAuthenticated, clientController.getClients);
 
 // Create endpoint handle for /page/
 router.route('/api/pages')
