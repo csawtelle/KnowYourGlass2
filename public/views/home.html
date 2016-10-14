@@ -37,4 +37,19 @@
         </div> <!-- end row -->
     </div>
 </section>
+
+<div class="reviewbackground" style="padding-top:100px">
+  <div *ngFor='let review of reviews'>
+    <div class="container">
+      <div class="row">
+       <div class="col-xs-8 col-xs-offset-2">
+        <div class="jumbotron well text-center">
+         {{ review.name }}
+        </div><!-- end title -->
+       </div><!-- end col -->
+      </div><!-- end row -->
+    </div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>

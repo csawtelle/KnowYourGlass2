@@ -13,6 +13,8 @@ import { ReviewService } from './review.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { Review } from './models/review';
+
 @NgModule({
   imports:  [ 
     BrowserModule,
@@ -31,5 +33,6 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [ ReviewService ],
   bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule { 
+}
 
