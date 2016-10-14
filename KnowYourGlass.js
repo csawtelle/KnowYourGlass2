@@ -48,10 +48,6 @@ router.route('/api/authorize')
 router.route('/api/token')
   .post(authController.isClientAuthenticated, oauth2Controller.token); 
 
-router.post('/api/login', passport.authenticate('local'), function(req, res) {
-    res.send({ user : req.user.username, password : req.user.hash })
-});
-
 // Create endpoint handlers for /clients
 router.route('/api/clients')
   .post(authController.isAuthenticated, clientController.postClients)
@@ -59,13 +55,13 @@ router.route('/api/clients')
 
 // Create endpoint handle for /page/
 router.route('/api/pages')
-  .post(passport.authenticate('local'), pageRoutes.postPage)
-  .get(pageRoutes.getPages);
+  .post(authController.isAuthenticated, pageRoutes.postPage)
+  .get(authController.isAuthenticated, pageRoutes.getPages);
 // Create endpoint handlers for /pages/:page_id
 router.route('/api/pages/:name')
-  .get(pageRoutes.getPage)
-  .put(passport.authenticate('local'), pageRoutes.putPage)
-  .delete(passport.authenticate('local'), pageRoutes.deletePage);
+  .get(authController.isAuthenticated, pageRoutes.getPage)
+  .put(authController.isAuthenticated, pageRoutes.putPage)
+  .delete(authController.isAuthenticated, pageRoutes.deletePage);
 //
 // Create endpoint for file uploads
 //
