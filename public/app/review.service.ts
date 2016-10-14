@@ -18,10 +18,36 @@ export class ReviewService {
                .then(response => response.json().data as Review[])
                .catch(this.handleError);
   }
-
  
   getReviews(): Promise<Review[]> {
     return this.http.get(this.apiUrl)
+               .toPromise()
+               .then(response => response.json().data as Review[])
+               .catch(this.handleError);
+  }
+
+  postReview ( object: Object): Promise<Review[]> {
+    let body = JSON.stringify({ object });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.apiUrl, body, options)
+               .toPromise()
+               .then(this.extractData)
+               .catch(this.handleError);
+  }
+
+  putReview ( object: Object): Promise<Review[]> {
+    let body = JSON.stringify({ object });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.put(this.apiUrl + '/' + object.name, body, options)
+               .toPromise()
+               .then(this.extractData)
+               .catch(this.handleError);
+  }
+
+  deleteReview(): Promise<Review[]> {
+    return this.http.delete(this.apiUrl)
                .toPromise()
                .then(response => response.json().data as Review[])
                .catch(this.handleError);
@@ -33,4 +59,3 @@ export class ReviewService {
   }
 
 }
-
