@@ -8,15 +8,13 @@ import { ReviewService } from './review.service';
   templateUrl: '../views/modal.html'
 })
 export class ModalComponent {
+  @Input('reviews') reviews: Array;  
   @Input('reviewName') reviewName: string;  
+
   closeResult: string;
-  reviews: Review[];
 
   constructor(private modalService: NgbModal, private reviewService: ReviewService) {}
   open(content) {
-    this.reviewService.reviews.subscribe((observer) => {
-      this.reviews = JSON.parse(observer._body).data;
-    });
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

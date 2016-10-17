@@ -18,7 +18,7 @@ export class ReviewService {
   }
 
   getReview(name: string): Promise<Review[]> {
-    return this.http.get(this.apiUrl + '/' + name)
+    return this.http.get(this.apiUrl + '/' + name + this.auth)
                .toPromise()
                .then(response => response.json().data as Review[])
                .catch(this.handleError);
