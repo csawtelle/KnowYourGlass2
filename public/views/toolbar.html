@@ -1,0 +1,23 @@
+
+<div class="navbar navbar-default navbar-fixed-top">
+ <div class="container-fluid">
+  <div class="navbar-header">
+    <a class="navbar-brand" [routerLink]="['/']">know<strong>yourglass</strong></a>
+  </div>
+
+  <div>
+   <ul class="nav navbar-nav navbar-right">
+    <li>
+    <a [routerLink]="['/review']">Review</a>
+    </li>
+    <li>
+    <a [routerLink]="['/admin']">Admin</a>
+    </li>
+   </ul>
+  </div>
+ </div><!-- end container -->
+</div><!-- end nav -->
+<div class="outer-outlet">
+ <router-outlet></router-outlet>
+</div>
+
