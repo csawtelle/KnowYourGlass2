@@ -11,8 +11,12 @@ export class ModalComponent {
   closeResult: string;
   reviews: Review[];
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private reviewService: ReviewService) {}
   open(content) {
+    this.reviewService.reviews.subscribe((observer) => {
+      this.reviews = JSON.parse(observer._body).data;
+      console.log(this.reviews);
+    });
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
