@@ -5,8 +5,36 @@
   </div>
 
   <div class="modal-body">
-    <div *ngFor='let review of reviews'>
-      {{ review.name }}
+    <div *ngFor="let review of reviews">
+      <div *ngIf="review.name == reviewName">
+        <div class="row">
+          {{review.date}}
+        </div>
+        <div class="row">
+          {{review.name}}
+        </div>
+        <div class="row">
+          {{review.rating}}
+        </div>
+        <div class="row">
+          {{review.brand}}
+        </div>
+        <div class="row">
+          {{review.catagory}}
+        </div>
+        <div class="row">
+          {{review.image}}
+        </div>
+        <div class="row">
+          {{review.page_paragraphs}}
+        </div>
+        <div class="row">
+          {{review.picture_descriptions}}
+        </div>
+        <div class="row">
+          {{review.pictures}}
+        </div>
+      </div>
     </div>
   </div>
 
@@ -14,4 +42,4 @@
   </div>
 </template>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Edit</button>
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">{{reviewName}}</button>

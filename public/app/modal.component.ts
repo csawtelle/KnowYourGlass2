@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Review } from './models/review';
 import { ReviewService } from './review.service';
@@ -8,15 +8,13 @@ import { ReviewService } from './review.service';
   templateUrl: '../views/modal.html'
 })
 export class ModalComponent {
+  @Input('reviews') reviews: Array;  
+  @Input('reviewName') reviewName: string;  
+
   closeResult: string;
-  reviews: Review[];
 
   constructor(private modalService: NgbModal, private reviewService: ReviewService) {}
   open(content) {
-    this.reviewService.reviews.subscribe((observer) => {
-      this.reviews = JSON.parse(observer._body).data;
-      console.log(this.reviews);
-    });
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

@@ -1,13 +1,13 @@
 <div style="padding-top: 100px"></div>
+
 <div *ngFor='let review of reviews'>
   <div class="container">
     <div class="row">
-     <div class="col-xs-8 col-xs-offset-2">
-      <div class="jumbotron well text-center">
-        {{ review.name }}
-        <modal></modal>
-      </div><!-- end title -->
-     </div><!-- end col -->
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="jumbotron well text-center">
+          <modal [reviewName]="review.name" [reviews]="reviews"></modal>
+        </div><!-- end title -->
+      </div><!-- end col -->
     </div><!-- end row -->
   </div>
 </div>
