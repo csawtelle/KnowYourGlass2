@@ -8,10 +8,9 @@ import { PageNotFoundComponent }  from './pagenotfound.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
-  { path: 'edit', component: EditComponent },
+  { path: 'admin', component: EditComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'review/:id', component: ReviewComponent },
-  { path: 'admin',     component: AdminComponent },
   { path: '**',     component: PageNotFoundComponent }
 ];
 @NgModule({
