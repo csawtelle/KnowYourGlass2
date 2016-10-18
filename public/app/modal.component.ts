@@ -8,7 +8,7 @@ import { ReviewService } from './review.service';
   templateUrl: '../views/modal.html'
 })
 export class ModalComponent {
-  @Input('reviews') reviews: Array;  
+  @Input('reviews') reviews: Array<string>;  
   @Input('reviewName') reviewName: string;  
 
   closeResult: string;
