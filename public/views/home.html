@@ -39,18 +39,12 @@
 </section>
 
 
-<div style="padding-top:100px">
-  <div *ngFor='let review of reviews; let i = index'>
-    <div class="container">
-      <div class="row">
-       <div class="col-xs-8 col-xs-offset-2">
-        <div class="jumbotron well text-center">
-          <a [routerLink]="['/review/' + review.name]">{{review.name}}</a>
-        </div><!-- end title -->
-      </div><!-- end row -->
+<div class="container-fluid reviewbackground">
+  <div class="row">
+    <div class="text-center col-xs-8 col-xs-offset-2" style="background-image:url(/images/stacy-22.jpg);padding:0">
+    <h2 class="latestposttext">remaking this</h2>
     </div>
-  </div>
-</div>
-
+  </div><!-- end row -->
+</div><!-- end container -->
 
 <router-outlet></router-outlet>
