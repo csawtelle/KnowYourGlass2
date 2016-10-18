@@ -383,6 +383,14 @@ a {
 .latestposttext {
     color:#fff;
     text-shadow:2px 3px 6px #000;
+    padding:70px;
+    transition: all .5s;
+    background-color:rgba(0,0,0,.2);
+    margin:0;
+}
+.latestposttext:hover {
+  background-color:rgba(0,0,0,.5);
+  color:#fff;
 }
 .right.carousel-control, .left.carousel-control {
     display: none;
