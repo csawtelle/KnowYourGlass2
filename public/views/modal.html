@@ -3,41 +3,50 @@
 <template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
   </div>
-
   <div class="modal-body">
     <div *ngFor="let review of reviews">
       <div *ngIf="review.name == reviewName">
-        <div class="row">
-          {{review.date}}
-        </div>
-        <div class="row">
-          {{review.name}}
-        </div>
-        <div class="row">
-          {{review.rating}}
-        </div>
-        <div class="row">
-          {{review.brand}}
-        </div>
-        <div class="row">
-          {{review.category}}
-        </div>
-        <div class="row">
-          {{review.image}}
-        </div>
-        <div class="row">
-          {{review.page_paragraphs}}
-        </div>
-        <div class="row">
-          {{review.picture_descriptions}}
-        </div>
-        <div class="row">
-          {{review.pictures}}
-        </div>
+        <form>
+          <div class="form-group">
+              <div class="row">
+                <input type="date" class="form-control" name="reviewDate" id="reviewDate" [ngModel]=review.date>
+              </div>
+              <div class="row">
+                <input type="text" class="form-control" name="title" id="title" [ngModel]=review.name>
+             </div>
+              <div class="row">
+                <input type="text" class="form-control" name="rating" id="rating" [ngModel]=review.rating>
+                <div class={{review.rating}}></div>
+              </div>
+              <div class="row">
+                <input type="text" class="form-control" name="brand" id="brand" [ngModel]=review.brand>
+             </div>
+              <div class="row">
+                <input type="text" class="form-control" name="category" id="category" [ngModel]=review.category>
+              </div>
+              <div class="row">
+                <input type="text" class="form-control" name="image" id="image" [ngModel]=review.image>
+              </div>
+              <div *ngFor="let paragraph of review.page_paragraphs">
+                <div class="row">
+                  <input type="text" class="form-control" name="page_paragraph" id="page_paragraph" [ngModel]=paragraph>
+                </div>
+              </div>
+              <div *ngFor="let descriptions of review.picture_descriptions">
+                <div class="row">
+                  <input type="text" class="form-control" name="picture_description" id="picture_description" [ngModel]=description>
+                </div>
+              </div>
+              <div *ngFor="let picture of review.pictures">
+                <div class="row">
+                  <input type="text" class="form-control" name="picture" id="picture" [ngModel]=picture>
+                </div>
+              </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-
   <div class="modal-footer">
   </div>
 </template>
