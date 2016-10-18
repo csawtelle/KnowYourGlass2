@@ -6,7 +6,40 @@
       <div class="col-xs-8 col-xs-offset-2">
         <div class="jumbotron well text-center">
           <modal [reviewName]="review.name" [reviews]="reviews"></modal>
-        </div><!-- end title -->
+            <div class="row">
+              {{review.date}}
+            </div>
+            <div class="row">
+              {{review.name}}
+            </div>
+            <div class="row">
+              {{review.brand}}
+            </div>
+            <div class="row">
+              {{review.category}}
+            </div>
+            <div class="row">
+              {{review.review}}
+            </div>
+            <div class="row">
+              {{review.image}}
+            </div>
+            <div *ngFor="let paragraph of review.page_paragraphs">
+              <div class="row">
+                {{paragraph}}
+              </div>
+            </div>
+            <div *ngFor="let descriptions of review.picture_descriptions">
+              <div class="row">
+                {{description}}
+              </div>
+            </div>
+            <div *ngFor="let picture of review.pictures">
+              <div class="row">
+                {{picture}}
+              </div>
+            </div>
+          </div><!-- end title -->
       </div><!-- end col -->
     </div><!-- end row -->
   </div>
