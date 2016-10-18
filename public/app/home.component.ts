@@ -9,7 +9,6 @@ import { ReviewService } from './review.service';
 export class HomeComponent { 
   title = "Know Your Glass";
   reviews: Review[];
-  sreview: Review[];
 
   constructor(private reviewService: ReviewService) { 
     this.reviewService.reviews.subscribe((observer) => {
