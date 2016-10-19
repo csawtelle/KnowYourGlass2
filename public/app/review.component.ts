@@ -6,6 +6,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'review',
   templateUrl: 'views/review.html',
+  styleUrls:['../css/main.css']
 })
 export class ReviewComponent { 
   review: Review;
