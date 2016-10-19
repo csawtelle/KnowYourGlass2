@@ -12,7 +12,7 @@ import { EditComponent }   from './edit-review.component';
 import { ReviewComponent }   from './review.component';
 import { AdminComponent }   from './admin.component';
 import { PageNotFoundComponent }   from './pagenotfound.component';
-
+import { LoginComponent } from './login.component';
 import { ReviewService } from './review.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,7 +34,8 @@ import { Review } from './models/review';
     ReviewComponent,
     AdminComponent,
     ModalComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginComponent
   ],
 
   providers: [ ReviewService ],
