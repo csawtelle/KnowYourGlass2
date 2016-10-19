@@ -41,9 +41,12 @@
 
 <div class="container-fluid reviewbackground">
   <div class="row no-gutter">
-    <div *ngFor="let review of reviews" class="text-center col-xs-4" [ngStyle]="{'background-image': 'url('+review.image+')','background-size':'cover','background-position':'center'}">
+    <div *ngFor="let review of reviews; let i = index" style="padding-right:0;padding-left:0">
+    <div *ngIf="i < 6" class="text-center col-xs-4" [ngStyle]="{'padding':'0','background-image': 'url('+review.image+')','background-size':'cover','background-position':'center'}">
     <a style="color:#fff" [routerLink]="['/review/' + review.name]"><h2 class="latestposttext">{{review.name}}</h2></a>
     </div>
+    </div><!-- end ngfor -->
+
   </div><!-- end row -->
 </div><!-- end container -->
 
