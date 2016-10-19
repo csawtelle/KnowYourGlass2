@@ -8,7 +8,7 @@ import { ReviewService } from './review.service';
   templateUrl: '../views/modal.html'
 })
 export class ModalComponent {
-  @Input('reviews') reviews: Array<string>;  
+  @Input('review') review: Array<string>;  
   @Input('reviewName') reviewName: string;  
 
   closeResult: string;
@@ -16,19 +16,13 @@ export class ModalComponent {
   constructor(private modalService: NgbModal, private reviewService: ReviewService) {}
   open(content) {
     this.modalService.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
+//      this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+//      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
   private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
+    console.log(reason)
   }
 }
