@@ -1,28 +1,26 @@
-
 <div class="reviewbackground" style="padding-top:100px">
   <div class="container">
     <div class="row">
-      <div *ngFor='let review of reviews'>
-      <div *ngIf="review.name == reviewName" class="col-xs-8 col-xs-offset-2" style="border-radius:25px 25px 0 0;background-color:white;padding-left:0px;padding-right:0px">
+      <div class="col-xs-8 col-xs-offset-2" style="border-radius:25px 25px 0 0;background-color:white;padding-left:0px;padding-right:0px">
               <div class="text-center" [ngStyle]="{'border-radius':'15px 15px 0 0','background-image':'url('+review.image+')', 'background-size':'cover', 'background-position':'center'}">
-                <h1 class="reviewheadertop">{{review.name}}</h1>
-                <p class="reviewheaderbottom">Posted On: {{review.date}}</p>
+                <h1 class="reviewheadertop">{{review?.name}}</h1>
+                <p class="reviewheaderbottom">Posted On: {{review?.date}}</p>
               </div>
               <div>
-                {{review.rating}}
+                {{review?.rating}}
               </div>
               <div>
-                {{review.brand}}
+                {{review?.brand}}
               </div>
               <div>
-                {{review.category}}
+                {{review?.category}}
               </div>
-            <div *ngFor='let picture of review.pictures;let i = index'>
+            <div *ngFor='let picture of review?.pictures;let i = index'>
               <div>
-                {{review.page_paragraphs[i]}}
+                {{review?.page_paragraphs[i]}}
               </div>
               <div>
-                {{review.picture_descriptions[i]}}
+                {{review?.picture_descriptions[i]}}
               </div>
               <div>
                 <img class="img-responsive" src="/images/{{picture}}"/>
