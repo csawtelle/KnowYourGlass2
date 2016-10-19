@@ -16,12 +16,13 @@ import { LoginComponent } from './login.component';
 import { ReviewService } from './review.service';
 
 import { AppRoutingModule } from './app-routing.module';
-
+import { FormsModule } from '@angular/forms';
 import { Review } from './models/review';
 
 @NgModule({
   imports:  [ 
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpModule,
     NgbModule.forRoot()
