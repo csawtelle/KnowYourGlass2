@@ -1,34 +1,32 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http, Response, RequestOptions} from '@angular/http';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/Observable';
 import {Review} from './models/review';
-
-import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ReviewService { 
   reviews: any;
+  review: any;
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private apiUrl = 'api/pages';  // URL to web api
   private auth = '?username=admin&password=admin';
   constructor(private http: Http) { 
-      this.http = http;
-      this.reviews = this.http.get('/api/pages' + this.auth);
+    this.http = http;
+    this.reviews = this.http.get('/api/pages' + this.auth); 
   }
 
-  getReview(name: string): Promise<Review[]> {
+  getReview (name: string): Observable<Review[]> {
     return this.http.get(this.apiUrl + '/' + name + this.auth)
-               .toPromise()
-               .then(response => response.json().data as Review[])
-               .catch(this.handleError);
+      .map(this.extractData)
+      .catch(this.handleError);
   }
- 
+
   getReviews(): Promise<Review[]> {
-    return this.http.get(this.apiUrl)
-               .toPromise()
-               .then(response => response.json().data as Review[])
-               .catch(this.handleError);
+    this.reviews = this.http.get(this.apiUrl)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
   }
 
   postReview (object): Promise<Review[]> {
@@ -36,9 +34,9 @@ export class ReviewService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.apiUrl, body, options)
-               .toPromise()
-               .then(this.extractData)
-               .catch(this.handleError);
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
   }
 
   putReview (object): Promise<Review[]> {
@@ -46,20 +44,21 @@ export class ReviewService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.put(this.apiUrl + '/' + object.name, body, options)
-               .toPromise()
-               .then(this.extractData)
-               .catch(this.handleError);
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
   }
 
   deleteReview(): Promise<Review[]> {
     return this.http.delete(this.apiUrl)
-               .toPromise()
-               .then(response => response.json().data as Review[])
-               .catch(this.handleError);
+      .toPromise()
+      .then(response => response.json().data as Review[])
+      .catch(this.handleError);
   }
 
   private extractData(res: Response) {
     let body = res.json();
+    console.log(body.data);
     return body.data || { };
   }
 
