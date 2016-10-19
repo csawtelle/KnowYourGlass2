@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http, Response, RequestOptions} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs/Rx';
 import {Review} from './models/review';
 
 @Injectable()
@@ -23,7 +23,7 @@ export class ReviewService {
   }
 
   getReviews(): Promise<Review[]> {
-    this.reviews = this.http.get(this.apiUrl)
+    return this.http.get(this.apiUrl + this.auth)
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);
@@ -33,7 +33,7 @@ export class ReviewService {
     let body = JSON.stringify({ object });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.apiUrl, body, options)
+    return this.http.post(this.apiUrl + this.auth, body, options)
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);
@@ -43,7 +43,7 @@ export class ReviewService {
     let body = JSON.stringify({ object });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.put(this.apiUrl + '/' + object.name, body, options)
+    return this.http.put(this.apiUrl + '/' + object.name + this.auth, body, options)
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);

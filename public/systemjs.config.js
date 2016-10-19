@@ -21,11 +21,12 @@
       '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+      'rxjs':                       'node_modules/rxjs',
 
       '@ng-bootstrap/ng-bootstrap': 'node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js',
 
       // other libraries
-      'rxjs':                      'npm:rxjs',
+//      'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
     },
     // packages tells the System loader how to load when no filename and/or no extension

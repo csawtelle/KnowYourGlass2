@@ -8,7 +8,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   templateUrl: 'views/review.html',
 })
 export class ReviewComponent { 
-  review: Review[];
+  review: Review;
   reviewName = '';
 
   constructor(
@@ -17,7 +17,10 @@ export class ReviewComponent {
     private router: Router) { }
 
   ngOnInit() {
-    this.reviewName = this.route.params._value.id;
-    this.reviewService.getReview(this.reviewName).subscribe(review => this.review = review[0]);
+    this.route.params.forEach((params: Params) => {
+       let reviewName = params['id']; // (+) converts string 'id' to a number
+       this.reviewService.getReview(reviewName).subscribe(review => this.review = review[0]);
+    });
+
   }
 }
