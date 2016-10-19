@@ -1,5 +1,0 @@
-Make the changes you intend to push on master,
-git checkout -b 'branch-name'
-git commit -a
-*Add comments to the git commit 
-git push origin 'branch-name'
