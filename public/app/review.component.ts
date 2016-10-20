@@ -17,10 +17,7 @@ export class ReviewComponent {
     private router: Router) { }
 
   ngOnInit() {
-    this.route.params.forEach((params: Params) => {
-       let reviewName = params['id']; // (+) converts string 'id' to a number
-       this.reviewService.getReview(reviewName).subscribe(review => this.review = review[0]);
-    });
-
+    this.route.params.subscribe(params => this.reviewName = params['id']);
+    this.reviewService.getReview(this.reviewName).subscribe(review => this.review = review[0]);
   }
 }
