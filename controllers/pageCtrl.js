@@ -22,7 +22,7 @@ exports.postPage = function(req, res) {
   var page = new Page();
   // Set the beer properties that came from the POST data
     page.date = req.body.date;
-   	page.name = req.body.name;
+    page.name = req.body.name;
     page.brand = req.body.brand;
     page.category = req.body.category;
     page.image = '/images/' + req.body.image;
