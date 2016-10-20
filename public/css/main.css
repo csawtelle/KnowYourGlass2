@@ -358,12 +358,29 @@ a {
 }
 .reviewbackground{
     background: linear-gradient(#304869,#172333);
-    /*background-color:#172333;*/
+}
+.reviewbackgroundd {
+  padding-top:100px;
+  background: linear-gradient(#304869,#172333);
+}
+
+.reviewcolumn {
+  border-radius:25px 25px 0 0;
+  background-color:white;
+  padding-left:0px;
+  padding-right:0px;
 }
 .reviewimage{
     border-radius:15px;
     margin:20px 0 20px 0;
 }
+
+.reviewheader {
+  border-radius:15px 15px 0 0;
+  background-size: cover;
+  background-position:center;
+}
+
 .solidtext {
     opacity: 1;
 }
