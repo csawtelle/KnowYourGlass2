@@ -14,17 +14,13 @@
             <input formControlName="brand">
             <input formControlName="category">
             <input formControlName="image">
-<!--
-          <div *ngFor="let paragraph of review.page_paragraphs">
-              <input type="text" class="form-control" name="page_paragraph" id="page_paragraph" [ngModel]=paragraph>
-          </div>
-          <div *ngFor="let descriptions of review.picture_descriptions">
-              <input type="text" class="form-control" name="picture_description" id="picture_description" [ngModel]=description>
-          </div>
-          <div *ngFor="let picture of review.pictures">
-              <input type="text" class="form-control" name="picture" id="picture" [ngModel]=picture>
-          </div>
--->
+            <div *ngFor="let paragraph of paragraphs">
+                <input formControlName="paragraph">
+            </div>
+            <div *ngFor="let pictures of modalForm.controls.pictures; let i=index" class="panel panel-default">
+                <input formControlName="description">
+                <input formControlName="pictures">
+            </div>
       </div>
       <button type="submit">Save</button>
     </form>

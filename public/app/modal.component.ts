@@ -3,7 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Review } from './models/review';
 import { ReviewService } from './review.service';
 
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -26,7 +26,10 @@ export class ModalComponent {
       rating: [this.review.rating, [ <any>Validators.required]],
       brand: [this.review.brand, [ <any>Validators.required]],
       category: [this.review.category, [ <any>Validators.required]],
-      image: [this.review.image, [ <any>Validators.required]]
+      image: [this.review.image, [ <any>Validators.required]],
+      pictures: this._fb.array([
+          this.review.pictures
+      ])
 		});
   } 
 
@@ -34,7 +37,25 @@ export class ModalComponent {
     this.modalService.open(content)
   }
 
-  save(review: Review, isValid: boolean) {
-    console.log(review, isValid);
+  initPicture() {
+    return this._fb.group({
+      picture: ['', Validators.required],
+      description: ['', Validators.required]
+    });
+  }
+
+  addPicture() {
+      const control = <FormArray>this.modalForm.controls['pictures'];
+      control.push(this.initPicture());
+  }
+
+  removePicture(i: number) {
+      const control = <FormArray>this.modalForm.controls['pictures'];
+      control.removeAt(i);
+  }
+
+
+  save(model: Review, isValid: boolean) {
+    console.log(model, isValid);
   }
 }
