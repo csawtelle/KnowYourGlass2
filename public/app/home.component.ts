@@ -4,7 +4,7 @@ import { ReviewService } from './review.service';
 
 @Component({
   selector: 'kyg-app',
-  templateUrl: 'views/home.html'
+  templateUrl: 'views/home.html',
   styleUrls:['../css/main.css']
 })
 export class HomeComponent { 

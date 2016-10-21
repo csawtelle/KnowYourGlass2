@@ -1,15 +1,13 @@
 <template ngbModalContainer></template>
 
 <template #content>
-<!-- HEADER -->
-  <div class="modal-header">
-  </div>
-
 <!-- BODY -->
   <div class="modal-body">
-    <form [formGroup]="modalForm" novalidate (ngSubmit)="save(modalForm.value, modalForm.valid)">
+    <form [formGroup]="modalForm" (ngSubmit)="save(modalForm.value, modalForm.valid)">
       <div class="form-group">
-            <input formControlName="date">
+            <input formControlName="name">  
+            <input formControlName="date">  
+            <input formControlName="title_image">
             <input formControlName="rating">
             <input formControlName="brand">
             <input formControlName="category">
@@ -17,19 +15,16 @@
             <div *ngFor="let paragraph of paragraphs">
                 <input formControlName="paragraph">
             </div>
-            <div *ngFor="let pictures of modalForm.controls.pictures; let i=index" class="panel panel-default">
-                <input formControlName="description">
-                <input formControlName="pictures">
+            <div *ngFor="let picture of pictures">
+                <input formControlName="picture.description">
+                <input formControlName="picture.filename">
             </div>
       </div>
       <button type="submit">Save</button>
     </form>
   </div>
-
-<!-- FOOTER -->
-  <div class="modal-footer">    
-  </div>
-
 </template>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">{{reviewName}}</button>
+<div *ngFor="let single of reviews">
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content,single)">{{single?.name}}</button>
+</div>
