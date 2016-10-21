@@ -25,11 +25,11 @@ exports.postPage = function(req, res) {
     page.name = req.body.name;
     page.brand = req.body.brand;
     page.category = req.body.category;
-    page.image = '/images/' + req.body.image;
+    page.image = req.body.image;
     page.rating = req.body.rating;
     page.page_paragraphs = req.body.page_paragraphs;
     page.pictures = req.body.pictures;
-    page.picture_descriptions = req.body.picture_descriptions;
+    page.title_image = req.body.title_image;
 
     // Save the beer and check for errors
     page.save(function(err) {

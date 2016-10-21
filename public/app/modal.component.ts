@@ -3,32 +3,59 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Review } from './models/review';
 import { ReviewService } from './review.service';
 
+import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
+
+
 @Component({
   selector: 'modal',
   templateUrl: '../views/modal.html'
 })
 export class ModalComponent {
-  @Input('reviews') reviews: Array<string>;  
+  @Input('review') review: Review;  
   @Input('reviewName') reviewName: string;  
 
-  closeResult: string;
+  public modalForm: FormGroup; // our model driven form
+  public submitted: boolean; // keep track on whether form is submitted
 
-  constructor(private modalService: NgbModal, private reviewService: ReviewService) {}
+  constructor(private modalService: NgbModal, private _fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.modalForm = this._fb.group({
+      name: [this.review.name, [ <any>Validators.required]],
+      date: [this.review.date, [ <any>Validators.required]],
+      rating: [this.review.rating, [ <any>Validators.required]],
+      brand: [this.review.brand, [ <any>Validators.required]],
+      category: [this.review.category, [ <any>Validators.required]],
+      image: [this.review.image, [ <any>Validators.required]],
+      pictures: this._fb.array([
+          this.review.pictures
+      ])
+		});
+  } 
+
   open(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    this.modalService.open(content)
+  }
+
+  initPicture() {
+    return this._fb.group({
+      picture: ['', Validators.required],
+      description: ['', Validators.required]
     });
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
+  addPicture() {
+      const control = <FormArray>this.modalForm.controls['pictures'];
+      control.push(this.initPicture());
+  }
+
+  removePicture(i: number) {
+      const control = <FormArray>this.modalForm.controls['pictures'];
+      control.removeAt(i);
+  }
+
+
+  save(model: Review, isValid: boolean) {
+    console.log(model, isValid);
   }
 }
