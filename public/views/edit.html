@@ -29,15 +29,9 @@
                 {{paragraph}}
               </div>
             </div>
-            <div *ngFor="let descriptions of review.picture_descriptions">
-              <div class="row">
-                {{description}}
-              </div>
-            </div>
             <div *ngFor="let picture of review.pictures">
-              <div class="row">
-                {{picture}}
-              </div>
+                {{picture.filename}}
+                {{picture.description}}
             </div>
           </div><!-- end title -->
       </div><!-- end col -->

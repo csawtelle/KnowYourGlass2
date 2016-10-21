@@ -11,6 +11,7 @@ export class EditComponent {
   constructor(private reviewService: ReviewService) { 
     this.reviewService.reviews.subscribe((observer) => {
       this.reviews = JSON.parse(observer._body).data;
+      console.log(this.review);
     });
   }
 }

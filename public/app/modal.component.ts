@@ -17,9 +17,7 @@ export class ModalComponent {
   public modalForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
 
-  constructor(private modalService: NgbModal, private _fb: FormBuilder) {}
-
-  ngOnInit() {
+  constructor(private modalService: NgbModal, private _fb: FormBuilder) {
     this.modalForm = this._fb.group({
       name: [this.review.name, [ <any>Validators.required]],
       date: [this.review.date, [ <any>Validators.required]],
@@ -31,7 +29,10 @@ export class ModalComponent {
           this.review.pictures
       ])
 		});
-  } 
+  }
+
+  ngOnInit() {
+ } 
 
   open(content) {
     this.modalService.open(content)
