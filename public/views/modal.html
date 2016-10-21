@@ -12,13 +12,17 @@
             <input formControlName="brand">
             <input formControlName="category">
             <input formControlName="image">
-            <div *ngFor="let paragraph of paragraphs">
-                <input formControlName="paragraph">
+
+<!--
+These are broken
+            <div *ngFor="let paragraph of modalForm.controls.paragraphs.value">
+                <input formControlName="paragraphs">
             </div>
-            <div *ngFor="let picture of pictures">
+            <div *ngFor="let picture of modalForm.controls.pictures.value">
                 <input formControlName="picture.description">
                 <input formControlName="picture.filename">
             </div>
+-->
       </div>
       <button type="submit">Save</button>
     </form>
