@@ -5,7 +5,6 @@ import { RouterModule }   from '@angular/router';
 import { HttpModule }    from '@angular/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from './modal.component';
 
 import { AppComponent }   from './app.component';
 import { HomeComponent }   from './home.component';
@@ -17,7 +16,6 @@ import { LoginComponent } from './login.component';
 import { ReviewService } from './review.service';
 
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
 import { Review } from './models/review';
 
 @NgModule({
@@ -36,7 +34,6 @@ import { Review } from './models/review';
     EditComponent,
     ReviewComponent,
     AdminComponent,
-    ModalComponent,
     PageNotFoundComponent,
     LoginComponent
   ],
