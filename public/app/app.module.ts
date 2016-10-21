@@ -1,5 +1,5 @@
 import { NgModule }      from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  }   from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule }   from '@angular/router';
 import { HttpModule }    from '@angular/http';
@@ -26,7 +26,8 @@ import { Review } from './models/review';
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ReactiveFormsModule 
   ],
 
   declarations: [ 

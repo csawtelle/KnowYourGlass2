@@ -3,26 +3,38 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Review } from './models/review';
 import { ReviewService } from './review.service';
 
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+
+
 @Component({
   selector: 'modal',
   templateUrl: '../views/modal.html'
 })
 export class ModalComponent {
-  @Input('review') review: Array<string>;  
+  @Input('review') review: Review;  
   @Input('reviewName') reviewName: string;  
 
-  closeResult: string;
+  public modalForm: FormGroup; // our model driven form
+  public submitted: boolean; // keep track on whether form is submitted
 
-  constructor(private modalService: NgbModal, private reviewService: ReviewService) {}
+  constructor(private modalService: NgbModal, private _fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.modalForm = this._fb.group({
+      name: [this.review.name, [ <any>Validators.required]],
+      date: [this.review.date, [ <any>Validators.required]],
+      rating: [this.review.rating, [ <any>Validators.required]],
+      brand: [this.review.brand, [ <any>Validators.required]],
+      category: [this.review.category, [ <any>Validators.required]],
+      image: [this.review.image, [ <any>Validators.required]]
+		});
+  } 
+
   open(content) {
-    this.modalService.open(content).result.then((result) => {
-//      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-//      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService.open(content)
   }
 
-  private getDismissReason(reason: any): string {
-    console.log(reason)
+  save(review: Review, isValid: boolean) {
+    console.log(review, isValid);
   }
 }

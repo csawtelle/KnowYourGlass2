@@ -3,56 +3,35 @@
 <template #content>
 <!-- HEADER -->
   <div class="modal-header">
-    <div class="row">
-      <input type="text" class="form-control" name="title" id="title" [ngModel]=review.name>
-    </div>
   </div>
 
 <!-- BODY -->
   <div class="modal-body">
-    <form>
+    <form [formGroup]="modalForm" novalidate (ngSubmit)="save(modalForm.value, modalForm.valid)">
       <div class="form-group">
-          <div class="row">
-            <input type="date" class="form-control" name="reviewDate" id="reviewDate" [ngModel]=review.date>
-          </div>
-         <div class="row">
-            <input type="text" class="form-control" name="rating" id="rating" [ngModel]=review.rating>
-            <div class={{review.rating}}></div>
-          </div>
-          <div class="row">
-            <input type="text" class="form-control" name="brand" id="brand" [ngModel]=review.brand>
-         </div>
-          <div class="row">
-            <input type="text" class="form-control" name="category" id="category" [ngModel]=review.category>
-          </div>
-          <div class="row">
-            <input type="text" class="form-control" name="image" id="image" [ngModel]=review.image>
-          </div>
+            <input formControlName="date">
+            <input formControlName="rating">
+            <input formControlName="brand">
+            <input formControlName="category">
+            <input formControlName="image">
+<!--
           <div *ngFor="let paragraph of review.page_paragraphs">
-            <div class="row">
               <input type="text" class="form-control" name="page_paragraph" id="page_paragraph" [ngModel]=paragraph>
-            </div>
           </div>
           <div *ngFor="let descriptions of review.picture_descriptions">
-            <div class="row">
               <input type="text" class="form-control" name="picture_description" id="picture_description" [ngModel]=description>
-            </div>
           </div>
           <div *ngFor="let picture of review.pictures">
-            <div class="row">
               <input type="text" class="form-control" name="picture" id="picture" [ngModel]=picture>
-            </div>
           </div>
+-->
       </div>
+      <button type="submit">Save</button>
     </form>
   </div>
 
 <!-- FOOTER -->
   <div class="modal-footer">    
-    <div class="row">
-      <button (click)="save()">Save</button>
-      <button (click)="cancel()">Cancel</button>
-    </div>
   </div>
 
 </template>
