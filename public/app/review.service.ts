@@ -14,6 +14,7 @@ export class ReviewService {
   constructor(private http: Http) { 
     this.http = http;
     this.reviews = this.http.get('/api/pages' + this.auth); 
+    console.log(this.reviews);
   }
 
   getReview (name: string): Observable<Review[]> {
@@ -58,6 +59,7 @@ export class ReviewService {
 
   private extractData(res: Response) {
     let body = res.json();
+    console.log(body.data);
     return body.data || { };
   }
 
