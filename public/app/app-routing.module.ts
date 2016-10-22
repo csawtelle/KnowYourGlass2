@@ -1,4 +1,4 @@
-import { NgModule }             from '@angular/core';
+import { NgModule, ModuleWithProviders }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent }   from './home.component';
 import { EditComponent }      from './edit-review.component';
@@ -17,5 +17,4 @@ const appRoutes: Routes = [
   { path: '**',     component: PageNotFoundComponent }
 ];
 
-
-export const appRouting: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+export const AppRouter: ModuleWithProviders = RouterModule.forRoot(appRoutes);

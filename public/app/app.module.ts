@@ -13,14 +13,14 @@ import { AdminComponent }   from './admin.component';
 import { PageNotFoundComponent }   from './pagenotfound.component';
 import { LoginComponent } from './login.component';
 import { ReviewService } from './review.service';
-import { appRouting } from './app-routing.module';
+import { AppRouter } from './app-routing.module';
 import { Review } from './models/review';
 @NgModule({
   imports:  [ 
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    appRouting,
+    AppRouter,
     HttpModule,
     NgbModule.forRoot(),
     ReactiveFormsModule 
