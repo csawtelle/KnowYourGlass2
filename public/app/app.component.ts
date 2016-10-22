@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 @Component({
   selector: 'kyg-app',
-//  templateUrl: 'views/toolbar.html',
-
+  templateUrl: 'views/app.component.html',
+/*
   template:`
   <div class="navbar navbar-default navbar-fixed-top">
  <div class="container-fluid">
@@ -31,7 +31,7 @@ import { Component } from '@angular/core';
   </div>
 <router-outlet></router-outlet>
   `
-
+*/
 })
 export class AppComponent { 
   message="Message from component";
