@@ -1,9 +1,8 @@
 import { NgModule }      from '@angular/core';
-import { FormsModule, ReactiveFormsModule  }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule }   from '@angular/router';
 import { HttpModule }    from '@angular/http';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent }   from './app.component';
@@ -14,15 +13,14 @@ import { AdminComponent }   from './admin.component';
 import { PageNotFoundComponent }   from './pagenotfound.component';
 import { LoginComponent } from './login.component';
 import { ReviewService } from './review.service';
-
-import { AppRoutingModule } from './app-routing.module';
+import { appRouting } from './app-routing.module';
 import { Review } from './models/review';
-
 @NgModule({
   imports:  [ 
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
+    ReactiveFormsModule,
+    appRouting,
     HttpModule,
     NgbModule.forRoot(),
     ReactiveFormsModule 

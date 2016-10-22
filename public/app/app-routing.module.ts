@@ -6,16 +6,16 @@ import { ReviewComponent }      from './review.component';
 import { AdminComponent }  from './admin.component';
 import { PageNotFoundComponent }  from './pagenotfound.component';
 import { LoginComponent } from './login.component';
-const routes: Routes = [
-  { path: '', pathMatch: 'full', component: HomeComponent },
+
+
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'admin', component: EditComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'review/:id', component: ReviewComponent },
   { path: 'login', component: LoginComponent },
   { path: '**',     component: PageNotFoundComponent }
 ];
-@NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
-})
-export class AppRoutingModule {}
+
+
+export const appRouting: ModuleWithProviders = RouterModule.forRoot(appRoutes);
