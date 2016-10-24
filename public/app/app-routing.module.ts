@@ -10,7 +10,7 @@ import { LoginComponent } from './login.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'admin', component: EditComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'review/:id', component: ReviewComponent },
   { path: 'login', component: LoginComponent },
