@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule }   from '@angular/router';
 import { HttpModule }    from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { SinglePostComponent } from './singlepost.component';
 import { AppComponent }   from './app.component';
 import { HomeComponent }   from './home.component';
 import { EditComponent }   from './edit-review.component';
@@ -33,8 +33,9 @@ import { Review } from './models/review';
     ReviewComponent,
     AdminComponent,
     PageNotFoundComponent,
-    LoginComponent
-  ],
+    LoginComponent,
+    SinglePostComponent
+ ],
 
   providers: [ ReviewService ],
   bootstrap: [ AppComponent ]

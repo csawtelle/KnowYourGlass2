@@ -1,14 +1,21 @@
+
 <div></div>
 
-<div class="jumbotron">
+<div class="reviewbackgroundd">
+<div class="jumbotron text-center">
   <h1>This is the admin page</h1>
 </div>
-<div class="container">
-    <div class="row text-right">
-    <div class="col-xs-8 col-xs-offset-2">
-    <div class="blog_post_link" ng-repeat="page in data.pageList">
-        <button class="btn2 " ng-click="data.editPost(page.name)">Edit Post</button>
-        <button class="btn2" ng-click="data.deletePost(page.name)">Delete Post</button>
+<div class="jumbotron container">
+    <div class="row text-left">
+    <div *ngFor="let post of posts" class="col-xs-8 col-xs-offset-2">
+  
+    <h3 [routerLink]="['/admin', post.title]">{{ post.title }}</h3>
+    <p>{{ post.description }}</p>
+    <img class="img-responsive" [src]="post.image">
+    
+
    </div><!-- END COL -->
    </div><!-- END ROW -->
 </div><!-- END CONTAINER-->
+
+</div>
