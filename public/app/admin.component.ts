@@ -1,16 +1,22 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { Post } from './models/post';
+import { PostService } from './services/post.service';
 
 
-const posts = [
-  { id: 1, title: 'Post number 1', description:'This is test paragraph #1', image:'../images/is3.jpg' },
-  { id: 2, title: 'Post number 2', description:'This is test paragraph #2', image:'../images/is4.jpg' }
-]
 
 @Component({
   selector: 'admin-page',
   templateUrl: 'views/admin.html'
 
 })
-export class AdminComponent { 
-  posts = posts;
+export class AdminComponent implements OnInit { 
+  posts: Post[];
+
+  constructor(private service: PostService) {
+
+  }
+
+  ngOnInit() {
+    this.service.getPosts().then(posts => this.posts = posts);
+  }
 }
