@@ -8,7 +8,7 @@ import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@ang
   selector: 'modal',
   templateUrl: '../views/modal.html'
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit{
   public reviews: Review;  
   public modalForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
