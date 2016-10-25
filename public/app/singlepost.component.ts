@@ -8,7 +8,7 @@ const posts = ([
 
 
 @Component ({
-  templateUrl:'../views/singlepost.html';
+  templateUrl: '../views/singlepost.html'
 })
 
 export class SinglePostComponent implements OnInit {

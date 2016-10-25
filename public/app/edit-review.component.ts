@@ -46,13 +46,10 @@ export class EditComponent {
       category: [review.category, [ <any>Validators.required]],
       image: [review.image, [ <any>Validators.required]],
       title_image: [review.image, [ <any>Validators.required]],
-      paragraphs: this._fb.array([
-        //this straight up broke review.page_paragraphs 
-      ]),
-      pictures: this._fb.group({
-        //this straight up broke review.pictures
-      })
+      paragraphs: this._fb.array(review.page_paragraphs),
+      pictures: this._fb.group(review.pictures)
     });
+    console.log(this.modalForm);
     this.modalService.open(content)
   }
 
