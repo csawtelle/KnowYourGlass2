@@ -3,7 +3,7 @@ import { Review } from './models/review';
 import { ReviewService } from './review.service';
 
 @Component({
-  selector: 'kyg-app',
+  selector: 'home-page',
   templateUrl: 'views/home.html',
   styleUrls:['../css/main.css']
 })
