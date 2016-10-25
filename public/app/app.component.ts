@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     .active { color:#000 !important; }
     .navbar { margin-bottom: 50px; }
   `],
-  templateUrl: 'views/app.component.html',
+  templateUrl: 'views/app.html',
 })
 export class AppComponent { 
   message="Message from component";
