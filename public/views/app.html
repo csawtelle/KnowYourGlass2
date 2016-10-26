@@ -1,24 +1,25 @@
-<div class="navbar navbar-default navbar-fixed-top">		
-  <div class="container-fluid">		
-		<div class="navbar-header">		
-			<a class="navbar-brand" routerLink="/" routerLinkActive="active"i		
-			[routerLinkActiveOptions]="{ exact: true }">know<strong>yourglass</strong></a>		
-		</div>		
-			
-		<div>		
-			<ul class="nav navbar-nav navbar-right">		
-				<li>		
-					<a routerLink="/review" routerLinkActive="active" 		
-					[routerLinkActiveOptions]="{ exact: true }">Review</a>		
-				</li>		
-				<li>		
-					<a routerLink="/admin" routerLinkActive="active">Admin</a>		
-				</li>		
-				<li>		
-					<a routerLink="/login" routerLinkActive="active">Login</a>		
-				</li>		
-			</ul>		
-		</div>		
-  </div><!-- end container -->		
-</div><!-- end nav -->		
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" routerLink="/" routerLinkActive="active"
+			[routerLinkActiveOptions]="{ exact: true }">know<strong>yourglass</strong></a>
+		</div>
+		<div>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+          <form class="navbar-form" role="search">
+              <input type="text" class="form-control" placeholder="Search">
+                <button class="fa fa-search" type="submit" style="width:30px;height:30px;"></button>
+          </form>
+			  </li>
+				<li>
+					<a routerLink="/admin" routerLinkActive="active">Admin</a>
+				</li>
+				<li>
+					<a routerLink="/login" routerLinkActive="active">Login</a>
+				</li>
+			</ul>
+		</div>
+  </div>
+</div>
 <router-outlet></router-outlet>
