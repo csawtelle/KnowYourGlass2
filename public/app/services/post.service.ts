@@ -12,20 +12,12 @@ const postsPromise: Promise<Post[]>  = Promise.resolve([
 
 export class PostService {
 
-//Get all posts
-getPosts() {
-  return postsPromise;
-}
-// Get specific user
+  //Get all posts
+  getPosts() {
+    return postsPromise;
+  }
 
-getPost(title) {
-  let post = postsPromise.then(posts => {
-    return posts.find(post => {
-      return post.title === title;
-    });
-  });
-
-  return post;
-}
-
+  getPost(title) {
+    return postsPromise.then(posts => posts.find(post => post.title === title));
+  }
 }
