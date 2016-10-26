@@ -5,8 +5,8 @@ import { ReviewService } from './review.service';
 import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'modal',
-  templateUrl: '../views/modal.html'
+  selector: 'admin',
+  templateUrl: '../views/admin.html'
 })
 export class AdminComponent implements OnInit{
   public reviews: Review;  

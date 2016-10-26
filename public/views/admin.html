@@ -1,23 +1,34 @@
+<template ngbModalContainer></template>
 
-<div></div>
+<template #content>
+<!-- BODY -->
+  <div class="modal-body">
+    <form [formGroup]="modalForm" (ngSubmit)="save(modalForm.value, modalForm.valid)">
+      <div class="form-group">
+            <input formControlName="name">  
+            <input formControlName="date">  
+            <input formControlName="title_image">
+            <input formControlName="rating">
+            <input formControlName="brand">
+            <input formControlName="category">
+            <input formControlName="image">
 
-<div class="reviewbackgroundd">
-<div class="jumbotron text-center">
-  <h1>This is the admin page</h1>
-</div>
-<div class="jumbotron container">
-    <div class="row text-left">
-    <div *ngFor="let post of posts" class="col-xs-8 col-xs-offset-2">
-  
-    <a [routerLink]="['/admin', post.title]">
-    <h3>{{ post.title }}</h3>
-    </a>
-    <p>{{ post.description }}</p>
-    <img class="img-responsive" [src]="post.image">
-    
+<!--
+These are broken
+            <div *ngFor="let paragraph of modalForm.controls.paragraphs.value">
+                <input formControlName="paragraphs">
+            </div>
+            <div *ngFor="let picture of modalForm.controls.pictures.value">
+                <input formControlName="picture.description">
+                <input formControlName="picture.filename">
+            </div>
+-->
+      </div>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</template>
 
-   </div><!-- END COL -->
-   </div><!-- END ROW -->
-</div><!-- END CONTAINER-->
-
+<div *ngFor="let single of reviews">
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content,single)">{{single?.name}}</button>
 </div>
