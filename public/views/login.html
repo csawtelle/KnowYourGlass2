@@ -17,10 +17,7 @@
   <div class="row">
     <div class="col-xs-4 col-xs-offset-4">
     <h1>Logging In</h1>
-    <form #form="ngForm" class="form-group">
-
-        {{ form.valid }}
-        <!-- we will place our fields here -->
+    <form #form="ngForm" class="form-group" (ngSubmit)="onSubmit()">
         <div>
           <label>Username</label>
           <input class="form-control" type="text" name="username" [(ngModel)]="user.username" required #username="ngModel">
@@ -33,6 +30,7 @@
         <div>
         <div>Form details:</div>
         <pre>submitted value: <br>{{ user | json}}</pre>
+        <pre>is form valid: {{ form.valid }}</pre>
         </div>
     </form>
     </div><!-- end col -->
