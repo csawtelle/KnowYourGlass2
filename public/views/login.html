@@ -7,19 +7,37 @@
 <div class="container">
   <div class="jumbotron col-xs-6 col-xs-offset-3 text-center">
     <h2>Gerry Testing Things</h2>
+    <p>{{ user.username }}</p>
   </div><!-- end jumbotron -->
 </div>
+    </div> <!-- /container --> 
 
-      <div class="row">
-      <div class="col-xs-4 col-xs-offset-4">
-      <form class="form-signin" action="admin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
-      </div><!-- end col -->
-      </div><!-- end row -->
-    </div> <!-- /container -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+    <h1>Logging In</h1>
+    <form #form="ngForm" class="form-group">
+
+        {{ form.valid }}
+        <!-- we will place our fields here -->
+        <div>
+          <label>Username</label>
+          <input class="form-control" type="text" name="username" [(ngModel)]="user.username" required #username="ngModel">
+          <span class="help-block" *ngIf="username.invalid && username.touched">Username is required.</span>
+          <label>Password</label>
+          <input class="form-control" type="text" name="password" [(ngModel)]="user.password" required #password="ngModel">
+        <span class="help-block" *ngIf="password.invalid && password.touched">Password is required.</span>
+        </div>
+        <button type="submit" class="btn btn-lg btn-info" [disabled]="form.invalid">Submit</button>
+        <div>
+        <div>Form details:</div>
+        <pre>submitted value: <br>{{ user | json}}</pre>
+        </div>
+    </form>
+    </div><!-- end col -->
+  </div><!-- end row -->
+</div><!-- end container -->
+
+
+

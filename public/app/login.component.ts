@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { User } from './models/user.interface';
 
 @Component({
   selector:'login-page',
@@ -14,6 +14,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
    }
   `]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  user: User;
+
+  ngOnInit(){
+    this.user = {username: "", password: "", confirmPassword: ""};
+  }
+  
 
 }
