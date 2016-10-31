@@ -30,7 +30,7 @@ exports.postPage = function(req, res) {
     page.page_paragraphs = req.body.page_paragraphs;
     page.pictures = req.body.pictures;
     page.title_image = req.body.title_image;
-
+    console.log(page);
     // Save the beer and check for errors
     page.save(function(err) {
         if(err) {

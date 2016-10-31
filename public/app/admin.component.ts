@@ -49,7 +49,6 @@ export class AdminComponent implements OnInit{
       paragraphs: this._fb.array(review.page_paragraphs),
       pictures: this._fb.group(review.pictures)
     });
-    console.log(this.modalForm);
     this.modalService.open(content)
   }
 

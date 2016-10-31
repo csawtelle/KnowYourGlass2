@@ -17,6 +17,8 @@ import { PostService } from './services/post.service';
 import { AuthGuard } from './auth-guard.service';
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
 import { AuthService } from './auth.service';
+import { KeysPipe } from './filters/keys.pipe';
+
 @NgModule({
 
   imports:  [ 
@@ -35,7 +37,8 @@ import { AuthService } from './auth.service';
     ReviewComponent,
     AdminComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    KeysPipe
  ],
 
   providers: [ AuthService, ReviewService, PostService, AuthGuard ],
