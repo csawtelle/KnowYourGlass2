@@ -14,7 +14,12 @@ import { ReviewService } from './review.service';
 import { AppRouter } from './app-routing.module';
 import { Review } from './models/review';
 import { PostService } from './services/post.service';
+import { AuthGuard } from './auth-guard.service';
+import { CanDeactivateGuard } from './can-deactivate-guard.service';
+
+
 @NgModule({
+
   imports:  [ 
     BrowserModule,
     FormsModule,
@@ -34,7 +39,7 @@ import { PostService } from './services/post.service';
     LoginComponent
  ],
 
-  providers: [ ReviewService, PostService ],
+  providers: [ ReviewService, PostService, AuthGuard, CanDeactivateGuard ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { 

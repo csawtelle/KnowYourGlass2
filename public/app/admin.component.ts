@@ -56,4 +56,10 @@ export class AdminComponent implements OnInit{
   save(model: Review, isValid: boolean) {
     console.log(model, isValid);
   }
+  
+
+  canDeactivate() {
+    console.log('i am navigating away');
+  }
+
 }

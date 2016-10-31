@@ -1,6 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { User } from './models/user.interface';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector:'login-page',
@@ -16,6 +18,7 @@ import { User } from './models/user.interface';
 })
 export class LoginComponent implements OnInit {
   user: User;
+  constructor(private router: Router) {};
 
   ngOnInit(){
     this.user = {username: "", password: ""};
@@ -23,6 +26,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     console.log('Are you working?');
     console.log(this.user);
+    this.router.navigate(['/admin']);
   }  
 
 }
