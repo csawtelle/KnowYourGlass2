@@ -16,8 +16,7 @@ import { Review } from './models/review';
 import { PostService } from './services/post.service';
 import { AuthGuard } from './auth-guard.service';
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
-
-
+import { AuthService } from './auth.service';
 @NgModule({
 
   imports:  [ 
@@ -39,7 +38,7 @@ import { CanDeactivateGuard } from './can-deactivate-guard.service';
     LoginComponent
  ],
 
-  providers: [ ReviewService, PostService, AuthGuard, CanDeactivateGuard ],
+  providers: [ AuthService, ReviewService, PostService, AuthGuard, CanDeactivateGuard ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { 
