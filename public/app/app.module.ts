@@ -38,7 +38,7 @@ import { AuthService } from './auth.service';
     LoginComponent
  ],
 
-  providers: [ AuthService, ReviewService, PostService, AuthGuard, CanDeactivateGuard ],
+  providers: [ AuthService, ReviewService, PostService, AuthGuard ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { 
