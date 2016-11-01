@@ -16,7 +16,9 @@
 					<a routerLink="/admin" routerLinkActive="active">Admin</a>
 				</li>
 				<li>
-					<a routerLink="/login" routerLinkActive="active">Login</a>
+          <a *ngIf="!this.authService.isLoggedIn" routerLink="/login" routerLinkActive="active">Login</a>
+          <a *ngIf="this.authService.isLoggedIn" routerLink="/login" routerLinkActive="active" (click)="logout()">Logout</a>
+
 				</li>
 			</ul>
 		</div>

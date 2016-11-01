@@ -1,6 +1,6 @@
-
-
 import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
+
 @Component({
   selector: 'kyg-app',
   styles: [`
@@ -10,5 +10,12 @@ import { Component } from '@angular/core';
   templateUrl: 'views/app.html',
 })
 export class AppComponent { 
-  message="Message from component";
+  constructor(private authService: AuthService) {
+  }
+  logout(){
+    console.log("Logout button was clicked");
+    this.authService.logout();
+    console.log(this.authService.isLoggedIn);
+  }
+
 }
