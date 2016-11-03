@@ -1,30 +1,45 @@
 <template ngbModalContainer></template>
-
 <template #content>
 <!-- BODY -->
   <div class="modal-body">
     <form [formGroup]="modalForm" (ngSubmit)="save(modalForm.value, modalForm.valid)">
+      <pre>form value: <br>{{modalForm.value | json}}</pre>
       <div class="form-group">
-            <input formControlName="name">  
-            <input formControlName="date">  
-            <input formControlName="title_image">
-            <input formControlName="rating">
-            <input formControlName="brand">
-            <input formControlName="category">
-            <input formControlName="image">
-<!--
-            <div *ngFor="let paragraph of review.paragraphs | keys">
-                <input formControlName="paragraphs">
+        Name:
+        <input formControlName="name">  
+        Date:
+        <input formControlName="date">  
+        Title Image:
+        <input formControlName="title_image">
+        Rating:
+        <input formControlName="rating">
+        Brand:
+        <input formControlName="brand">
+        Category:
+        <input formControlName="category">
+        Images:
+        <input formControlName="image">
+
+        Paragraphs:
+        <ul formArrayName="paragraphs">
+          <li *ngFor="let paragraph of modalForm.controls.paragraphs.controls; let i = index">
+              {{i}}
+              <input [formControlName]="i">
+          </li>
+        </ul>
+
+        Pictures:
+        <div formArrayName="pictures">
+          <div *ngFor='let picture of modalForm.controls.pictures.controls; let i = index'>
+            <div [formGroupName]="i">
+              <input formControlName="filename">
+              <input formControlName="description">
             </div>
--->
-            <div *ngFor="let picture of modalForm.value | keys">
-              <script>console.log(picture);</script>
-<!--
-                <input formControlName="picture.description">
-                <input formControlName="picture.filename">
--->
-            </div>
-      </div>
+          </div>
+        </div>
+
+      </div> <!--End Group-->
+
       <button type="submit">Save</button>
     </form>
   </div>

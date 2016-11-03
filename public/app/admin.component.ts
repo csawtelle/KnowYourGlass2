@@ -14,30 +14,15 @@ export class AdminComponent implements OnInit{
   public submitted: boolean; // keep track on whether form is submitted
 
   constructor(public reviewService: ReviewService, public modalService: NgbModal, public _fb: FormBuilder) {
+  }
+
+  ngOnInit() {
     this.reviewService.reviews.subscribe((observer) => {
       this.reviews = JSON.parse(observer._body).data;
     });
-    this.modalForm = this._fb.group({
-      name: ['', [ <any>Validators.required]],
-      date: ['', [ <any>Validators.required]],
-      rating: ['', [ <any>Validators.required]],
-      brand: ['', [ <any>Validators.required]],
-      category: ['', [ <any>Validators.required]],
-      image: ['', [ <any>Validators.required]],
-      title_image: ['', [ <any>Validators.required]],
-      paragraphs: this._fb.array([{
-        filename: ['', [ <any>Validators.required]],
-        description: ['', [ <any>Validators.required]]
-      }]),
-      pictures: this._fb.array([
-          ''
-      ])
-    });
   }
 
-  ngOnInit() {}
   open(content, review) {
-    console.log(review);
     this.modalForm = this._fb.group({
       name: [review.name, [ <any>Validators.required]],
       date: [review.date, [ <any>Validators.required]],
@@ -47,8 +32,18 @@ export class AdminComponent implements OnInit{
       image: [review.image, [ <any>Validators.required]],
       title_image: [review.image, [ <any>Validators.required]],
       paragraphs: this._fb.array(review.page_paragraphs),
-      pictures: this._fb.group(review.pictures)
+      pictures: this._fb.array([])
     });
+    const control = <FormArray>this.modalForm.controls['pictures'];
+    for (let picture of review.pictures) {
+        control.push(
+          this._fb.group({
+            filename: [picture.filename],
+            description: [picture.description]
+          })
+        );
+    }
+ 
     this.modalService.open(content)
   }
 
