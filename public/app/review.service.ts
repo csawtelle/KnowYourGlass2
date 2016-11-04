@@ -30,7 +30,7 @@ export class ReviewService {
   }
 
   postReview (object): Promise<Review[]> {
-    let body = JSON.stringify({ object });
+    let body = JSON.stringify( object );
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.apiUrl + this.auth, body, options)

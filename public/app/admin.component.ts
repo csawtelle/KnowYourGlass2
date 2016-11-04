@@ -9,6 +9,7 @@ import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@ang
   templateUrl: '../views/admin.html'
 })
 export class AdminComponent implements OnInit{
+  public newPost = 0;
   public reviews: Review;  
   public modalForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
@@ -23,6 +24,7 @@ export class AdminComponent implements OnInit{
   }
 
   openNew(content) {
+    this.newPost = 1;
     this.modalForm = this._fb.group({
       name: ['', [ <any>Validators.required]],
       date: ['', [ <any>Validators.required]],
@@ -38,6 +40,7 @@ export class AdminComponent implements OnInit{
   }
 
   openOld(content, review) {
+    this.newPost = 0;
     this.modalForm = this._fb.group({
       name: [review.name, [ <any>Validators.required]],
       date: [review.date, [ <any>Validators.required]],
@@ -80,9 +83,12 @@ export class AdminComponent implements OnInit{
   }
 
   save(model: Review, isValid: boolean) {
-    this.reviewService.putReview(model);
+    if(this.newPost) {
+      this.reviewService.postReview(model);
+    } else {
+      this.reviewService.putReview(model);
+    }
   }
-  
 
   canDeactivate() {
     console.log('i am navigating away');
