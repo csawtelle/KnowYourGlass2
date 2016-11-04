@@ -63,8 +63,7 @@ export class AdminComponent implements OnInit{
   }
 
   addParagraph() {
-    const control = <FormArray>this.modalForm.controls['paragraphs'];
-    control.push(new formControl(''));
+    this.modalForm.value.paragraphs.push('');
   }
 
   addPicture() {
