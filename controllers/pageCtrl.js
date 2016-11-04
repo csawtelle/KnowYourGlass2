@@ -48,7 +48,7 @@ exports.getPages = function(req, res) {
             res.json({ message: 'Get failed!', data: err});
         }
         else {
-            res.json({ message: 'Get succeded!', data: pages });
+            res.json({ message: 'Get succeeded!', data: pages });
         }
   });
 };
