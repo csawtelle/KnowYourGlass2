@@ -30,7 +30,6 @@ exports.postPage = function(req, res) {
     page.page_paragraphs = req.body.page_paragraphs;
     page.pictures = req.body.pictures;
     page.title_image = req.body.title_image;
-    console.log(page);
     // Save the beer and check for errors
     page.save(function(err) {
         if(err) {
@@ -44,7 +43,6 @@ exports.postPage = function(req, res) {
 
 // Create endpoint /api/pages for GET
 exports.getPages = function(req, res) {
-  console.log(req);
   // Use the Page model to find all pages
   Page.find({}, function(err, pages) {
         if(err) {
@@ -71,19 +69,22 @@ exports.getPage = function(req, res) {
 
 // Create endpoint /api/pages/:page_id for PUT
 exports.putPage = function(req, res) {
+  console.log("REQBODY******************************************************************************************");
+  console.log(req.body);
+  console.log("REQPARAM****************************************************************************************");
+  console.log(req.params);
   Page.update({name: req.params.name }, { 
-
     date: req.body.date,
-	name: req.body.name,
+    name: req.body.name,
     brand: req.body.brand,
     category: req.body.category,
+    title_image: req.body.title_image,
     image: req.body.image,
     rating: req.body.rating,
-    page_paragraphs: req.body.page_paragraphs,
     pictures: req.body.pictures,
     picture_descriptions: req.body.picture_descriptions,
 
-}, function(err, num, raw) {
+  }, function(err, num, raw) {
     if(err) {
         res.json({ message: 'Update failed!', data: err});
     }

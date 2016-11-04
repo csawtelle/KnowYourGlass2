@@ -41,7 +41,7 @@ export class ReviewService {
   }
 
   putReview (object): Promise<Review[]> {
-    let body = JSON.stringify({ object });
+    let body = JSON.stringify(object);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.put(this.apiUrl + '/' + object.name + this.auth, body, options)

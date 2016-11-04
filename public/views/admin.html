@@ -3,7 +3,6 @@
 <!-- BODY -->
   <div class="modal-body">
     <form [formGroup]="modalForm" (ngSubmit)="save(modalForm.value, modalForm.valid)">
-      <pre>form value: <br>{{modalForm.value | json}}</pre>
       <div class="form-group">
         Name:
         <input formControlName="name">  
@@ -29,14 +28,15 @@
         </ul>
 
         Pictures:
-        <div formArrayName="pictures">
-          <div *ngFor='let picture of modalForm.controls.pictures.controls; let i = index'>
+        <ul formArrayName="pictures">
+          <li *ngFor='let picture of modalForm.controls.pictures.controls; let i = index'>
             <div [formGroupName]="i">
+              {{i}}
               <input formControlName="filename">
               <input formControlName="description">
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
 
       </div> <!--End Group-->
 

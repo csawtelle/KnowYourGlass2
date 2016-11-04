@@ -23,6 +23,7 @@ export class AdminComponent implements OnInit{
   }
 
   open(content, review) {
+    console.log(review);
     this.modalForm = this._fb.group({
       name: [review.name, [ <any>Validators.required]],
       date: [review.date, [ <any>Validators.required]],
@@ -48,7 +49,9 @@ export class AdminComponent implements OnInit{
   }
 
   save(model: Review, isValid: boolean) {
+    console.log("Saving this");
     console.log(model, isValid);
+    this.reviewService.putReview(model);
   }
   
 
