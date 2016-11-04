@@ -19,7 +19,7 @@
         Images:
         <input formControlName="image">
 
-        Paragraphs:<button class="btn" (click)="addParagraph()">+</button>
+        Paragraphs:<button type="button" class="btn" (click)="addParagraph()">+</button>
         <ul formArrayName="paragraphs">
           <li *ngFor="let paragraph of modalForm.controls.paragraphs.controls; let i = index">
               {{i}}
@@ -27,7 +27,7 @@
           </li>
         </ul>
 
-        Pictures:<button class="btn" (click)="addPicture()">+</button>
+        Pictures:<button type="button" class="btn" (click)="addPicture()">+</button>
         <ul formArrayName="pictures">
           <li *ngFor='let picture of modalForm.controls.pictures.controls; let i = index'>
             <div [formGroupName]="i">
