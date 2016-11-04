@@ -63,7 +63,8 @@ export class AdminComponent implements OnInit{
   }
 
   addParagraph() {
-    this.modalForm.value.paragraphs.push('');
+    const control = <FormArray>this.modalForm.controls['paragraphs'];
+    control.push(new FormControl(''));
   }
 
   addPicture() {
@@ -73,12 +74,12 @@ export class AdminComponent implements OnInit{
       description: ''
     }));
   }
+
   deletePost(name) {
     this.reviewService.deleteReview(name);
   }
+
   save(model: Review, isValid: boolean) {
-    console.log("Saving this");
-    console.log(model, isValid);
     this.reviewService.putReview(model);
   }
   
