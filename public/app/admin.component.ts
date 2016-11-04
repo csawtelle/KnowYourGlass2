@@ -22,7 +22,23 @@ export class AdminComponent implements OnInit{
     });
   }
 
-  open(content, review) {
+  openNew(content, review) {
+    console.log(review);
+    this.modalForm = this._fb.group({
+      name: ['', [ <any>Validators.required]],
+      date: ['', [ <any>Validators.required]],
+      rating: ['', [ <any>Validators.required]],
+      brand: ['', [ <any>Validators.required]],
+      category: ['', [ <any>Validators.required]],
+      image: ['', [ <any>Validators.required]],
+      title_image: ['', [ <any>Validators.required]],
+      paragraphs: this._fb.array([]),
+      pictures: this._fb.array([])
+    });
+    this.modalService.open(content)
+  }
+
+  openOld(content, review) {
     console.log(review);
     this.modalForm = this._fb.group({
       name: [review.name, [ <any>Validators.required]],
@@ -48,6 +64,9 @@ export class AdminComponent implements OnInit{
     this.modalService.open(content)
   }
 
+  deletePost(name) {
+    this.reviewService.deleteReview(name);
+  }
   save(model: Review, isValid: boolean) {
     console.log("Saving this");
     console.log(model, isValid);

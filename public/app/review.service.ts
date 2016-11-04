@@ -14,7 +14,6 @@ export class ReviewService {
   constructor(private http: Http) { 
     this.http = http;
     this.reviews = this.http.get('/api/pages' + this.auth); 
-    console.log(this.reviews);
   }
 
   getReview (name: string): Observable<Review[]> {
@@ -50,16 +49,15 @@ export class ReviewService {
       .catch(this.handleError);
   }
 
-  deleteReview(): Promise<Review[]> {
-    return this.http.delete(this.apiUrl)
+  deleteReview(name): Promise<Review[]> {
+    return this.http.delete(this.apiUrl + '/' + name + this.auth)
       .toPromise()
-      .then(response => response.json().data as Review[])
+      .then(this.extractData)
       .catch(this.handleError);
   }
 
   private extractData(res: Response) {
     let body = res.json();
-    console.log(body.data);
     return body.data || { };
   }
 

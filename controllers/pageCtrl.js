@@ -17,7 +17,6 @@ var Page = require('../models/page');
 
 // Create endpoint /api/beers for POST
 exports.postPage = function(req, res) {
-  console.log(req.body);
   // Create a new instance of the Beer model
   var page = new Page();
   // Set the beer properties that came from the POST data
@@ -69,10 +68,6 @@ exports.getPage = function(req, res) {
 
 // Create endpoint /api/pages/:page_id for PUT
 exports.putPage = function(req, res) {
-  console.log("REQBODY******************************************************************************************");
-  console.log(req.body);
-  console.log("REQPARAM****************************************************************************************");
-  console.log(req.params);
   Page.update({name: req.params.name }, { 
     date: req.body.date,
     name: req.body.name,
