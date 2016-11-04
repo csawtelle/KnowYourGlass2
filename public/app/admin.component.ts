@@ -9,14 +9,22 @@ import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@ang
   templateUrl: '../views/admin.html'
 })
 export class AdminComponent implements OnInit{
+  public newPost = 0;
   public reviews: Review;  
   public modalForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
 
   constructor(public reviewService: ReviewService, public modalService: NgbModal, public _fb: FormBuilder) {
+  }
+
+  ngOnInit() {
     this.reviewService.reviews.subscribe((observer) => {
       this.reviews = JSON.parse(observer._body).data;
     });
+  }
+
+  openNew(content) {
+    this.newPost = 1;
     this.modalForm = this._fb.group({
       name: ['', [ <any>Validators.required]],
       date: ['', [ <any>Validators.required]],
@@ -25,19 +33,14 @@ export class AdminComponent implements OnInit{
       category: ['', [ <any>Validators.required]],
       image: ['', [ <any>Validators.required]],
       title_image: ['', [ <any>Validators.required]],
-      paragraphs: this._fb.array([{
-        filename: ['', [ <any>Validators.required]],
-        description: ['', [ <any>Validators.required]]
-      }]),
-      pictures: this._fb.array([
-          ''
-      ])
+      paragraphs: this._fb.array([]),
+      pictures: this._fb.array([])
     });
+    this.modalService.open(content)
   }
 
-  ngOnInit() {}
-  open(content, review) {
-    console.log(review);
+  openOld(content, review) {
+    this.newPost = 0;
     this.modalForm = this._fb.group({
       name: [review.name, [ <any>Validators.required]],
       date: [review.date, [ <any>Validators.required]],
@@ -47,16 +50,45 @@ export class AdminComponent implements OnInit{
       image: [review.image, [ <any>Validators.required]],
       title_image: [review.image, [ <any>Validators.required]],
       paragraphs: this._fb.array(review.page_paragraphs),
-      pictures: this._fb.group(review.pictures)
+      pictures: this._fb.array([])
     });
-    console.log(this.modalForm);
+    const control = <FormArray>this.modalForm.controls['pictures'];
+    for (let picture of review.pictures) {
+        control.push(
+          this._fb.group({
+            filename: [picture.filename],
+            description: [picture.description]
+          })
+        );
+    }
+ 
     this.modalService.open(content)
   }
 
-  save(model: Review, isValid: boolean) {
-    console.log(model, isValid);
+  addParagraph() {
+    const control = <FormArray>this.modalForm.controls['paragraphs'];
+    control.push(new FormControl(''));
   }
-  
+
+  addPicture() {
+    const control = <FormArray>this.modalForm.controls['pictures'];
+    control.push(this._fb.group({
+      filename: '',
+      description: ''
+    }));
+  }
+
+  deletePost(name) {
+    this.reviewService.deleteReview(name);
+  }
+
+  save(model: Review, isValid: boolean) {
+    if(this.newPost) {
+      this.reviewService.postReview(model);
+    } else {
+      this.reviewService.putReview(model);
+    }
+  }
 
   canDeactivate() {
     console.log('i am navigating away');
