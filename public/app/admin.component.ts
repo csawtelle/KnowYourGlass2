@@ -22,8 +22,7 @@ export class AdminComponent implements OnInit{
     });
   }
 
-  openNew(content, review) {
-    console.log(review);
+  openNew(content) {
     this.modalForm = this._fb.group({
       name: ['', [ <any>Validators.required]],
       date: ['', [ <any>Validators.required]],
@@ -39,7 +38,6 @@ export class AdminComponent implements OnInit{
   }
 
   openOld(content, review) {
-    console.log(review);
     this.modalForm = this._fb.group({
       name: [review.name, [ <any>Validators.required]],
       date: [review.date, [ <any>Validators.required]],
@@ -64,6 +62,18 @@ export class AdminComponent implements OnInit{
     this.modalService.open(content)
   }
 
+  addParagraph() {
+    const control = <FormArray>this.modalForm.controls['paragraphs'];
+    control.push(new formControl(''));
+  }
+
+  addPicture() {
+    const control = <FormArray>this.modalForm.controls['pictures'];
+    control.push(this._fb.group({
+      filename: '',
+      description: ''
+    }));
+  }
   deletePost(name) {
     this.reviewService.deleteReview(name);
   }
