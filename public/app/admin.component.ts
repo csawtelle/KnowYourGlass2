@@ -3,6 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Review } from './models/review';
 import { ReviewService } from './review.service';
 import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'admin',
@@ -14,10 +15,12 @@ export class AdminComponent implements OnInit{
   public modalForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
 
-  constructor(public reviewService: ReviewService, public modalService: NgbModal, public _fb: FormBuilder) {
-  }
-
-  ngOnInit() {
+  constructor(
+    private authService: AuthService, 
+    public reviewService: ReviewService, 
+    public modalService: NgbModal, 
+    public _fb: FormBuilder
+  ) {
     this.reviewService.reviews.subscribe((observer) => {
       this.reviews = JSON.parse(observer._body).data;
     });
