@@ -99,9 +99,6 @@ export class AdminComponent implements OnInit{
     this.modalRef.close();
   }
 
-  closeAlert() {
-  }
-
   canDeactivate() {
     console.log('i am navigating away');
   }
