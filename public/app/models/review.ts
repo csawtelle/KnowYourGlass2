@@ -5,9 +5,8 @@ export class Review {
 			public date: string,
 			public image: string,
 			public name: string,
-			public page_paragraphs: Array<string>,
-			public picture_descriptions: Array<string>,
-			public pictures: Array<string>,
-			public rating: string
+      public rating: string,
+			public paragraphs: Array<string>,
+			public pictures: Array<string>
     ){}
 }

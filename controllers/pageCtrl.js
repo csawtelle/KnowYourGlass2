@@ -6,7 +6,7 @@
     image: {type: String, required: true},
     pictures: [{type: String, required: true}],
     picture_descriptions: [{type: String, required: true}],
-    page_paragraphs: [{type: String, required: true}],
+    paragraphs: [{type: String, required: true}],
     date: {type: String, required: true, unique:true},
     rating: {type: String, required: true}
 -->
@@ -26,7 +26,7 @@ exports.postPage = function(req, res) {
     page.category = req.body.category;
     page.image = req.body.image;
     page.rating = req.body.rating;
-    page.page_paragraphs = req.body.page_paragraphs;
+    page.paragraphs = req.body.paragraphs;
     page.pictures = req.body.pictures;
     page.title_image = req.body.title_image;
     // Save the beer and check for errors
@@ -73,11 +73,11 @@ exports.putPage = function(req, res) {
     name: req.body.name,
     brand: req.body.brand,
     category: req.body.category,
-    title_image: req.body.title_image,
     image: req.body.image,
     rating: req.body.rating,
+    paragraphs: req.body.paragraphs,
     pictures: req.body.pictures,
-    picture_descriptions: req.body.picture_descriptions,
+    title_image: req.body.title_image
 
   }, function(err, num, raw) {
     if(err) {

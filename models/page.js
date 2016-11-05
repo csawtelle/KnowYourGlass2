@@ -11,7 +11,7 @@ var PageSchema   = new mongoose.Schema({
       filename: {type: String, required: true},
       description: {type: String, required: true}
     }],
-    page_paragraphs: [{type: String, required: true}],
+    paragraphs: [{type: String, required: true}],
     date: {type: String, required: true},
     rating: {type: String, required: true},
     title_image: {type: String, required: true}

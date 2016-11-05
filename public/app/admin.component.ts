@@ -55,7 +55,7 @@ export class AdminComponent implements OnInit{
       category: [review.category, [ <any>Validators.required]],
       image: [review.image, [ <any>Validators.required]],
       title_image: [review.image, [ <any>Validators.required]],
-      paragraphs: this._fb.array(review.page_paragraphs),
+      paragraphs: this._fb.array(review.paragraphs),
       pictures: this._fb.array([])
     });
     const control = <FormArray>this.modalForm.controls['pictures'];
