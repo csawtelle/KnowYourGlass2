@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     console.log("Login button was clicked");
     this.authService.login(this.user);
     console.log(this.authService.isLoggedIn);
-    this.router.navigate(['/admin'];
+    this.router.navigate(['/admin']);
   }
   logout(){
     console.log("Logout button was clicked");

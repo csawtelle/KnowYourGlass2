@@ -10,7 +10,7 @@ export class AuthService {
     this.user = user;
     this.isLoggedIn = true;
     console.log("User from auth service is: " + this.user.username);
-    console.log("Loggedin was set to true!";
+    console.log("Loggedin was set to true!");
   }
   logout(): void {
     this.isLoggedIn = false;
