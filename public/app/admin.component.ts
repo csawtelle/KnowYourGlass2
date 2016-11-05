@@ -14,6 +14,9 @@ export class AdminComponent implements OnInit{
   public reviews: Review;  
   public modalForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
+  public modalRef;
+  public response;
+  public alertType = "info";
 
   constructor(
     private authService: AuthService, 
@@ -25,9 +28,7 @@ export class AdminComponent implements OnInit{
       this.reviews = JSON.parse(observer._body).data;
     });
   }
-  ngOnInit(){
-
-  }
+  ngOnInit(){}
 
   openNew(content) {
     this.newPost = 1;
@@ -42,7 +43,8 @@ export class AdminComponent implements OnInit{
       paragraphs: this._fb.array([]),
       pictures: this._fb.array([])
     });
-    this.modalService.open(content)
+
+    this.modalRef = this.modalService.open(content);
   }
 
   openOld(content, review) {
@@ -68,7 +70,7 @@ export class AdminComponent implements OnInit{
         );
     }
  
-    this.modalService.open(content)
+    this.modalRef = this.modalService.open(content);
   }
 
   addParagraph() {
@@ -90,10 +92,14 @@ export class AdminComponent implements OnInit{
 
   save(model: Review, isValid: boolean) {
     if(this.newPost) {
-      this.reviewService.postReview(model);
+      this.reviewService.postReview(model).then(response => this.response = response);
     } else {
-      this.reviewService.putReview(model);
+      this.reviewService.putReview(model).then(response => this.response = response);
     }
+    this.modalRef.close();
+  }
+
+  closeAlert() {
   }
 
   canDeactivate() {

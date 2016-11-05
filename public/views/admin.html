@@ -45,7 +45,9 @@
   </div>
 </template>
 
-
+<ngb-alert *ngIf="response" [dismissible]="true" type="{{alertType}}" (close)="closeAlert(alert)">
+  {{response?.message}}
+</ngb-alert>
 <button class="btn btn-lg btn-outline-primary" (click)="openNew(content)">New Post</button>
 <div *ngFor="let single of reviews">
   {{single?.name}}
