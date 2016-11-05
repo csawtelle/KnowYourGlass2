@@ -18,6 +18,7 @@ import { AuthService } from './auth.service';
 })
 export class LoginComponent implements OnInit {
   user: User;
+
   constructor(private router: Router, private authService: AuthService ) {};
 
   ngOnInit(){
@@ -26,11 +27,12 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     console.log('Are you working?');
     console.log(this.user);
+    this.authService.login(this.user);
     this.router.navigate(['/admin']);
   }
   login(){
     console.log("Login button was clicked");
-    this.authService.login();
+    this.authService.login(this.user);
     console.log(this.authService.isLoggedIn);
     this.router.navigate(['/admin'];
   }
