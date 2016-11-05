@@ -4,7 +4,6 @@ import { User } from './user.interface';
 @Injectable()
 export class AuthService {
   isLoggedIn: boolean;
-  isLoggedIn = false;
   user: User;
   login(user){
     this.user = user;

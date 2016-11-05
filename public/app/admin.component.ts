@@ -25,6 +25,9 @@ export class AdminComponent implements OnInit{
       this.reviews = JSON.parse(observer._body).data;
     });
   }
+  ngOnInit(){
+
+  }
 
   openNew(content) {
     this.newPost = 1;
