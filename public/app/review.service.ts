@@ -12,7 +12,7 @@ export class ReviewService {
   private auth = '?username=admin&password=admin';
   constructor(private http: Http) { 
     this.http = http;
-    this.reviews = getReviews();
+    this.reviews = this.http.get(this.apiUrl + '/' + this.auth);
   }
 
   getReview (name: string): Observable<Review[]> {
@@ -37,7 +37,7 @@ export class ReviewService {
       .catch(this.handleError);
   }
 
-  putReview (oldName + object): Promise<Review[]> {
+  putReview (oldName, object): Promise<Review[]> {
     let body = JSON.stringify(object);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });

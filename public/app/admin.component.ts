@@ -16,6 +16,7 @@ export class AdminComponent implements OnInit{
   public submitted: boolean; // keep track on whether form is submitted
   public modalRef;
   public response;
+  public oldName;
   public alertType = "info";
 
   constructor(
@@ -49,6 +50,7 @@ export class AdminComponent implements OnInit{
 
   openOld(content, review) {
     this.newPost = 0;
+    this.oldName = review.name;
     this.modalForm = this._fb.group({
       name: [review.name, [ <any>Validators.required]],
       date: [review.date, [ <any>Validators.required]],
@@ -94,7 +96,7 @@ export class AdminComponent implements OnInit{
     if(this.newPost) {
       this.reviewService.postReview(model).then(response => this.response = response);
     } else {
-      this.reviewService.putReview(oldName, model).then(response => this.response = response);
+      this.reviewService.putReview(this.oldName, model).then(response => this.response = response);
     }
     this.modalRef.close();
   }

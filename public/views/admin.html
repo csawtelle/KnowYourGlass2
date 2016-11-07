@@ -51,6 +51,6 @@
 <button class="btn btn-lg btn-outline-primary" (click)="openNew(content)">New Post</button>
 <div *ngFor="let single of reviews">
   {{single?.name}}
-  <button class="btn btn-lg btn-outline-primary" (click)="openOld(content,single)">Edit</button>
+  <button class="btn btn-lg btn-outline-primary" (click)="openOld(content, single)">Edit</button>
   <button class="btn btn-lg btn-outline-primary" (click)="deletePost(single?.name)">Delete</button>
 </div>
