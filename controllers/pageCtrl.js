@@ -68,6 +68,10 @@ exports.getPage = function(req, res) {
 
 // Create endpoint /api/pages/:page_id for PUT
 exports.putPage = function(req, res) {
+  console.log("name*************************************************");
+  console.log(req.params);
+  console.log("body************************************************");
+  console.log(req.body);
   Page.update({name: req.params.name }, { 
     date: req.body.date,
     name: req.body.name,
@@ -84,7 +88,7 @@ exports.putPage = function(req, res) {
         res.json({ message: 'Update failed!', data: err});
     }
     else {
-        Page.find({name: req.params.name }, function(err, page) {
+        Page.find({name: req.body.name }, function(err, page) {
             if(err) {
                 res.json({ message: 'Update succeded but GET failed!', data: err});
             }

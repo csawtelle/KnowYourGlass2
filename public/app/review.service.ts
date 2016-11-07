@@ -6,14 +6,13 @@ import {Review} from './models/review';
 @Injectable()
 export class ReviewService { 
   reviews: any;
-  review: any;
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private apiUrl = 'api/pages';  // URL to web api
   private auth = '?username=admin&password=admin';
   constructor(private http: Http) { 
     this.http = http;
-    this.reviews = this.http.get('/api/pages' + this.auth); 
+    this.reviews = getReviews();
   }
 
   getReview (name: string): Observable<Review[]> {
@@ -22,10 +21,9 @@ export class ReviewService {
       .catch(this.handleError);
   }
 
-  getReviews(): Promise<Review[]> {
-    return this.http.get(this.apiUrl + this.auth)
-      .toPromise()
-      .then(this.extractData)
+  getReviews (): Observable<Review[]> {
+    return this.http.get(this.apiUrl + '/' + this.auth)
+      .map(this.extractData)
       .catch(this.handleError);
   }
 
@@ -39,11 +37,11 @@ export class ReviewService {
       .catch(this.handleError);
   }
 
-  putReview (object): Promise<Review[]> {
+  putReview (oldName + object): Promise<Review[]> {
     let body = JSON.stringify(object);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.put(this.apiUrl + '/' + object.name + this.auth, body, options)
+    return this.http.put(this.apiUrl + '/' + oldName + this.auth, body, options)
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);

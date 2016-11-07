@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Review } from './models/review';
 import { ReviewService } from './review.service';
@@ -94,7 +94,7 @@ export class AdminComponent implements OnInit{
     if(this.newPost) {
       this.reviewService.postReview(model).then(response => this.response = response);
     } else {
-      this.reviewService.putReview(model).then(response => this.response = response);
+      this.reviewService.putReview(oldName, model).then(response => this.response = response);
     }
     this.modalRef.close();
   }
