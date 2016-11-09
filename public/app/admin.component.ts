@@ -11,13 +11,13 @@ import { AuthService } from './auth.service';
 })
 export class AdminComponent implements OnInit{
   public newPost = 0;
-  public reviews: Review;  
-  public modalForm: FormGroup; // our model driven form
-  public submitted: boolean; // keep track on whether form is submitted
+  public alertType = "info";
+  public modalForm: FormGroup;
+  public submitted: boolean;
+  public reviews;
   public modalRef;
   public response;
   public oldName;
-  public alertType = "info";
 
   constructor(
     private authService: AuthService, 
@@ -88,15 +88,15 @@ export class AdminComponent implements OnInit{
     }));
   }
 
-  deletePost(name) {
-    this.reviewService.deleteReview(name);
+  deleteReview(name) {
+    this.reviewService.deleteReview(name).subscribe(response => this.response = response);
   }
 
   save(model: Review, isValid: boolean) {
     if(this.newPost) {
-      this.reviewService.postReview(model).then(response => this.response = response);
+      this.reviewService.postReview(model).subscribe(response => this.response = response);
     } else {
-      this.reviewService.putReview(this.oldName, model).then(response => this.response = response);
+      this.reviewService.putReview(this.oldName, model).subscribe(response => this.response = response);
     }
     this.modalRef.close();
   }

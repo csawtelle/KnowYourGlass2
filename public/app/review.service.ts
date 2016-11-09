@@ -27,30 +27,27 @@ export class ReviewService {
       .catch(this.handleError);
   }
 
-  postReview (object): Promise<Review[]> {
+  postReview (object): Observable<Review[]> {
     let body = JSON.stringify( object );
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.apiUrl + this.auth, body, options)
-      .toPromise()
-      .then(this.extractData)
+      .map(this.extractData)
       .catch(this.handleError);
   }
 
-  putReview (oldName, object): Promise<Review[]> {
+  putReview (oldName, object): Observable<Review[]> {
     let body = JSON.stringify(object);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.put(this.apiUrl + '/' + oldName + this.auth, body, options)
-      .toPromise()
-      .then(this.extractData)
+      .map(this.extractData)
       .catch(this.handleError);
   }
 
-  deleteReview(name): Promise<Review[]> {
+  deleteReview (name): Observable<Review[]> {
     return this.http.delete(this.apiUrl + '/' + name + this.auth)
-      .toPromise()
-      .then(this.extractData)
+      .map(this.extractData)
       .catch(this.handleError);
   }
 
