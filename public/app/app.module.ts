@@ -1,4 +1,4 @@
-import { NgModule }      from '@angular/core';
+gmport { NgModule }      from '@angular/core';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule }   from '@angular/router';
@@ -18,9 +18,9 @@ import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { KeysPipe } from './filters/keys.pipe';
 import { SearchComponent } from './search.component';
+import { ModelDrivenLogin } from './mdriven-login.component';
 
 @NgModule({
-
   imports:  [ 
     BrowserModule,
     FormsModule,
@@ -37,6 +37,7 @@ import { SearchComponent } from './search.component';
     ReviewComponent,
     AdminComponent,
     PageNotFoundComponent,
+    ModelDrivenLogin,
     LoginComponent,
     SearchComponent,
     KeysPipe
