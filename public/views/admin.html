@@ -49,8 +49,8 @@
   {{response?.message}}
 </ngb-alert>
 <button class="btn btn-lg btn-outline-primary" (click)="openNew(content)">New Post</button>
-<div *ngFor="let single of reviews">
-  {{single?.name}}
+<div *ngFor="let single of reviews?.data">
+  <label>{{single?.name}}</label>
   <button class="btn btn-lg btn-outline-primary" (click)="openOld(content, single)">Edit</button>
-  <button class="btn btn-lg btn-outline-primary" (click)="deletePost(single?.name)">Delete</button>
+  <button class="btn btn-lg btn-outline-primary" (click)="deleteReview(single?.name)">Delete</button>
 </div>

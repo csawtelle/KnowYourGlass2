@@ -15,7 +15,15 @@ export class ReviewService {
     this.reviews = this.http.get(this.apiUrl + '/' + this.auth);
   }
 
+  reviewSearch (term: string): Observable<Review[]> {
+    console.log(term);
+    return this.http
+      .get(this.apiUrl + '/' + term + this.auth)
+      .map((r: Response) => r.json().data as Review[]);
+  }
+
   getReview (name: string): Observable<Review[]> {
+    console.log(name);
     return this.http.get(this.apiUrl + '/' + name + this.auth)
       .map(this.extractData)
       .catch(this.handleError);
@@ -27,35 +35,33 @@ export class ReviewService {
       .catch(this.handleError);
   }
 
-  postReview (object): Promise<Review[]> {
+  postReview (object): Observable<Review[]> {
     let body = JSON.stringify( object );
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.apiUrl + this.auth, body, options)
-      .toPromise()
-      .then(this.extractData)
+      .map(this.extractData)
       .catch(this.handleError);
   }
 
-  putReview (oldName, object): Promise<Review[]> {
+  putReview (oldName, object): Observable<Review[]> {
     let body = JSON.stringify(object);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.put(this.apiUrl + '/' + oldName + this.auth, body, options)
-      .toPromise()
-      .then(this.extractData)
+      .map(this.extractData)
       .catch(this.handleError);
   }
 
-  deleteReview(name): Promise<Review[]> {
+  deleteReview (name): Observable<Review[]> {
     return this.http.delete(this.apiUrl + '/' + name + this.auth)
-      .toPromise()
-      .then(this.extractData)
+      .map(this.extractData)
       .catch(this.handleError);
   }
 
   private extractData(res: Response) {
     let body = res.json();
+    console.log(body);
     return body || { };
   }
 
