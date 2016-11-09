@@ -25,9 +25,7 @@ export class AdminComponent implements OnInit{
     public modalService: NgbModal, 
     public _fb: FormBuilder
   ) {
-    this.reviewService.reviews.subscribe((observer) => {
-      this.reviews = JSON.parse(observer._body).data;
-    });
+      this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
   }
   ngOnInit(){}
 

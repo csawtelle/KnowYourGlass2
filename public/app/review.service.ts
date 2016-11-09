@@ -15,7 +15,15 @@ export class ReviewService {
     this.reviews = this.http.get(this.apiUrl + '/' + this.auth);
   }
 
+  reviewSearch (term: string): Observable<Review[]> {
+    console.log(term);
+    return this.http
+      .get(this.apiUrl + '/' + term + this.auth)
+      .map((r: Response) => r.json().data as Review[]);
+  }
+
   getReview (name: string): Observable<Review[]> {
+    console.log(name);
     return this.http.get(this.apiUrl + '/' + name + this.auth)
       .map(this.extractData)
       .catch(this.handleError);
@@ -53,6 +61,7 @@ export class ReviewService {
 
   private extractData(res: Response) {
     let body = res.json();
+    console.log(body);
     return body || { };
   }
 
