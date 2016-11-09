@@ -17,9 +17,9 @@ import { PostService } from './services/post.service';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { KeysPipe } from './filters/keys.pipe';
+import { ModelDrivenLogin } from './mdriven-login.component';
 
 @NgModule({
-
   imports:  [ 
     BrowserModule,
     FormsModule,
@@ -36,6 +36,7 @@ import { KeysPipe } from './filters/keys.pipe';
     ReviewComponent,
     AdminComponent,
     PageNotFoundComponent,
+    ModelDrivenLogin,
     LoginComponent,
     KeysPipe
  ],
