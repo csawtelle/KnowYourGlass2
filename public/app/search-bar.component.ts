@@ -6,10 +6,10 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 @Component({
-  selector: 'kyg-app',
-  templateUrl: 'views/search.html',
+  selector: 'search-bar',
+  templateUrl: 'views/search-bar.html',
 })
-export class SearchComponent implements OnInit { 
+export class SearchBarComponent implements OnInit { 
   reviews: Observable<Review[]>;
   private searchTerms = new Subject<string>();
 
@@ -26,12 +26,17 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  openReview(name) {
-    let link = ['/review', name]
+  search(search) {
+    let link = ['/search', search]
     this.router.navigate(link);
   }
 
-  search(search) {
+  partialSearch(search: string): void {
     this.searchTerms.next(search);
+  }
+
+  openReview(name) {
+    let link = ['/review', name]
+    this.router.navigate(link);
   }
 }

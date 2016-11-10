@@ -1,13 +1,13 @@
-<ul class="nav navbar-nav navbar-right">
-  <li>
-    <div>
-      <input #searchBox id="search-box" placeholder="Search" (keyup)="partialSearch(searchBox.value)"/>
-      <div *ngFor="let review of reviews | async" (click)="openReview(review.name)" class="search-result">
-        {{review.name}}
-      </div>  
+<div class="row">
+  <div class="col-lg-8">
+    <div class="input-group">
+      <input type="text" class="form-control" #searchBox placeholder="Search" (keyup)="search(searchBox.value)">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button" (click)="search(searchBox.value)">Search</button>
+      </span>
     </div>
-  </li>
-  <li>
-    <button class="fa fa-search" (click)="search(searchBox.value)" style="width:30px;height:30px;"></button>
-  </li>
-</ul>
+  </div>
+</div>
+<div *ngFor="let review of reviews | async" (click)="openReview(review.name)">
+  <button class="btn-secondary" type="button">{{review.name}}</button>
+</div>  

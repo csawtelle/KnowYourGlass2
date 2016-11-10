@@ -34,7 +34,6 @@ exports.getPages = function(req, res) {
 };
 
 exports.getPage = function(req, res) {
-
   if(req.query.search){
     Page.find({
       name: {

@@ -17,7 +17,9 @@ import { PostService } from './services/post.service';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { KeysPipe } from './filters/keys.pipe';
+
 import { SearchComponent } from './search.component';
+import { SearchBarComponent } from './search-bar.component';
 
 @NgModule({
   imports:  [ 
@@ -38,6 +40,7 @@ import { SearchComponent } from './search.component';
     PageNotFoundComponent,
     LoginComponent,
     SearchComponent,
+    SearchBarComponent,
     KeysPipe
  ],
 
