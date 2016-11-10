@@ -18,7 +18,7 @@ export class ReviewService {
   reviewSearch (term: string): Observable<Review[]> {
     console.log(term);
     return this.http
-      .get(this.apiUrl + '/' + term + this.auth)
+      .get(this.apiUrl + '/' + term + this.auth + '&search=1')
       .map((r: Response) => r.json().data as Review[]);
   }
 
