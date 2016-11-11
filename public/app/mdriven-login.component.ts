@@ -26,7 +26,7 @@ export class ModelDrivenLogin implements OnInit {
     //validate each field
     let username = this.form.get('username');
     let password = this.form.get('password');
-    if (username.dirty){
+    if (username.invalid && username.dirty){
       this.usernameErr = "Please enter a username";
     }
     if (password.invalid && password.dirty){
@@ -37,5 +37,6 @@ export class ModelDrivenLogin implements OnInit {
   }
   processForm(){
     console.log("submit button was clicked", this.form.value);
+    console.log("The usernameis: ", this.form.value.username);
   }
 }
