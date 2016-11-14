@@ -1,4 +1,4 @@
-gmport { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { User } from './models/user.interface';
 import { Routes } from '@angular/router';
 @Injectable()
