@@ -23,7 +23,7 @@ export class ModelDrivenLogin implements OnInit {
     });
 
     //watch for changes as we validate
-    this.form.valueChanges.subscribe(data => { console.log(data); });
+//    this.form.valueChanges.subscribe(data => { console.log(data); });
 
     //validate each field
     let username = this.form.get('username');
@@ -38,8 +38,8 @@ export class ModelDrivenLogin implements OnInit {
     console.log(this.form);
   }
   processForm(){
-    console.log("submit button was clicked", this.form.value);
-    console.log("The usernameis: ", this.form.value.username);
+//    console.log("submit button was clicked", this.form.value);
+//    console.log("The usernameis: ", this.form.value.username);
     this.authService.login(this.form.value);
     this.router.navigate(['/admin']);
   }
