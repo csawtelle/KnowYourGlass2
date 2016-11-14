@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component ({ 
   selector: 'mdriven-login',
@@ -11,7 +13,7 @@ export class ModelDrivenLogin implements OnInit {
   form: FormGroup;
   usernameErr: string;
   passErr: string;
- constructor(private fb: FormBuilder){}
+ constructor(private router: Router, private fb: FormBuilder, private authService: AuthService){}
   
   ngOnInit(){
     //form is built here
@@ -38,5 +40,7 @@ export class ModelDrivenLogin implements OnInit {
   processForm(){
     console.log("submit button was clicked", this.form.value);
     console.log("The usernameis: ", this.form.value.username);
+    this.authService.login(this.form.value);
+    this.router.navigate(['/admin']);
   }
 }
