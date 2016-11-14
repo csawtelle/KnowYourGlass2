@@ -23,24 +23,57 @@ exports.postPage = function(req, res) {
 };
 
 exports.getPages = function(req, res) {
-  Page.find({}, function(err, pages) {
+  if(req.query.search){
+    var searchArray = [];
+    for (var key in req.query) {
+      if(key != "username" && key != "password" && key != "search") {
+        var obj = req.query[key];
+        var query = {}
+        query[key] = { 
+          "$regex": obj,
+          "$options": "i"
+        };
+        searchArray.push(query);
+      }
+    }
+    console.log(searchArray);
+    Page.find({ '$or': searchArray
+    }, function(err, page) {
+            if(err) {
+                res.json({ message: 'Get failed!', data: err});
+            }
+            else {
+                res.json({ message: 'Get succeded!', data: page });
+            }
+      }).sort('-postDate');
+  } else {
+    Page.find({}, function(err, pages) {
         if(err) {
             res.json({ message: 'Get failed!', data: err});
         }
         else {
             res.json({ message: 'Get succeeded!', data: pages });
         }
-  });
+    });
+  }
 };
 
 exports.getPage = function(req, res) {
   if(req.query.search){
-    Page.find({
-      name: {
-        "$regex": req.params.name,
-        "$options": "i"
+    var searchArray = [];
+    for (var key in req.query) {
+      if(key != "username" && key != "password" && key != "search") {
+        var obj = req.query[key];
+        var query = {}
+        query[key] = { 
+          "$regex": obj,
+          "$options": "i"
+        };
+        searchArray.push(query);
       }
-    }, function(err, page) {
+    }
+    Page.find({ '$or': searchArray
+      }, function(err, page) {
             if(err) {
                 res.json({ message: 'Get failed!', data: err});
             }
