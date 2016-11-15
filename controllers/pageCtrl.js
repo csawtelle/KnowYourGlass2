@@ -26,20 +26,46 @@ exports.postPage = function(req, res) {
 exports.getPages = function(req, res) {
   if(req.query.search){
     var searchArray = [];
+    var textArray = [];
     for (var key in req.query) {
-      if(key != "username" && key != "password" && key != "search") {
-        var obj = req.query[key];
-        var query = {}
-        query[key] = { 
-          "$regex": obj,
+      if(key == "text") {
+        var textQuery = {}
+        textQuery['paragraphs'] = { 
+          "$regex": req.query[key],
           "$options": "i"
         };
-        searchArray.push(query);
+        textArray.push(textQuery);
+        textQuery['name'] = { 
+          "$regex": req.query[key],
+          "$options": "i"
+        };
+        textArray.push(textQuery);
+      } else {
+        if(key != "username" && key != "password" && key != "search" && key != "text") {
+          var obj = req.query[key];
+          var paramQuery = {}
+          paramQuery[key] = { 
+            "$regex": obj,
+            "$options": "i"
+          };
+          searchArray.push(paramQuery);
+        }
       }
     }
-    console.log(searchArray);
-    Page.find({ '$or': searchArray
-    }, function(err, page) {
+    var query = {};
+    query['$and'] = [];
+    if(searchArray.length != 0) {
+      query['$and'].push({
+        '$and': searchArray
+      })
+    }
+    if(textArray.length != 0) {
+      query['$and'].push({
+        '$or': textArray
+      })
+    }
+    console.log(query);
+    Page.find(query, function(err, page) {
             if(err) {
                 res.json({ message: 'Get failed!', data: err});
             }
