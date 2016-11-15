@@ -16,38 +16,38 @@ export class SearchComponent implements OnInit {
 
   private list = {
     'brands': [
-      'Any',
-      'Nikon',
-      'Canon',
-      'Sigma'
+      {'text': 'Any', 'value': ''},
+      {'text': 'Nikon', 'value': 'Nikon'},
+      {'text': 'Canon', 'value': 'Canon'},
+      {'text': 'Sigma', 'value': 'Sigma'},
     ],
     'categories': [
-      'Any',
-      '8-24mm Ultra Wide Angle',
-      '24-35mm Wide Angle',
-      '35-85mm Standard',
-      '85-135mm Short Telephoto',
-      '135-300mm Medium Telephoto',
-      '300mm+ Super Telephoto'
+      {'text': 'Any', 'value': ''},
+      {'text': '8-24mm Ultra Wide Angle', 'value': '8-24mm Ultra Wide Angle'},
+      {'text': '24-35mm Wide Angle', 'value': '24-35mm Wide Angle'},
+      {'text': '35-85mm Standard', 'value': '35-85mm Standard'},
+      {'text': '85-135mm Short Telephoto', 'value': '85-135mm Short Telephoto'},
+      {'text': '135-300mm Medium Telephoto', 'value': '135-300mm Medium Telephoto'},
+      {'text': '300mm+ Super Telephoto', 'value': '300mm+ Super Telephoto'}
     ],
     'sensors': [
-      'Any',
-      'Crop',
-      'Full Frame'
+      {'text': 'Any', 'value': ''},
+      {'text': 'Crop', 'value': 'Crop'},
+      {'text': 'Full Frame', 'value': 'Full Frame'}
     ],
     'ratings': [
-      'Any',
-      'rating0',
-      'rating1',
-      'rating2',
-      'rating3',
-      'rating4',
-      'rating5',
-      'rating6',
-      'rating7',
-      'rating8',
-      'rating9',
-      'rating10'
+      {'text': 'Any', 'value': ''},
+      {'text': '0 Stars', 'value': 'rating0'},
+      {'text': '1 Star', 'value': 'rating1'},
+      {'text': '2 Stars', 'value': 'rating2'},
+      {'text': '3 Stars', 'value': 'rating3'},
+      {'text': '4 Stars', 'value': 'rating4'},
+      {'text': '5 Stars', 'value': 'rating5'},
+      {'text': '6 Stars', 'value': 'rating6'},
+      {'text': '7 Stars', 'value': 'rating7'},
+      {'text': '8 Stars', 'value': 'rating8'},
+      {'text': '9 Stars', 'value': 'rating9'},
+      {'text': '10 Stars', 'value': 'rating10'}
     ]
   }
 

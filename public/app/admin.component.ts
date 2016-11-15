@@ -29,6 +29,39 @@ export class AdminComponent implements OnInit{
   }
   ngOnInit(){}
 
+  private list = {
+    'brands': [
+      {'text': 'Nikon', 'value': 'Nikon'},
+      {'text': 'Canon', 'value': 'Canon'},
+      {'text': 'Sigma', 'value': 'Sigma'},
+    ],
+    'categories': [
+      {'text': '8-24mm Ultra Wide Angle', 'value': '8-24mm Ultra Wide Angle'},
+      {'text': '24-35mm Wide Angle', 'value': '24-35mm Wide Angle'},
+      {'text': '35-85mm Standard', 'value': '35-85mm Standard'},
+      {'text': '85-135mm Short Telephoto', 'value': '85-135mm Short Telephoto'},
+      {'text': '135-300mm Medium Telephoto', 'value': '135-300mm Medium Telephoto'},
+      {'text': '300mm+ Super Telephoto', 'value': '300mm+ Super Telephoto'}
+    ],
+    'sensors': [
+      {'text': 'Crop', 'value': 'Crop'},
+      {'text': 'Full Frame', 'value': 'Full Frame'}
+    ],
+    'ratings': [
+      {'text': '0 Stars', 'value': 'rating0'},
+      {'text': '1 Star', 'value': 'rating1'},
+      {'text': '2 Stars', 'value': 'rating2'},
+      {'text': '3 Stars', 'value': 'rating3'},
+      {'text': '4 Stars', 'value': 'rating4'},
+      {'text': '5 Stars', 'value': 'rating5'},
+      {'text': '6 Stars', 'value': 'rating6'},
+      {'text': '7 Stars', 'value': 'rating7'},
+      {'text': '8 Stars', 'value': 'rating8'},
+      {'text': '9 Stars', 'value': 'rating9'},
+      {'text': '10 Stars', 'value': 'rating10'}
+    ]
+  }
+
   openNew(content) {
     this.newPost = 1;
     this.modalForm = this._fb.group({

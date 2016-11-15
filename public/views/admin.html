@@ -10,15 +10,26 @@
         <input formControlName="date">  
         Title Image:
         <input formControlName="title_image">
-        Rating:
-        <input formControlName="rating">
         Brand:
-        <input formControlName="brand">
+        <select class="form-control" formControlName="brand">
+          <option *ngFor="let brand of list.brands" value= {{brand.value}}>
+            {{brand.text}}
+          </option>
+        </select>
+        Rating:
+        <select class="form-control" formControlName="rating">
+          <option *ngFor="let rating of list.ratings" value= {{rating.value}}>
+            {{rating.text}}
+          </option>
+        </select>
         Category:
-        <input formControlName="category">
+        <select class="form-control" formControlName="category">
+          <option *ngFor="let category of list.categories" value= {{category.value}}>
+            {{category.text}}
+          </option>
+        </select>
         Images:
         <input formControlName="image">
-
         Paragraphs:<button type="button" class="btn" (click)="addParagraph()">+</button>
         <ul formArrayName="paragraphs">
           <li *ngFor="let paragraph of modalForm.controls.paragraphs.controls; let i = index">
@@ -26,7 +37,6 @@
               <input [formControlName]="i">
           </li>
         </ul>
-
         Pictures:<button type="button" class="btn" (click)="addPicture()">+</button>
         <ul formArrayName="pictures">
           <li *ngFor='let picture of modalForm.controls.pictures.controls; let i = index'>
@@ -37,7 +47,6 @@
             </div>
           </li>
         </ul>
-
       </div> <!--End Group-->
 
       <button type="submit">Save</button>
