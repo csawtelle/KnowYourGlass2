@@ -4,6 +4,7 @@ var Page = require('../models/page');
 exports.postPage = function(req, res) {
   var page = new Page();
     page.date = req.body.date;
+    page.sensor = req.body.sensor;
     page.name = req.body.name;
     page.brand = req.body.brand;
     page.category = req.body.category;
@@ -96,6 +97,7 @@ exports.getPage = function(req, res) {
 exports.putPage = function(req, res) {
   Page.update({name: req.params.name }, { 
     date: req.body.date,
+    sensor: req.body.sensor,
     name: req.body.name,
     brand: req.body.brand,
     category: req.body.category,
