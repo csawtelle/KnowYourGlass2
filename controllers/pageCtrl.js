@@ -4,6 +4,7 @@ var Page = require('../models/page');
 exports.postPage = function(req, res) {
   var page = new Page();
     page.date = req.body.date;
+    page.sensor = req.body.sensor;
     page.name = req.body.name;
     page.brand = req.body.brand;
     page.category = req.body.category;
@@ -23,25 +24,83 @@ exports.postPage = function(req, res) {
 };
 
 exports.getPages = function(req, res) {
-  Page.find({}, function(err, pages) {
+  if(req.query.search){
+    var searchArray = [];
+    var textArray = [];
+    for (var key in req.query) {
+      if(key == "text") {
+        var textQuery = {}
+        textQuery['paragraphs'] = { 
+          "$regex": req.query[key],
+          "$options": "i"
+        };
+        textArray.push(textQuery);
+        textQuery['name'] = { 
+          "$regex": req.query[key],
+          "$options": "i"
+        };
+        textArray.push(textQuery);
+      } else {
+        if(key != "username" && key != "password" && key != "search" && key != "text") {
+          var obj = req.query[key];
+          var paramQuery = {}
+          paramQuery[key] = { 
+            "$regex": obj,
+            "$options": "i"
+          };
+          searchArray.push(paramQuery);
+        }
+      }
+    }
+    var query = {};
+    query['$and'] = [];
+    if(searchArray.length != 0) {
+      query['$and'].push({
+        '$and': searchArray
+      })
+    }
+    if(textArray.length != 0) {
+      query['$and'].push({
+        '$or': textArray
+      })
+    }
+    console.log(query);
+    Page.find(query, function(err, page) {
+            if(err) {
+                res.json({ message: 'Get failed!', data: err});
+            }
+            else {
+                res.json({ message: 'Get succeded!', data: page });
+            }
+      }).sort('-postDate');
+  } else {
+    Page.find({}, function(err, pages) {
         if(err) {
             res.json({ message: 'Get failed!', data: err});
         }
         else {
             res.json({ message: 'Get succeeded!', data: pages });
         }
-  });
+    });
+  }
 };
 
 exports.getPage = function(req, res) {
-
   if(req.query.search){
-    Page.find({
-      name: {
-        "$regex": req.params.name,
-        "$options": "i"
+    var searchArray = [];
+    for (var key in req.query) {
+      if(key != "username" && key != "password" && key != "search") {
+        var obj = req.query[key];
+        var query = {}
+        query[key] = { 
+          "$regex": obj,
+          "$options": "i"
+        };
+        searchArray.push(query);
       }
-    }, function(err, page) {
+    }
+    Page.find({ '$or': searchArray
+      }, function(err, page) {
             if(err) {
                 res.json({ message: 'Get failed!', data: err});
             }
@@ -64,6 +123,7 @@ exports.getPage = function(req, res) {
 exports.putPage = function(req, res) {
   Page.update({name: req.params.name }, { 
     date: req.body.date,
+    sensor: req.body.sensor,
     name: req.body.name,
     brand: req.body.brand,
     category: req.body.category,

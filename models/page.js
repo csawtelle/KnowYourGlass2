@@ -7,6 +7,7 @@ var PageSchema   = new mongoose.Schema({
     brand: {type: String, required: true},
     category: {type: String, required: true},
     image: {type: String, required: true},
+    sensor: {type: String, required: true},
     pictures: [{
       filename: {type: String, required: true},
       description: {type: String, required: true}

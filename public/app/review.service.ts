@@ -15,10 +15,10 @@ export class ReviewService {
     this.reviews = this.http.get(this.apiUrl + '/' + this.auth);
   }
 
-  reviewSearch (term: string): Observable<Review[]> {
-    console.log(term);
+  reviewSearch (terms): Observable<Review[]> {
+    console.log(terms);
     return this.http
-      .get(this.apiUrl + '/' + term + this.auth + '&search=1')
+      .get(this.apiUrl + this.auth + '&search=1' + terms)
       .map((r: Response) => r.json().data as Review[]);
   }
 

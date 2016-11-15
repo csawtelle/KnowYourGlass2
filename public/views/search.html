@@ -1,13 +1,51 @@
-<ul class="nav navbar-nav navbar-right">
-  <li>
-    <div>
-      <input #searchBox id="search-box" placeholder="Search" (keyup)="partialSearch(searchBox.value)"/>
-      <div *ngFor="let review of reviews | async" (click)="openReview(review.name)" class="search-result">
-        {{review.name}}
-      </div>  
+<pre> {{params | json}}</pre>
+<div class="row">
+  <div class="col-xs-2">
+    <div class="form-group">
+      <label for="brandSelect">Brand</label>
+      <select class="form-control" [(ngModel)]="params.brand">
+        <option *ngFor="let brand of list.brands" value= {{brand}}>
+          {{brand}}
+        </option>
+      </select>
     </div>
-  </li>
-  <li>
-    <button class="fa fa-search" (click)="search(searchBox.value)" style="width:30px;height:30px;"></button>
-  </li>
-</ul>
+    <div class="form-group">
+      <label for="categorySelect">Category</label>
+      <select class="form-control" [(ngModel)]="params.category">
+        <option *ngFor="let category of list.categories" value= {{category}}>
+          {{category}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sensorSelect">Sensor</label>
+      <select class="form-control" [(ngModel)]="params.sensor">
+        <option *ngFor="let sensor of list.sensors" value= {{sensor}}>
+          {{sensor}}
+        </option>
+      </select>
+    </div> 
+    <div class="form-group">
+      <label for="ratingSelect">Rating</label>
+      <select class="form-control" [(ngModel)]="params.rating">
+        <option *ngFor="let rating of list.ratings" value= {{rating}}>
+          {{rating}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="row">
+      <div class="input-group">
+        <input type="text" class="form-control" #searchBox placeholder="Search">
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button" (click)="search(searchBox.value, params)">Search</button>
+        </span>
+      </div>
+    <div class="row">
+      <div *ngFor="let review of reviews | async" (click)="openReview(review.name)">
+        <button class="btn-secondary" type="button">{{review.name}}</button>
+      </div>
+    </div>
+  </div>
+</div> 
