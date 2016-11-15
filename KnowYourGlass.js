@@ -38,7 +38,7 @@ app.use(require('express-session')({
 router.route('/api/users')
   .post(userController.postUsers)
   .get(authController.isAuthenticated, userController.getUsers);
-
+/*
 // Create endpoint handlers for oauth2 authorize
 router.route('/api/authorize')
   .get(authController.isAuthenticated, oauth2Controller.authorization)
@@ -47,7 +47,7 @@ router.route('/api/authorize')
 // Create endpoint handlers for oauth2 token
 router.route('/api/token')
   .post(authController.isClientAuthenticated, oauth2Controller.token); 
-
+*/
 // Create endpoint handlers for /clients
 router.route('/api/clients')
   .post(authController.isAuthenticated, clientController.postClients)

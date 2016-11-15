@@ -9,7 +9,8 @@ export class ReviewService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private apiUrl = 'api/pages';  // URL to web api
-  private auth = '?username=admin&password=admin';
+  private auth = null;
+//  private auth = '?username=admin&password=admin';
   constructor(private http: Http) { 
     this.http = http;
     this.reviews = this.http.get(this.apiUrl + '/' + this.auth);
