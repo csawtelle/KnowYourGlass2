@@ -4,11 +4,11 @@ import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 
 @Component ({ 
-  selector: 'mdriven-login',
-  templateUrl: '../views/mdriven-login.html'
+  selector: 'login',
+  templateUrl: '../views/login.html'
 })
 
-export class ModelDrivenLogin implements OnInit {
+export class LoginComponent implements OnInit {
   
   form: FormGroup;
   usernameErr: string;
