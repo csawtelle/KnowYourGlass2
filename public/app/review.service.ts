@@ -9,29 +9,28 @@ export class ReviewService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private apiUrl = 'api/pages';  // URL to web api
-  private auth = null;
-//  private auth = '?username=admin&password=admin';
+  private auth = '?username=admin&password=admin';
   constructor(private http: Http) { 
     this.http = http;
-    this.reviews = this.http.get(this.apiUrl + '/' + this.auth);
+    this.reviews = this.http.get(this.apiUrl + '/');
   }
 
-  reviewSearch (term: string): Observable<Review[]> {
-    console.log(term);
+  reviewSearch (terms): Observable<Review[]> {
+    console.log(terms);
     return this.http
-      .get(this.apiUrl + '/' + term + this.auth + '&search=1')
+      .get(this.apiUrl + this.auth + '&search=1' + terms)
       .map((r: Response) => r.json().data as Review[]);
   }
 
   getReview (name: string): Observable<Review[]> {
     console.log(name);
-    return this.http.get(this.apiUrl + '/' + name + this.auth)
+    return this.http.get(this.apiUrl + '/' + name)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   getReviews (): Observable<Review[]> {
-    return this.http.get(this.apiUrl + '/' + this.auth)
+    return this.http.get(this.apiUrl + '/')
       .map(this.extractData)
       .catch(this.handleError);
   }
