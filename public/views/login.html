@@ -33,3 +33,17 @@ This is the Model Driven Login
     </div><!-- end col -->
   </div><!-- end row -->
 </div> <!-- end container -->
+
+<div class="container">
+  <div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <form action="/api/authorize" method="post">
+      <input name="transaction_id" type="hidden" value="<%= transactionID %>">
+      <div>
+      <input type="submit" value="Allow" id="allow">
+      <input type="submit" value="Deny" name="cancel" id="deny">
+      </div>
+    </form>
+  </div>
+  </div>
+</div>
