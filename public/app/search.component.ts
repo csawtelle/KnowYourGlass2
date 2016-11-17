@@ -7,7 +7,7 @@ import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'kyg-app',
-  templateUrl: 'views/search.html',
+  templateUrl: '../views/search.html',
 })
 export class SearchComponent implements OnInit { 
   reviews: Observable<Review[]>;
@@ -63,12 +63,12 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  openReview(name) {
+  openReview(name: string) {
     let link = ['/review', name]
     this.router.navigate(link);
   }
 
-  search(text, search) {
+  search(text: string, search: any) {
     var searchString = '';
     for (var key in search) {
       var value = search[key];
@@ -81,7 +81,7 @@ export class SearchComponent implements OnInit {
     this.searchTerms.next(searchString);
   }
 
-  itemSelected(item) {
+  itemSelected(item: string) {
     console.log(item);
   }
 }

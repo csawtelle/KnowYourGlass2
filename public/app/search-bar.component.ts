@@ -7,7 +7,7 @@ import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'search-bar',
-  templateUrl: 'views/search-bar.html',
+  templateUrl: '../views/search-bar.html',
 })
 export class SearchBarComponent implements OnInit { 
   reviews: Observable<Review[]>;
@@ -26,7 +26,7 @@ export class SearchBarComponent implements OnInit {
       });
   }
 
-  search(search) {
+  search(search: string) {
     let link = ['/search', search]
     this.router.navigate(link);
   }
@@ -35,7 +35,7 @@ export class SearchBarComponent implements OnInit {
     this.searchTerms.next(search);
   }
 
-  openReview(name) {
+  openReview(name: string) {
     let link = ['/review', name]
     this.router.navigate(link);
   }

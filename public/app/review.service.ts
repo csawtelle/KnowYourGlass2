@@ -6,7 +6,6 @@ import {Review} from './models/review';
 @Injectable()
 export class ReviewService { 
   reviews: any;
-
   private headers = new Headers({'Content-Type': 'application/json'});
   private apiUrl = 'api/pages';  // URL to web api
   private auth = '?username=admin&password=admin';
@@ -15,8 +14,7 @@ export class ReviewService {
     this.reviews = this.http.get(this.apiUrl + '/' + this.auth);
   }
 
-  reviewSearch (terms): Observable<Review[]> {
-    console.log(terms);
+  reviewSearch (terms: string): Observable<Review[]> {
     return this.http
       .get(this.apiUrl + this.auth + '&search=1' + terms)
       .map((r: Response) => r.json().data as Review[]);
@@ -35,7 +33,7 @@ export class ReviewService {
       .catch(this.handleError);
   }
 
-  postReview (object): Observable<Review[]> {
+  postReview (object: any): Observable<Review[]> {
     let body = JSON.stringify( object );
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -44,7 +42,7 @@ export class ReviewService {
       .catch(this.handleError);
   }
 
-  putReview (oldName, object): Observable<Review[]> {
+  putReview (oldName: string, object: any): Observable<Review[]> {
     let body = JSON.stringify(object);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -53,7 +51,7 @@ export class ReviewService {
       .catch(this.handleError);
   }
 
-  deleteReview (name): Observable<Review[]> {
+  deleteReview (name: string): Observable<Review[]> {
     return this.http.delete(this.apiUrl + '/' + name + this.auth)
       .map(this.extractData)
       .catch(this.handleError);

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Review } from './models/review';
 import { ReviewService } from './review.service';
 import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
@@ -14,10 +14,10 @@ export class AdminComponent implements OnInit{
   public alertType = "info";
   public modalForm: FormGroup;
   public submitted: boolean;
-  public reviews;
-  public modalRef;
-  public response;
-  public oldName;
+  public reviews: Object;
+  public response: Object;
+  public oldName: string;
+  private modalRef: any;
 
   constructor(
     private authService: AuthService, 
@@ -62,7 +62,7 @@ export class AdminComponent implements OnInit{
     ]
   }
 
-  openNew(content) {
+  openNew(content: Object) {
     this.newPost = 1;
     this.modalForm = this._fb.group({
       name: ['', [ <any>Validators.required]],
@@ -79,7 +79,7 @@ export class AdminComponent implements OnInit{
     this.modalRef = this.modalService.open(content);
   }
 
-  openOld(content, review) {
+  openOld(content: Object, review: Review) {
     this.newPost = 0;
     this.oldName = review.name;
     this.modalForm = this._fb.group({
@@ -119,7 +119,7 @@ export class AdminComponent implements OnInit{
     }));
   }
 
-  deleteReview(name) {
+  deleteReview(name: string) {
     this.reviewService.deleteReview(name).subscribe(response => this.response = response);
   }
 

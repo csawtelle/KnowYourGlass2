@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
     .active { color:#000 !important; }
     .navbar { margin-bottom: 50px; }
   `],
-  templateUrl: 'views/app.html',
+  templateUrl: '../views/app.html',
 })
 export class AppComponent { 
   constructor(private authService: AuthService) {
