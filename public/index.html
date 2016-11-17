@@ -1,3 +1,17 @@
+<div class="container">
+  <div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <form action="/api/authorize" method="post">
+      <input name="transaction_id" type="hidden" value="581e43199a52c782aaee929f">
+      <div>
+      <input type="submit" value="Allow" id="allow">
+      <input type="submit" value="Deny" name="cancel" id="deny">
+      </div>
+    </form>
+  </div>
+  </div>
+</div>
+
 <html>
   <head>
     <base href="/">
@@ -27,7 +41,5 @@
   <!-- 3. Display the application -->
   <body style="padding-top:66px;">
     <kyg-app>Loading...</kyg-app>
-
-
   </body>
 </html>

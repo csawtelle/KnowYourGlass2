@@ -19,7 +19,6 @@ var flash = require('connect-flash');
 
 var app = express();
 
-
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json({limit: '500mb'}));
 app.use(bodyParser.urlencoded({limit: '500mb', extended: true}));
@@ -38,7 +37,7 @@ app.use(require('express-session')({
 router.route('/api/users')
   .post(userController.postUsers)
   .get(authController.isAuthenticated, userController.getUsers);
-/*
+
 // Create endpoint handlers for oauth2 authorize
 router.route('/api/authorize')
   .get(authController.isAuthenticated, oauth2Controller.authorization)
@@ -46,8 +45,8 @@ router.route('/api/authorize')
 
 // Create endpoint handlers for oauth2 token
 router.route('/api/token')
-  .post(authController.isClientAuthenticated, oauth2Controller.token); 
-*/
+  .post(authController.isAuthenticated, oauth2Controller.token); 
+
 // Create endpoint handlers for /clients
 router.route('/api/clients')
   .post(authController.isAuthenticated, clientController.postClients)
@@ -57,6 +56,7 @@ router.route('/api/clients')
 router.route('/api/pages')
   .post(authController.isAuthenticated, pageRoutes.postPage)
   .get(authController.isAuthenticated, pageRoutes.getPages);
+
 // Create endpoint handlers for /pages/:page_id
 router.route('/api/pages/:name')
   .get(authController.isAuthenticated, pageRoutes.getPage)

@@ -47,6 +47,8 @@ server.deserializeClient(function(id, callback) {
 // values, and will be exchanged for an access token.
 
 server.grant(oauth2orize.grant.code(function(client, redirectUri, user, ares, callback) {
+  console.log("client");
+  console.log(client);
   // Create a new authorization code
   var code = new Code({
     value: uid(16),
@@ -54,7 +56,8 @@ server.grant(oauth2orize.grant.code(function(client, redirectUri, user, ares, ca
     redirectUri: redirectUri,
     userId: user._id
   });
-
+  console.log("CODE");
+  console.log(code);
   // Save the auth code and check for errors
   code.save(function(err) {
     if (err) { return callback(err); }
@@ -75,7 +78,7 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, ca
     if (authCode === undefined) { return callback(null, false); }
     if (client._id.toString() !== authCode.clientId) { return callback(null, false); }
     if (redirectUri !== authCode.redirectUri) { return callback(null, false); }
-
+    console.log("Exchanging");
     // Delete auth code now that it has been used
     authCode.remove(function (err) {
       if(err) { return callback(err); }
