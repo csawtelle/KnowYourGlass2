@@ -19,6 +19,49 @@ var flash = require('connect-flash');
 
 var app = express();
 
+//jwt work
+var jwt    = require('jsonwebtoken');
+var User   = require('./models/jwtuser');
+app.set('superSecret','keyboardcatiscool'); //pulling config.js doesnt work wtf
+
+app.get('/api', function(req, res) {
+    res.send('Hello! The API is at http://knowyourglass.com/api');
+});
+
+
+
+app.get('/api/setup', function(req, res) {
+
+  // create a sample user
+  var gerry = new User({ 
+    name: 'Gerry Ramos', 
+    password: 'admin',
+    admin: true 
+  });
+
+  // save the sample user
+  gerry.save(function(err) {
+    if (err) throw err;
+
+    console.log('User saved successfully');
+    res.json({ success: true });
+  });
+});
+
+router.get('/api2', function(req, res) {
+  res.json({ message: 'Welcome to the coolest API on earth!' });
+});
+
+router.get('/api2/users', function(req, res) {
+  User.find({}, function(err, users) {
+    res.json(users);
+  });
+});
+
+//end jwt work
+
+
+
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json({limit: '500mb'}));
@@ -84,9 +127,10 @@ app.post('/api/upload', upload.any(), function(req, res) {
 //angular part of the web page
 //
 
+
 app.use(router);
 app.get('/', function(req, res) {
-  res.sendFile('dist/index.html', { root: __dirname });
+  res.sendFile('./public/index.html', { root: __dirname });
 });
 console.log('Listening');
 app.listen(8080);
