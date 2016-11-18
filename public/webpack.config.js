@@ -1,53 +1,39 @@
 var webpack = require('webpack');
+var webpackMerge = require('webpack-merge');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var commonConfig = require('./webpack.common.js');
 var helpers = require('./helpers');
 
-module.exports = {
-  entry: {
-    'polyfills': './app/polyfills.ts',
-    'vendor': './app/vendor.ts',
-    'app': './app/main.ts'
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+
+module.exports = webpackMerge(commonConfig, {
+  devtool: 'source-map',
+
+  output: {
+    path: helpers.root('dist'),
+    publicPath: '/',
+    filename: '[name].[hash].js',
+    chunkFilename: '[id].[hash].chunk.js'
   },
 
-  resolve: {
-    extensions: ['', '.ts', '.js']
-  },
-
-  module: {
-    loaders: [
-      {
-        test: /\.ts$/,
-        loaders: ['awesome-typescript-loader', 'angular2-template-loader']
-      },
-      {
-        test: /\.html$/,
-        loader: 'html'
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'file?name=assets/[name].[hash].[ext]'
-      },
-      {
-        test: /\.css$/,
-        exclude: helpers.root('app'),
-        loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
-      },
-      {
-        test: /\.css$/,
-        include: helpers.root('app'),
-        loader: 'raw'
-      }
-    ]
+  htmlLoader: {
+    minimize: false 
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor', 'polyfills']
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: {
+        keep_fnames: true
+      }
     }),
-
-    new HtmlWebpackPlugin({
-      template: './index.html'
+    new ExtractTextPlugin('[name].[hash].css'),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'ENV': JSON.stringify(ENV)
+      }
     })
   ]
-};
+});

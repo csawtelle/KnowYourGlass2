@@ -86,7 +86,7 @@ app.post('/api/upload', upload.any(), function(req, res) {
 
 app.use(router);
 app.get('*', function(req, res) {
-  res.sendFile('./public/index.html', { root: __dirname });
+  res.sendFile('./dist/index.html', { root: __dirname });
 });
 console.log('Listening');
 app.listen(8080);
