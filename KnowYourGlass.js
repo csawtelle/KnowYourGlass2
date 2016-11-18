@@ -22,6 +22,7 @@ var app = express();
 //jwt work
 var jwt    = require('jsonwebtoken');
 var User   = require('./models/jwtuser');
+var Page   = require('./models/page');
 app.set('superSecret','keyboardcatiscool'); //pulling config.js doesnt work wtf
 
 app.get('/api', function(req, res) {
@@ -123,7 +124,7 @@ router.use(function(req, res, next) {
 
 // showing a message from main api
 router.get('/api2', function(req, res) {
-  res.json({ message: 'Welcome to the coolest API on earth!' });
+  res.json({ message: 'Welcome to the API!' });
 });
 
 
@@ -134,6 +135,19 @@ router.get('/api2/users', function(req, res) {
   });
 });
 
+//route to get pages
+/*
+router.get('/api2/pages', function(req, res) {
+    Page.find({}, function(err, pages) {
+        if(err) {
+            res.json({ message: 'Get failed!', data: err});
+        }
+        else {
+            res.json({ message: 'Get succeeded!', data: pages });
+        }
+    });
+  });
+*/
 
 //end jwt work
 
@@ -154,34 +168,21 @@ app.use(require('express-session')({
     saveUninitialized: true
 }));
 
+/* Most likely not going to need this anymore - gerry
 // Create endpoint handlers for /users
 router.route('/api/users')
   .post(userController.postUsers)
   .get(authController.isAuthenticated, userController.getUsers);
-
-// Create endpoint handlers for oauth2 authorize
-router.route('/api/authorize')
-  .get(authController.isAuthenticated, oauth2Controller.authorization)
-  .post(authController.isAuthenticated, oauth2Controller.decision);
-
-// Create endpoint handlers for oauth2 token
-router.route('/api/token')
-  .post(authController.isClientAuthenticated, oauth2Controller.token); 
-
-// Create endpoint handlers for /clients
-router.route('/api/clients')
-  .post(authController.isAuthenticated, clientController.postClients)
-  .get(authController.isAuthenticated, clientController.getClients);
-
+*/
 // Create endpoint handle for /page/
 router.route('/api/pages')
-  .post(authController.isAuthenticated, pageRoutes.postPage)
-  .get(authController.isAuthenticated, pageRoutes.getPages);
+  .post(pageRoutes.postPage)
+  .get(pageRoutes.getPages);
 // Create endpoint handlers for /pages/:page_id
 router.route('/api/pages/:name')
-  .get(authController.isAuthenticated, pageRoutes.getPage)
-  .put(authController.isAuthenticated, pageRoutes.putPage)
-  .delete(authController.isAuthenticated, pageRoutes.deletePage);
+  .get(pageRoutes.getPage)
+  .put(pageRoutes.putPage)
+  .delete(pageRoutes.deletePage);
 //
 // Create endpoint for file uploads
 //
