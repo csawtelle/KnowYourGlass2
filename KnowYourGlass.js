@@ -77,9 +77,11 @@ router.post('/api2/authenticate', function(req, res) {
 
         // return the information including token as JSON
         res.json({
+        tokenData: {
           success: true,
           message: 'Enjoy your token!',
           token: token
+          }
         });
       }   
 
@@ -88,8 +90,7 @@ router.post('/api2/authenticate', function(req, res) {
   });
 });
 
-
-
+/*
 // route middleware to verify a token
 router.use(function(req, res, next) {
 
@@ -121,6 +122,9 @@ router.use(function(req, res, next) {
     
   }
 });
+
+*/
+
 
 // showing a message from main api
 router.get('/api2', function(req, res) {
