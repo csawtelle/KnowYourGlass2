@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir": "./app/dist"
+  },
+  "files": [
+    "./app/main.ts",
+    "./app/admin.component.ts",
+    "./app/app.component.ts",
+    "./app/app.module.ts",
+    "./app/app-routing.module.ts",
+    "./app/auth-guard.service.ts",
+    "./app/auth.service.ts",
+    "./app/home.component.ts",
+    "./app/login.component.ts",
+    "./app/pagenotfound.component.ts",
+    "./app/review.component.ts",
+    "./app/review.service.ts",
+    "./app/search-bar.component.ts",
+    "./app/search.component.ts"
+  ]
+}
+
