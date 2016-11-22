@@ -38,9 +38,11 @@ export class LoginComponent implements OnInit {
     console.log(this.form);
   }
   processForm(){
-//    console.log("submit button was clicked", this.form.value);
-//    console.log("The usernameis: ", this.form.value.username);
-    this.authService.login(this.form.value);
-    this.router.navigate(['/admin']);
+    console.log("submit button was clicked", this.form.value);
+    console.log("The username in login is: ", this.form.value.username);
+    console.log("The password in login is: ", this.form.value.password);
+//    this.authService.login(this.form.value.username, this.form.value.password);
+    this.authService.tokenTest(this.form.value.username, this.form.value.password);
+//    this.router.navigate(['/admin']);
   }
 }

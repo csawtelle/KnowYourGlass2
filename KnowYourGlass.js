@@ -1,8 +1,6 @@
 var multer = require('multer');
 var express = require('express');
 
-var authController = require('./controllers/authCtrl');
-var oauth2Controller = require('./controllers/auth2Ctrl');
 var clientController = require('./controllers/clientCtrl');
 var userController = require('./controllers/userCtrl');
 
@@ -52,7 +50,7 @@ app.get('/api/setup', function(req, res) {
 
 
 router.post('/api2/authenticate', function(req, res) {
-
+  console.log("Token was requested");
   // find the user
   User.findOne({
     name: req.body.name
@@ -61,6 +59,7 @@ router.post('/api2/authenticate', function(req, res) {
     if (err) throw err;
 
     if (!user) {
+      console.log("User authentication for token request failed");
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (user) {
 
@@ -68,7 +67,7 @@ router.post('/api2/authenticate', function(req, res) {
       if (user.password != req.body.password) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
-
+        console.log("User was found and password is correct for token request");
         // if user is found and password is right
         // create a token
         var token = jwt.sign(user, app.get('superSecret'), {
@@ -89,7 +88,6 @@ router.post('/api2/authenticate', function(req, res) {
 
   });
 });
-
 /*
 // route middleware to verify a token
 router.use(function(req, res, next) {
@@ -122,9 +120,7 @@ router.use(function(req, res, next) {
     
   }
 });
-
 */
-
 
 // showing a message from main api
 router.get('/api2', function(req, res) {
