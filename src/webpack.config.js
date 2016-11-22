@@ -38,11 +38,6 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({loader: 'css-loader'})
       },
-      {
-        test: /\.css$/,
-        include: helpers.root('src', 'app'),
-        loader: 'raw'
-      }
     ]
   },
   devtool: 'source-map',
@@ -54,7 +49,6 @@ module.exports = {
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangle: {
         keep_fnames: true

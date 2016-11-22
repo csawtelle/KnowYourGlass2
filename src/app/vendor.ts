@@ -12,5 +12,5 @@ import '@ng-bootstrap/ng-bootstrap';
 //reactive js
 import 'rxjs' ;
 import 'jquery';
-//import 'bootstrap';
+import 'bootstrap';
 import 'bootstrap-loader';
