@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
-    "webpack": "rimraf dist && webpack --config webpack.config.js --progress --profile --bail",
+    "webpack": "rimraf dist && rimraf ../public && webpack --config webpack.config.js --progress --profile --bail",
     "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
