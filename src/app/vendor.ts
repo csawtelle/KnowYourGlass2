@@ -14,3 +14,4 @@ import 'rxjs' ;
 import 'jquery';
 import 'bootstrap';
 import 'bootstrap-loader';
+import 'font-awesome-webpack2';

@@ -14,10 +14,8 @@
 
 /* Home Page CSS */		 		
 .intro-header {		
-/*    padding-top: 50px; 		
+    padding-top: 50px; 		
     padding-bottom: 50px;		
-*/
-    padding:200px;
     text-align: center;		
     color: #f8f8f8;		
     box-shadow: 0px 3px 10px #000;
@@ -39,7 +37,7 @@
     text-shadow: 3px 3px 3px rgba(0,0,0,0.6);		
 }		
 
-/*body,*/ h1, h2, h3, h4, h5, h6 {		
+.body h1, h2, h3, h4, h5, h6 {		
     font-family: "Open Sans", "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;		
     font-weight: 700;		
 }		
