@@ -65,6 +65,7 @@ router.post('/api2/authenticate', function(req, res) {
 
       // check if password matches
       if (user.password != req.body.password) {
+        console.log("User was found but password was wrong. No token");
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
         console.log("User was found and password is correct for token request");
@@ -76,12 +77,10 @@ router.post('/api2/authenticate', function(req, res) {
 
         // return the information including token as JSON
         res.json({
-        tokenData: {
-          success: true,
-          message: 'Enjoy your token!',
-          token: token
-          }
-        });
+            success: true,
+            message: 'Enjoy your token!',
+            token: token
+          });
       }   
 
     }
@@ -121,7 +120,6 @@ router.use(function(req, res, next) {
   }
 });
 */
-
 // showing a message from main api
 router.get('/api2', function(req, res) {
   res.json({ message: 'Welcome to the API!' });
@@ -156,9 +154,9 @@ router.get('/api2/pages', function(req, res) {
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json({limit: '500mb'}));
-app.use(bodyParser.urlencoded({limit: '500mb', extended: true}));
+//app.use(bodyParser.urlencoded({limit: '500mb', extended: true}));
+app.use(bodyParser.urlencoded({limit: '500mb', extended: false}));
 app.use(flash());
-
 mongoose.connect('mongodb://localhost:27017/kyg');
 
 app.use(passport.initialize());
@@ -210,5 +208,5 @@ app.use(router);
 app.get('/', function(req, res) {
   res.sendFile('./public/index.html', { root: __dirname });
 });
-console.log('Listening');
+console.log('Listening - KYG Server has been started');
 app.listen(8080);

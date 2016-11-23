@@ -9,28 +9,27 @@ import { Observable } from 'rxjs/Rx';
 import { RequestMethod } from '@angular/http';
 @Injectable()
 export class AuthService {
-  constructor(private http: Http) {
-  
-  } //end constructor
+  constructor(private http: Http) { } //end constructor
 
   isLoggedIn: boolean;
   user: User;
   password: any;
   testvar: any = "thisistheglobaltest";
 
-  tokenTest(user, password): Observable<any> {
+  getToken(user, password): Observable<any> {
     this.isLoggedIn = true;
     this.user= user;
     this.password= password;
-    console.log("The user pulled is: ", this.user);
-    console.log("The password pulled is: ", this.password);
+    console.log("user from getToken is: " + this.user);
+    console.log("password from getToken is: " + this.password);
+    let body = ({'name':this.user,'password':this.password});
     let headers = new Headers({'Content-Type': 'application/json','name':this.user, 'password':this.password});
     let options = new RequestOptions({ 
                       headers: headers, 
-                      method:RequestMethod.Post});
-    console.log("Options for user/pass post for token request: " + options);
-    console.log("Headers are: ", headers);
-    return this.http.post('api2/authenticate', options)
+                      method:RequestMethod.Post,
+                      url:'api2/authenticate'
+                      });
+    return this.http.post('api2/authenticate', body, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -46,6 +45,7 @@ export class AuthService {
 
   private extractData(res: Response) {
     let body = res.json();
+    console.log("Extract Data: ");
     console.log(body);
     return body || { };
   }

@@ -28,12 +28,17 @@ export class AdminComponent implements OnInit{
     public _fb: FormBuilder
   ) {
       this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
-      this.varinadmin = this.authService.getTestVar();
-      this.authService.tokenTest("Gerry Ramos", "admin").subscribe(tokenData => this.token = tokenData);
+//      this.varinadmin = this.authService.getTestVar();
+/*
+      this.authService.getToken("Gerry Ramos", "admin").subscribe(response => this.token = response.token);
+      console.log("Token from constructor is: " , this.token);
+*/
   }
   ngOnInit(){
+/*
   console.log("admin page says hello!");
   console.log("The token from admin component is: ", this.token);
+*/
   }
 
   private list = {
@@ -82,7 +87,7 @@ export class AdminComponent implements OnInit{
       paragraphs: this._fb.array([]),
       pictures: this._fb.array([])
     });
-
+    console.log(this.token);
     this.modalRef = this.modalService.open(content);
   }
 
