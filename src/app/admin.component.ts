@@ -26,8 +26,8 @@ export class AdminComponent implements OnInit{
     public modalService: NgbModal, 
     public _fb: FormBuilder
   ) {
-      this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
-      this.authService.getToken('Gerry Ramos', 'admin').subscribe(response => this.token = response.token);
+      reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
+      authService.getToken('Gerry Ramos', 'admin').subscribe(response => this.token = response.token);
   }
   ngOnInit(){}
 
@@ -77,8 +77,6 @@ export class AdminComponent implements OnInit{
       paragraphs: this._fb.array([]),
       pictures: this._fb.array([])
     });
-    console.log(this.token);
-    console.log(this.authService.token);
     this.modalRef = this.modalService.open(content);
   }
 
