@@ -1,9 +1,9 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Review } from './models/review';
-//import { ReviewService } from './review.service';
+import { ReviewService } from './review.service';
 import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
-//import { AuthService } from './auth.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'admin',
