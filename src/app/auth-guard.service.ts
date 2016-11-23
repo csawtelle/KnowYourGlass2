@@ -5,12 +5,8 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
   constructor( private authService: AuthService ) {};
   canActivate(){
-    //console.log('Checking right now to see if the user is logged in');
-     
     return this.checkLogin()
-
   }
-
   checkLogin(){
     console.log("Can activate and checklogin was called.");
     if (this.authService.isLoggedIn) { 

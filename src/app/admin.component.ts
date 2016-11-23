@@ -14,11 +14,13 @@ export class AdminComponent implements OnInit{
   public alertType = "info";
   public modalForm: FormGroup;
   public submitted: boolean;
-  public reviews: Object;
-  public response: Object;
-  public oldName: string;
-  private modalRef: any;
-
+  public reviews;
+  public modalRef;
+  public response;
+  public oldName;
+  public varinadmin: any;
+  public token: any;
+  public tokenData: any;
   constructor(
     private authService: AuthService, 
     public reviewService: ReviewService, 
@@ -26,8 +28,18 @@ export class AdminComponent implements OnInit{
     public _fb: FormBuilder
   ) {
       this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
+//      this.varinadmin = this.authService.getTestVar();
+/*
+      this.authService.getToken("Gerry Ramos", "admin").subscribe(response => this.token = response.token);
+      console.log("Token from constructor is: " , this.token);
+*/
   }
-  ngOnInit(){}
+  ngOnInit(){
+/*
+  console.log("admin page says hello!");
+  console.log("The token from admin component is: ", this.token);
+*/
+  }
 
   private list = {
     'brands': [
@@ -75,7 +87,7 @@ export class AdminComponent implements OnInit{
       paragraphs: this._fb.array([]),
       pictures: this._fb.array([])
     });
-
+    console.log(this.token);
     this.modalRef = this.modalService.open(content);
   }
 

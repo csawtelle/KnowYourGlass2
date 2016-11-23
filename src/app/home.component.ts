@@ -8,12 +8,9 @@ import { ReviewService } from './review.service';
 })
 export class HomeComponent { 
   title = "Know Your Glass";
-  reviews: Review[];
+  reviews: any;
 
   constructor(private reviewService: ReviewService) { 
-    this.reviewService.reviews.subscribe((observer: any) => {
-      this.reviews = JSON.parse(observer._body).data;
-      console.log(this.reviews);
-    });
+    this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
   }
 }

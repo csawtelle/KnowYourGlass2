@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit {
-  
   form: FormGroup;
   usernameErr: string;
   passErr: string;
+  public response;
+  public token;
  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService){}
-  
   ngOnInit(){
     //form is built here
     this.form = this.fb.group({
@@ -38,9 +38,18 @@ export class LoginComponent implements OnInit {
     console.log(this.form);
   }
   processForm(){
-//    console.log("submit button was clicked", this.form.value);
-//    console.log("The usernameis: ", this.form.value.username);
-    this.authService.login(this.form.value);
-    this.router.navigate(['/admin']);
+    console.log("submit button was clicked", this.form.value);
+    console.log("The username in login is: ", this.form.value.username);
+    console.log("The password in login is: ", this.form.value.password);
+//    this.authService.login(this.form.value.username, this.form.value.password);
+    this.authService.getToken(this.form.value.username, this.form.value.password)
+    .subscribe(response => this.token = response.token);
+  
+    function waitForToken() {
+    if (this.token)
+    console.log("token from login is: ", this.token);}
+
+    setTimeout(waitForToken,2000);    
+//    this.router.navigate(['/admin']);
   }
 }
