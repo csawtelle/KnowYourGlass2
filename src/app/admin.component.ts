@@ -121,14 +121,14 @@ export class AdminComponent implements OnInit{
   }
 
   deleteReview(name: string) {
-    this.reviewService.deleteReview(name).subscribe(response => this.response = response);
+    //reviewService.deleteReview(name).subscribe(response => this.response = response);
   }
 
   save(model: Review, isValid: boolean) {
     if(this.newPost) {
-      this.reviewService.postReview(model).subscribe(response => this.response = response);
+      //reviewService.postReview(model).subscribe(response => this.response = response);
     } else {
-      this.reviewService.putReview(this.oldName, model).subscribe(response => this.response = response);
+      //reviewService.putReview(this.oldName, model).subscribe(response => this.response = response);
     }
     this.modalRef.close();
   }
