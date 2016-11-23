@@ -12,9 +12,9 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   usernameErr: string;
   passErr: string;
-  public response;
-  public token;
- constructor(private router: Router, private fb: FormBuilder, private authService: AuthService){}
+  public response: any;
+  public token: string;
+ constructor(private router: Router, private fb: FormBuilder, public authService: AuthService){}
   ngOnInit(){
     //form is built here
     this.form = this.fb.group({
@@ -44,12 +44,5 @@ export class LoginComponent implements OnInit {
 //    this.authService.login(this.form.value.username, this.form.value.password);
     this.authService.getToken(this.form.value.username, this.form.value.password)
     .subscribe(response => this.token = response.token);
-  
-    function waitForToken() {
-    if (this.token)
-    console.log("token from login is: ", this.token);}
-
-    setTimeout(waitForToken,2000);    
-//    this.router.navigate(['/admin']);
   }
 }

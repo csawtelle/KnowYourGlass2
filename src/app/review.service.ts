@@ -52,7 +52,7 @@ export class ReviewService {
       .catch(this.handleError);
   }
 
-  deleteReview (name): Observable<Review[]> {
+  deleteReview (name: string): Observable<Review[]> {
     return this.http.delete(this.apiUrl + '/' + name)
       .map(this.extractData)
       .catch(this.handleError);

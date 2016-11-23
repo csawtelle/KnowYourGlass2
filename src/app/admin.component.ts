@@ -1,45 +1,35 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Review } from './models/review';
-import { ReviewService } from './review.service';
+//import { ReviewService } from './review.service';
 import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from './auth.service';
+//import { AuthService } from './auth.service';
 
 @Component({
   selector: 'admin',
-  templateUrl: './views/admin.html'
+  templateUrl: './views/admin.html',
 })
 export class AdminComponent implements OnInit{
   public newPost = 0;
   public alertType = "info";
   public modalForm: FormGroup;
   public submitted: boolean;
-  public reviews;
-  public modalRef;
-  public response;
-  public oldName;
+  public reviews: any;
+  public modalRef: any;
+  public response: any;
+  public oldName: any;
   public varinadmin: any;
   public token: any;
-  public tokenData: any;
   constructor(
-    private authService: AuthService, 
-    public reviewService: ReviewService, 
+    authService: AuthService, 
+    reviewService: ReviewService, 
     public modalService: NgbModal, 
     public _fb: FormBuilder
   ) {
       this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
-//      this.varinadmin = this.authService.getTestVar();
-/*
-      this.authService.getToken("Gerry Ramos", "admin").subscribe(response => this.token = response.token);
-      console.log("Token from constructor is: " , this.token);
-*/
+      this.authService.getToken('Gerry Ramos', 'admin').subscribe(response => this.token = response.token);
   }
-  ngOnInit(){
-/*
-  console.log("admin page says hello!");
-  console.log("The token from admin component is: ", this.token);
-*/
-  }
+  ngOnInit(){}
 
   private list = {
     'brands': [
@@ -88,6 +78,7 @@ export class AdminComponent implements OnInit{
       pictures: this._fb.array([])
     });
     console.log(this.token);
+    console.log(this.authService.token);
     this.modalRef = this.modalService.open(content);
   }
 

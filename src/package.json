@@ -2,11 +2,7 @@
   "name": "know-your-glass",
   "version": "0.0.1",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
-    "webpack": "rimraf dist && rimraf ../public && webpack --config webpack.config.js --progress --profile --bail",
-    "postinstall": "typings install",
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
+    "start": "rimraf dist && rimraf ../public && webpack --config webpack.config.js --progress --colors --watch --profile --bail",
     "typings": "typings"
   },
   "licenses": [
@@ -62,6 +58,7 @@
     "typescript": "^2.0.3",
     "typings": "^1.4.0",
     "url-loader": "^0.5.7",
-    "webpack": "^2.1.0-beta"
+    "webpack": "^2.1.0-beta",
+    "webpack-merge":"*"
   }
 }
