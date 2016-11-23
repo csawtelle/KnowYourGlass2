@@ -24,6 +24,56 @@ exports.postPage = function(req, res) {
 };
 
 exports.getPages = function(req, res) {
+  if(req.query.search){
+    var searchArray = [];
+    var textArray = [];
+    for (var key in req.query) {
+      if(key == "text") {
+        var textQuery = {}
+        textQuery['paragraphs'] = { 
+          "$regex": req.query[key],
+          "$options": "i"
+        };
+        textArray.push(textQuery);
+        textQuery['name'] = { 
+          "$regex": req.query[key],
+          "$options": "i"
+        };
+        textArray.push(textQuery);
+      } else {
+        if(key != "username" && key != "password" && key != "search" && key != "text") {
+          var obj = req.query[key];
+          var paramQuery = {}
+          paramQuery[key] = { 
+            "$regex": obj,
+            "$options": "i"
+          };
+          searchArray.push(paramQuery);
+        }
+      }
+    }
+    var query = {};
+    query['$and'] = [];
+    if(searchArray.length != 0) {
+      query['$and'].push({
+        '$and': searchArray
+      })
+    }
+    if(textArray.length != 0) {
+      query['$and'].push({
+        '$or': textArray
+      })
+    }
+    console.log(query);
+    Page.find(query, function(err, page) {
+            if(err) {
+                res.json({ message: 'Get failed!', data: err});
+            }
+            else {
+                res.json({ message: 'Get succeded!', data: page });
+            }
+      }).sort('-postDate');
+  } else {
     Page.find({}, function(err, pages) {
         if(err) {
             res.json({ message: 'Get failed!', data: err});
@@ -32,6 +82,7 @@ exports.getPages = function(req, res) {
             res.json({ message: 'Get succeeded!', data: pages });
         }
     });
+  }
 };
 
 exports.getPage = function(req, res) {
