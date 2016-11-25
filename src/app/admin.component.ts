@@ -21,13 +21,13 @@ export class AdminComponent implements OnInit{
   public varinadmin: any;
   public token: any;
   constructor(
-    authService: AuthService, 
-    reviewService: ReviewService, 
+    private authService: AuthService, 
+    private reviewService: ReviewService, 
     public modalService: NgbModal, 
     public _fb: FormBuilder
   ) {
-      reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
-      authService.getToken('Gerry Ramos', 'admin').subscribe(response => this.token = response.token);
+      this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
+      this.authService.getToken('Gerry Ramos', 'admin').subscribe(response => this.token = response.token);
   }
   ngOnInit(){}
 
@@ -121,14 +121,14 @@ export class AdminComponent implements OnInit{
   }
 
   deleteReview(name: string) {
-    //reviewService.deleteReview(name).subscribe(response => this.response = response);
+    this.reviewService.deleteReview(name).subscribe(response => this.response = response);
   }
 
   save(model: Review, isValid: boolean) {
     if(this.newPost) {
-      //reviewService.postReview(model).subscribe(response => this.response = response);
+      this.reviewService.postReview(model).subscribe(response => this.response = response);
     } else {
-      //reviewService.putReview(this.oldName, model).subscribe(response => this.response = response);
+      this.reviewService.putReview(this.oldName, model).subscribe(response => this.response = response);
     }
     this.modalRef.close();
   }
