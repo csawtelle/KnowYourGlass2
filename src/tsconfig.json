@@ -20,6 +20,7 @@
     "./app/auth-guard.service.ts",
     "./app/auth.service.ts",
     "./app/home.component.ts",
+    "./app/newblog.component.ts",
     "./app/login.component.ts",
     "./app/pagenotfound.component.ts",
     "./app/review.component.ts",

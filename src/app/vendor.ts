@@ -15,3 +15,5 @@ import 'jquery';
 import 'bootstrap';
 import 'bootstrap-loader';
 import 'font-awesome-webpack2';
+import 'ckeditor';
+import 'ng2-ckeditor';

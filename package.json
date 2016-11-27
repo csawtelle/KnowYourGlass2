@@ -8,6 +8,7 @@
     "cookie-parser": "*",
     "express": "*",
     "express-session": "*",
+    "jsonwebtoken": "^7.1.9",
     "mongoose": "*",
     "multer": "*",
     "norch": "*",

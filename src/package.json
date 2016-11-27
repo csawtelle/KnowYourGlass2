@@ -2,8 +2,8 @@
   "name": "know-your-glass",
   "version": "0.0.1",
   "scripts": {
-    "start": "rimraf dist && rimraf ../public && webpack --config webpack.config.js --progress --colors --watch --profile --bail",
-    "typings": "typings"
+    "start": "rimraf dist && rimraf ../public && webpack --config webpack.config.js --progress --colors --watch --profile",
+    "startover": "rimraf dist && rimraf ../public && webpack --config webpack.config.js --progress --colors --profile"
   },
   "licenses": [
     {
@@ -23,14 +23,16 @@
     "@angular/upgrade": "~2.1.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.8",
     "bootstrap": "^4.0.0-alpha.4",
+    "ckeditor": "^4.6.0",
     "core-js": "^2.4.1",
-    "font-awesome":"*",
+    "font-awesome": "*",
     "font-awesome-webpack2": "*",
-    "less":"*",
+    "jquery": "*",
+    "less": "*",
+    "ng2-ckeditor": "^1.1.5",
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.12",
-    "jquery":"*",
-    "tether":"*", 
+    "tether": "*",
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
@@ -59,6 +61,6 @@
     "typings": "^1.4.0",
     "url-loader": "^0.5.7",
     "webpack": "^2.1.0-beta",
-    "webpack-merge":"*"
+    "webpack-merge": "*"
   }
 }

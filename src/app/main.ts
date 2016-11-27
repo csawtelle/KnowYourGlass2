@@ -4,5 +4,7 @@ import { ReviewService } from './review.service';
 import { AuthService } from './auth.service';
 import 'rxjs/Rx';
 import './css/main.css';
+
+
 const platform = platformBrowserDynamic();
 platform.bootstrapModule(AppModule, [AuthService, ReviewService]);
