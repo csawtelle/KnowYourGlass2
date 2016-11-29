@@ -1,3 +1,12 @@
+/*
+export class Review {
+  brand: string;
+  category: string;
+  date: string;
+  name: string;
+  rating: string;
+}
+*/
 // Load required packages
 var Page = require('../models/page');
 
@@ -10,8 +19,6 @@ exports.postPage = function(req, res) {
     page.category = req.body.category;
     page.image = req.body.image;
     page.rating = req.body.rating;
-    page.paragraphs = req.body.paragraphs;
-    page.pictures = req.body.pictures;
     page.title_image = req.body.title_image;
     page.save(function(err) {
         if(err) {

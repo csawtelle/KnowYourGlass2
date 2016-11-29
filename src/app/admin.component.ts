@@ -20,6 +20,7 @@ export class AdminComponent implements OnInit{
   public oldName: any;
   public varinadmin: any;
   public token: any;
+  public editorContent: string;
   constructor(
     private authService: AuthService, 
     private reviewService: ReviewService, 
@@ -74,8 +75,6 @@ export class AdminComponent implements OnInit{
       category: ['', [ <any>Validators.required]],
       image: ['', [ <any>Validators.required]],
       title_image: ['', [ <any>Validators.required]],
-      paragraphs: this._fb.array([]),
-      pictures: this._fb.array([])
     });
     this.modalRef = this.modalService.open(content);
   }
@@ -91,33 +90,8 @@ export class AdminComponent implements OnInit{
       category: [review.category, [ <any>Validators.required]],
       image: [review.image, [ <any>Validators.required]],
       title_image: [review.image, [ <any>Validators.required]],
-      paragraphs: this._fb.array(review.paragraphs),
-      pictures: this._fb.array([])
     });
-    const control = <FormArray>this.modalForm.controls['pictures'];
-    for (let picture of review.pictures) {
-        control.push(
-          this._fb.group({
-            filename: [picture.filename],
-            description: [picture.description]
-          })
-        );
-    }
- 
     this.modalRef = this.modalService.open(content);
-  }
-
-  addParagraph() {
-    const control = <FormArray>this.modalForm.controls['paragraphs'];
-    control.push(new FormControl(''));
-  }
-
-  addPicture() {
-    const control = <FormArray>this.modalForm.controls['pictures'];
-    control.push(this._fb.group({
-      filename: '',
-      description: ''
-    }));
   }
 
   deleteReview(name: string) {
@@ -137,4 +111,20 @@ export class AdminComponent implements OnInit{
     console.log('i am navigating away');
   }
 
+  onBlur() {
+    console.log("You stopped touching it");
+  }
+
+  onReady() {
+    console.log("Pizzas ready");
+  }
+
+  onFocus() {
+    console.log("You touched it");
+  }
+
+  onChange(content: string) {
+    this.editorContent = content;
+    console.log(this.editorContent);
+  }
 }

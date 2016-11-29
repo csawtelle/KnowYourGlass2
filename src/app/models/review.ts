@@ -5,9 +5,4 @@ export class Review {
   image: string;
   name: string;
   rating: string;
-  paragraphs: Array<string>;
-  pictures: [{
-    filename: string,
-    description: string
-  }];
 }
