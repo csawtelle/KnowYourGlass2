@@ -12,8 +12,12 @@ export class AuthService {
   password: string;
   token: string;
 
-  constructor(public http: Http) { } //end constructor
-
+  constructor(public http: Http) { 
+  this.getToken("Gerry Ramos", "admin").subscribe(res => this.token = res);
+  } //end constructor
+  grabToken(){
+    return this.token
+  }
   getToken(user: string, password: string): Observable<any> {
     this.isLoggedIn = true;
     this.user= user;
@@ -28,7 +32,7 @@ export class AuthService {
                       url:'api2/authenticate'
                       });
     return this.http.post('api2/authenticate', body, options)
-      .map(this.saveToken)
+      .map((res: Response) => res.json() as any)
       .catch(this.handleError);
   }
 

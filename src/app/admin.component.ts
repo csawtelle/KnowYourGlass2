@@ -27,7 +27,10 @@ export class AdminComponent implements OnInit{
     public _fb: FormBuilder
   ) {
       this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
-      this.authService.getToken('Gerry Ramos', 'admin').subscribe(response => this.token = response.token);
+//      this.authService.getToken('Gerry Ramos', 'admin').subscribe(response => this.token = response.token);
+      this.token = this.authService.grabToken();
+      console.log("1 token from admin is: " + this.token.token);
+
   }
   ngOnInit(){}
 
@@ -78,6 +81,7 @@ export class AdminComponent implements OnInit{
       pictures: this._fb.array([])
     });
     this.modalRef = this.modalService.open(content);
+    console.log(this.token);
   }
 
   openOld(content: Object, review: Review) {
@@ -105,6 +109,7 @@ export class AdminComponent implements OnInit{
     }
  
     this.modalRef = this.modalService.open(content);
+    console.log("token from admin is: " + this.token);
   }
 
   addParagraph() {
