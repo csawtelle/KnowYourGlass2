@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-8 col-xs-offset-2" style="border-radius:25px 25px 0 0;background-color:white;padding-left:0px;padding-right:0px">
-        <div class="text-center" [ngStyle]="{'border-radius':'15px 15px 0 0','background-image':'url('+review?.image+')', 'background-size':'cover', 'background-position':'center'}">
+        <div class="text-center" [ngStyle]="{'border-radius':'15px 15px 0 0','background-image':'url('+review?.title_image+')', 'background-size':'cover', 'background-position':'center'}">
           <h1 class="reviewheadertop">{{review?.name}}</h1>
           <p class="reviewheaderbottom">Posted On: {{review?.date}}</p>
         </div>
@@ -15,15 +15,11 @@
         <div>
           {{review?.category}}
         </div>
-      <div *ngFor='let paragraph of review?.page_paragraphs;let i = index'>
-          {{paragraph}}
-      </div>
-      <div *ngFor='let picture of review?.pictures;let i = index'>
         <div>
-          {{picture.description}}
+          {{review?.sensor}}
         </div>
         <div>
-          <img class="img-responsive" src="/images/{{picture.filename}}"/>
+          {{review?.content}}
         </div>
       </div><!-- end ngIf -->
     </div><!-- end row -->

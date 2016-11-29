@@ -76,8 +76,9 @@ export class AdminComponent implements OnInit{
       rating: ['', [ <any>Validators.required]],
       brand: ['', [ <any>Validators.required]],
       category: ['', [ <any>Validators.required]],
-      image: ['', [ <any>Validators.required]],
       title_image: ['', [ <any>Validators.required]],
+      sensor: ['', [ <any>Validators.required]],
+      content: ['', [ <any>Validators.required]]
     });
     this.modalRef = this.modalService.open(content);
     console.log(this.token);
@@ -92,9 +93,11 @@ export class AdminComponent implements OnInit{
       rating: [review.rating, [ <any>Validators.required]],
       brand: [review.brand, [ <any>Validators.required]],
       category: [review.category, [ <any>Validators.required]],
-      image: [review.image, [ <any>Validators.required]],
-      title_image: [review.image, [ <any>Validators.required]],
+      sensor: [review.sensor, [ <any>Validators.required]],
+      title_image: [review.title_image, [ <any>Validators.required]],
+      content: [review.content, [ <any>Validators.required]]
     });
+    this.editorContent = review.content;
     this.modalRef = this.modalService.open(content);
     console.log("token from admin is: " + this.token);
   }
@@ -104,6 +107,8 @@ export class AdminComponent implements OnInit{
   }
 
   save(model: Review, isValid: boolean) {
+    console.log(model);
+    model.content = this.editorContent;
     if(this.newPost) {
       this.reviewService.postReview(model).subscribe(response => this.response = response);
     } else {

@@ -17,9 +17,10 @@ exports.postPage = function(req, res) {
     page.name = req.body.name;
     page.brand = req.body.brand;
     page.category = req.body.category;
-    page.image = req.body.image;
     page.rating = req.body.rating;
     page.title_image = req.body.title_image;
+    page.content = req.body.content;
+
     page.save(function(err) {
         if(err) {
             res.json({ message: 'Post failed!', data: err});
@@ -134,11 +135,11 @@ exports.putPage = function(req, res) {
     name: req.body.name,
     brand: req.body.brand,
     category: req.body.category,
-    image: req.body.image,
     rating: req.body.rating,
     paragraphs: req.body.paragraphs,
     pictures: req.body.pictures,
-    title_image: req.body.title_image
+    title_image: req.body.title_image,
+    content: req.body.content
 
   }, function(err, num, raw) {
     if(err) {

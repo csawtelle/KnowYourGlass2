@@ -38,10 +38,13 @@
             {{category.text}}
           </option>
         </select>
-        Images:
-        <input formControlName="image">
+        Sensor:
+        <select class="form-control" formControlName="sensor">
+          <option *ngFor="let sensor of list.sensors" value= {{sensor.value}}>
+            {{sensor.text}}
+          </option>
+        </select>
       </div> <!--End Group-->
-
       <button type="submit">Save</button>
     </form>
   </div>
