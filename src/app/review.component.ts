@@ -18,6 +18,8 @@ export class ReviewComponent {
 
   ngOnInit() {
     this.route.params.subscribe(params => this.reviewName = params['id']);
+    console.log("the params id is: " + this.reviewName);
     this.reviewService.getReview(this.reviewName).subscribe(review => this.review = review[0]);
+    console.log("this.review from review component is: " + this.review);
   }
 }
