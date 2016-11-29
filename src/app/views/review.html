@@ -18,9 +18,8 @@
         <div>
           {{review?.sensor}}
         </div>
-        <div>
-          {{review?.content}}
-        </div>
+        <!-- XSS Vulnerability Issue #83-->
+        <div [innerHtml]="review?.content"></div>
       </div><!-- end ngIf -->
     </div><!-- end row -->
   </div> <!-- end container -->
