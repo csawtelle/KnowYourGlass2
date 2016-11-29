@@ -19,7 +19,6 @@ import { KeysPipe } from './filters/keys.pipe';
 
 import { SearchComponent } from './search.component';
 import { SearchBarComponent } from './search-bar.component';
-import { NewBlogComponent } from './newblog.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
@@ -36,7 +35,6 @@ import { CKEditorModule } from 'ng2-ckeditor';
 
   declarations: [ 
     AppComponent,
-    NewBlogComponent,
     HomeComponent,
     ReviewComponent,
     AdminComponent,

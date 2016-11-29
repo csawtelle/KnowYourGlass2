@@ -1,47 +1,42 @@
-<div>
-        <div class="intro-header" style="padding-top:100px;background:url('../images/homepage.jpg');background-size:cover"> 
-            <div class="intro-message">
-                <h1>{{title}}</h1>
-                <hr class="intro-divider">
-                <h3>Honest, but not your average lens reviews</h3>
-             </div>
-            <p>
-                <a href="https://twitter.com/knowyourglass">
-                    <i class="fa fa-twitter fa-3x socialicons"></i>
-                </a>
-                <a href="https://www.facebook.com/knowyourglass">
-                    <i class="fa fa-facebook fa-3x socialicons"></i>
-                </a>
-                <a href="https://www.instagram.com/knowyourglass/">
-                    <i class="fa fa-instagram fa-3x socialicons"></i>
-                </a>
-            </p>
-    </div>
-<section>
+<div class="intro-header" style="background:url('../images/homepage.jpg');background-size:cover"> 
+  <div class="intro-message">
+    <h1>{{title}}</h1>
+    <hr class="intro-divider">
+    <h3>Honest, but not average, lens reviews.</h3>
+    <p>
+      <a href="https://twitter.com/knowyourglass">
+        <i class="fa fa-twitter fa-3x socialicons"></i>
+      </a>
+      <a href="https://www.facebook.com/knowyourglass">
+        <i class="fa fa-facebook fa-3x socialicons"></i>
+      </a>
+      <a href="https://www.instagram.com/knowyourglass/">
+        <i class="fa fa-instagram fa-3x socialicons"></i>
+      </a>
+    </p>
+  </div>
+  <section>
     <div class="container-fluid primarybginverse">
-        <div class="row">
+      <div class="row">
         <div class="text-center col-xs-4 col-xs-offset-4">
-        <h2>What are you looking for?</h2>
+          <h2>What are you looking for?</h2>
         </div><!-- end col -->
-        </div><!-- end row -->
-        <div class="row">
+      </div><!-- end row -->
+      <div class="row">
         <div class="text-center col-xs-8 col-xs-offset-2">
-        <a href="#/" class="btn btn-default btn-xl">Nikon</a>
-        <a href="#/" class="btn btn-default btn-xl">Canon</a>
-        <a href="#/" class="btn btn-default btn-xl">Sigma</a>
+          <a href="#/" class="btn btn-default btn-xl">Nikon</a>
+          <a href="#/" class="btn btn-default btn-xl">Canon</a>
+          <a href="#/" class="btn btn-default btn-xl">Sigma</a>
         </div> <!-- end col -->
-        </div> <!-- end row -->
+      </div> <!-- end row -->
     </div>
-</section>
+  </section>
 <div class="container-fluid reviewbackground">
   <div class="row no-gutter">
     <div *ngFor="let review of reviews; let i = index" style="padding-right:0;padding-left:0">
-    <div *ngIf="i < 6" class="text-center col-xs-4" [ngStyle]="{'padding':'0','background-image': 'url('+review.image+')','background-size':'cover','background-position':'center'}">
-    <a style="color:#fff" [routerLink]="['/review/' + review.name]"><h2 class="latestposttext">{{review.name}}</h2></a>
-    </div>
+      <div *ngIf="i < 6" class="text-center col-xs-4" [ngStyle]="{'padding':'0','background-image': 'url('+review.image+')','background-size':'cover','background-position':'center'}">
+        <a style="color:#fff" [routerLink]="['/review/' + review.name]"><h2 class="latestposttext">{{review.name}}</h2></a>
+      </div>
     </div><!-- end ngfor -->
-
   </div><!-- end row -->
 </div><!-- end container -->
-
-</div><!-- end main container -->
