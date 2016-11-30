@@ -206,7 +206,7 @@ app.post('/api/upload', upload.any(), function(req, res) {
 
 
 app.use(router);
-app.get('/', function(req, res) {
+app.get('*', function(req, res) {
   res.sendFile('./public/index.html', { root: __dirname });
 });
 console.log('Listening - KYG Server has been started');

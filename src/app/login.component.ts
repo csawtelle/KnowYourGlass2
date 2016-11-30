@@ -14,7 +14,9 @@ export class LoginComponent implements OnInit {
   passErr: string;
   public response: any;
   public token: any;
- constructor(public tokenService: TokenService, private router: Router, private fb: FormBuilder, public authService: AuthService){}
+ constructor(public tokenService: TokenService, private router: Router, private fb: FormBuilder, public authService: AuthService){
+  this.token = this.tokenService.token;
+  }
   ngOnInit(){
     //form is built here
     this.form = this.fb.group({
@@ -37,16 +39,17 @@ export class LoginComponent implements OnInit {
     console.log(this.form);
   }
   processForm(){
-    console.log("submit button was clicked", this.form.value);
-    console.log("The username in login is: ", this.form.value.username);
-    console.log("The password in login is: ", this.form.value.password);
+    this.token = "Logging in...";
     this.tokenService.getToken(this.form.value.username, this.form.value.password);
-    this.tokenService.logToken();
-    this.token = this.tokenService.grabToken();
-//    this.router.navigate(['/admin']);
+    this.tokenService.loginDelay().subscribe(() => {
+      if (this.tokenService.currentToken) {
+        this.token = "Login Success! Redirecting";
+        
+        this.router.navigate(['/admin']);
+      }
+    }); 
   }
   setToken(){
-    this.token = this.tokenService.grabToken();
-    console.log("token from token service is: " + this.token);
+    this.token = this.tokenService.token;
   }
 }
