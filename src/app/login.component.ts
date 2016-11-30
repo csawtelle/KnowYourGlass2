@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   public response: any;
   public token: any;
  constructor(public tokenService: TokenService, private router: Router, private fb: FormBuilder, public authService: AuthService){
-  this.token = this.tokenService.token;
+  this.token = '';
   }
   ngOnInit(){
     //form is built here
@@ -48,8 +48,5 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/admin']);
       }
     }); 
-  }
-  setToken(){
-    this.token = this.tokenService.token;
   }
 }
