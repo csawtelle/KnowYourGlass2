@@ -23,9 +23,11 @@ exports.postPage = function(req, res) {
 
     page.save(function(err) {
         if(err) {
+            console.log("Post was attempted, post failed");
             res.json({ message: 'Post failed!', data: err});
         }
         else {
+            console.log("Post was attempted, post SUCCESS");
             res.json({ message: 'Post added!', data: page });
         }
   });
@@ -75,18 +77,22 @@ exports.getPages = function(req, res) {
     console.log(query);
     Page.find(query, function(err, page) {
             if(err) {
+                console.log("Multiple Page Query FAILED");
                 res.json({ message: 'Get failed!', data: err});
             }
             else {
+                console.log("Multiple Page Query SUCCEEDED");
                 res.json({ message: 'Get succeeded!', data: page });
             }
       }).sort('-postDate');
   } else {
     Page.find({}, function(err, pages) {
         if(err) {
+            console.log("Multiple Page Query FAILED");
             res.json({ message: 'Get failed!', data: err});
         }
         else {
+            console.log("Multiple Page Query SUCCEEDED");
             res.json({ message: 'Get succeeded!', data: pages });
         }
     });
@@ -110,18 +116,22 @@ exports.getPage = function(req, res) {
     Page.find({ '$or': searchArray
       }, function(err, page) {
             if(err) {
+                console.log("Single Page requested FAILED");
                 res.json({ message: 'Get failed!', data: err});
             }
             else {
+                console.log("Single Page request SUCCEEDED");
                 res.json({ message: 'Get succeded!', data: page });
             }
       }).sort('-postDate');
   } else {
     Page.find({name: req.params.name }, function(err, page) {
           if(err) {
+              console.log("Single Page Request FAILED");
               res.json({ message: 'Get failed!', data: err});
           }
           else {
+              console.log("Single Page Request SUCCEEDED");
               res.json({ message: 'Get succeded!', data: page });
           }
     }).sort('-postDate');
@@ -148,9 +158,11 @@ exports.putPage = function(req, res) {
     else {
         Page.find({name: req.body.name }, function(err, page) {
             if(err) {
+                console.log("Page Update succeeded but GET failed");
                 res.json({ message: 'Update succeded but GET failed!', data: err});
             }
             else {
+                console.log("Page Update SUCCESS");
                 res.json({ message: 'Update succeded!', data: page });
             }
         }).sort('-postDate');
@@ -161,9 +173,11 @@ exports.putPage = function(req, res) {
 exports.deletePage = function(req, res) {
   Page.remove({name: req.params.name }, function(err) {
         if(err) {
+            console.log("Page delete failed");
             res.json({ message: 'Delete failed!'});
         }
         else {
+            console.log("Page delete success!");
             res.json({ message: 'Post deleted!'});
         }
   });
