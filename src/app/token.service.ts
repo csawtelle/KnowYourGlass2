@@ -14,10 +14,8 @@ export class TokenService{
   getToken(username: string, password: string){
     this.username = username;
     this.password = password;
-//    console.log("submit button was clicked", this.form.value);
     console.log("The username in login is: ", this.username);
     console.log("The password in login is: ", this.password);
-//    this.authService.login(this.form.value.username, this.form.value.password);
     this.authService.getToken(username, password)
     .subscribe(response => this.token = response.token);
     console.log("The token from token service is: " + this.token);
