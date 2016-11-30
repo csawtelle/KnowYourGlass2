@@ -53,6 +53,7 @@
 <ngb-alert *ngIf="response" [dismissible]="true" type="{{alertType}}" (close)="response = null">
   {{response?.message}}
 </ngb-alert>
+<p>The token is: {{ [token] }}</p>
 <button class="btn btn-lg btn-outline-primary" (click)="openNew(content)">New Post</button>
 <div *ngFor="let single of reviews">
   <label>{{single?.name}}</label>
