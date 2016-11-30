@@ -16,12 +16,14 @@ import { SearchBarComponent } from './search-bar.component';
 import { UploaderComponent } from './uploader.component';
 
 import { ReviewService } from './review.service';
+import { TokenService } from './token.service';
 
 import { AppRouter } from './app-routing.module';
 import { Review } from './models/review';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { KeysPipe } from './filters/keys.pipe';
+
 import { CKEditorModule } from 'ng2-ckeditor';
 import { FileUploadModule } from 'ng2-file-upload';
 
@@ -55,7 +57,8 @@ import { FileUploadModule } from 'ng2-file-upload';
   providers: [ 
     AuthService, 
     ReviewService, 
-    AuthGuard 
+    AuthGuard,
+    TokenService 
   ],
   bootstrap: [ AppComponent ]
 })

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { TokenService } from './token.service';
 @Component ({ 
   selector: 'login',
   templateUrl: './views/login.html'
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   passErr: string;
   public response: any;
   public token: any;
- constructor(private router: Router, private fb: FormBuilder, public authService: AuthService){}
+ constructor(public tokenService: TokenService, private router: Router, private fb: FormBuilder, public authService: AuthService){}
   ngOnInit(){
     //form is built here
     this.form = this.fb.group({
@@ -39,15 +40,13 @@ export class LoginComponent implements OnInit {
     console.log("submit button was clicked", this.form.value);
     console.log("The username in login is: ", this.form.value.username);
     console.log("The password in login is: ", this.form.value.password);
-//    this.authService.login(this.form.value.username, this.form.value.password);
-    this.authService.getToken(this.form.value.username, this.form.value.password)
-    .subscribe(response => this.token = response.token);
-    console.log("The token from login is: " + this.token);
-  }
-  grabToken(){
-    return this.token;
+    this.tokenService.getToken(this.form.value.username, this.form.value.password);
+    this.tokenService.logToken();
+    this.token = this.tokenService.grabToken();
+//    this.router.navigate(['/admin']);
   }
   setToken(){
-    console.log(this.token);
+    this.token = this.tokenService.grabToken();
+    console.log("token from token service is: " + this.token);
   }
 }

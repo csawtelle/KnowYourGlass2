@@ -4,7 +4,7 @@ import { Review } from './models/review';
 import { ReviewService } from './review.service';
 import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
-
+import { TokenService } from './token.service';
 @Component({
   selector: 'admin',
   templateUrl: './views/admin.html',
@@ -23,6 +23,7 @@ export class AdminComponent implements OnInit{
   public editorContent: string;
   
   constructor(
+    public tokenService: TokenService,
     private authService: AuthService, 
     private reviewService: ReviewService, 
     public modalService: NgbModal, 
@@ -32,6 +33,9 @@ export class AdminComponent implements OnInit{
   
   ngOnInit(){
     this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);  
+    this.token = this.tokenService.grabToken();
+    console.log("token from admin is: " + this.token);
+//    console.log("token from admin(promise) is: " + this.token);
   }
   private list = {
     'brands': [
