@@ -34,8 +34,6 @@ export class AdminComponent implements OnInit{
   ngOnInit(){
     this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);  
     this.token = this.tokenService.grabToken();
-    console.log("token from admin is: " + this.token);
-//    console.log("token from admin(promise) is: " + this.token);
   }
   private list = {
     'brands': [
