@@ -21,20 +21,19 @@ export class AdminComponent implements OnInit{
   public varinadmin: any;
   public token: any;
   public editorContent: string;
+  
   constructor(
     private authService: AuthService, 
     private reviewService: ReviewService, 
     public modalService: NgbModal, 
     public _fb: FormBuilder
   ) {
-      this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
-//      this.authService.getToken('Gerry Ramos', 'admin').subscribe(response => this.token = response.token);
-      this.token = this.authService.grabToken();
-      console.log("1 token from admin is: " + this.token.token);
-
+    this.token = this.authService.grabToken();
   }
-  ngOnInit(){}
-
+  
+  ngOnInit(){
+    this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);  
+  }
   private list = {
     'brands': [
       {'text': 'Nikon', 'value': 'Nikon'},
@@ -81,7 +80,6 @@ export class AdminComponent implements OnInit{
       content: ['', [ <any>Validators.required]]
     });
     this.modalRef = this.modalService.open(content);
-    console.log(this.token);
   }
 
   openOld(content: Object, review: Review) {
@@ -99,7 +97,6 @@ export class AdminComponent implements OnInit{
     });
     this.editorContent = review.content;
     this.modalRef = this.modalService.open(content);
-    console.log("token from admin is: " + this.token);
   }
 
   deleteReview(name: string) {

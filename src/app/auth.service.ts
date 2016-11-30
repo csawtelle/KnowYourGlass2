@@ -13,11 +13,8 @@ export class AuthService {
   token: string;
 
   constructor(public http: Http) { 
-  this.getToken("Gerry Ramos", "admin").subscribe(res => this.token = res);
+//  this.getToken("Gerry Ramos", "admin").subscribe(res => this.token = res);
   } //end constructor
-  grabToken(){
-    return this.token
-  }
   getToken(user: string, password: string): Observable<any> {
     this.isLoggedIn = true;
     this.user= user;
