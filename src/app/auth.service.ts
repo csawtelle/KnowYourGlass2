@@ -32,6 +32,23 @@ export class AuthService {
       .map((res: Response) => res.json() as any)
       .catch(this.handleError);
   }
+    getTokenPromise(user: string, password: string): Promise<any> {
+    this.isLoggedIn = true;
+    this.user= user;
+    this.password= password;
+    console.log("user from getToken is: " + this.user);
+    console.log("password from getToken is: " + this.password);
+    let body = ({'name':this.user,'password':this.password});
+    let headers = new Headers({'Content-Type': 'application/json','name':this.user, 'password':this.password});
+    let options = new RequestOptions({
+                      headers: headers,
+                      method:RequestMethod.Post,
+                      url:'api2/authenticate'
+                      });
+    return this.http.post('api2/authenticate', body, options).toPromise()
+      .then((res: Response) => res.json() as any)
+      .catch(this.handleError);
+  }
 
 
   logout(): void {

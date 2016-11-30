@@ -2,14 +2,15 @@ import {Injectable} from '@angular/core';
 import {Headers, Http, Response, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import {Review} from './models/review';
+import { TokenService } from './token.service';
 
 @Injectable()
 export class ReviewService { 
   reviews: any;
-  private token: any;
+  token: any;
   private headers = new Headers({'Content-Type': 'application/json'});
   private apiUrl = 'api/pages';  // URL to web api
-  constructor(private http: Http) { 
+  constructor(public tokenService: TokenService, private http: Http) { 
     this.reviews = this.getReviews();
   }
 
@@ -20,6 +21,7 @@ export class ReviewService {
   }
 
   getReview (name: string): Observable<Review[]> {
+      
     let headers = new Headers({ 'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
     console.log("Options for single get review is: " + options);

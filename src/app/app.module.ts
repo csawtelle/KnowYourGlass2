@@ -16,7 +16,7 @@ import { Review } from './models/review';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { KeysPipe } from './filters/keys.pipe';
-
+import { TokenService } from './token.service';
 import { SearchComponent } from './search.component';
 import { SearchBarComponent } from './search-bar.component';
 import { CKEditorModule } from 'ng2-ckeditor';
@@ -48,7 +48,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
   providers: [ 
     AuthService, 
     ReviewService, 
-    AuthGuard 
+    AuthGuard,
+    TokenService 
   ],
   bootstrap: [ AppComponent ]
 })
