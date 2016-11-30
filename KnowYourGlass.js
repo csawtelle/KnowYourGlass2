@@ -1,9 +1,5 @@
 var multer = require('multer');
 var express = require('express');
-
-var clientController = require('./controllers/clientCtrl');
-var userController = require('./controllers/userCtrl');
-
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var router = express.Router();
@@ -128,6 +124,7 @@ router.get('/api2', function(req, res) {
 
 // route to return all users
 router.get('/api2/users', function(req, res) {
+  console.log("User Information was queried");
   User.find({}, function(err, users) {
     res.json(users);
   });
