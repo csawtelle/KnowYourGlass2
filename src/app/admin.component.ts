@@ -28,7 +28,6 @@ export class AdminComponent implements OnInit{
     public modalService: NgbModal, 
     public _fb: FormBuilder
   ) {
-    this.token = this.authService.grabToken();
   }
   
   ngOnInit(){
