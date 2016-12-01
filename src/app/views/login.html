@@ -8,6 +8,9 @@ This is the Model Driven Login
 <div class="container">
   <div class="row">
     <div style="width:300px;margin:auto;"> 
+    <div>
+      <p>The token is: {{ [token] }} </p>
+    </div>
 <form (ngSubmit)="processForm()" [formGroup]="form">
   <div class="form-group">
     <label for="username">Username</label>
@@ -30,6 +33,17 @@ This is the Model Driven Login
     <button type="submit" class="btn btn-info">Submit</button>
   </div>
 </form>
+
     </div><!-- end col -->
   </div><!-- end row -->
 </div> <!-- end container -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 offset-xs-4">
+
+    <p>testing</p>
+
+    </div>
+  </div>
+</div>

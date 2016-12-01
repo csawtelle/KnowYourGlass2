@@ -4,7 +4,7 @@ import { Review } from './models/review';
 import { ReviewService } from './review.service';
 import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
-
+import { TokenService } from './token.service';
 @Component({
   selector: 'admin',
   templateUrl: './views/admin.html',
@@ -21,20 +21,20 @@ export class AdminComponent implements OnInit{
   public varinadmin: any;
   public token: any;
   public editorContent: string;
+  
   constructor(
+    public tokenService: TokenService,
     private authService: AuthService, 
     private reviewService: ReviewService, 
     public modalService: NgbModal, 
     public _fb: FormBuilder
   ) {
-      this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
-//      this.authService.getToken('Gerry Ramos', 'admin').subscribe(response => this.token = response.token);
-      this.token = this.authService.grabToken();
-      console.log("1 token from admin is: " + this.token.token);
-
   }
-  ngOnInit(){}
-
+  
+  ngOnInit(){
+    this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);  
+    this.token = this.tokenService.grabToken();
+  }
   private list = {
     'brands': [
       {'text': 'Nikon', 'value': 'Nikon'},
@@ -81,7 +81,6 @@ export class AdminComponent implements OnInit{
       content: ['', [ <any>Validators.required]]
     });
     this.modalRef = this.modalService.open(content);
-    console.log(this.token);
   }
 
   openOld(content: Object, review: Review) {
@@ -99,7 +98,6 @@ export class AdminComponent implements OnInit{
     });
     this.editorContent = review.content;
     this.modalRef = this.modalService.open(content);
-    console.log("token from admin is: " + this.token);
   }
 
   deleteReview(name: string) {

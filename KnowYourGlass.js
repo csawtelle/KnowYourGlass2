@@ -1,9 +1,5 @@
 var multer = require('multer');
 var express = require('express');
-
-var clientController = require('./controllers/clientCtrl');
-var userController = require('./controllers/userCtrl');
-
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var router = express.Router();
@@ -87,6 +83,7 @@ router.post('/api2/authenticate', function(req, res) {
 
   });
 });
+
 /*
 // route middleware to verify a token
 router.use(function(req, res, next) {
@@ -120,6 +117,9 @@ router.use(function(req, res, next) {
   }
 });
 */
+
+
+
 // showing a message from main api
 router.get('/api2', function(req, res) {
   res.json({ message: 'Welcome to the API!' });
@@ -128,6 +128,7 @@ router.get('/api2', function(req, res) {
 
 // route to return all users
 router.get('/api2/users', function(req, res) {
+  console.log("User Information was queried");
   User.find({}, function(err, users) {
     res.json(users);
   });
@@ -205,7 +206,7 @@ app.post('/api/upload', upload.any(), function(req, res) {
 
 
 app.use(router);
-app.get('/', function(req, res) {
+app.get('*', function(req, res) {
   res.sendFile('./public/index.html', { root: __dirname });
 });
 console.log('Listening - KYG Server has been started');
