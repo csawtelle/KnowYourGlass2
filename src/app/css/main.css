@@ -146,44 +146,6 @@ a {
   color: #000;
   text-decoration: none;
 }
-.navbar-default {
-  background-color: rgba(51, 51, 51, 0.55);
-  border-color: #eee;
-}
-.navbar-default .navbar-brand {
-  color: #eee;
-}
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-  color: #E9A401;
-  background-color: transparent;
-}
-.navbar-default .navbar-text {
-  color: #680894;
-}
-.navbar-default .navbar-nav > li > a {
-  color: #eee;
-}
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-  color: #E9A401;
-  background-color: transparent;
-}
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
-  color: #BA7DAF;
-  background-color: #e7e7e7;
-}
-.navbar-default .navbar-nav > .disabled > a,
-.navbar-default .navbar-nav > .disabled > a:hover,
-.navbar-default .navbar-nav > .disabled > a:focus {
-  color: #BA7DAF;
-  background-color: transparent;
-}
-.navbar-default .navbar-toggle {
-  border-color: #ddd;
-}
 
 /* Portfolio CSS */
 .no-gutter > [class*='col-'] {
