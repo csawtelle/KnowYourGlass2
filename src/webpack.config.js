@@ -49,6 +49,7 @@ module.exports = {
       }
     }),
     new HtmlWebpackPlugin({
+      inject: true,
       template: './index.html'
     }),
     new ExtractTextPlugin('[name].[hash].css'),
