@@ -26,7 +26,8 @@
     "./app/review.component.ts",
     "./app/review.service.ts",
     "./app/search-bar.component.ts",
-    "./app/search.component.ts"
+    "./app/search.component.ts",
+    "./app/upload.component.ts"
   ]
 }
 
