@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 
 // const URL = '/api/';
-const URL = 'https://knowyourglass.com/api/upload';
+const URL = 'api/upload';
 
 @Component({
   selector: 'file-upload',
