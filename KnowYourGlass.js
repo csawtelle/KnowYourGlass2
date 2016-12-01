@@ -186,7 +186,7 @@ router.route('/api/pages/:name')
 //
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/build/KnowYourGlass/public/images')
+    cb(null, '/build/KnowYourGlass2/src/app/images')
   }, 
   filename: function (req, file, cb) {
     cb(null, file.originalname)
