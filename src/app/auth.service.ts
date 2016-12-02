@@ -22,9 +22,9 @@ export class AuthService {
     let options = new RequestOptions({ 
                       headers: headers, 
                       method:RequestMethod.Post,
-                      url:'api2/authenticate'
+                      url:'api/authenticate'
                       });
-    return this.http.post('api2/authenticate', body, options)
+    return this.http.post('api/authenticate', body, options)
       .map((res: Response) => res.json() as any)
       .catch(this.handleError);
   }

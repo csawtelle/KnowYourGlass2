@@ -34,13 +34,17 @@ exports.postPage = function(req, res) {
 };
 
 exports.getPages = function(req, res) {
+  console.log("GET PAGESSSSS");
   if(req.query.search){
+    console.log("Searching");
     var searchArray = [];
     var textArray = [];
     for (var key in req.query) {
+      console.log(key);
+      console.log(req.query[key]);
       if(key == "text") {
         var textQuery = {}
-        textQuery['paragraphs'] = { 
+        textQuery['content'] = { 
           "$regex": req.query[key],
           "$options": "i"
         };
@@ -74,8 +78,11 @@ exports.getPages = function(req, res) {
         '$or': textArray
       })
     }
+    console.log(searchArray);
+    console.log(textArray);
     console.log(query);
     Page.find(query, function(err, page) {
+            console.log("Finding a single");
             if(err) {
                 console.log("Multiple Page Query FAILED");
                 res.json({ message: 'Get failed!', data: err});
@@ -100,6 +107,7 @@ exports.getPages = function(req, res) {
 };
 
 exports.getPage = function(req, res) {
+  console.log("GET PAGE");
   if(req.query.search){
     var searchArray = [];
     for (var key in req.query) {
@@ -146,7 +154,6 @@ exports.putPage = function(req, res) {
     brand: req.body.brand,
     category: req.body.category,
     rating: req.body.rating,
-    paragraphs: req.body.paragraphs,
     pictures: req.body.pictures,
     title_image: req.body.title_image,
     content: req.body.content

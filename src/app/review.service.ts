@@ -15,13 +15,13 @@ export class ReviewService {
   }
 
   reviewSearch (terms: string): Observable<Review[]> {
+    console.log(terms);
     return this.http
-      .get(this.apiUrl + '&search=1' + terms)
+      .get(this.apiUrl + '?search=1' + terms)
       .map((r: Response) => r.json().data as Review[]);
   }
 
   getReview (name: string): Observable<Review[]> {
-      
     let headers = new Headers({ 'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
     console.log("Options for single get review is: " + options);

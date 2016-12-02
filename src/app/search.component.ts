@@ -56,7 +56,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.reviews = this.searchTerms
       .distinctUntilChanged()
-      .switchMap(term => term ? this.reviewService.reviewSearch(term): Observable.of<Review[]>([]))
+      .switchMap(searchString => searchString ? this.reviewService.reviewSearch(searchString): Observable.of<Review[]>([]))
       .catch(error => {
         console.log(error);
         return Observable.of<Review[]>([]);
@@ -68,16 +68,15 @@ export class SearchComponent implements OnInit {
     this.router.navigate(link);
   }
 
-  search(text: string, search: any) {
+  search(text: string, searchParams: any) {
     var searchString = '';
-    for (var key in search) {
-      var value = search[key];
+    for (var key in searchParams) {
+      var value = searchParams[key];
       searchString = searchString + '&' + key + '=' + value;
     }
     if(text) {
       searchString = searchString + '&text=' + text;
     }
-    console.log(searchString);
     this.searchTerms.next(searchString);
   }
 

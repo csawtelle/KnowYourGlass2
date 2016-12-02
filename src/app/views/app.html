@@ -2,17 +2,6 @@
   <a class="navbar-brand" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">know<strong>yourglass</strong></a>
   <ul class="nav navbar-nav float-lg-right">
     <li class="nav-item">
-      <a class="nav-link" routerLink="/uploader" routerLinkActive="active">Upload</a>
-    </li>
- 
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" *ngIf="!this.authService.isLoggedIn" routerLink="/login" routerLinkActive="active">Login</a>
-      <a class="nav-link" *ngIf="this.authService.isLoggedIn" routerLink="/login" routerLinkActive="active" (click)="logout()">Logout</a>
-    </li>
-    <li class="nav-item">
       <search-bar></search-bar>
     </li>
   </ul>

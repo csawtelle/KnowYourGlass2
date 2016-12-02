@@ -16,6 +16,7 @@ const appRoutes: Routes = [
   { path: 'review', component: ReviewComponent },
   { path: 'review/:id', component: ReviewComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'search/:id', component: SearchComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
