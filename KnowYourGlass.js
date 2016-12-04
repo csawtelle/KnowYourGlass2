@@ -25,24 +25,7 @@ app.get('/api', function(req, res) {
 
 
 
-router.route('/api/setup').post(function(req, res) {
-  console.log(req.body);
-  console.log("req is: " + req);
-  // create a sample user
-  var newUser = new User({ 
-    name: req.body.name, 
-    password: req.body.password,
-    admin: req.body.admin
-  });
-
-  // save the sample user
-  newUser.save(function(err) {
-    if (err) throw err;
-
-    console.log('User saved successfully');
-    res.json({ success: true });
-  });
-});
+router.route('/api/setup').post(jwtAuth.createUser);
 
 
 router.route('/api2/authenticate')
