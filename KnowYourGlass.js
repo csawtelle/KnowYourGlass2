@@ -21,6 +21,10 @@ app.set('superSecret','keyboardcatiscool');
 router.route('/api/setup').post(jwtAuth.createUser);
 router.route('/api2/authenticate')
   .post(jwtAuth.tokenRequest);
+router.route('/api/pages')
+  .get(pageRoutes.getPages);
+router.route('/api/pages/:name')
+  .get(pageRoutes.getPage);
 //jwtTokenCheck
 router.use(jwtAuth.jwtAuthCheck);
 //routes for jwt auth
@@ -43,14 +47,11 @@ app.use(require('express-session')({
     resave: true,
     saveUninitialized: true
 }));
-
 // Create endpoint handle for /page/
 router.route('/api/pages')
-  .post(pageRoutes.postPage)
-  .get(pageRoutes.getPages);
+  .post(pageRoutes.postPage);
 // Create endpoint handlers for /pages/:page_id
 router.route('/api/pages/:name')
-  .get(pageRoutes.getPage)
   .put(pageRoutes.putPage)
   .delete(pageRoutes.deletePage);
 //
