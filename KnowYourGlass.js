@@ -18,19 +18,9 @@ var jwt    = require('jsonwebtoken');
 var User   = require('./models/jwtuser');
 var Page   = require('./models/page');
 app.set('superSecret','keyboardcatiscool');
-
-app.get('/api', function(req, res) {
-    res.send('Hello! The API is at http://knowyourglass.com/api');
-});
-
-
-
 router.route('/api/setup').post(jwtAuth.createUser);
-
-
 router.route('/api2/authenticate')
   .post(jwtAuth.tokenRequest);
-
 //jwtTokenCheck
 router.use(jwtAuth.jwtAuthCheck);
 //routes for jwt auth
