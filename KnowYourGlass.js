@@ -19,7 +19,7 @@ var User   = require('./models/jwtuser');
 var Page   = require('./models/page');
 app.set('superSecret','keyboardcatiscool');
 router.route('/api/setup').post(jwtAuth.createUser);
-router.route('/api2/authenticate')
+router.route('/api/authenticate')
   .post(jwtAuth.tokenRequest);
 router.route('/api/pages')
   .get(pageRoutes.getPages);
@@ -28,9 +28,9 @@ router.route('/api/pages/:name')
 //jwtTokenCheck
 router.use(jwtAuth.jwtAuthCheck);
 //routes for jwt auth
-router.route('/api2')
+router.route('/api')
   .get(jwtAuth.apiWelcome);
-router.route('/api2/users')
+router.route('/api/users')
   .get(jwtAuth.returnUsers);
 //end jwt auth
 
