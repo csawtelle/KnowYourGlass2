@@ -18,6 +18,7 @@ var jwt    = require('jsonwebtoken');
 var User   = require('./models/jwtuser');
 var Page   = require('./models/page');
 app.set('superSecret','keyboardcatiscool');
+router.route('/api/setup').post(jwtAuth.createUser);
 router.route('/api2/authenticate')
   .post(jwtAuth.tokenRequest);
 router.route('/api/pages')
