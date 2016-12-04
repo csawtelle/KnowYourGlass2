@@ -1,12 +1,3 @@
-/*
-export class Review {
-  brand: string;
-  category: string;
-  date: string;
-  name: string;
-  rating: string;
-}
-*/
 // Load required packages
 var Page = require('../models/page');
 
