@@ -15,14 +15,15 @@ export class ReviewService {
   }
 
   reviewSearch (terms: string): Observable<Review[]> {
-    console.log(terms);
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token":this.tokenService.currentToken });
+    let options = new RequestOptions({ headers: headers });
     return this.http
-      .get(this.apiUrl + '?search=1' + terms)
+      .get(this.apiUrl + '&search=1' + terms, options)
       .map((r: Response) => r.json().data as Review[]);
   }
 
   getReview (name: string): Observable<Review[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token": this.tokenService.currentToken });
     let options = new RequestOptions({ headers: headers });
     console.log("Options for single get review is: " + options);
     return this.http.get(this.apiUrl + '/' + name, options)
@@ -30,7 +31,7 @@ export class ReviewService {
       .catch(this.handleError);
   }
   getReviews (): Observable<Review[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token":null });
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token":this.tokenService.currentToken });
     let options = new RequestOptions({ headers: headers });
     return this.http.get(this.apiUrl + '/', options)
       .map((r: Response) => r.json().data as any);
@@ -38,7 +39,7 @@ export class ReviewService {
 
   postReview (object: any): Observable<Review[]> {
     let body = JSON.stringify( object );
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token":this.tokenService.currentToken });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.apiUrl, body, options)
       .map(this.extractData)
@@ -47,7 +48,7 @@ export class ReviewService {
 
   putReview (oldName: string, object: any): Observable<Review[]> {
     let body = JSON.stringify(object);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token":this.tokenService.currentToken });
     let options = new RequestOptions({ headers: headers });
     return this.http.put(this.apiUrl + '/' + oldName, body, options)
       .map(this.extractData)
@@ -55,7 +56,9 @@ export class ReviewService {
   }
 
   deleteReview (name: string): Observable<Review[]> {
-    return this.http.delete(this.apiUrl + '/' + name)
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token":this.tokenService.currentToken });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.delete(this.apiUrl + '/' + name, options)
       .map(this.extractData)
       .catch(this.handleError);
   }
