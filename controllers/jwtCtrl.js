@@ -3,6 +3,22 @@ var jwt = require('jsonwebtoken');
 var express = require('express');
 var app = express();
 app.set('superSecret', 'keyboardcatiscool');
+exports.createUser = function(req, res) {
+  // create user
+  var newUser = new User({
+    name: req.body.name,
+    password: req.body.password,
+    admin: req.body.admin
+  });
+
+  // save the sample user
+  newUser.save(function(err) {
+    if (err) throw err;
+
+    console.log('User saved successfully');
+    res.json({ success: true });
+  });
+};
 exports.tokenRequest = function(req, res) {
   console.log("Token was requested");
   // find the user
