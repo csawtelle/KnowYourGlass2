@@ -10,69 +10,30 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
-
+var jwtAuth = require('./controllers/jwtCtrl');
 var app = express();
 
 //jwt work
 var jwt    = require('jsonwebtoken');
 var User   = require('./models/jwtuser');
 var Page   = require('./models/page');
-app.set('superSecret','keyboardcatiscool'); //pulling config.js doesnt work wtf
+app.set('superSecret','keyboardcatiscool');
 
 app.get('/api', function(req, res) {
     res.send('Hello! The API is at http://knowyourglass.com/api');
 });
 
-app.get('/api/setup', function(req, res) {
-  var admin = new User({ 
-    name: 'admin', 
-    password: 'admin',
-    admin: true 
-  });
+router.route('/api2/authenticate')
+  .post(jwtAuth.tokenRequest);
 
-  // save the sample user
-  admin.save(function(err) {
-    if (err) throw err;
-    console.log('User saved successfully');
-    res.json({ success: true });
-  });
-});
-
-router.post('/api/authenticate', function(req, res) {
-  console.log("Token was requested");
-  User.findOne({
-    name: req.body.name
-  }, function(err, user) {
-    if (err) throw err;
-    if (!user) {
-      console.log("User authentication for token request failed");
-      res.json({ success: false, message: 'Authentication failed. User not found.' });
-    } else if (user) {
-      if (user.password != req.body.password) {
-        console.log("User was found but password was wrong. No token");
-        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-      } else {
-        console.log("User was found and password is correct for token request");
-        var token = jwt.sign(user, app.get('superSecret'), {
-          expiresIn: 1440 // expires in 24 hours
-        });
-        res.json({
-          success: true,
-          message: 'Enjoy your token!',
-          token: token
-        });
-      }   
-    }
-  });
-});
-
-// route to return all users
-router.get('/api/users', function(req, res) {
-  console.log("User Information was queried");
-  User.find({}, function(err, users) {
-    res.json(users);
-  });
-});
+//jwtTokenCheck
+router.use(jwtAuth.jwtAuthCheck);
+//routes for jwt auth
+router.route('/api2')
+  .get(jwtAuth.apiWelcome);
+router.route('/api2/users')
+  .get(jwtAuth.returnUsers);
+//end jwt auth
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json({limit: '500mb'}));
