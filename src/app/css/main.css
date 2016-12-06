@@ -11,7 +11,21 @@
 * #E9A401 Orange-Yellow		
 */
 
-
+/* Search bar */
+* {
+  font-family: "Lato", sans-serif;
+}
+.searchbottom {
+  margin-bottom:0px;  
+}
+.searchtop {
+  margin-top:0px;
+  float: right;
+  margin-left: 20px;
+}
+.nav-item {
+  margin-top:8px;
+}
 /* Home Page CSS */		 		
 .intro-header {		
     padding-top: 50px; 		
@@ -30,7 +44,10 @@
 .intro-message > h1 {		
     margin: 0;		
     text-shadow: 3px 5px 3px rgba(0,0,0,0.6);		
-    font-size: 5em;		
+    font-size: 5em;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: -2px;
+    font-weight:900;
 }		
 
 .intro-message > h3 {		

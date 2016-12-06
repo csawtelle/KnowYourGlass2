@@ -1,8 +1,18 @@
+
 <nav class="navbar navbar-light bg-faded">
   <a class="navbar-brand" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">know<strong>yourglass</strong></a>
-  <ul class="nav navbar-nav float-lg-right">
+  <ul class="nav navbar-nav float-xs-right">
+    <li class="nav-item">
+      <a routerLink="/uploader" routerLinkActive="active">Uploader</a>
+    </li>
+
     <li class="nav-item">
       <a routerLink="/login" routerLinkActive="active">Login</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/admin" routerLinkActive="active">Admin</a>
+    </li>
+    <li class="searchtop">
       <search-bar></search-bar>
     </li>
   </ul>
