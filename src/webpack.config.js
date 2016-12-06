@@ -82,8 +82,9 @@ module.exports = {
       Util: "exports?Util!bootstrap/js/dist/util",
     }),
     new sh({
+      onBuildStart: ['mkdir /build/KnowYourGlass2/public'],
       onBuildEnd:[
-        'ln -s /build/KnowYourGlass/src/app/images /build/KnowYourGlass/public/images'
+        'ln -s /build/KnowYourGlass2/src/app/images /build/KnowYourGlass2/public/images'
       ]
     })
   ]
