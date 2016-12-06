@@ -60,6 +60,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^2.1.0-beta.27",
     "webpack-merge": "^1.0.2",
+    "webpack-shell-plugin": "^0.4.6",
     "zone.js": "^0.6.26"
   }
 }
