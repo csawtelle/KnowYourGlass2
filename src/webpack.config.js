@@ -3,6 +3,7 @@ var webpackMerge = require('webpack-merge');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('./helpers');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var cp = require('copy-webpack-plugin');
 
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
@@ -32,16 +33,17 @@ module.exports = {
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
         loader: "url-loader?limit=10000&minetype=application/font-woff" 
       },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+      { test: /\.(jpe?g|png|gif|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
       { test: /\.css$/, loader: ExtractTextPlugin.extract({loader: 'css-loader'})},
-      {
+/*      {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
-            'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+            'file-loader?hash=sha512&digest=hex&name=[name].[ext]',
             'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
-        ]
+        ],
+        include: './app/images'
       }
-    ]
+*/    ]
   },
   devtool: 'source-map',
   output: {
@@ -88,6 +90,7 @@ module.exports = {
       Tab: "exports?Tab!bootstrap/js/dist/tab",
       Tooltip: "exports?Tooltip!bootstrap/js/dist/tooltip",
       Util: "exports?Util!bootstrap/js/dist/util",
-    })
+    }),
+    new cp([{from: './app/images', to: '../public/images'}])
   ]
 };
