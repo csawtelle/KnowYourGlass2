@@ -21,6 +21,9 @@ export class TokenService{
     this.authService.getToken(username, password)
     .subscribe(response => this.token = response.token);
   }
+  clearToken(){
+    this.currentToken = null;
+  }
   grabToken(){
     return this.token;
   }
