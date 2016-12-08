@@ -1,9 +1,9 @@
 <div class="intro-header" style="background:url('../images/stacy-7.jpg');background-size:cover"> 
   <div class="intro-message">
-    <h1>{{title}}</h1>
+    <h1>{{ title }}</h1>
     <hr class="intro-divider">
     <h3>Honest, but not average, lens reviews.</h3>
-    <p>
+    <p class="socialcontainer">
       <a href="https://twitter.com/knowyourglass">
         <i class="fa fa-twitter fa-3x socialicons"></i>
       </a>
@@ -16,12 +16,8 @@
     </p>
   </div><!-- end intro-message -->
 </div><!-- end main header -->
-<div class="container-fluid reviewbackground">
-  <div class="row">
-    <div *ngFor="let review of reviews; let i = index" style="padding-right:0;padding-left:0">
-      <div *ngIf="i < 6" class="text-center postblocks" [ngStyle]="{'padding':'0','background-image': 'url('+review.image+')','background-size':'cover','background-position':'center'}">
+<div *ngFor="let review of reviews; let i = index">
+  <div *ngIf="i < 4" class="text-center postblocks" [ngStyle]="{'padding':'0','background-image': 'url('+review.image+')','background-size':'cover','background-position':'center'}">
         <a style="color:#fff" [routerLink]="['/review/' + review.name]"><h2 class="latestposttext">{{review.name}}</h2></a>
-      </div>
-    </div><!-- end ngfor -->
-  </div><!-- end row -->
-</div><!-- end container -->
+  </div>
+</div><!-- end ngfor -->

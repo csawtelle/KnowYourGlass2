@@ -32,19 +32,19 @@
 .whitefont {
   color: white !important;
 }
+.socialcontainer {
+  margin:0;
+}
 /* Home Page CSS */		 		
 .intro-header {		
-/*    padding-top: 50px; 		
-    padding-bottom: 50px;		
-*/    min-height: 100%;
+    min-height: 100%;
     text-align: center;		
     color: #f8f8f8;		
     box-shadow: 0px 3px 10px #000;
 }	
 .intro-message {		
-    position: relative;		
-    padding-top: 30%;		
-    padding-bottom: 10%;		
+    padding-top: 25%;		
+    padding-bottom:25%;
     text-shadow:2px 2px 3px rgba(0,0,0,0.6);		
 }		
 
@@ -54,21 +54,26 @@
     font-size: 5em;
     font-family: 'Lato', sans-serif;
     letter-spacing: 0px;
-    font-weight:700;
+    font-weight:600;
 }		
 
 .intro-message > h3 {		
     text-shadow: 3px 3px 3px rgba(0,0,0,0.6);		
+    letter-spacing:-1px;
+    font-size: 1.5em;
+    margin-bottom: 20px;
 }		
 
+/*
 .body h1, h2, h3, h4, h5, h6 {		
     font-family: "Open Sans", "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;		
     font-weight: 700;		
 }		
-
+*/
 .postblocks {
   float: left;
-  width:33.33333%
+  width:50%;
+  text-align: center;
 }	
 .intro-divider {		
     width: 400px;		
@@ -77,7 +82,6 @@
 }		
 hr {		
     margin-top: 20px;		
-    margin-bottom: 20px;		
     border: 0;		
     border-top: 1px solid #eee;		
     width:50px;
@@ -320,7 +324,7 @@ a {
 .latestposttext {
     color:#fff;
     text-shadow:2px 3px 6px #000;
-    padding:70px;
+    padding:120px;
     transition: all .5s;
     background-color:rgba(0,0,0,.2);
     margin:0;
