@@ -83,7 +83,7 @@ module.exports = {
     }),
     new sh({
       onBuildEnd:[
-        'ln -s /build/KnowYourGlass/src/app/images /build/KnowYourGlass/public/images'
+        'ln -s /build/KnowYourGlass2/src/app/images /build/KnowYourGlass2/public/images'
       ]
     })
   ]
