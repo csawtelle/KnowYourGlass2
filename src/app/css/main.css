@@ -35,6 +35,26 @@
 .socialcontainer {
   margin:0;
 }
+
+/* Login Form CSS */
+.loginbox {
+  width:300px;
+  margin:auto;
+}
+.loginbg {
+  height: 100%;
+  padding-top:20%;
+/*  background-size:cover;
+  background:url('../images/loginbg.jpg');
+*/
+}
+.userandpass {
+  font-size:24px;
+  font-weight:500;
+  font-family: 'Lato', sans-serif;
+  color:#fff;
+  text-align:center;
+}
 /* Home Page CSS */		 		
 .intro-header {		
     min-height: 100%;
