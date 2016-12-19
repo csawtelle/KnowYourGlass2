@@ -109,7 +109,8 @@
 }
 
 .postbody {
-  margin:20px;
+  margin:30px;
+  font-size:16px;
 }	
 .intro-divider {		
     width: 400px;		
@@ -388,6 +389,14 @@ a {
   border-radius:15px 15px 0 0;
   text-shadow: 3px 5px 3px rgba(0,0,0,0.6);
   background-color: rgba(0,0,0,.2);
+  font-size:3.5em;
+}
+
+.reviewbody {
+  border-radius:15px;
+  background-color:white;
+  padding-left:0px;
+  padding-right:0px;
 }
 
 .container .jumbotron, .container-fluid .jumbotron {
