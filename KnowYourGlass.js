@@ -25,13 +25,14 @@ router.route('/api/pages')
   .get(pageRoutes.getPages);
 router.route('/api/pages/:name')
   .get(pageRoutes.getPage);
+
 //jwtTokenCheck
-router.use(jwtAuth.jwtAuthCheck);
+//router.use(jwtAuth.jwtAuthCheck);
 //routes for jwt auth
 router.route('/api')
   .get(jwtAuth.apiWelcome);
 router.route('/api/users')
-  .get(jwtAuth.returnUsers);
+  .get(jwtAuth.jwtAuthCheck, jwtAuth.returnUsers);
 //end jwt auth
 
 app.use(express.static(__dirname + '/public'));
@@ -49,11 +50,11 @@ app.use(require('express-session')({
 }));
 // Create endpoint handle for /page/
 router.route('/api/pages')
-  .post(pageRoutes.postPage);
+  .post(jwtAuth.jwtAuthCheck, pageRoutes.postPage);
 // Create endpoint handlers for /pages/:page_id
 router.route('/api/pages/:name')
-  .put(pageRoutes.putPage)
-  .delete(pageRoutes.deletePage);
+  .put(jwtAuth.jwtAuthCheck, pageRoutes.putPage)
+  .delete(jwtAuth.jwtAuthCheck, pageRoutes.deletePage);
 //
 // Create endpoint for file uploads
 //
@@ -80,5 +81,6 @@ app.use(router);
 app.get('*', function(req, res) {
   res.sendFile('./public/index.html', { root: __dirname });
 });
+
 console.log('Listening - KYG Server has been started');
 app.listen(8080);
