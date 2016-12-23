@@ -22,7 +22,7 @@ import { AuthService } from './auth.service';
 import { KeysPipe } from './filters/keys.pipe';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { FileUploadModule } from 'ng2-file-upload';
-
+import { SafeHtmlPipe } from './filters/safehtml.pipe';
 
 @NgModule({
   imports:  [ 
@@ -47,6 +47,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     SearchComponent,
     SearchBarComponent,
     UploaderComponent,
+    SafeHtmlPipe,
     KeysPipe
  ],
 

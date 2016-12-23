@@ -1,38 +1,34 @@
 // Load required packages
-var Page = require('../models/page');
+var Review = require('../models/review');
 
-exports.postPage = function(req, res) {
-  var page = new Page();
-    page.date = req.body.date;
-    page.sensor = req.body.sensor;
-    page.name = req.body.name;
-    page.brand = req.body.brand;
-    page.category = req.body.category;
-    page.rating = req.body.rating;
-    page.title_image = req.body.title_image;
-    page.content = req.body.content;
+exports.postReview = function(req, res) {
+  var review = new Review();
+    review.date = req.body.date;
+    review.sensor = req.body.sensor;
+    review.title = req.body.title;
+    review.brand = req.body.brand;
+    review.category = req.body.category;
+    review.rating = req.body.rating;
+    review.title_image = req.body.title_image;
+    review.content = req.body.content;
 
-    page.save(function(err) {
+    review.save(function(err) {
         if(err) {
             console.log("Post was attempted, post failed");
             res.json({ message: 'Post failed!', data: err});
         }
         else {
             console.log("Post was attempted, post SUCCESS");
-            res.json({ message: 'Post added!', data: page });
+            res.json({ message: 'Post added!', data: review });
         }
   });
 };
 
-exports.getPages = function(req, res) {
-  console.log("GET PAGESSSSS");
+exports.getReviews = function(req, res) {
   if(req.query.search){
-    console.log("Searching");
     var searchArray = [];
     var textArray = [];
     for (var key in req.query) {
-      console.log(key);
-      console.log(req.query[key]);
       if(key == "text") {
         var textQuery = {}
         textQuery['content'] = { 
@@ -40,13 +36,13 @@ exports.getPages = function(req, res) {
           "$options": "i"
         };
         textArray.push(textQuery);
-        textQuery['name'] = { 
+        textQuery['title'] = { 
           "$regex": req.query[key],
           "$options": "i"
         };
         textArray.push(textQuery);
       } else {
-        if(key != "username" && key != "password" && key != "search" && key != "text") {
+        if(key != "usertitle" && key != "password" && key != "search" && key != "text") {
           var obj = req.query[key];
           var paramQuery = {}
           paramQuery[key] = { 
@@ -69,40 +65,37 @@ exports.getPages = function(req, res) {
         '$or': textArray
       })
     }
-    console.log(searchArray);
-    console.log(textArray);
-    console.log(query);
-    Page.find(query, function(err, page) {
+    Review.find(query, function(err, review) {
             console.log("Finding a single");
             if(err) {
-                console.log("Multiple Page Query FAILED");
+                console.log("Multiple Review Query FAILED");
                 res.json({ message: 'Get failed!', data: err});
             }
             else {
-                console.log("Multiple Page Query SUCCEEDED");
-                res.json({ message: 'Get succeeded!', data: page });
+                console.log("Multiple Review Query SUCCEEDED");
+                res.json({ message: 'Get succeeded!', data: review });
             }
       }).sort('-postDate');
   } else {
-    Page.find({}, function(err, pages) {
+    Review.find({}, function(err, reviews) {
         if(err) {
-            console.log("Multiple Page Query FAILED");
+            console.log("Multiple Review Query FAILED");
             res.json({ message: 'Get failed!', data: err});
         }
         else {
-            console.log("Multiple Page Query SUCCEEDED");
-            res.json({ message: 'Get succeeded!', data: pages });
+            console.log("Multiple Review Query SUCCEEDED");
+            res.json({ message: 'Get succeeded!', data: reviews });
         }
     });
   }
 };
 
-exports.getPage = function(req, res) {
+exports.getReview = function(req, res) {
   console.log("GET PAGE");
   if(req.query.search){
     var searchArray = [];
     for (var key in req.query) {
-      if(key != "username" && key != "password" && key != "search") {
+      if(key != "usertitle" && key != "password" && key != "search") {
         var obj = req.query[key];
         var query = {}
         query[key] = { 
@@ -112,36 +105,36 @@ exports.getPage = function(req, res) {
         searchArray.push(query);
       }
     }
-    Page.find({ '$or': searchArray
-      }, function(err, page) {
+    Review.find({ '$or': searchArray
+      }, function(err, review) {
             if(err) {
-                console.log("Single Page requested FAILED");
+                console.log("Single Review requested FAILED");
                 res.json({ message: 'Get failed!', data: err});
             }
             else {
-                console.log("Single Page request SUCCEEDED");
-                res.json({ message: 'Get succeded!', data: page });
+                console.log("Single Review request SUCCEEDED");
+                res.json({ message: 'Get succeded!', data: review });
             }
       }).sort('-postDate');
   } else {
-    Page.find({name: req.params.name }, function(err, page) {
+    Review.find({title: req.params.title }, function(err, review) {
           if(err) {
-              console.log("Single Page Request FAILED");
+              console.log("Single Review Request FAILED");
               res.json({ message: 'Get failed!', data: err});
           }
           else {
-              console.log("Single Page Request SUCCEEDED");
-              res.json({ message: 'Get succeded!', data: page });
+              console.log("Single Review Request SUCCEEDED");
+              res.json({ message: 'Get succeded!', data: review });
           }
     }).sort('-postDate');
   }
 };
 
-exports.putPage = function(req, res) {
-  Page.update({name: req.params.name }, { 
+exports.putReview = function(req, res) {
+  Review.update({title: req.params.title }, { 
     date: req.body.date,
     sensor: req.body.sensor,
-    name: req.body.name,
+    title: req.body.title,
     brand: req.body.brand,
     category: req.body.category,
     rating: req.body.rating,
@@ -154,28 +147,28 @@ exports.putPage = function(req, res) {
         res.json({ message: 'Update failed!', data: err});
     }
     else {
-        Page.find({name: req.body.name }, function(err, page) {
+        Review.find({title: req.body.title }, function(err, review) {
             if(err) {
-                console.log("Page Update succeeded but GET failed");
+                console.log("Review Update succeeded but GET failed");
                 res.json({ message: 'Update succeded but GET failed!', data: err});
             }
             else {
-                console.log("Page Update SUCCESS");
-                res.json({ message: 'Update succeded!', data: page });
+                console.log("Review Update SUCCESS");
+                res.json({ message: 'Update succeded!', data: review });
             }
         }).sort('-postDate');
     }
   });
 };
 
-exports.deletePage = function(req, res) {
-  Page.remove({name: req.params.name }, function(err) {
+exports.deleteReview = function(req, res) {
+  Review.remove({title: req.params.title }, function(err) {
         if(err) {
-            console.log("Page delete failed");
+            console.log("Review delete failed");
             res.json({ message: 'Delete failed!'});
         }
         else {
-            console.log("Page delete success!");
+            console.log("Review delete success!");
             res.json({ message: 'Post deleted!'});
         }
   });

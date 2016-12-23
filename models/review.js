@@ -2,8 +2,8 @@
 var mongoose = require('mongoose');
 
 // Define our beer schema
-var PageSchema   = new mongoose.Schema({
-    name: {type: String, required:true, unique:true},
+var ReviewSchema   = new mongoose.Schema({
+    title: {type: String, required:true, unique:true},
     brand: {type: String, required: true},
     category: {type: String, required: true},
     sensor: {type: String, required: true},
@@ -14,5 +14,5 @@ var PageSchema   = new mongoose.Schema({
 });
 
 // Export the Mongoose model
-module.exports = mongoose.model('Page', PageSchema);
+module.exports = mongoose.model('Review', ReviewSchema);
 
