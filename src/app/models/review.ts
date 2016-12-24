@@ -4,7 +4,7 @@ export class Review {
   date: string;
   sensor: string;
   title_image: string;
-  name: string;
+  title: string;
   rating: string;
   content: string;
 }
