@@ -15,8 +15,8 @@
  
     <form [formGroup]="modalForm" (ngSubmit)="save(modalForm.value, modalForm.valid)">
      <div class="form-group">
-        Name:
-        <input formControlName="name">  
+        Title:
+        <input formControlName="title">  
         Date:
         <input formControlName="date">  
         Title Image:
@@ -57,7 +57,7 @@
 <p>The token is: {{ [token] }}</p>
 <button class="btn btn-lg btn-outline-primary" (click)="openNew(content)">New Post</button>
 <div *ngFor="let single of reviews">
-  <label>{{single?.name}}</label>
+  <label>{{single?.title}}</label>
   <button class="btn btn-lg btn-outline-primary" (click)="openOld(content, single)">Edit</button>
-  <button class="btn btn-lg btn-outline-primary" (click)="deleteReview(single?.name)">Delete</button>
+  <button class="btn btn-lg btn-outline-primary" (click)="deleteReview(single?.title)">Delete</button>
 </div>
