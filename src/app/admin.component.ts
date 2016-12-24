@@ -71,7 +71,7 @@ export class AdminComponent implements OnInit{
   openNew(content: Object) {
     this.newPost = 1;
     this.modalForm = this._fb.group({
-      name: ['', [ <any>Validators.required]],
+      title: ['', [ <any>Validators.required]],
       date: ['', [ <any>Validators.required]],
       rating: ['', [ <any>Validators.required]],
       brand: ['', [ <any>Validators.required]],
@@ -85,9 +85,9 @@ export class AdminComponent implements OnInit{
 
   openOld(content: Object, review: Review) {
     this.newPost = 0;
-    this.oldName = review.name;
+    this.oldName = review.title;
     this.modalForm = this._fb.group({
-      name: [review.name, [ <any>Validators.required]],
+      title: [review.title, [ <any>Validators.required]],
       date: [review.date, [ <any>Validators.required]],
       rating: [review.rating, [ <any>Validators.required]],
       brand: [review.brand, [ <any>Validators.required]],
