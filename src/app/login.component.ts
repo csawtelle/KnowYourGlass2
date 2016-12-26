@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     console.log(this.form);
   }
   processForm(){
+    console.log("Process form was clicked");
     this.token = "Logging in...";
     this.tokenService.getToken(this.form.value.username, this.form.value.password);
     this.tokenService.loginDelay().subscribe(() => {
