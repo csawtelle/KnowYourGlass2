@@ -27,7 +27,7 @@
   margin-top:8px;
 }
 .bg-faded {
-  background: transparent;
+  background: #818a91;
 }
 .whitefont {
   color: white !important;
@@ -41,9 +41,35 @@
   width:300px;
   margin:auto;
 }
+.inputform{
+  padding: 5px 15px;
+  height: 55px;
+  font-size: 18px;
+  font-weight: 200;
+  margin-bottom: 14px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+.loginbtn {
+	font-size: 26px;
+	padding: 2% 30%;
+}
+.loginheaderbg {
+	background: #eee;
+}
+.loginheaderpadding {
+	padding: 3%;
+}
+.loginheaderpadding h1 {
+	font-size:4em;
+}
+.logincontainer{
+  margin-top:50px;
+}
 .loginbg {
   height: 100%;
-  padding-top:20%;
+  padding-top:50px;
 /*  background-size:cover;
   background:url('../images/loginbg.jpg');
 */
@@ -52,7 +78,7 @@
   font-size:24px;
   font-weight:500;
   font-family: 'Lato', sans-serif;
-  color:#fff;
+  color:#55595c;
   text-align:center;
 }
 /* Home Page CSS */		 		
