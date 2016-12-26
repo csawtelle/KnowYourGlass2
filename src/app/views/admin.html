@@ -58,14 +58,17 @@
 <button class="btn btn-lg btn-outline-primary" (click)="openNew(content)">New Post</button>
 
 <div class="container">
+  <div *ngFor="let single of reviews">
   <div class="row">
-<div *ngFor="let single of reviews">
-  <div class="col-xs-12 text-center">
+  <div class="col-xs-10 offset-xs-1 text-center">
+  <div class="list-group">
+    <div class="list-group-item">
     <h1>{{single.title}}</h1>
-  </div>
-  <div class="col-xs-12 text-center">
-  <button class="btn btn-lg btn-info" (click)="openOld(content, single)">Edit</button>
-  <button class="btn btn-lg btn-info" (click)="deleteReview(single?.name)">Delete</button>
+    <button class="btn btn-lg btn-info" (click)="openOld(content, single)">Edit</button>
+    <button class="btn btn-lg btn-info" (click)="deleteReview(single?.name)">Delete</button>
+    </div><!-- end list group item -->
+  </div><!-- end list-group -->
+
   </div>
 </div>
   </div><!-- end row -->
