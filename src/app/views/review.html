@@ -1,27 +1,27 @@
-G<div>
+<div *ngIf="review">
   <div class="container" style="margin-top:10%">
     <div class="row">
       <div class="col-xs-8 offset-xs-2 reviewbody">
-        <div class="postheader" [ngStyle]="{'background-image':'url(../images/'+review?.title_image+')', 'background-size':'cover', 'background-position':'center'}">
-          <h1 class="reviewheadertop">{{ review?.name }}</h1>
-          <p class="reviewheaderbottom">Posted On: {{review?.date}}</p>
+        <div class="postheader" [ngStyle]="{'background-image':'url(../images/'+review.title_image+')', 'background-size':'cover', 'background-position':'center'}">
+          <h1 class="reviewheadertop">{{ review.title }}</h1>
+          <p class="reviewheaderbottom">Posted On: {{review.date}}</p>
         </div>
 
       <div class="postbody">
         <div>
-          {{review?.rating}}
+          {{review.rating}}
         </div>
         <div>
-          {{review?.brand}}
+          {{review.brand}}
         </div>
         <div>
-          {{review?.category}}
+          {{review.category}}
         </div>
         <div>
-          {{review?.sensor}}
+          {{review.sensor}}
         </div>
         <!-- XSS Vulnerability Issue #83-->
-        <div [innerHtml]="review?.content | safeHtml"></div>
+        <div [innerHtml]="review.content | safeHtml"></div>
 
       </div>
       </div><!-- end ngIf -->

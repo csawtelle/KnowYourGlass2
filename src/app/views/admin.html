@@ -51,13 +51,23 @@
   </div>
 </template>
 
-<ngb-alert *ngIf="response" [dismissible]="true" type="{{alertType}}" (close)="response = null">
+<ngb-alert *ngIf="response" [dismissible]="true" type="{{alertType}}" (close)="response = null" style="margin-top:100px">
   {{response?.message}}
 </ngb-alert>
-<p>The token is: {{ [token] }}</p>
+<div style="margin-top:100px">
 <button class="btn btn-lg btn-outline-primary" (click)="openNew(content)">New Post</button>
+
+<div class="container">
+  <div class="row">
 <div *ngFor="let single of reviews">
-  <label>{{single?.name}}</label>
-  <button class="btn btn-lg btn-outline-primary" (click)="openOld(content, single)">Edit</button>
-  <button class="btn btn-lg btn-outline-primary" (click)="deleteReview(single?.name)">Delete</button>
+  <div class="col-xs-12 text-center">
+    <h1>{{single.title}}</h1>
+  </div>
+  <div class="col-xs-12 text-center">
+  <button class="btn btn-lg btn-info" (click)="openOld(content, single)">Edit</button>
+  <button class="btn btn-lg btn-info" (click)="deleteReview(single?.name)">Delete</button>
+  </div>
+</div>
+  </div><!-- end row -->
+</div><!-- end container -->
 </div>

@@ -60,7 +60,7 @@ router.route('/api/authenticate')
 router.route('/api/users')
   .get(jwtAuth.jwtAuthCheck, jwtAuth.returnUsers);
 router.route('/api/reviews')
-  .post(jwtAuth.jwtAuthCheck, reviewCtrl.postReview);
+  .post(reviewCtrl.postReview);
 router.route('/api/reviews/:title')
   .put(jwtAuth.jwtAuthCheck, reviewCtrl.putReview)
   .delete(jwtAuth.jwtAuthCheck, reviewCtrl.deleteReview);
