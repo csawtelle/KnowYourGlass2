@@ -8,7 +8,7 @@ var app = express();
 var reviewCtrl = require('./controllers/reviewCtrl');
 var blogCtrl = require('./controllers/blogCtrl');
 var jwtAuth = require('./controllers/jwtCtrl');
-
+var blogCtrl2 = require('./controllers/blogCtrl-gerry');
 //Models
 var User = require('./models/jwtuser');
 var Review = require('./models/review');
@@ -49,6 +49,12 @@ router.route('/api/reviews')
 router.route('/api/reviews/:title')
   .get(reviewCtrl.getReview);
 
+router.route('/api/blogs')
+  .get(blogCtrl2.getBlogs);
+router.route('/api/blogs')
+  .post(blogCtrl2.postBlog);
+router.route('/api/blogs/:title')
+  .get(blogCtrl2.findBlog);
 
 //Protected Routes
 router.route('/api')
