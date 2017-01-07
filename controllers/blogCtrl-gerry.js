@@ -35,3 +35,16 @@ exports.findBlog = ((req, res) => {
     res.json(blog);
   });
 });
+
+exports.deleteBlog = ((req,res) => {
+  let title = req.params.title;
+  Blog.findOneAndRemove({ title: new RegExp(title, "i") }, (err, blog) => {
+    if(err) {
+      res.status(400).json(err);
+    }
+    if(!blog){
+      res.status(404).json({message: "Blog post not found"});
+    }
+      res.json({ message: "Post deleted"});
+  });
+});
