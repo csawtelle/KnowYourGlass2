@@ -49,12 +49,15 @@ router.route('/api/reviews')
 router.route('/api/reviews/:title')
   .get(reviewCtrl.getReview);
 
+// Route for Blogs -- pending changes
 router.route('/api/blogs')
   .get(blogCtrl2.getBlogs);
 router.route('/api/blogs')
   .post(blogCtrl2.postBlog);
 router.route('/api/blogs/:title')
   .get(blogCtrl2.findBlog);
+router.route('/api/blogs/:title')
+  .delete(blogCtrl2.deleteBlog);
 
 //Protected Routes
 router.route('/api')
