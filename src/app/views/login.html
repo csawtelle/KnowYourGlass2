@@ -1,20 +1,17 @@
-<div class="loginbg" style="background: #fff">
+<div class="loginbg">
 <!--
     <div>
       <p>The token is: {{ [token] }} </p>
     </div>
 -->
-<div class="container-fluid loginheaderbg">
-  <div class="row text-center">
-    <div class="loginheaderpadding">
-    <h4>Welcome to the</h4>
-    <h1>Login</h1> 
-    </div>
-  </div> <!-- end row -->
-</div> <!-- end container -->
 <div class="container">
   <div class="logincontainer col-xs-6 offset-xs-3">
-<form (ngSubmit)="processForm()" [formGroup]="form">
+    <div class="loginheaderpadding text-center">
+    <h4>Welcome to the</h4>
+    <h1>Login</h1>
+    </div>
+
+    <form (ngSubmit)="processForm()" [formGroup]="form" class="loginarea">
   <div class="form-group">
     <label  class="userandpass" for="username">Username</label>
     <input type="text" class="form-control inputform" name="username" required

@@ -46,10 +46,18 @@
     width: 50%;
     margin-left: 25%;
     height: 8%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .newpostmargin {
 	margin-bottom: 50px;
+}
+
+.loginarea {
+	background-color: white;
+  padding: 20px;
+  border-radius: 3%;
 }
 .socialcontainer {
   margin:0;
@@ -78,13 +86,21 @@
 	background: #eee;
 }
 .loginheaderpadding {
-	padding: 3%;
+	padding: 10%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+	background-color:white;
 }
 .loginheaderpadding h1 {
 	font-size:4em;
 }
 .logincontainer{
   margin-top:50px;
+}
+
+.adminpostscontainer {
+	background-color:white;
+	border-radius: 15px;
 }
 .loginbg {
   height: 100%;
