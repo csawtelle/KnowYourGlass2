@@ -24,29 +24,22 @@ export class LoginComponent implements OnInit {
       password: ['']
     });
     //watch for changes as we validate
-    this.form.valueChanges.subscribe(data => { console.log(data)
+    this.form.valueChanges.subscribe(data => { 
     let username = this.form.get('username');
     let password = this.form.get('password');
     if (username.invalid && username.dirty){
       this.usernameErr = "Please enter a username";
+    } else {
+      this.usernameErr = null;
     }
     if (password.invalid && password.dirty){
       this.passErr = "Please enter a password";
+    } else {
+      this.passErr = null;
     }
    
    
     });
-/*
-    //validate each field
-    let username = this.form.get('username');
-    let password = this.form.get('password');
-    if (username.invalid && username.dirty){
-      this.usernameErr = "Please enter a username";
-    }
-    if (password.invalid && password.dirty){
-      this.passErr = "Please enter a password";
-    }
-*/
     console.log(this.form);
   }
   processForm(){
