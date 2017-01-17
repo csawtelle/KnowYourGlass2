@@ -1,9 +1,14 @@
 //Express
 var express = require('express');
+var cookieParser = require('cookie-parser'); //cookie parser
 var bodyParser = require('body-parser');
 var router = express.Router();
 var app = express();
-
+app.use(cookieParser()) //cookie parser
+app.get('/api/cookies', (req, res) => {
+  console.log('cookies in the request is: ', req.cookies);
+  res.send(req.cookies);
+});
 //Controllers
 var reviewCtrl = require('./controllers/reviewCtrl');
 var blogCtrl = require('./controllers/blogCtrl');

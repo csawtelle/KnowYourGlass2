@@ -29,8 +29,27 @@
 .bg-faded {
   background: #818a91;
 }
+.hoverpointer {
+  cursor: pointer;
+}
+.list-hover-highlight {
+  background-color: transparent; 
+}
+.list-hover-highlight:hover{
+  background-color: #eee;
+}
 .whitefont {
   color: white !important;
+}
+
+.newpostbutton {
+    width: 50%;
+    margin-left: 25%;
+    height: 8%;
+}
+
+.newpostmargin {
+	margin-bottom: 50px;
 }
 .socialcontainer {
   margin:0;
