@@ -14,14 +14,14 @@ export class AdminComponent implements OnInit{
   public alertType = "info";
   public modalForm: FormGroup;
   public submitted: boolean;
-  public reviews: any;
+  public reviews: any = [];
   public modalRef: any;
   public response: any;
   public oldName: any;
   public varinadmin: any;
   public token: any;
   public editorContent: string;
-  
+  public unsortedReviews: any;  
   constructor(
     public tokenService: TokenService,
     private authService: AuthService, 
@@ -29,10 +29,18 @@ export class AdminComponent implements OnInit{
     public modalService: NgbModal, 
     public _fb: FormBuilder
   ) {
+    this.reviewService.getReviews()
+      .subscribe(reviews => {
+        this.unsortedReviews = reviews;
+        let reviewsLength = this.unsortedReviews.length;
+        for(let i = 0; i < reviewsLength; i++) {
+          this.reviews[i] = this.unsortedReviews[reviewsLength - (i + 1)];
+        }
+      });
+
   }
   
   ngOnInit(){
-    this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);  
     this.token = this.tokenService.grabToken();
   }
   private list = {
