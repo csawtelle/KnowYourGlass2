@@ -13,7 +13,6 @@ app.get('/api/cookies', (req, res) => {
 var reviewCtrl = require('./controllers/reviewCtrl');
 var blogCtrl = require('./controllers/blogCtrl');
 var jwtAuth = require('./controllers/jwtCtrl');
-var blogCtrl2 = require('./controllers/blogCtrl-gerry');
 //Models
 var User = require('./models/jwtuser');
 var Review = require('./models/review');
@@ -54,15 +53,11 @@ router.route('/api/reviews')
 router.route('/api/reviews/:title')
   .get(reviewCtrl.getReview);
 
-// Route for Blogs -- pending changes
+// Route for Blogs
 router.route('/api/blogs')
-  .get(blogCtrl2.getBlogs);
-router.route('/api/blogs')
-  .post(blogCtrl2.postBlog);
+  .get(blogCtrl.getBlogs);
 router.route('/api/blogs/:title')
-  .get(blogCtrl2.findBlog);
-router.route('/api/blogs/:title')
-  .delete(blogCtrl2.deleteBlog);
+  .get(blogCtrl.findBlog);
 
 //Protected Routes
 router.route('/api')
@@ -73,8 +68,13 @@ router.route('/api/authenticate')
   .post(jwtAuth.tokenRequest);
 router.route('/api/users')
   .get(jwtAuth.jwtAuthCheck, jwtAuth.returnUsers);
+//Blogs
+router.route('/api/blogs/:title')
+  .delete(jwtAuth.jwtAuthCheck, blogCtrl.deleteBlog);
+router.route('/api/blogs')
+  .post(jwtAuth.jwtAuthCheck, blogCtrl.postBlog);
 router.route('/api/reviews')
-  .post(reviewCtrl.postReview);
+  .post(jwtAuth.jwtAuthCheck, reviewCtrl.postReview);
 router.route('/api/reviews/:title')
   .put(jwtAuth.jwtAuthCheck, reviewCtrl.putReview)
   .delete(jwtAuth.jwtAuthCheck, reviewCtrl.deleteReview);

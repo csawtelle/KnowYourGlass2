@@ -18,7 +18,6 @@ export class TokenService{
   getToken(username: string, password: string) {
     this.username = username;
     this.password = password;
-    console.log("Get Token was called");
     this.authService.getToken(username, password)
     .subscribe(response => this.token = response.token);
   }
