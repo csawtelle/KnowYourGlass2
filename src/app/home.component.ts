@@ -8,9 +8,16 @@ import { ReviewService } from './review.service';
 })
 export class HomeComponent { 
   title = "Know Your Glass";
-  reviews: any;
-
+  reviews: any = [];
+  unsortedReviews: any;
   constructor(private reviewService: ReviewService) { 
-    this.reviewService.getReviews().subscribe(reviews => this.reviews = reviews);
+    this.reviewService.getReviews()
+      .subscribe(reviews => {
+        this.unsortedReviews = reviews;
+        let reviewsLength = this.unsortedReviews.length;
+        for(let i = 0; i < reviewsLength; i++) {
+          this.reviews[i] = this.unsortedReviews[reviewsLength - (i + 1)];
+        }
+      });
   }
 }

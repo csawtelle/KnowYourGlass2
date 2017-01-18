@@ -1,32 +1,41 @@
-<div class="loginbg" style="background:url('../images/loginbg.jpg');background-size:cover">
-<div class="loginbox"> 
+<div class="loginbg">
 <!--
     <div>
       <p>The token is: {{ [token] }} </p>
     </div>
 -->
-<form (ngSubmit)="processForm()" [formGroup]="form">
+<div class="container">
+  <div class="logincontainer col-xs-6 offset-xs-3">
+    <div class="loginheaderpadding text-center">
+    <h4>Welcome to the</h4>
+    <h1>Login</h1>
+    </div>
+
+    <form (ngSubmit)="processForm()" [formGroup]="form" class="loginarea">
   <div class="form-group">
     <label  class="userandpass" for="username">Username</label>
-    <input type="text" class="form-control" name="username" required
-    formControlName="username">
+    <input type="text" class="form-control inputform" name="username" required
+    formControlName="username" 
+    placeholder="Enter your Username">
     <span class="help-block" *ngIf="usernameErr">
     {{ usernameErr }}
     </span>
   </div>
   <div class="form-group">
     <label class="userandpass" for="password">Password</label>
-    <input type="text" class="form-control" name="password" required
-    formControlName="password">
+    <input type="text" class="form-control inputform" name="password" required
+    formControlName="password"
+    placeholder="Enter your Password">
     <span class="help-block" *ngIf="passErr">
     {{ passErr }}
     </span>
-
   </div>
   <div class="form-group text-center">
-    <button type="submit" class="btn btn-info">Submit</button>
+    <button type="submit" class="loginbtn btn btn-info">Submit</button>
   </div>
 </form>
+  </div><!-- end col -->
+</div> <!-- end container -->
 
-</div><!-- end loginbox -->
+
 </div><!-- end loginbg -->

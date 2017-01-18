@@ -51,13 +51,26 @@
   </div>
 </template>
 
-<ngb-alert *ngIf="response" [dismissible]="true" type="{{alertType}}" (close)="response = null">
+<ngb-alert *ngIf="response" [dismissible]="true" type="{{alertType}}" (close)="response = null" style="margin-top:100px">
   {{response?.message}}
 </ngb-alert>
-<p>The token is: {{ [token] }}</p>
-<button class="btn btn-lg btn-outline-primary" (click)="openNew(content)">New Post</button>
-<div *ngFor="let single of reviews">
-  <label>{{single?.title}}</label>
-  <button class="btn btn-lg btn-outline-primary" (click)="openOld(content, single)">Edit</button>
-  <button class="btn btn-lg btn-outline-primary" (click)="deleteReview(single?.title)">Delete</button>
-</div>
+<div style="margin-top:100px">
+
+  
+  
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8 offset-xs-2 adminpostscontainer">
+      <button class="btn btn-lg btn-outline-primary newpostbutton" (click)="openNew(content)">New Post</button>
+        <div *ngFor="let single of reviews">
+          <div [routerLink]="['/review/' + single.title]" class="list-group hoverpointer">
+            <div class="list-group-item list-hover-highlight text-center">
+              <h1>{{single.title}}</h1>
+              <button class="btn btn-lg btn-info" (click)="openOld(content, single)">Edit</button>
+              <button class="btn btn-lg btn-info" (click)="deleteReview(single?.name)">Delete</button>
+            </div><!-- end list group item -->
+          </div><!-- end list-group -->
+        </div> <!-- end *ngFor -->
+    </div><!-- end col -->
+  </div><!-- end row -->
+</div> <!-- end container -->

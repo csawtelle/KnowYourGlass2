@@ -1,14 +1,18 @@
 //Express
 var express = require('express');
+var cookieParser = require('cookie-parser'); //cookie parser
 var bodyParser = require('body-parser');
 var router = express.Router();
 var app = express();
-
+app.use(cookieParser()) //cookie parser
+app.get('/api/cookies', (req, res) => {
+  console.log('cookies in the request is: ', req.cookies);
+  res.send(req.cookies);
+});
 //Controllers
 var reviewCtrl = require('./controllers/reviewCtrl');
 var blogCtrl = require('./controllers/blogCtrl');
 var jwtAuth = require('./controllers/jwtCtrl');
-
 //Models
 var User = require('./models/jwtuser');
 var Review = require('./models/review');
@@ -49,6 +53,11 @@ router.route('/api/reviews')
 router.route('/api/reviews/:title')
   .get(reviewCtrl.getReview);
 
+// Route for Blogs
+router.route('/api/blogs')
+  .get(blogCtrl.getBlogs);
+router.route('/api/blogs/:title')
+  .get(blogCtrl.findBlog);
 
 //Protected Routes
 router.route('/api')
@@ -59,6 +68,11 @@ router.route('/api/authenticate')
   .post(jwtAuth.tokenRequest);
 router.route('/api/users')
   .get(jwtAuth.jwtAuthCheck, jwtAuth.returnUsers);
+//Blogs
+router.route('/api/blogs/:title')
+  .delete(jwtAuth.jwtAuthCheck, blogCtrl.deleteBlog);
+router.route('/api/blogs')
+  .post(jwtAuth.jwtAuthCheck, blogCtrl.postBlog);
 router.route('/api/reviews')
   .post(jwtAuth.jwtAuthCheck, reviewCtrl.postReview);
 router.route('/api/reviews/:title')
