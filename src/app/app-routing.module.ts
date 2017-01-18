@@ -10,7 +10,6 @@ import { SearchComponent } from './search.component';
 import { UploaderComponent } from './uploader.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
   { path: 'admin', canActivate: [AuthGuard], component: AdminComponent },
   { path: 'uploader', component: UploaderComponent },
   { path: 'review', component: ReviewComponent },
@@ -18,6 +17,7 @@ const appRoutes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'search/:id', component: SearchComponent },
   { path: 'login', component: LoginComponent },
+  { path: '', component: HomeComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
