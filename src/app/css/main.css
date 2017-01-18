@@ -27,7 +27,7 @@
   margin-top:8px;
 }
 .bg-faded {
-  background: #818a91;
+  background: rgba(0,0,0, .5);
 }
 .hoverpointer {
   cursor: pointer;
