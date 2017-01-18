@@ -86,7 +86,8 @@ export class AdminComponent implements OnInit{
       category: ['', [ <any>Validators.required]],
       title_image: ['', [ <any>Validators.required]],
       sensor: ['', [ <any>Validators.required]],
-      content: ['', [ <any>Validators.required]]
+      content: ['', [ <any>Validators.required]],
+      author: ['', [ <any>Validators.required]]
     });
     this.modalRef = this.modalService.open(content);
   }
@@ -102,7 +103,8 @@ export class AdminComponent implements OnInit{
       category: [review.category, [ <any>Validators.required]],
       sensor: [review.sensor, [ <any>Validators.required]],
       title_image: [review.title_image, [ <any>Validators.required]],
-      content: [review.content, [ <any>Validators.required]]
+      content: [review.content, [ <any>Validators.required]],
+      author: [review.author, [ <any>Validators.required]]
     });
     this.editorContent = review.content;
     this.modalRef = this.modalService.open(content);

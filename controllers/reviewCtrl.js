@@ -11,6 +11,7 @@ exports.postReview = function(req, res) {
     review.rating = req.body.rating;
     review.title_image = req.body.title_image;
     review.content = req.body.content;
+    review.author = req.body.author;
 
     review.save(function(err) {
         if(err) {
@@ -140,7 +141,8 @@ exports.putReview = function(req, res) {
     rating: req.body.rating,
     pictures: req.body.pictures,
     title_image: req.body.title_image,
-    content: req.body.content
+    content: req.body.content,
+    author: req.body.author
 
   }, function(err, num, raw) {
     if(err) {

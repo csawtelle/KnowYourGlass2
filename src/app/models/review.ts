@@ -7,4 +7,5 @@ export class Review {
   title: string;
   rating: string;
   content: string;
+  author: string;
 }

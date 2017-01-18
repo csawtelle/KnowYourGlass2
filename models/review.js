@@ -11,6 +11,7 @@ var ReviewSchema   = new mongoose.Schema({
     rating: {type: String, required: true},
     title_image: {type: String, required: true},
     content: {type: String, required: true}
+    author: {type: String, required: true}
 });
 
 // Export the Mongoose model
