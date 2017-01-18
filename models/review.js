@@ -10,7 +10,7 @@ var ReviewSchema   = new mongoose.Schema({
     date: {type: String, required: true},
     rating: {type: String, required: true},
     title_image: {type: String, required: true},
-    content: {type: String, required: true}
+    content: {type: String, required: true},
     author: {type: String, required: true}
 });
 
