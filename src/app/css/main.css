@@ -36,7 +36,7 @@
   background-color: transparent; 
 }
 .list-hover-highlight:hover{
-  background-color: #eee;
+  background: rgba(0,0,0,.5);
 }
 .whitefont {
   color: white !important;
@@ -512,4 +512,19 @@ a {
 #search-box{
   width: 200px;
   height: 20px;
+  vertical-align: middle;
 }
+
+.btn-outline-info {
+  color: #FFFFFF;
+  background-image: none;
+  background-color: transparent;
+  border-color: #FFFFFF;
+}
+.btn-outline-info:hover {
+  color: #000000;
+  background-color: #FFFFFF;
+  border-color: #000000;
+}
+
+

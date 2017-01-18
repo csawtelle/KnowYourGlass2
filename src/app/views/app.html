@@ -2,14 +2,11 @@
 <nav class="navbar navbar-fixed-top navbar-light bg-faded">
   <a class="navbar-brand whitefont" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">know<strong>yourglass</strong></a>
   <ul class="nav navbar-nav float-xs-right whitefont">
-    <li *ngIf="this.tokenService.currentToken" class="nav-item">
-      <a routerLink="/uploader" routerLinkActive="active" class="whitefont">Uploader</a>
-    </li>
-    <li *ngIf="this.tokenService.currentToken" class="nav-item">
-      <a routerLink="/admin" routerLinkActive="active" class="whitefont">Admin</a>
+    <li *ngIf="!this.tokenService.currentToken" class="nav-item">
+      <a routerLink="/Reviews" routerLinkActive="active" class="whitefont">Reviews</a>
     </li>
     <li *ngIf="!this.tokenService.currentToken" class="nav-item">
-      <a routerLink="/login" routerLinkActive="active" class="whitefont">Login</a>
+      <a routerLink="/Blogs" routerLinkActive="active" class="whitefont">Blogs</a>
     </li>
     <li class="nav-item" *ngIf="this.tokenService.currentToken" (click)="logout()"><a class="whitefont hoverpointer" routerLinkActive="active">Logout</a></li>
     <li class="searchtop">
