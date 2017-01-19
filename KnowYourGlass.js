@@ -57,7 +57,7 @@ router.route('/api/reviews/:title')
 router.route('/api/blogs')
   .get(blogCtrl.getBlogs);
 router.route('/api/blogs/:title')
-  .get(blogCtrl.findBlog);
+  .get(blogCtrl.getBlog);
 
 //Protected Routes
 router.route('/api')
