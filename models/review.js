@@ -1,5 +1,4 @@
 // Load required packages
-var date = new Date().toLocaleString().split(',')[0]
 var mongoose = require('mongoose');
 
 // Define our beer schema
