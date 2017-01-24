@@ -1,60 +1,47 @@
 var User = require('../models/jwtuser');
 var jwt = require('jsonwebtoken');
-var express = require('express');
-var app = express();
-app.set('superSecret', 'keyboardcatiscool');
+
 exports.createUser = function(req, res) {
-  // create user
-  var newUser = new User({
-    name: req.body.name,
+  var user = new User({
+    username: req.body.username,
     password: req.body.password,
     admin: req.body.admin
   });
 
   // save the sample user
-  newUser.save(function(err) {
+  user.save(function(err) {
     if (err) throw err;
-
     console.log('User saved successfully');
     res.json({ success: true });
   });
 };
 exports.tokenRequest = function(req, res) {
   console.log("Token was requested");
-  // find the user
   User.findOne({
-    name: req.body.name
+    username: req.body.username
   }, function(err, user) {
-
     if (err) throw err;
-
     if (!user) {
       console.log("User authentication for token request failed");
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (user) {
-
-      // check if password matches
+      console.log(user);
+      console.log(user.password);
       if (user.password != req.body.password) {
         console.log("User was found but password was wrong. No token");
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
         console.log("User was found and password is correct for token request");
-        // if user is found and password is right
-        // create a token
-        var token = jwt.sign(user, app.get('superSecret'), {
+        var token = jwt.sign(user, 'superSecret', {
           expiresIn: 1440 // expires in 24 hours
         });
-
-        // return the information including token as JSON
         res.json({
-            success: true,
-            message: 'Enjoy your token!',
-            token: token
-          });
+          success: true,
+          message: 'Enjoy your token!',
+          token: token
+        });
       }
-
     }
-
   });
 };
 
@@ -67,33 +54,21 @@ exports.returnUsers = function(req, res) {
     res.json(users);
   });
 };
-
-exports.jwtAuthCheck = function(req, res, next) {
-
-  // check header or url parameters or post parameters for token
+exports.jwtCheck = function(req, res, next) {
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-  // decode token
   if (token) {
-
-    // verifies secret and checks exp
-    jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+    jwt.verify(token, 'superSecret', function(err, decoded) {
       if (err) {
         return res.json({ success: false, message: 'Failed to authenticate token.' });
       } else {
-        // if everything is good, save to request for use in other routes
         req.decoded = decoded;
         next();
       }
     });
   } else {
-
-    // if there is no token
-    // return an error
     return res.status(403).send({
         success: false,
         message: 'No token provided.'
     });
-
   }
 };

@@ -22,7 +22,7 @@ export class AdminComponent implements OnInit{
   public token: any;
   public editorContent: string;
   public unsortedReviews: any;  
-  public today: string = new Date().toLocaleString().split(',')[0]
+  public today: string = new Date().toLocaleString();
   constructor(
     public tokenService: TokenService,
     private authService: AuthService, 
