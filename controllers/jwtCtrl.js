@@ -22,16 +22,14 @@ exports.tokenRequest = function(req, res) {
   }, function(err, user) {
     if (err) throw err;
     if (!user) {
-      console.log("User authentication for token request failed");
-      res.json({ success: false, message: 'Authentication failed. User not found.' });
+      console.log("User not found.");
+      res.json({ success: false, message: 'User not found' });
     } else if (user) {
-      console.log(user);
-      console.log(user.password);
       if (user.password != req.body.password) {
-        console.log("User was found but password was wrong. No token");
-        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+        console.log("Incorrect user password.");
+        res.json({ success: false, message: 'Incorrect user password.' });
       } else {
-        console.log("User was found and password is correct for token request");
+        console.log("User authentication succeeded.");
         var token = jwt.sign(user, 'superSecret', {
           expiresIn: 1440 // expires in 24 hours
         });
@@ -49,7 +47,7 @@ exports.apiWelcome = function(req, res) {
   res.json( { message: 'Welcome to the API!' } );
 };
 exports.returnUsers = function(req, res) {
-  console.log("User Information was queried");
+  console.log("User query succeeded.");
   User.find({}, function(err, users) {
     res.json(users);
   });
@@ -59,7 +57,7 @@ exports.jwtCheck = function(req, res, next) {
   if (token) {
     jwt.verify(token, 'superSecret', function(err, decoded) {
       if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });
+        return res.json({ success: false, message: 'Token unverifiable.' });
       } else {
         req.decoded = decoded;
         next();
