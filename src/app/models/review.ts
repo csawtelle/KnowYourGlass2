@@ -1,7 +1,8 @@
 export class Review {
   brand: string;
   category: string;
-  date: string;
+  post_date: string;
+  edit_date: string;
   sensor: string;
   title_image: string;
   title: string;

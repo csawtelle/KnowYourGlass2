@@ -22,6 +22,7 @@ export class AdminComponent implements OnInit{
   public token: any;
   public editorContent: string;
   public unsortedReviews: any;  
+  public today: string = new Date().toLocaleString().split(',')[0]
   constructor(
     public tokenService: TokenService,
     private authService: AuthService, 
@@ -80,7 +81,8 @@ export class AdminComponent implements OnInit{
     this.newPost = 1;
     this.modalForm = this._fb.group({
       title: ['', [ <any>Validators.required]],
-      date: ['', [ <any>Validators.required]],
+      post_date: [this.today, [ <any>Validators.required]],
+      edit_date: [this.today, [ <any>Validators.required]],
       rating: ['', [ <any>Validators.required]],
       brand: ['', [ <any>Validators.required]],
       category: ['', [ <any>Validators.required]],
@@ -97,7 +99,8 @@ export class AdminComponent implements OnInit{
     this.oldName = review.title;
     this.modalForm = this._fb.group({
       title: [review.title, [ <any>Validators.required]],
-      date: [review.date, [ <any>Validators.required]],
+      post_date: [review.post_date, [ <any>Validators.required]],
+      edit_date: [this.today, [ <any>Validators.required]],
       rating: [review.rating, [ <any>Validators.required]],
       brand: [review.brand, [ <any>Validators.required]],
       category: [review.category, [ <any>Validators.required]],

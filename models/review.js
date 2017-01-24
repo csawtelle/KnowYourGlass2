@@ -1,4 +1,5 @@
 // Load required packages
+var date = new Date().toLocaleString().split(',')[0]
 var mongoose = require('mongoose');
 
 // Define our beer schema
@@ -7,7 +8,8 @@ var ReviewSchema   = new mongoose.Schema({
     brand: {type: String, required: true},
     category: {type: String, required: true},
     sensor: {type: String, required: true},
-    date: {type: String, required: true},
+    post_date: {type: Date, required: true, default: date},
+    edit_date: {type: Date, required: true},
     rating: {type: String, required: true},
     title_image: {type: String, required: true},
     content: {type: String, required: true},
