@@ -3,7 +3,7 @@ var Review = require('../models/review');
 
 exports.postReview = function(req, res) {
   var review = new Review();
-    review.post_date = req.body_post_date; 
+    review.post_date = req.body.post_date; 
     review.edit_date = req.body.edit_date;
     review.sensor = req.body.sensor;
     review.title = req.body.title;
