@@ -67,17 +67,17 @@ router.route('/api/setup')
 router.route('/api/authenticate')
   .post(jwtAuth.tokenRequest);
 router.route('/api/users')
-  .get(jwtAuth.jwtAuthCheck, jwtAuth.returnUsers);
+  .get(jwtAuth.jwtCheck, jwtAuth.returnUsers);
 //Blogs
 router.route('/api/blogs/:title')
-  .delete(jwtAuth.jwtAuthCheck, blogCtrl.deleteBlog);
+  .delete(jwtAuth.jwtCheck, blogCtrl.deleteBlog);
 router.route('/api/blogs')
-  .post(jwtAuth.jwtAuthCheck, blogCtrl.postBlog);
+  .post(jwtAuth.jwtCheck, blogCtrl.postBlog);
 router.route('/api/reviews')
-  .post(jwtAuth.jwtAuthCheck, reviewCtrl.postReview);
+  .post(jwtAuth.jwtCheck, reviewCtrl.postReview);
 router.route('/api/reviews/:title')
-  .put(jwtAuth.jwtAuthCheck, reviewCtrl.putReview)
-  .delete(jwtAuth.jwtAuthCheck, reviewCtrl.deleteReview);
+  .put(jwtAuth.jwtCheck, reviewCtrl.putReview)
+  .delete(jwtAuth.jwtCheck, reviewCtrl.deleteReview);
 
 //TODO -- integrate this with the rest of the protected routes somehow since its unprotected now
 app.post('/api/upload', upload.any(), function(req, res) {
