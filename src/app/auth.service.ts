@@ -7,7 +7,7 @@ import { RequestMethod } from '@angular/http';
 @Injectable()
 export class AuthService {
   isLoggedIn: boolean;
-  user: string;
+  username: string;
   password: string;
   token: string;
 
@@ -15,9 +15,9 @@ export class AuthService {
   } //end constructor
   getToken(user: string, password: string): Observable<any> {
     this.isLoggedIn = true;
-    this.user= user;
+    this.username= user;
     this.password= password;
-    let body = ({'name':this.user,'password':this.password});
+    let body = ({'username':this.username,'password':this.password});
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({ 
                       headers: headers, 
