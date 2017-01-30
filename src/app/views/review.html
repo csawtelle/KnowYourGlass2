@@ -4,25 +4,29 @@
       <div class="col-xs-10 offset-xs-1 reviewbody">
         <div class="postheader" [ngStyle]="{'background-image':'url(../images/'+review.title_image+')', 'background-size':'cover', 'background-position':'center'}">
           <h1 class="reviewheadertop">{{ review.title }}</h1>
-          <p class="reviewheaderbottom">Posted On: {{review.date}}</p>
+          <p class="reviewheaderbottom">Posted On: {{review.date}}<br />
+          Author: {{ review.author }}</p>
         </div>
 
       <div class="postbody">
-        <div>
-          {{review.author}}
+        <ul class="list-group row">
+        <div class="col-xs-6">
+        <li class="list-group-item">
+          Rating: {{review.rating}}
+        </li>
+        <li class="list-group-item">
+          Brand: {{review.brand}}
+        </li>
         </div>
-        <div>
-          {{review.rating}}
+        <div class="col-xs-6">
+        <li class="list-group-item">
+          Category: {{review.category}}
+        </li>
+        <li class="list-group-item">
+          Sensor: {{review.sensor}}
+        </li>
         </div>
-        <div>
-          {{review.brand}}
-        </div>
-        <div>
-          {{review.category}}
-        </div>
-        <div>
-          {{review.sensor}}
-        </div>
+        </ul>
         <!-- XSS Vulnerability Issue #83-->
         <div [innerHtml]="review.content | safeHtml"></div>
 
