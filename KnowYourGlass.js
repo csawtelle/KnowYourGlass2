@@ -3,8 +3,10 @@ var express = require('express');
 var cookieParser = require('cookie-parser'); //cookie parser
 var bodyParser = require('body-parser');
 var router = express.Router();
+var cors = require('cors');
 var app = express();
 app.use(cookieParser()) //cookie parser
+app.use(cors())
 app.get('/api/cookies', (req, res) => {
   console.log('cookies in the request is: ', req.cookies);
   res.send(req.cookies);
@@ -71,10 +73,13 @@ router.route('/api/users')
 //Blogs
 router.route('/api/blogs/:title')
   .delete(jwtAuth.jwtCheck, blogCtrl.deleteBlog);
+router.route('/api/blogs/:title')
+  .put(blogCtrl.putBlog);
 router.route('/api/blogs')
-  .post(jwtAuth.jwtCheck, blogCtrl.postBlog);
+  .post(blogCtrl.postBlog);
 router.route('/api/reviews')
-  .post(jwtAuth.jwtCheck, reviewCtrl.postReview);
+//  .post(jwtAuth.jwtCheck, reviewCtrl.postReview);
+    .post(reviewCtrl.postReview);
 router.route('/api/reviews/:title')
   .put(jwtAuth.jwtCheck, reviewCtrl.putReview)
   .delete(jwtAuth.jwtCheck, reviewCtrl.deleteReview);
