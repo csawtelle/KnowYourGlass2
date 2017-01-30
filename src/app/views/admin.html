@@ -3,16 +3,6 @@
 <!-- BODY -->
   <div class="modal-body">
     <file-upload></file-upload>
-    <ckeditor
-      [(ngModel)]="editorContent"
-      [config]="{uiColor: '#FFFFFF'}"
-      (change)="onChange($event)"
-      (ready)="onReady($event)"
-      (focus)="onFocus($event)"
-      (blur)="onBlur($event)"
-      debounce="500">
-    </ckeditor>
- 
     <form [formGroup]="modalForm" (ngSubmit)="save(modalForm.value, modalForm.valid)">
      <div class="form-group">
         Title:
@@ -49,6 +39,8 @@
             {{sensor.text}}
           </option>
         </select>
+        Review Content (Recommend Cut/Paste):
+        <input formControlName="content">
       </div> <!--End Group-->
       <button type="submit">Save</button>
     </form>

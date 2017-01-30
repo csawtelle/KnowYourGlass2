@@ -20,7 +20,6 @@ export class AdminComponent implements OnInit{
   public oldName: any;
   public varinadmin: any;
   public token: any;
-  public editorContent: string;
   public unsortedReviews: any;  
   public today: string = new Date().toLocaleString();
   constructor(
@@ -38,7 +37,6 @@ export class AdminComponent implements OnInit{
           this.reviews[i] = this.unsortedReviews[reviewsLength - (i + 1)];
         }
       });
-
   }
   
   ngOnInit(){
@@ -109,7 +107,6 @@ export class AdminComponent implements OnInit{
       content: [review.content, [ <any>Validators.required]],
       author: [review.author, [ <any>Validators.required]]
     });
-    this.editorContent = review.content;
     this.modalRef = this.modalService.open(content);
   }
 
@@ -119,7 +116,6 @@ export class AdminComponent implements OnInit{
 
   save(model: Review, isValid: boolean) {
     console.log(model);
-    model.content = this.editorContent;
     if(this.newPost) {
       this.reviewService.postReview(model).subscribe(response => this.response = response);
     } else {
@@ -127,25 +123,5 @@ export class AdminComponent implements OnInit{
     }
     this.modalRef.close();
   }
-
-  canDeactivate() {
-    console.log('i am navigating away');
-  }
-
-  onBlur() {
-    console.log("You stopped touching it");
-  }
-
-  onReady() {
-    console.log("Pizzas ready");
-  }
-
-  onFocus() {
-    console.log("You touched it");
-  }
-
-  onChange(content: string) {
-    this.editorContent = content;
-    console.log(this.editorContent);
-  }
+  canDeactivate() {}
 }
