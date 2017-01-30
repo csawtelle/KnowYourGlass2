@@ -16,6 +16,9 @@
     </p>
   </div><!-- end intro-message -->
 </div><!-- end main header -->
+
+
+
 <div style="height:100%">
 <div *ngFor="let review of reviews; let i = index">
   <div *ngIf="i < 4" class="text-center postblocks" [ngStyle]="{'padding':'0','background-image': 'url(../images/'+review.title_image+')','background-size':'cover','background-position':'center'}">

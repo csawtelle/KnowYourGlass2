@@ -46,14 +46,20 @@
     color: #444;
     margin-top: 20px;
 }
-
+.postbody quote {
+    padding: .5rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    border-left: .25rem solid #eceeef;
+}
 .postbody p {
     color: #616161;
     line-height: 1.75;
     font-size: 17px;
 }
-.img-responsive {
+.postbody .img-responsive {
   width:100% !important;
+	margin-top:15px;
 }
 .newpostbutton {
     width: 50%;
@@ -436,7 +442,7 @@ a {
 .latestposttext {
     color:#fff;
     text-shadow:2px 3px 6px #000;
-    padding-top:30%;
+    padding-top:170px;
     transition: all .5s;
     background-color:rgba(0,0,0,.2);
     margin:0;
