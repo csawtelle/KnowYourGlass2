@@ -1,7 +1,6 @@
-
-<nav class="navbar navbar-fixed-top navbar-light bg-faded">
-  <a class="navbar-brand whitefont" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">know<strong>yourglass</strong></a>
-  <ul class="nav navbar-nav float-xs-right whitefont">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <a class="navbar-brand whitefont" routerLink="/" routerLinkActive="active">know<strong>yourglass</strong></a>
+  <ul class="navbar-nav ml-auto">
     <li *ngIf="!this.tokenService.currentToken" class="nav-item">
       <a routerLink="/Reviews" routerLinkActive="active" class="whitefont">Reviews</a>
     </li>
