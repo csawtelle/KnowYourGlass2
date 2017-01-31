@@ -2,12 +2,14 @@
   <a class="navbar-brand whitefont" routerLink="/" routerLinkActive="active">know<strong>yourglass</strong></a>
   <ul class="navbar-nav ml-auto">
     <li *ngIf="!this.tokenService.currentToken" class="nav-item">
-      <a routerLink="/Reviews" routerLinkActive="active" class="whitefont">Reviews</a>
+      <a class="nav-link whitefont" routerLink="/Reviews" routerLinkActive="active">Reviews</a>
     </li>
     <li *ngIf="!this.tokenService.currentToken" class="nav-item">
-      <a routerLink="/Blogs" routerLinkActive="active" class="whitefont">Blogs</a>
+      <a class="nav-link whitefont" routerLink="/Blogs" routerLinkActive="active">Blogs</a>
     </li>
-    <li class="nav-item" *ngIf="this.tokenService.currentToken" (click)="logout()"><a class="whitefont hoverpointer" routerLinkActive="active">Logout</a></li>
+    <li class="nav-item" *ngIf="this.tokenService.currentToken" (click)="logout()">
+      <a class="nav-link whitefont" routerLinkActive="active">Logout</a>
+    </li>
     <li class="searchtop">
       <search-bar></search-bar>
     </li>
