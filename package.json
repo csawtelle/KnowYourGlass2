@@ -6,6 +6,7 @@
     "body-parser": "*",
     "connect-flash": "*",
     "cookie-parser": "*",
+    "cors": "^2.8.1",
     "express": "*",
     "express-session": "*",
     "jsonwebtoken": "^7.1.9",
