@@ -26,7 +26,7 @@
     "@types/node": "0.0.2",
     "angular2-template-loader": "^0.6.0",
     "awesome-typescript-loader": "^2.2.4",
-    "bootstrap": "^4.0.0-alpha.5",
+    "bootstrap": "^4.0.0-alpha.6",
     "bootstrap-loader": "2.0.0-beta.16",
     "bootstrap-sass": "^3.3.7",
     "ckeditor": "^4.6.0",

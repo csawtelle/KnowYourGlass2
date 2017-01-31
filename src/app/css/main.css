@@ -23,9 +23,6 @@
   float: right;
   margin-left: 20px;
 }
-.nav-item {
-  margin-top:8px;
-}
 .bg-faded {
   background: rgba(0,0,0, .5);
 }
@@ -531,6 +528,7 @@ a {
   cursor: pointer;
 }
 #search-box{
+  margin-right:5px;
   width: 200px;
   height: 20px;
   vertical-align: middle;
