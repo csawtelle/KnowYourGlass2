@@ -548,4 +548,21 @@ a {
   border-color: #000000;
 }
 
-
+/* SLIDER */
+.slide-button {
+  margin-top: 57px;
+  position: fixed;
+  left: auto;
+  z-index: 9999;
+}
+.slide-menu {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: 57px;
+  background: #FFFFFF;
+  position: fixed;
+  left: auto;
+  width: 30%;
+  z-index: 9999;
+}
