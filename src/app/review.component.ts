@@ -22,7 +22,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class ReviewComponent { 
   sideBarState:string = 'in';
   review: Review;
-  reviewName = '';
+  reviewName:string = '';
+  pageIdentifier:string = '';
+  disqusShortname:string = 'knowyourglass';
 
   constructor(
     private reviewService: ReviewService,
@@ -32,6 +34,7 @@ export class ReviewComponent {
   ngOnInit() {
     this.route.params.subscribe(params => this.reviewName = params['id']);
     this.reviewService.getReview(this.reviewName).subscribe(review => this.review = review[0]);
+    this.pageIdentifier = this.reviewName; 
   }
 
   toggleSlideState() {
