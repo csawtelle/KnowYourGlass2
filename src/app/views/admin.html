@@ -58,15 +58,15 @@
   <div class="row">
     <div class="col-xs-8 offset-xs-2 adminpostscontainer">
       <button class="btn btn-lg btn-outline-primary newpostbutton" (click)="openNew(content)">New Post</button>
-        <div *ngFor="let single of reviews">
-          <div [routerLink]="['/review/' + single.title]" class="list-group hoverpointer">
-            <div class="list-group-item list-hover-highlight text-center">
-              <h1>{{single.title}}</h1>
-              <button class="btn btn-lg btn-info" (click)="openOld(content, single)">Edit</button>
-              <button class="btn btn-lg btn-info" (click)="deleteReview(single?.name)">Delete</button>
-            </div><!-- end list group item -->
-          </div><!-- end list-group -->
-        </div> <!-- end *ngFor -->
+      <div *ngFor="let single of reviews">
+        <div [routerLink]="['/review/' + single.title]" class="list-group hoverpointer">
+          <div class="list-group-item list-hover-highlight text-center">
+            <h1>{{single.title}}</h1>
+            <button class="btn btn-lg btn-info" (click)="openOld(content, single)">Edit</button>
+            <button class="btn btn-lg btn-info" (click)="deleteReview(single?.name)">Delete</button>
+          </div><!-- end list group item -->
+        </div><!-- end list-group -->
+      </div> <!-- end *ngFor -->
     </div><!-- end col -->
   </div><!-- end row -->
 </div> <!-- end container -->
