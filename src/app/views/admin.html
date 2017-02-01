@@ -62,10 +62,10 @@
         <div [routerLink]="['/review/' + single.title]" class="list-group hoverpointer">
           <div class="list-group-item list-hover-highlight text-center">
             <h1>{{single.title}}</h1>
-            <button class="btn btn-lg btn-info" (click)="openOld(content, single)">Edit</button>
-            <button class="btn btn-lg btn-info" (click)="deleteReview(single?.name)">Delete</button>
           </div><!-- end list group item -->
         </div><!-- end list-group -->
+        <button class="btn btn-lg btn-info" (click)="openOld(content, single)">Edit</button>
+        <button class="btn btn-lg btn-info" (click)="deleteReview(single?.name)">Delete</button>
       </div> <!-- end *ngFor -->
     </div><!-- end col -->
   </div><!-- end row -->
