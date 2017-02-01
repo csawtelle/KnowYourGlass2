@@ -8,10 +8,15 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   templateUrl: './views/review.html',
   animations: [
     trigger('slide', [
+       state('init', style({
+        transform: 'translate3d(0, 0, 0)'
+      })),
       state('in', style({
+        width: '30%',
         transform: 'translate3d(0, 0, 0)'
       })),
       state('out', style({
+        width: '30%',
         transform: 'translate3d(100%, 0, 0)'
       })),
       transition('in => out', animate('400ms ease-in-out')),
@@ -19,12 +24,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
     ]),
   ]
 })
-export class ReviewComponent { 
-  sideBarState:string = 'in';
-  review: Review;
+export class ReviewComponent implements OnInit { 
+  sideBarState:string = 'init';
   reviewName:string = '';
   pageIdentifier:string = '';
   disqusShortname:string = 'knowyourglass';
+  review: Review;
 
   constructor(
     private reviewService: ReviewService,
@@ -39,6 +44,12 @@ export class ReviewComponent {
 
   toggleSlideState() {
     console.log(this.sideBarState);
-    this.sideBarState = this.sideBarState === 'out' ? 'in' : 'out';
+    if(this.sideBarState == "out") {
+      this.sideBarState = "in";
+    } else if (this.sideBarState == "in") {
+      this.sideBarState = "out";
+    } else {
+      this.sideBarState = "in";
+    }
   }
 }
