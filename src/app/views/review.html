@@ -2,7 +2,7 @@
   <button class="slide-button fa fa-comments fa-3" (click)="toggleSlideState()"></button>
   <div class="slide-menu" [@slide]="sideBarState">
     <disqus 
-	    [shortname]="disqusShortName" 
+      [shortname]="disqusShortName" 
       [identifier]="review._id" 
       [title]="review.title" 
       [url]="pageUrl" 
