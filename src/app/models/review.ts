@@ -1,4 +1,5 @@
 export class Review {
+  _id: string;
   brand: string;
   category: string;
   post_date: string;

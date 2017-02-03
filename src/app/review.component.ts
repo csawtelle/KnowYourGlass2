@@ -27,23 +27,26 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class ReviewComponent implements OnInit { 
   sideBarState:string = 'init';
   reviewName:string = '';
-  pageIdentifier:string = '';
-  disqusShortname:string = 'knowyourglass';
   review: Review;
+  pageUrl: string = '';
+  disqusShortName:string = 'christophersawtelle-com';
 
   constructor(
     private reviewService: ReviewService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) {
+      console.log(router) 
+    }
 
   ngOnInit() {
     this.route.params.subscribe(params => this.reviewName = params['id']);
     this.reviewService.getReview(this.reviewName).subscribe(review => this.review = review[0]);
-    this.pageIdentifier = this.reviewName; 
+    this.pageUrl = 'christophersawtelle.com/' + this.reviewName;
   }
 
   toggleSlideState() {
     console.log(this.sideBarState);
+    console.log(this.review._id);
     if(this.sideBarState == "out") {
       this.sideBarState = "in";
     } else if (this.sideBarState == "in") {
