@@ -1,9 +1,14 @@
 <div *ngIf="review">
   <button class="slide-button fa fa-comments fa-3" (click)="toggleSlideState()"></button>
   <div class="slide-menu" [@slide]="sideBarState">
-		<disqus [shortname]="disqusShortName" [identifier]="review._id" [title]="review.title" [url]="pageUrl" [lang]="'en'"
-		></disqus>
-	</div>
+    <disqus 
+	    [shortname]="disqusShortName" 
+      [identifier]="review._id" 
+      [title]="review.title" 
+      [url]="pageUrl" 
+      [lang]="'en'"
+    ></disqus>
+  </div>
   <div class="container" style="margin-top:10%">
     <div class="row">
       <div class="col-xs-10 offset-xs-1 reviewbody">
