@@ -22,7 +22,7 @@ import { AuthService } from './auth.service';
 import { KeysPipe } from './filters/keys.pipe';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SafeHtmlPipe } from './filters/safehtml.pipe';
-import { DisqusModule } from 'ng2-awesome-disqus';
+import { DisqusModule } from './modules/disqus.module';
 
 @NgModule({
   imports:  [ 
