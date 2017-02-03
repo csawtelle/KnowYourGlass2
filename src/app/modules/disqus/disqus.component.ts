@@ -14,7 +14,7 @@ export class DisqusComponent implements AfterViewInit, AfterViewChecked, OnDestr
   @Input() url: string;
   @Input() categoryId: string;
   @Input() lang: string;
-	@Input() title: string;
+  @Input() title: string;
 
   /** Remove DISQUS script on destroy
    *  This is useful to let DISQUS change its theme according if the page background color changed.
