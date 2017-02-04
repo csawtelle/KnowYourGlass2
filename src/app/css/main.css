@@ -547,6 +547,18 @@ a {
   height: 40px;
   padding-left: 5px;
   padding: 5px;
+  color:white;
+  cursor:pointer;
+}
+
+.search-results {
+  position: absolute;
+  background-color: rgba(202, 202, 202, 0.2);
+}
+
+.search-container {
+  position: absolute;
+  right:2;
 }
 #search-box{
   margin-right:5px;

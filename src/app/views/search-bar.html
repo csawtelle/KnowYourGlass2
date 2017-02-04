@@ -1,7 +1,9 @@
-<div>
+<div class="search-container">
   <input #searchBox id="search-box" placeholder="Search" (keyup)="partialSearch('&text=' + searchBox.value)"/>
-  <div *ngFor="let review of reviews | async" (click)="openReview(review.title)">
-    <div class="search-result">{{review.title}}</div>
-  </div>
   <button class="fa fa-search btn btn-outline-info" (click)="search(searchBox.value)"></button>
+  <div class="search-results">
+    <div *ngFor="let review of reviews | async" (click)="openReview(review.title)">
+      <div class="search-result">{{review.title}}</div>
+    </div>
+  </div>
 </div>
