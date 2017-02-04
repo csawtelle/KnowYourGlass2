@@ -552,7 +552,7 @@ a {
 }
 
 .search-results {
-	position: absolute;
+  position: absolute;
   background-color: rgba(202, 202, 202, 0.2);
 }
 
