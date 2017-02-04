@@ -21,7 +21,6 @@ exports.getBlogs = ((req, res) => {
   });  
 });
 
-
 exports.postBlog = ((req,res) => {
   var blog = new Blog(req.body);
   blog.save((err, blog) => {
