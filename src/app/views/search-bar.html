@@ -1,5 +1,5 @@
 <div class="search-container">
-  <input #searchBox id="search-box" placeholder="Search" (keyup)="partialSearch('&text=' + searchBox.value)"/>
+  <input #searchBox id="search-box" autocomplete="off" placeholder="Search" (keyup)="partialSearch('&text=' + searchBox.value)"/>
   <button class="fa fa-search btn btn-outline-info" (click)="search(searchBox.value)"></button>
   <div class="search-results">
     <div *ngFor="let review of reviews | async" (click)="openReview(review.title)">
