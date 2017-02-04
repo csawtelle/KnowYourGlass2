@@ -556,10 +556,6 @@ a {
   background-color: rgba(202, 202, 202, 0.2);
 }
 
-.search-container {
-  position: absolute;
-  right:2;
-}
 #search-box{
   margin-right:5px;
   width: 200px;
