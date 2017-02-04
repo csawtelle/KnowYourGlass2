@@ -36,6 +36,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   openReview(name: string) {
+    this.searchTerms.next('');
     let link = ['/review', name]
     this.router.navigate(link);
   }
