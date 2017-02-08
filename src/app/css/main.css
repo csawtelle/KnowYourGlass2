@@ -522,7 +522,7 @@ a {
 
 /* SLIDER */
 .slide-button {
-  margin-top: 57px;
+  margin-top: 50px;
   position: fixed;
   left: auto;
   z-index: 9999;
@@ -531,7 +531,6 @@ a {
   top: 0;
   right: 0;
   bottom: 0;
-  margin-top: 57px;
   background: #FFFFFF;
   position: fixed;
   left: auto;
@@ -562,3 +561,8 @@ a {
   height: 20px;
   vertical-align: middle;
 }
+.kygicon {
+  width: 50px;
+  height: 50px;
+  background-size: 50px;
+} 
