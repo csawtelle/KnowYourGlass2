@@ -43,6 +43,16 @@ module.exports = {
     chunkFilename: '[id].[hash].chunk.js'
   },
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        resolve: {},
+        tslint: {
+          emitErrors: false,
+          failOnHint: false,
+          resourcePath: './app'
+        },
+      },
+    }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangle: {
@@ -82,9 +92,9 @@ module.exports = {
       Util: "exports?Util!bootstrap/js/dist/util",
     }),
     new sh({
-      onBuildStart: ['mkdir /build/KnowYourGlass2/public'],
+      onBuildStart: ['mkdir /build/dev/KnowYourGlass2/public'],
       onBuildEnd:[
-        'ln -s /build/KnowYourGlass2/src/app/images /build/KnowYourGlass2/public/images'
+        'ln -s /build/KnowYourGlass2/src/app/images /build/dev/KnowYourGlass2/public/images'
       ]
     })
   ]
