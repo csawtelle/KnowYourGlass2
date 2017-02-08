@@ -1,5 +1,10 @@
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <a class="navbar-brand whitefont" routerLink="/" routerLinkActive="active">know<strong>yourglass</strong></a>
+  <img 
+    routerLink="/" 
+    routerLinkActive="active"
+    style="background:url('../images/icon.png');background-size: 50px;" 
+    class="kygicon"
+  />
   <ul class="navbar-nav ml-auto">
     <li *ngIf="!this.tokenService.currentToken" class="nav-item">
       <a class="nav-link whitefont" routerLink="/Reviews" routerLinkActive="active">Reviews</a>
