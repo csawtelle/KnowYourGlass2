@@ -9,6 +9,7 @@
     "cors": "^2.8.1",
     "express": "*",
     "express-session": "*",
+    "generate-password": "^1.3.0",
     "jsonwebtoken": "^7.1.9",
     "mongoose": "*",
     "multer": "*",
