@@ -14,8 +14,8 @@ app.get('/api/cookies', (req, res) => {
 //Controllers
 var reviewCtrl = require('./controllers/reviewCtrl');
 var blogCtrl = require('./controllers/blogCtrl');
-var authCtrl = require('./controllers/jwtCtrl');
-var mailerCtrl = require('./controllers/mailerCtrl');
+var tokenCtrl = require('./controllers/tokenCtrl');
+var accountCtrl = require('./controllers/accountCtrl');
 
 //Database
 var mongoose = require('mongoose');
@@ -43,10 +43,6 @@ var upload = multer({
     }
 });
 
-//Mailer Code
-router.route('/api/mailer')
-  .post(mailerCtrl.sendHash);
-
 //Routes
 router.route('/api/reviews')
   .get(reviewCtrl.getReviews);
@@ -61,27 +57,28 @@ router.route('/api/blogs/:title')
 
 //Protected Routes
 router.route('/api')
-  .get(authCtrl.apiWelcome);
-router.route('/api/setup')
-  .post(authCtrl.createUser);
-router.route('/api/authenticate')
-  .post(authCtrl.tokenRequest);
+  .get(tokenCtrl.apiWelcome);
 router.route('/api/users')
-  .get(authCtrl.jwtCheck, authCtrl.returnUsers);
-
+  .get(tokenCtrl.jwtCheck, tokenCtrl.returnUsers);
+router.route('/api/user/authenticate')
+  .post(tokenCtrl.tokenRequest);
+router.route('/api/user/register')
+  .post(accountCtrl.createAccount);
+router.route('/api/user/register/verify')
+  .post(accountCtrl.verifyAccount);
 //Blogs
 router.route('/api/blogs')
-  .post(authCtrl.jwtCheck, blogCtrl.postBlog);
+  .post(tokenCtrl.jwtCheck, blogCtrl.postBlog);
 router.route('/api/blogs/:title')
-  .put(authCtrl.jwtCheck, blogCtrl.putBlog)
-  .delete(authCtrl.jwtCheck, blogCtrl.deleteBlog);
+  .put(tokenCtrl.jwtCheck, blogCtrl.putBlog)
+  .delete(tokenCtrl.jwtCheck, blogCtrl.deleteBlog);
 
 //Reviews
 router.route('/api/reviews')
-  .post(authCtrl.jwtCheck, reviewCtrl.postReview);
+  .post(tokenCtrl.jwtCheck, reviewCtrl.postReview);
 router.route('/api/reviews/:title')
-  .put(authCtrl.jwtCheck, reviewCtrl.putReview)
-  .delete(authCtrl.jwtCheck, reviewCtrl.deleteReview);
+  .put(tokenCtrl.jwtCheck, reviewCtrl.putReview)
+  .delete(tokenCtrl.jwtCheck, reviewCtrl.deleteReview);
 
 //TODO -- integrate this with the rest of the protected routes somehow since its unprotected now
 app.post('/api/upload', upload.any(), function(req, res) {
