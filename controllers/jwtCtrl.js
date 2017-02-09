@@ -1,11 +1,10 @@
-var User = require('../models/jwtuser');
+var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 
 exports.createUser = function(req, res) {
   var user = new User({
     username: req.body.username,
     password: req.body.password,
-    admin: req.body.admin
   });
 
   // save the sample user

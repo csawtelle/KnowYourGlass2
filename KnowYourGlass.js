@@ -14,10 +14,8 @@ app.get('/api/cookies', (req, res) => {
 //Controllers
 var reviewCtrl = require('./controllers/reviewCtrl');
 var blogCtrl = require('./controllers/blogCtrl');
-var jwtAuth = require('./controllers/jwtCtrl');
-//Models
-var User = require('./models/jwtuser');
-var Review = require('./models/review');
+var authCtrl = require('./controllers/jwtCtrl');
+var mailerCtrl = require('./controllers/mailerCtrl');
 
 //Database
 var mongoose = require('mongoose');
@@ -25,10 +23,6 @@ mongoose.connect('mongodb://localhost:27017/kyg');
 
 //File Upload
 var multer = require('multer');
-
-//jwt work
-var jwt = require('jsonwebtoken');
-app.set('superSecret','keyboardcatiscool');
 
 //File Upload Code
 app.use(express.static(__dirname + '/public'));
@@ -49,6 +43,10 @@ var upload = multer({
     }
 });
 
+//Mailer Code
+router.route('/api/mailer')
+  .post(mailerCtrl.sendHash);
+
 //Routes
 router.route('/api/reviews')
   .get(reviewCtrl.getReviews);
@@ -63,26 +61,27 @@ router.route('/api/blogs/:title')
 
 //Protected Routes
 router.route('/api')
-  .get(jwtAuth.apiWelcome);
+  .get(authCtrl.apiWelcome);
 router.route('/api/setup')
-  .post(jwtAuth.createUser);
+  .post(authCtrl.createUser);
 router.route('/api/authenticate')
-  .post(jwtAuth.tokenRequest);
+  .post(authCtrl.tokenRequest);
 router.route('/api/users')
-  .get(jwtAuth.jwtCheck, jwtAuth.returnUsers);
+  .get(authCtrl.jwtCheck, authCtrl.returnUsers);
+
 //Blogs
-router.route('/api/blogs/:title')
-  .delete(jwtAuth.jwtCheck, blogCtrl.deleteBlog);
-router.route('/api/blogs/:title')
-  .put(blogCtrl.putBlog);
 router.route('/api/blogs')
-  .post(blogCtrl.postBlog);
+  .post(authCtrl.jwtCheck, blogCtrl.postBlog);
+router.route('/api/blogs/:title')
+  .put(authCtrl.jwtCheck, blogCtrl.putBlog)
+  .delete(authCtrl.jwtCheck, blogCtrl.deleteBlog);
+
+//Reviews
 router.route('/api/reviews')
-//  .post(jwtAuth.jwtCheck, reviewCtrl.postReview);
-    .post(reviewCtrl.postReview);
+  .post(authCtrl.jwtCheck, reviewCtrl.postReview);
 router.route('/api/reviews/:title')
-  .put(jwtAuth.jwtCheck, reviewCtrl.putReview)
-  .delete(jwtAuth.jwtCheck, reviewCtrl.deleteReview);
+  .put(authCtrl.jwtCheck, reviewCtrl.putReview)
+  .delete(authCtrl.jwtCheck, reviewCtrl.deleteReview);
 
 //TODO -- integrate this with the rest of the protected routes somehow since its unprotected now
 app.post('/api/upload', upload.any(), function(req, res) {
@@ -96,4 +95,4 @@ app.get('*', function(req, res) {
 });
 
 console.log('Listening - KYG Server has been started');
-app.listen(8080);
+app.listen(8081);

@@ -12,6 +12,7 @@
     "jsonwebtoken": "^7.1.9",
     "mongoose": "*",
     "multer": "*",
+    "nodemailer": "^3.0.2",
     "norch": "*",
     "oauth2orize": "*",
     "passport": "*",
