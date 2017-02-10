@@ -43,6 +43,16 @@ module.exports = {
     chunkFilename: '[id].[hash].chunk.js'
   },
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        resolve: {},
+        tslint: {
+          emitErrors: false,
+          failOnHint: false,
+          resourcePath: './app'
+        },
+      },
+    }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangle: {

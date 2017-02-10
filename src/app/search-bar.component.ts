@@ -17,7 +17,7 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.reviews = this.searchTerms
-      .debounceTime(700)
+      .debounceTime(150)
       .distinctUntilChanged()
       .switchMap(term => term ? this.reviewService.reviewSearch(term): Observable.of<Review[]>([]))
       .catch(error => {

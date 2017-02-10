@@ -3,8 +3,8 @@ var Review = require('../models/review');
 
 exports.postReview = function(req, res) {
   var review = new Review();
-    review.post_date = req.body.post_date; 
-    review.edit_date = req.body.edit_date;
+    review.post_date = new Date();
+    review.edit_date = new Date();
     review.sensor = req.body.sensor;
     review.title = req.body.title;
     review.brand = req.body.brand;
@@ -77,7 +77,7 @@ exports.getReviews = function(req, res) {
                 console.log("Multiple Review Query SUCCEEDED");
                 res.json({ message: 'Get succeeded!', data: review });
             }
-      }).sort('-postDate');
+      });
   } else {
     Review.find({}, function(err, reviews) {
         if(err) {
@@ -117,7 +117,7 @@ exports.getReview = function(req, res) {
                 console.log("Single Review request SUCCEEDED");
                 res.json({ message: 'Get succeded!', data: review });
             }
-      }).sort('-postDate');
+      });
   } else {
     Review.find({title: req.params.title }, function(err, review) {
           if(err) {
@@ -128,14 +128,13 @@ exports.getReview = function(req, res) {
               console.log("Single Review Request SUCCEEDED");
               res.json({ message: 'Get succeded!', data: review });
           }
-    }).sort('-postDate');
+    });
   }
 };
 
 exports.putReview = function(req, res) {
   Review.update({title: req.params.title }, { 
-    post_date: req.body.post_date,
-    edit_date: req.body.edit_date,
+    edit_date: new Date(),
     sensor: req.body.sensor,
     title: req.body.title,
     brand: req.body.brand,
@@ -148,19 +147,19 @@ exports.putReview = function(req, res) {
 
   }, function(err, num, raw) {
     if(err) {
-        res.json({ message: 'Update failed!', data: err});
+      res.json({ message: 'Update failed!', data: err});
     }
     else {
-        Review.find({title: req.body.title }, function(err, review) {
-            if(err) {
-                console.log("Review Update succeeded but GET failed");
-                res.json({ message: 'Update succeded but GET failed!', data: err});
-            }
-            else {
-                console.log("Review Update SUCCESS");
-                res.json({ message: 'Update succeded!', data: review });
-            }
-        }).sort('-postDate');
+      Review.find({title: req.body.title }, function(err, review) {
+        if(err) {
+          console.log("Review Update succeeded but GET failed");
+          res.json({ message: 'Update succeded but GET failed!', data: err});
+        }
+        else {
+          console.log("Review Update SUCCESS");
+          res.json({ message: 'Update succeded!', data: review });
+        }
+      });
     }
   });
 };

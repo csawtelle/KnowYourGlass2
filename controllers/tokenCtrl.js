@@ -1,47 +1,43 @@
-var User = require('../models/jwtuser');
+var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 
-exports.createUser = function(req, res) {
-  var user = new User({
-    username: req.body.username,
-    password: req.body.password,
-    admin: req.body.admin
-  });
-
-  // save the sample user
-  user.save(function(err) {
-    if (err) throw err;
-    console.log('User saved successfully');
-    res.json({ success: true });
-  });
-};
 exports.tokenRequest = function(req, res) {
   console.log("Token was requested");
   User.findOne({
     username: req.body.username
   }, function(err, user) {
-    if (err) throw err;
-    if (!user) {
+	  if (err) { return callback(err); }
+		// No user found with that username
+		if (!user) {
       console.log("User not found.");
       res.json({ success: false, message: 'User not found' });
-    } else if (user) {
-      if (user.password != req.body.password) {
-        console.log("Incorrect user password.");
-        res.json({ success: false, message: 'Incorrect user password.' });
-      } else {
-        console.log("User authentication succeeded.");
-        var token = jwt.sign(user, 'superSecret', {
-          expiresIn: 1440 // expires in 24 hours
-        });
-        res.json({
-          success: true,
-          message: 'Enjoy your token!',
-          token: token
-        });
-      }
-    }
+    }	
+		// Make sure the password is correct
+		user.verifyPassword(req.body.password, function(err, isMatch) {
+			if (err) { 
+				console.log('Compare password function failed. System Error.');
+				res.json({ success: false, message: 'User not found.' });
+			}
+			// Password did not match
+			if (!isMatch) { 
+				console.log('Incorrect password. Authentication Error.');
+				res.json({ success: false, message: 'Incorrect password.' });
+			}
+			if (isMatch) { 
+				// Success
+				console.log("User authentication succeeded.");
+				var token = jwt.sign(user, 'superSecret', {
+					expiresIn: 1440 // expires in 24 hours
+				});
+				res.json({
+					success: true,
+					message: 'User authentication succeeded.',
+					token: token
+				});
+			}
+	  });
   });
-};
+}
 
 exports.apiWelcome = function(req, res) {
   res.json( { message: 'Welcome to the API!' } );

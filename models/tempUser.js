@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
 // Define our user schema
-var UserSchema = new mongoose.Schema({
+var TempUserSchema = new mongoose.Schema({
   username: {
     type: String,
     unique: true,
@@ -16,11 +16,16 @@ var UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true
+  },
+  created: {
+    type: Date,
+    default: Date.now,
+    expires: 300
   }
 });
 
 // Execute before each user.save() call
-UserSchema.pre('save', function(callback) {
+TempUserSchema.pre('save', function(callback) {
   var user = this;
 
   // Break out if the password hasn't changed
@@ -38,7 +43,7 @@ UserSchema.pre('save', function(callback) {
   });
 });
 
-UserSchema.methods.verifyPassword = function(password, cb) {
+TempUserSchema.methods.verifyPassword = function(password, cb) {
   bcrypt.compare(password, this.password, function(err, isMatch) {
     if (err) return cb(err);
     cb(null, isMatch);
@@ -46,4 +51,4 @@ UserSchema.methods.verifyPassword = function(password, cb) {
 };
 
 // Export the Mongoose model
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('TempUser', TempUserSchema);

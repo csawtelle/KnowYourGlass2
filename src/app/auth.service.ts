@@ -1,30 +1,56 @@
 import { Injectable } from '@angular/core';
-import { Routes } from '@angular/router';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { RequestMethod } from '@angular/http';
 
 @Injectable()
 export class AuthService {
   isLoggedIn: boolean;
   username: string;
   password: string;
+  tempPassword: string;
+  persistPassword: string;
+  email: string;
   token: string;
 
   constructor(public http: Http) { 
   } //end constructor
   getToken(user: string, password: string): Observable<any> {
     this.isLoggedIn = true;
-    this.username= user;
-    this.password= password;
+    this.username = user;
+    this.password = password;
     let body = ({'username':this.username,'password':this.password});
     let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({ 
-                      headers: headers, 
-                      method:RequestMethod.Post,
-                      url:'api/authenticate'
-                      });
-    return this.http.post('api/authenticate', body, options)
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post('api/user/authenticate', body, options)
+      .map((res: Response) => res.json() as any)
+      .catch(this.handleError);
+  }
+
+  register(username: string, email: string): Observable<any> {
+    console.log("Called Register");
+    this.username = username;
+    this.email = email;
+    let body = ({'username':this.username, 'email':this.email});
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers: headers });
+    console.log("The body is: " + JSON.stringify(body));
+    console.log("The header are: " + JSON.stringify(headers));
+    console.log("The options: " + JSON.stringify(options));
+    return this.http.post('api/user/register', body, options)
+      .map((res: Response) => res.json() as any)
+      .catch(this.handleError);
+  }
+
+  confirmRegister(username: string, tempPassword: string, persistPassword: string, email: string): Observable<any> {
+    this.username = username;
+    this.tempPassword = tempPassword;
+    this.persistPassword = persistPassword;
+    this.email = email;
+
+    let body = ({'username': this.username, 'tempPassword': this.tempPassword, 'persistPassword': this.persistPassword, 'email': this.email });
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post('api/user/register/verify', body, options)
       .map((res: Response) => res.json() as any)
       .catch(this.handleError);
   }

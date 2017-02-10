@@ -14,10 +14,8 @@ app.get('/api/cookies', (req, res) => {
 //Controllers
 var reviewCtrl = require('./controllers/reviewCtrl');
 var blogCtrl = require('./controllers/blogCtrl');
-var jwtAuth = require('./controllers/jwtCtrl');
-//Models
-var User = require('./models/jwtuser');
-var Review = require('./models/review');
+var tokenCtrl = require('./controllers/tokenCtrl');
+var accountCtrl = require('./controllers/accountCtrl');
 
 //Database
 var mongoose = require('mongoose');
@@ -25,10 +23,6 @@ mongoose.connect('mongodb://localhost:27017/kyg');
 
 //File Upload
 var multer = require('multer');
-
-//jwt work
-var jwt = require('jsonwebtoken');
-app.set('superSecret','keyboardcatiscool');
 
 //File Upload Code
 app.use(express.static(__dirname + '/public'));
@@ -63,26 +57,28 @@ router.route('/api/blogs/:title')
 
 //Protected Routes
 router.route('/api')
-  .get(jwtAuth.apiWelcome);
-router.route('/api/setup')
-  .post(jwtAuth.createUser);
-router.route('/api/authenticate')
-  .post(jwtAuth.tokenRequest);
+  .get(tokenCtrl.apiWelcome);
 router.route('/api/users')
-  .get(jwtAuth.jwtCheck, jwtAuth.returnUsers);
+  .get(tokenCtrl.jwtCheck, tokenCtrl.returnUsers);
+router.route('/api/user/authenticate')
+  .post(tokenCtrl.tokenRequest);
+router.route('/api/user/register')
+  .post(accountCtrl.createAccount);
+router.route('/api/user/register/verify')
+  .post(accountCtrl.verifyAccount);
 //Blogs
-router.route('/api/blogs/:title')
-  .delete(jwtAuth.jwtCheck, blogCtrl.deleteBlog);
-router.route('/api/blogs/:title')
-  .put(blogCtrl.putBlog);
 router.route('/api/blogs')
-  .post(blogCtrl.postBlog);
+  .post(tokenCtrl.jwtCheck, blogCtrl.postBlog);
+router.route('/api/blogs/:title')
+  .put(tokenCtrl.jwtCheck, blogCtrl.putBlog)
+  .delete(tokenCtrl.jwtCheck, blogCtrl.deleteBlog);
+
+//Reviews
 router.route('/api/reviews')
-//  .post(jwtAuth.jwtCheck, reviewCtrl.postReview);
-    .post(reviewCtrl.postReview);
+  .post(tokenCtrl.jwtCheck, reviewCtrl.postReview);
 router.route('/api/reviews/:title')
-  .put(jwtAuth.jwtCheck, reviewCtrl.putReview)
-  .delete(jwtAuth.jwtCheck, reviewCtrl.deleteReview);
+  .put(tokenCtrl.jwtCheck, reviewCtrl.putReview)
+  .delete(tokenCtrl.jwtCheck, reviewCtrl.deleteReview);
 
 //TODO -- integrate this with the rest of the protected routes somehow since its unprotected now
 app.post('/api/upload', upload.any(), function(req, res) {

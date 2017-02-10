@@ -9,47 +9,117 @@ import { TokenService } from './token.service';
 })
 
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  accountForm: FormGroup;
+  verificationForm: FormGroup;
   usernameErr: string;
   passErr: string;
+  emailErr: string;
+  tempPassErr: string;
+  persistPassErr: string;
+  registered: boolean = true;
+  verifying: boolean = false;
   public response: any;
   public token: any;
- constructor(public tokenService: TokenService, private router: Router, private fb: FormBuilder, public authService: AuthService){
-  this.token = '';
+ 
+  constructor(public tokenService: TokenService, private router: Router, private fb: FormBuilder, public authService: AuthService){
+    this.token = '';
   }
+
   ngOnInit(){
     //form is built here
-    this.form = this.fb.group({
+    this.accountForm = this.fb.group({
       username: [''],
-      password: ['']
+      password: [''],
+      email: ['']
     });
     //watch for changes as we validate
-    this.form.valueChanges.subscribe(data => { 
-    let username = this.form.get('username');
-    let password = this.form.get('password');
-    if (username.invalid && username.dirty){
-      this.usernameErr = "Please enter a username";
-    } else {
-      this.usernameErr = null;
-    }
-    if (password.invalid && password.dirty){
-      this.passErr = "Please enter a password";
-    } else {
-      this.passErr = null;
-    }
-   
-   
+    this.accountForm.valueChanges.subscribe(data => { 
+      let username = this.accountForm.get('username');
+      let password = this.accountForm.get('password');
+      let email = this.accountForm.get('email');
+      if (username.invalid && username.dirty){
+        this.usernameErr = "Please enter a username";
+      } else {
+        this.usernameErr = null;
+      }
+      if (password.invalid && password.dirty){
+        this.passErr = "Please enter a password";
+      } else {
+        this.passErr = null;
+      }
+       if (email.invalid && email.dirty){
+        this.emailErr = "Please enter an Email";
+      } else {
+        this.emailErr = null;
+      }
     });
   }
-  processForm(){
-    this.token = "Logging in...";
-    this.tokenService.getToken(this.form.value.username, this.form.value.password);
-    this.tokenService.loginDelay().subscribe(() => {
-      if (this.tokenService.currentToken) {
-        this.token = "Login Success! Redirecting";
-        
-        this.router.navigate(['/admin']);
-      }
-    }); 
+
+  swapForm(registered: boolean){
+    if(registered) {
+      this.registered = false;
+    } else {
+      this.registered = true;
+    }
   }
+  processAccountForm() {
+    if (this.registered) {
+      this.token = "Logging in...";
+      this.tokenService.getToken(this.accountForm.value.username, this.accountForm.value.password);
+      this.tokenService.loginDelay().subscribe(() => {
+        if (this.tokenService.currentToken) {
+          this.token = "Login Success! Redirecting";
+          this.router.navigate(['/admin']);
+        }
+      });
+    } else {
+      this.authService.register(this.accountForm.value.username, this.accountForm.value.email).subscribe(response => this.response = response);
+      this.verificationForm = this.fb.group({
+        username: this.accountForm.value.username,
+        email: this.accountForm.value.email,
+        tempPassword: [''],
+        persistPassword: ['']
+      });
+      //watch for changes as we validate
+      this.verificationForm.valueChanges.subscribe(data => { 
+        let username = this.verificationForm.get('username');
+        let tempPassword = this.verificationForm.get('tempPassword');
+        let persistPassword = this.verificationForm.get('persistPassword');
+        let email = this.verificationForm.get('email');
+
+       if (username.invalid && username.dirty){
+          this.usernameErr = "Please enter a username";
+        } else {
+          this.usernameErr = null;
+        }
+        if (tempPassword.invalid && tempPassword.dirty){
+          this.tempPassErr = "Please enter a password";
+        } else {
+          this.tempPassErr = null;
+        }
+        if (persistPassword.invalid && persistPassword.dirty){
+          this.persistPassErr = "Please enter a password";
+        } else {
+          this.persistPassErr = null;
+        }
+        if (email.invalid && email.dirty){
+          this.emailErr = "Please enter an Email";
+        } else {
+          this.emailErr = null;
+        }
+      });
+      this.verifying = true;
+    }
+  }
+  
+  processVerificationForm() {
+    this.authService.confirmRegister(
+      this.verificationForm.value.username, 
+      this.verificationForm.value.tempPassword, 
+      this.verificationForm.value.persistPassword, 
+      this.verificationForm.value.email
+    ).subscribe(response => this.response = response);
+
+    this.router.navigate(['/admin']);
+  } 
 }
