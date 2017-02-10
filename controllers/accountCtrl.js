@@ -63,12 +63,10 @@ exports.verifyAccount = function(req, res) {
 			if (err) { 
 				console.log('Compare password function failed. System Error.');
 				res.json({ success: false, message: 'User not found.' });
-			}
-			if (!isMatch) { 
+			} else if (!isMatch) { 
 				console.log('Incorrect password. Authentication Error.');
 				res.json({ success: false, message: 'Incorrect password.' });
-			}
-			if (isMatch) { 
+			} else if (isMatch) { 
 
         var user = new User({
           username: username,
@@ -79,7 +77,6 @@ exports.verifyAccount = function(req, res) {
         user.save(function(err) {
           if (err) throw err;
           console.log('User saved successfully');
-          res.json({ success: true });
         });
 
 				console.log("User authentication succeeded.");
