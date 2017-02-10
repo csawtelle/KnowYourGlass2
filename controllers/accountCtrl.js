@@ -1,13 +1,16 @@
 var nodemailer = require('nodemailer');
 var generator = require('generate-password');
+
 var User = require('../models/user');
 var TempUser = require('../models/tempUser');
+
 var jwt = require('jsonwebtoken');
 
 exports.createAccount = function(req, res) {
   console.log("Temporary account creation request received");
   var tempPassword = generator.generate({ length: 20, numbers: true });
   var email = req.body.email;
+
   var user = new TempUser({
     username: req.body.username,
     password: tempPassword,
@@ -57,17 +60,18 @@ exports.verifyAccount = function(req, res) {
 	  if (err) { return callback(err); }
 		if (!user) {
       console.log("Temporary User not found.");
-      res.json({ success: false, message: 'Temporary User not found' });
+      return res.json({ success: false, message: 'Temporary User not found' });
     }	
 		user.verifyPassword(tempPassword, function(err, isMatch) {
 			if (err) { 
 				console.log('Compare password function failed. System Error.');
-				res.json({ success: false, message: 'User not found.' });
-			} else if (!isMatch) { 
+				return res.json({ success: false, message: 'User not found.' });
+			}
+			if (!isMatch) { 
 				console.log('Incorrect password. Authentication Error.');
-				res.json({ success: false, message: 'Incorrect password.' });
-			} else if (isMatch) { 
-
+				return res.json({ success: false, message: 'Incorrect password.' });
+			}
+			if (isMatch) { 
         var user = new User({
           username: username,
           password: persistPassword,
@@ -83,7 +87,7 @@ exports.verifyAccount = function(req, res) {
 				var token = jwt.sign(user, 'superSecret', {
 					expiresIn: 1440 // expires in 24 hours
 				});
-				res.json({
+				return res.json({
 					success: true,
 					message: 'User authentication succeeded.',
 					token: token

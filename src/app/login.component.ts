@@ -18,10 +18,20 @@ export class LoginComponent implements OnInit {
   persistPassErr: string;
   registered: boolean = true;
   verifying: boolean = false;
+  userExists: any;
   public response: any;
   public token: any;
  
   constructor(public tokenService: TokenService, private router: Router, private fb: FormBuilder, public authService: AuthService){
+    this.userExists = this.searchTerms
+      .debounceTime(150)
+      .distinctUntilChanged()
+      .switchMap(term => term ? this.authService.accountSearch(term): Observable.of<any>([]))
+      .catch(error => {
+        console.log(error);
+        return Observable.of<any>([]);
+      });
+
     this.token = '';
   }
 
@@ -53,6 +63,10 @@ export class LoginComponent implements OnInit {
         this.emailErr = null;
       }
     });
+  }
+
+  existingUserSearch(search: string): void {
+    this.searchTerms.next(search);
   }
 
   swapForm(registered: boolean){

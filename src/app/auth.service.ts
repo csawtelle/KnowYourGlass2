@@ -14,6 +14,15 @@ export class AuthService {
 
   constructor(public http: Http) { 
   } //end constructor
+
+  accountSearch (terms: string): Observable<any> {
+    let headers = new Headers({ 'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers: headers });
+    return this.http
+      .get('/api/user' + '?search=' + terms, options)
+      .map((r: Response) => r.json().data as any);
+  }
+
   getToken(user: string, password: string): Observable<any> {
     this.isLoggedIn = true;
     this.username = user;

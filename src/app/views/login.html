@@ -12,9 +12,11 @@
             type="text" 
             class="form-control inputform" 
             name="username" 
+		        #username 
             required
             formControlName="username" 
             placeholder="Enter your Username"
+		        (keyup)="existingUserSearch(username.value)"
           >
           <span class="help-block" *ngIf="usernameErr">
           {{ usernameErr }}

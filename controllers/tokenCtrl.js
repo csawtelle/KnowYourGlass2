@@ -42,12 +42,22 @@ exports.tokenRequest = function(req, res) {
 exports.apiWelcome = function(req, res) {
   res.json( { message: 'Welcome to the API!' } );
 };
+
 exports.returnUsers = function(req, res) {
-  console.log("User query succeeded.");
-  User.find({}, function(err, users) {
-    res.json(users);
-  });
+  console.log('Got it');
+  if(req.query.search) {
+    console.log("User Search query succeeded.");
+    User.findOne({ 'username': req.query.search }, function(err, users) {
+      res.json(users);
+    });
+  } else {
+    console.log("User query succeeded.");
+    User.find({}, function(err, users) {
+      res.json(users);
+    });
+  }
 };
+
 exports.jwtCheck = function(req, res, next) {
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
   if (token) {

@@ -58,8 +58,8 @@ router.route('/api/blogs/:title')
 //Protected Routes
 router.route('/api')
   .get(tokenCtrl.apiWelcome);
-router.route('/api/users')
-  .get(tokenCtrl.jwtCheck, tokenCtrl.returnUsers);
+router.route('/api/user')
+  .get(tokenCtrl.returnUsers);
 router.route('/api/user/authenticate')
   .post(tokenCtrl.tokenRequest);
 router.route('/api/user/register')
