@@ -21,6 +21,10 @@
 .hoverpointer {
   cursor: pointer;
 }
+.navbar {
+  position:fixed !important;
+  width:100% !important;
+}
 .list-hover-highlight {
   background-color: transparent; 
 }
