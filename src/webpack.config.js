@@ -92,9 +92,9 @@ module.exports = {
       Util: "exports?Util!bootstrap/js/dist/util",
     }),
     new sh({
-      onBuildStart: ['mkdir /build/dev/KnowYourGlass2/public'],
+      onBuildStart: ['mkdir /build/KnowYourGlass2/public'],
       onBuildEnd:[
-        'ln -s /build/KnowYourGlass2/src/app/images /build/dev/KnowYourGlass2/public/images'
+        'ln -s /build/KnowYourGlass2/src/app/images /build/KnowYourGlass2/public/images'
       ]
     })
   ]
