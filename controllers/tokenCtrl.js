@@ -16,12 +16,12 @@ exports.tokenRequest = function(req, res) {
 		user.verifyPassword(req.body.password, function(err, isMatch) {
 			if (err) { 
 				console.log('Compare password function failed. System Error.');
-				res.json({ success: false, message: 'User not found.' });
+				return res.json({ success: false, message: 'User not found.' });
 			}
 			// Password did not match
 			if (!isMatch) { 
 				console.log('Incorrect password. Authentication Error.');
-				res.json({ success: false, message: 'Incorrect password.' });
+				return res.json({ success: false, message: 'Incorrect password.' });
 			}
 			if (isMatch) { 
 				// Success
@@ -29,7 +29,7 @@ exports.tokenRequest = function(req, res) {
 				var token = jwt.sign(user, 'superSecret', {
 					expiresIn: 1440 // expires in 24 hours
 				});
-				res.json({
+				return res.json({
 					success: true,
 					message: 'User authentication succeeded.',
 					token: token
@@ -44,16 +44,23 @@ exports.apiWelcome = function(req, res) {
 };
 
 exports.returnUsers = function(req, res) {
-  console.log('Got it');
   if(req.query.search) {
     console.log("User Search query succeeded.");
-    User.findOne({ 'username': req.query.search }, function(err, users) {
-      res.json(users);
+    User.findOne({ 'username': req.query.search }, function(err, user) {
+      if(err) {
+				console.log('System Error');
+				return res.json({ success: false, message: 'System Error.' });
+      } else if(!user) {
+				console.log('User not found');
+				return res.json({ success: false, message: 'User not found.' });
+      } else {
+				return res.json({ success: true, username: user.username });
+      }
     });
   } else {
     console.log("User query succeeded.");
     User.find({}, function(err, users) {
-      res.json(users);
+      return res.json(users);
     });
   }
 };

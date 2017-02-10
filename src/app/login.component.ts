@@ -3,6 +3,12 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from './token.service';
+
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
+ 
+
 @Component ({ 
   selector: 'login',
   templateUrl: './views/login.html'
@@ -18,7 +24,11 @@ export class LoginComponent implements OnInit {
   persistPassErr: string;
   registered: boolean = true;
   verifying: boolean = false;
-  userExists: any;
+
+  userExists: Observable<any>;
+  private searchTerms = new Subject<string>();
+
+  term: any;
   public response: any;
   public token: any;
  
@@ -67,6 +77,7 @@ export class LoginComponent implements OnInit {
 
   existingUserSearch(search: string): void {
     this.searchTerms.next(search);
+    console.log(this.userExists);
   }
 
   swapForm(registered: boolean){
