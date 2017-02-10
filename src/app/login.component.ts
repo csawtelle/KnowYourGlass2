@@ -9,11 +9,15 @@ import { TokenService } from './token.service';
 })
 
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  accountForm: FormGroup;
+  verificationForm: FormGroup;
   usernameErr: string;
   passErr: string;
   emailErr: string;
+  tempPassErr: string;
+  persistPassErr: string;
   registered: boolean = true;
+  verifying: boolean = false;
   public response: any;
   public token: any;
  
@@ -23,16 +27,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(){
     //form is built here
-    this.form = this.fb.group({
+    this.accountForm = this.fb.group({
       username: [''],
       password: [''],
       email: ['']
     });
     //watch for changes as we validate
-    this.form.valueChanges.subscribe(data => { 
-      let username = this.form.get('username');
-      let password = this.form.get('password');
-      let email = this.form.get('email');
+    this.accountForm.valueChanges.subscribe(data => { 
+      let username = this.accountForm.get('username');
+      let password = this.accountForm.get('password');
+      let email = this.accountForm.get('email');
       if (username.invalid && username.dirty){
         this.usernameErr = "Please enter a username";
       } else {
@@ -52,22 +56,67 @@ export class LoginComponent implements OnInit {
   }
 
   swapForm(registered: boolean){
-    console.log(registered);
-    console.log(this.registered);
     if(registered) {
       this.registered = false;
     } else {
       this.registered = true;
     }
   }
-  processForm(){
-    this.token = "Logging in...";
-    this.tokenService.getToken(this.form.value.username, this.form.value.password);
+  processAccountForm() {
+    if (this.registered) {
+      this.token = "Logging in...";
+      this.tokenService.getToken(this.accountForm.value.username, this.accountForm.value.password);
+      this.tokenService.loginDelay().subscribe(() => {
+        if (this.tokenService.currentToken) {
+          this.token = "Login Success! Redirecting";
+          this.router.navigate(['/admin']);
+        }
+      });
+    } else {
+      this.authService.register(this.accountForm.value.username, this.accountForm.value.email);
+      this.accountForm = this.fb.group({
+        username: this.accountForm.value.username,
+        password: this.accountForm.value.password,
+        email: this.accountForm.value.email
+      });
+      //watch for changes as we validate
+      this.verificationForm.valueChanges.subscribe(data => { 
+        let username = this.verificationForm.get('username');
+        let tempPassword = this.verificationForm.get('tempPassword');
+        let persistPassword = this.verificationForm.get('persistPassword');
+        let email = this.verificationForm.get('email');
+        if (username.invalid && username.dirty){
+          this.usernameErr = "Please enter a username";
+        } else {
+          this.usernameErr = null;
+        }
+        if (tempPassword.invalid && tempPassword.dirty){
+          this.tempPassErr = "Please enter a password";
+        } else {
+          this.tempPassErr = null;
+        }
+        if (persistPassword.invalid && persistPassword.dirty){
+          this.persistPassErr = "Please enter a password";
+        } else {
+          this.persistPassErr = null;
+        }
+        if (email.invalid && email.dirty){
+          this.emailErr = "Please enter an Email";
+        } else {
+          this.emailErr = null;
+        }
+      });
+      this.verifying = true;
+    }
+  }
+  
+  processVerificationForm() {
+    this.tokenService.getToken(this.accountForm.value.username, this.accountForm.value.password);
     this.tokenService.loginDelay().subscribe(() => {
       if (this.tokenService.currentToken) {
         this.token = "Login Success! Redirecting";
         this.router.navigate(['/admin']);
       }
-    }); 
-  }
+    });      
+  } 
 }

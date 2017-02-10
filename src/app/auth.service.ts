@@ -7,6 +7,8 @@ export class AuthService {
   isLoggedIn: boolean;
   username: string;
   password: string;
+  tempPassword: string;
+  persistPassword: string;
   email: string;
   token: string;
 
@@ -36,11 +38,13 @@ export class AuthService {
       .catch(this.handleError);
   }
 
-  confirmRegister(user: string, password: string, email: string): Observable<any> {
-    this.username = user;
-    this.password = password;
+  confirmRegister(username: string, tempPassword: string, persistPassword: string, email: string): Observable<any> {
+    this.username = username;
+    this.tempPassword = tempPassword;
+    this.persistPassword = persistPassword;
     this.email = email;
-    let body = ({'username': this.username, 'password': this.password, 'email': this.email });
+
+    let body = ({'username': this.username, 'tempPassword': this.tempPassword, 'persistPassword': this.persistPassword, 'email': this.email });
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
     return this.http.post('api/user/register/verify', body, options)
