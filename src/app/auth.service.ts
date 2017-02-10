@@ -12,7 +12,6 @@ export class AuthService {
   email: string;
   token: string;
 
-
   constructor(public http: Http) { 
   } //end constructor
   getToken(user: string, password: string): Observable<any> {
@@ -27,12 +26,16 @@ export class AuthService {
       .catch(this.handleError);
   }
 
-  register(user: string, email: string): Observable<any> {
-    this.username= user;
-    this.email= email;
+  register(username: string, email: string): Observable<any> {
+    console.log("Called Register");
+    this.username = username;
+    this.email = email;
     let body = ({'username':this.username, 'email':this.email});
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
+    console.log("The body is: " + JSON.stringify(body));
+    console.log("The header are: " + JSON.stringify(headers));
+    console.log("The options: " + JSON.stringify(options));
     return this.http.post('api/user/register', body, options)
       .map((res: Response) => res.json() as any)
       .catch(this.handleError);

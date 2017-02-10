@@ -2,8 +2,10 @@ var nodemailer = require('nodemailer');
 var generator = require('generate-password');
 var User = require('../models/user');
 var TempUser = require('../models/tempUser');
+var jwt = require('jsonwebtoken');
 
 exports.createAccount = function(req, res) {
+  console.log("Temporary account creation request received");
   var tempPassword = generator.generate({ length: 20, numbers: true });
   var email = req.body.email;
   var user = new TempUser({
@@ -14,7 +16,7 @@ exports.createAccount = function(req, res) {
 
   user.save(function(err) {
     if (err) throw err;
-    console.log('User saved successfully');
+    console.log('Temporary User saved successfully');
     res.json({ success: true });
   });
 
@@ -30,6 +32,7 @@ exports.createAccount = function(req, res) {
         rejectUnauthorized: false
     }
   });
+  console.log("Transporter created.");
   transporter.sendMail({
 			from: '"Know Your Glass" <admin@knowyourglass.com>',
 			to: email,
@@ -38,6 +41,7 @@ exports.createAccount = function(req, res) {
 			html: '<p>Please login using your temporary password: ' + tempPassword + '</p>',
       text: 'Please login using your temporary password: ' + tempPassword + '</p>'
 	});
+  console.log("Mail sent.");
   transporter.close();
 };
 

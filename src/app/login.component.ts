@@ -73,11 +73,12 @@ export class LoginComponent implements OnInit {
         }
       });
     } else {
-      this.authService.register(this.accountForm.value.username, this.accountForm.value.email);
-      this.accountForm = this.fb.group({
+      this.authService.register(this.accountForm.value.username, this.accountForm.value.email).subscribe(response => this.response = response);
+      this.verificationForm = this.fb.group({
         username: this.accountForm.value.username,
-        password: this.accountForm.value.password,
-        email: this.accountForm.value.email
+        email: this.accountForm.value.email,
+        tempPassword: [''],
+        persistPassword: ['']
       });
       //watch for changes as we validate
       this.verificationForm.valueChanges.subscribe(data => { 
@@ -85,7 +86,8 @@ export class LoginComponent implements OnInit {
         let tempPassword = this.verificationForm.get('tempPassword');
         let persistPassword = this.verificationForm.get('persistPassword');
         let email = this.verificationForm.get('email');
-        if (username.invalid && username.dirty){
+
+       if (username.invalid && username.dirty){
           this.usernameErr = "Please enter a username";
         } else {
           this.usernameErr = null;
@@ -111,12 +113,13 @@ export class LoginComponent implements OnInit {
   }
   
   processVerificationForm() {
-    this.tokenService.getToken(this.accountForm.value.username, this.accountForm.value.password);
-    this.tokenService.loginDelay().subscribe(() => {
-      if (this.tokenService.currentToken) {
-        this.token = "Login Success! Redirecting";
-        this.router.navigate(['/admin']);
-      }
-    });      
+    this.authService.confirmRegister(
+      this.verificationForm.value.username, 
+      this.verificationForm.value.tempPassword, 
+      this.verificationForm.value.persistPassword, 
+      this.verificationForm.value.email
+    ).subscribe(response => this.response = response);
+
+    this.router.navigate(['/admin']);
   } 
 }

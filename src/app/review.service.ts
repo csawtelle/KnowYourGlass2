@@ -10,7 +10,7 @@ export class ReviewService {
   token: any;
   private headers = new Headers({'Content-Type': 'application/json'});
   private apiUrl = 'api/reviews';  // URL to web api
-  constructor(public tokenService: TokenService, private http: Http) { 
+  constructor(public tokenService: TokenService, public http: Http) { 
     this.reviews = this.getReviews();
   }
 

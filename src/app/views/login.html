@@ -5,7 +5,7 @@
         <h4>Welcome to the</h4>
         <h1>Login</h1>
       </div>
-      <form (ngSubmit)="processAccountForm()" [formGroup]="accountForm" class="loginarea" *ngIf="!verifying">
+      <form [formGroup]="accountForm" class="loginarea" *ngIf="!verifying">
         <div class="form-group">
           <label class="userandpass" for="username">Username</label>
           <input 
@@ -49,8 +49,8 @@
           </span>
         </div>        
         <div class="form-group text-center">
-          <button type="submit" class="btn btn-info" *ngIf="registered">Login</button>
-          <button type="submit" class="btn btn-info" *ngIf="!registered">Register</button>
+          <input type="button" (click)="processAccountForm()" class="btn btn-info" *ngIf="registered"/>Login
+          <input type="button" (click)="processAccountForm()" class="btn btn-info" *ngIf="!registered"/>Register
         </div>
         <div (click)="swapForm(registered)" class="text-center" *ngIf="!registered">
           <button class="btn btn-link">Already registered?</button>
@@ -60,7 +60,7 @@
         </div>
       </form>
       <!--verification-->
-      <form (ngSubmit)="processVerificationForm()" [formGroup]="verificationForm" class="loginarea" *ngIf="verifying">
+      <form [formGroup]="verificationForm" class="loginarea" *ngIf="verifying">
         <div class="form-group">
           <label class="userandpass" for="username">Username</label>
           <input 
@@ -119,7 +119,7 @@
           </span>
         </div>        
         <div class="form-group text-center">
-          <button type="submit" class="btn btn-info">Verify Account</button>
+          <button (click)="processVerificationForm()" class="btn btn-info">Verify Account</button>
         </div>
       </form>
     </div><!-- end col -->

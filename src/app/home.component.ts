@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Review } from './models/review';
 import { ReviewService } from './review.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'home-page',
@@ -10,7 +11,8 @@ export class HomeComponent {
   title = "Know Your Glass";
   reviews: any = [];
   unsortedReviews: any;
-  constructor(private reviewService: ReviewService) { 
+  response: any;
+  constructor(private authService: AuthService, private reviewService: ReviewService) { 
     this.reviewService.getReviews()
       .subscribe(reviews => {
         this.unsortedReviews = reviews;
