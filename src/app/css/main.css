@@ -13,7 +13,7 @@
 
 /* Search bar */
 * {
-  font-family: "Lato", sans-serif;
+  font-family: "Source Sans Pro", "Lato", sans-serif;
 }
 .bg-faded {
   background: rgba(0,0,0, .5);
@@ -130,16 +130,16 @@
 }
 /* Home Page CSS */		 		
 .intro-header {		
-    text-align: center;		
-    color: #f8f8f8;		
-    box-shadow: 0px 3px 10px #000;
+  text-align: center;		
+  color: #f8f8f8;		
+  box-shadow: 0px 3px 10px #000;
   height:100%;  
 }	
 .intro-message {		
   padding-top: 270px;	
   text-shadow:2px 2px 3px rgba(0,0,0,0.6);		
   min-height:100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.15);
 }		
 
 .headerinfo {
@@ -570,4 +570,35 @@ a {
   width: 50px;
   height: 50px;
   background-size: 50px;
-} 
+}
+/* recent posts index css */
+.postscontainer h1 {
+  color:#333;
+	cursor:pointer;
+	font-weight:600;
+}
+.postsubheading {
+  color: rgba(0,0,0,.8);
+	font-size:22px;
+}
+.postscontainer {
+  width:65%;
+  margin: 50px auto;
+}
+.postcontainer:hover{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.postcontainerinner{
+	padding:20px;
+}
+.postcontainer {
+	margin-top:20px;
+	margin-bottom:20px;
+  transition: ease .3s;
+}
+.postshr{
+	margin-top:0px !important;
+	margin-bottom:20px !imporant;
+	padding-bottom:20px;
+	border-top: 2px solid #ccc !important;
+}

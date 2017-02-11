@@ -17,6 +17,20 @@
   </div><!-- end intro-message -->
 </div><!-- end main header -->
 
+<!-- start new posts list -->
+
+<div class="postscontainer">
+  <div class="postcontainer" *ngFor="let review of reviews; let i = index">
+    <div class="postcontainerinner" *ngIf="i < 10">
+      <h1 [routerLink]="['/review/' + review.title]">{{ review.title }}</h1>
+			<div class="postsubheading"> testing subheading </div>
+    </div><!-- end ngIf -->
+		<hr class="postshr">
+  </div><!-- end ngFor -->
+</div><!-- end postscontainer -->
+
+<!-- end new posts list -->
+
 <div style="height:100%">
   <div *ngFor="let review of reviews; let i = index">
     <div *ngIf="i < 4" class="text-center postblocks" [ngStyle]="{'padding':'0','background-image': 'url(../images/'+review.title_image+')','background-size':'cover','background-position':'center'}">
