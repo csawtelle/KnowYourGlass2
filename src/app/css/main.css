@@ -11,6 +11,14 @@
 * #E9A401 Orange-Yellow		
 */
 
+/* loading bar */
+      .loading {
+        position: relative !important;
+        right:2px;
+        transition: ease .5s all;
+        width:100px;
+        height:40px;
+      }
 /* Search bar */
 * {
   font-family: "Source Sans Pro", "Lato", sans-serif;
@@ -622,7 +630,7 @@ body {
   background:#beefff;
 }
 .reviewheadercontent {
-  padding-top:110px;
+  padding-top:134px;
   font-size:60px; 
   text-align:center;
   margin-top:66px;
@@ -649,4 +657,8 @@ body {
 .specstablecol {
 	width:49%;
 	display:inline-block;
+}
+
+.reviewheadercontent h1 {
+	font-weight:700;
 }
