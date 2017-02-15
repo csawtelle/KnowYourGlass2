@@ -58,7 +58,7 @@ exports.putBlog = function(req, res) {
 
 exports.deleteBlog = ((req,res) => {
   let title = req.params.title;
-  Blog.findOneAndRemove({ title: new RegExp(title, "i") }, (err, blog) => {
+  Blog.findOneAndRemove({ title: title }, (err, blog) => {
     if(err) {
       res.status(400).json(err);
     } else if (!blog) {

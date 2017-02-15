@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Headers, Http, Response, RequestOptions} from '@angular/http';
-import {Observable} from 'rxjs/Rx';
-import {Review} from './models/review';
+import { Injectable } from '@angular/core';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { Review } from './models/review';
 import { TokenService } from './token.service';
 
 @Injectable()
@@ -11,7 +11,8 @@ export class ReviewService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private apiUrl = 'api/reviews';  // URL to web api
   constructor(public tokenService: TokenService, public http: Http) { 
-    this.reviews = this.getReviews();
+    // probably going to take this out, no reason to call the function
+    //    this.reviews = this.getReviews();
   }
 
   reviewSearch (terms: string): Observable<Review[]> {

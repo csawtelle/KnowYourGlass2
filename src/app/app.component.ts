@@ -5,8 +5,8 @@ import { TokenService } from './token.service';
   templateUrl: './views/app.html',
 })
 export class AppComponent { 
-
-  constructor(public tokenService: TokenService) {}
+  constructor(public tokenService: TokenService) {
+  }
 
   logout(){
     this.tokenService.clearToken();    

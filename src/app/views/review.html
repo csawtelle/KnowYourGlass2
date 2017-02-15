@@ -1,7 +1,39 @@
+<div *ngIf="review" class="reviewheadercontainer">
+  <div class="reviewpostheader">
+    <div class="reviewheadercontent">
+      <h1>{{ review.title }}</h1>
+      <p>Published: {{ review.date }}</p>
+      <p>Author: {{ review.author }}</p>
+    </div>
+  </div><!-- end reviewpostheader -->
+  <div class="reviewpostcontent">
+			<ul class="specstable">
+				<div class="specstablecol">
+					<li class="list-group-item">
+						Rating: {{review.rating}}
+					</li>
+					<li class="list-group-item">
+						Brand: {{review.brand}}
+					</li>
+				</div>
+				<div class="specstablecol">
+					<li class="list-group-item">
+						Category: {{review.category}}
+					</li>
+					<li class="list-group-item">
+						Sensor: {{review.sensor}}
+					</li>
+				</div>
+			</ul>
+
+     <div [innerHtml]="review.content | safeHtml"></div>
+     <div [innerHtml]="review.content"></div>
+  </div>
+</div>
 <div *ngIf="review">
   <div class="container">
     <div class="row">
-      <div class="col-xs-10 offset-xs-1 reviewbody">
+      <div class="reviewbody">
         <div class="postheader" [ngStyle]="{'background-image':'url(../images/'+review.title_image+')', 'background-size':'cover', 'background-position':'center'}">
           <h1 class="reviewheadertop">{{ review.title }}</h1>
           <p class="reviewheaderbottom">Posted On: {{review.date}}<br />

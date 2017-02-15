@@ -11,9 +11,17 @@
 * #E9A401 Orange-Yellow		
 */
 
+/* loading bar */
+      .loading {
+        position: relative !important;
+        right:2px;
+        transition: ease .5s all;
+        width:100px;
+        height:40px;
+      }
 /* Search bar */
 * {
-  font-family: "Lato", sans-serif;
+  font-family: "Source Sans Pro", "Lato", sans-serif;
 }
 .bg-faded {
   background: rgba(0,0,0, .5);
@@ -24,6 +32,8 @@
 .navbar {
   position:fixed !important;
   width:100% !important;
+  top:0px;
+  z-index: 20;
 }
 .list-hover-highlight {
   background-color: transparent; 
@@ -130,16 +140,16 @@
 }
 /* Home Page CSS */		 		
 .intro-header {		
-    text-align: center;		
-    color: #f8f8f8;		
-    box-shadow: 0px 3px 10px #000;
+  text-align: center;		
+  color: #f8f8f8;		
+  box-shadow: 0px 3px 10px #000;
   height:100%;  
 }	
 .intro-message {		
-    padding-top: 25%;		
-    text-shadow:2px 2px 3px rgba(0,0,0,0.6);		
-    min-height:100%;
-  background: rgba(0, 0, 0, 0.3);
+  padding-top: 270px;	
+  text-shadow:2px 2px 3px rgba(0,0,0,0.6);		
+  min-height:100%;
+  background: rgba(0, 0, 0, 0.15);
 }		
 
 .headerinfo {
@@ -473,6 +483,7 @@ a {
   background-color:white;
   padding-left:0px;
   padding-right:0px;
+	width:100%;
 }
 
 .container .jumbotron, .container-fluid .jumbotron {
@@ -559,7 +570,9 @@ a {
   position: absolute;
   background-color: rgba(202, 202, 202, 0.2);
 }
-
+body {
+	background-color:#fafafa;
+}
 #search-box{
   margin-right:5px;
   width: 200px;
@@ -570,4 +583,84 @@ a {
   width: 50px;
   height: 50px;
   background-size: 50px;
-} 
+}
+/* recent posts index css */
+.postscontainer h1 {
+  color:#333;
+	cursor:pointer;
+	font-weight:600;
+}
+.postsubheading {
+  color: rgba(0,0,0,.8);
+	font-size:22px;
+}
+.postscontainer {
+  width:65%;
+  margin: 50px auto;
+}
+.postcontainer:hover{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.postcontainerinner{
+    padding-left: 6%;
+    padding-top: 4%;
+}
+.postcontainer {
+	margin-top:20px;
+	margin-bottom:20px;
+  transition: ease .3s;
+  border-style: solid;
+  border-width: 2px 2px 2px 2px;
+  border-radius: 5px;
+  border-color: #ddd;
+  background: white;
+}
+.postshr{
+	margin-top:0px !important;
+	margin-bottom:20px !imporant;
+	padding-bottom:20px;
+	border-top: 2px solid #ccc !important;
+}
+
+/* Review Page CSS */
+
+.reviewheadercontainer {
+}
+.reviewpostheader {
+  height:400px;
+  background:#beefff;
+}
+.reviewheadercontent {
+  padding-top:134px;
+  font-size:60px; 
+  text-align:center;
+  margin-top:66px;
+}
+.reviewheadercontent p {
+  font-size:16px;
+  margin-bottom:0px;
+  color: rgba(0,0,0,.44);
+  font-weight:600;
+}
+
+.reviewpostcontent {
+  width:70%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.specstable {
+	padding: 0;
+  margin-left:auto;
+  margin-right:auto;
+	margin-top:40px;
+}
+.specstablecol {
+	width:49%;
+	display:inline-block;
+}
+
+.reviewheadercontent h1 {
+	font-weight:700;
+  font-size: 4rem;
+}
