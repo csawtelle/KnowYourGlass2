@@ -29,7 +29,8 @@
     "./app/search.component.ts",
     "./app/upload.component.ts",
     "./app/services/blogs.service.ts",
-    "./app/components/blogs_index.ts"
+    "./app/components/blogs_index.ts",
+    "./app/components/blogs_single.ts"
   ]
 }
 

@@ -26,7 +26,7 @@ import { DisqusModule } from './modules/disqus.module';
 import { ReviewsIndexComponent } from './reviews_index';
 import { BlogsIndexComponent } from './components/blogs_index';
 import { BlogService } from './services/blogs.service';
-
+import { BlogSingleComponent } from './components/blogs_single';
 @NgModule({
   imports:  [ 
     DisqusModule,
@@ -53,7 +53,8 @@ import { BlogService } from './services/blogs.service';
     SafeHtmlPipe,
     KeysPipe,
     ReviewsIndexComponent,
-    BlogsIndexComponent
+    BlogsIndexComponent,
+    BlogSingleComponent
  ],
 
   providers: [ 

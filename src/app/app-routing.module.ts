@@ -10,6 +10,7 @@ import { SearchComponent } from './search.component';
 import { UploaderComponent } from './uploader.component';
 import { ReviewsIndexComponent } from './reviews_index';
 import { BlogsIndexComponent } from './components/blogs_index';
+import { BlogSingleComponent } from './components/blogs_single';
 
 const appRoutes: Routes = [
   { path: 'admin', canActivate: [AuthGuard], component: AdminComponent },
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'review/:id', component: ReviewComponent },
   { path: 'reviews', component: ReviewsIndexComponent },
   { path: 'blogs', component: BlogsIndexComponent },
+  { path: 'blog/:title', component: BlogSingleComponent },
   { path: 'search', component: SearchComponent },
   { path: 'search/:id', component: SearchComponent },
   { path: 'login', component: LoginComponent },

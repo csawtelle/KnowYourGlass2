@@ -7,7 +7,7 @@ background-size: cover">
 <div class="postscontainer">
   <div class="postcontainer" *ngFor="let blog of Blogs; let i = index">
     <div class="postcontainerinner" *ngIf="i < 10">
-      <h1 [routerLink]="['/review/' + blog.title]">{{ blog.title }}</h1>
+      <h1 [routerLink]="['/blog/' + blog.title]">{{ blog.title }}</h1>
       <div class="postsubheading"> testing subheading </div>
     </div><!-- end ngIf -->
     <hr class="postshr">

@@ -1,0 +1,14 @@
+<div *ngIf="post" class="reviewheadercontainer">
+  <div class="reviewpostheader">
+    <div class="reviewheadercontent">
+      <h1>{{ post.title }}</h1>
+      <p>Published: {{ post.date }}</p>
+      <p>Author: {{ post.author }}</p>
+    </div>
+  </div><!-- end reviewpostheader -->
+  <div class="reviewpostcontent">
+
+     <div [innerHtml]="post.content | safeHtml"></div>
+     <div [innerHtml]="post.content"></div>
+  </div>
+</div>
