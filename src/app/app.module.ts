@@ -23,6 +23,7 @@ import { KeysPipe } from './filters/keys.pipe';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SafeHtmlPipe } from './filters/safehtml.pipe';
 import { DisqusModule } from './modules/disqus.module';
+import { ReviewsIndexComponent } from './reviews_index';
 
 @NgModule({
   imports:  [ 
@@ -48,7 +49,8 @@ import { DisqusModule } from './modules/disqus.module';
     SearchBarComponent,
     UploaderComponent,
     SafeHtmlPipe,
-    KeysPipe
+    KeysPipe,
+    ReviewsIndexComponent
  ],
 
   providers: [ 
