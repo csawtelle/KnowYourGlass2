@@ -24,6 +24,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { SafeHtmlPipe } from './filters/safehtml.pipe';
 import { DisqusModule } from './modules/disqus.module';
 import { ReviewsIndexComponent } from './reviews_index';
+import { BlogsIndexComponent } from './components/blogs_index';
+import { BlogService } from './services/blogs.service';
 
 @NgModule({
   imports:  [ 
@@ -50,14 +52,16 @@ import { ReviewsIndexComponent } from './reviews_index';
     UploaderComponent,
     SafeHtmlPipe,
     KeysPipe,
-    ReviewsIndexComponent
+    ReviewsIndexComponent,
+    BlogsIndexComponent
  ],
 
   providers: [ 
     AuthService, 
     ReviewService, 
     AuthGuard,
-    TokenService 
+    TokenService,
+    BlogService
   ],
   bootstrap: [ AppComponent ]
 })

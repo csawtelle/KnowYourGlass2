@@ -1,0 +1,16 @@
+<div class="reviewsheader" style="background: url('../images/stacy-23.jpg');
+background-size: cover">
+  <div class="reviewsheader_overlay">
+    <h1>Blogs Index</h1>
+  </div>
+</div>
+<div class="postscontainer">
+  <div class="postcontainer" *ngFor="let blog of Blogs; let i = index">
+    <div class="postcontainerinner" *ngIf="i < 10">
+      <h1 [routerLink]="['/review/' + blog.title]">{{ blog.title }}</h1>
+      <div class="postsubheading"> testing subheading </div>
+    </div><!-- end ngIf -->
+    <hr class="postshr">
+  </div><!-- end ngFor -->
+</div><!-- end postscontainer -->
+
