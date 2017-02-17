@@ -19,7 +19,9 @@ module.exports = {
 
   module: {
     loaders: [ 
-     {
+      { test: /\.jpg$/, loader: "file-loader" },
+      { test: /\.png$/, loader: "url-loader?mimetype=image/png" },
+      {
         test: /\.html$/,
         loader: 'html-loader'
       },
