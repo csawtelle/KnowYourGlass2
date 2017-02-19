@@ -24,7 +24,14 @@
 ._row {
   width: 100%;
 }
-
+.posts__author {
+	color: #31b0d5;
+	font-size: 1rem;
+	letter-spacing: -.02rem;
+}
+.posts__date {
+	font-size: .8rem;
+}
 .img-responsive {
   width: 100%;
 }
@@ -733,6 +740,7 @@ body {
 	font-size:1rem;
   font-weight:100;
   color: #7d7d7d;
+	letter-spacing: -.01rem;
 }
 .postscontainer {
   width:65%;
