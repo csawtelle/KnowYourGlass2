@@ -1,16 +1,102 @@
 
 /* Color Scheme */		
 /*		
-* #172333 Dark Blue
-* #223985 Lighter Dark Blue
 * #464348 Grey
 * #30013E Deep Purple		
 * #680894 Middle Purple		
 * #BA7DAF Light Purple		
 * #FFF800 Yellow		
 * #E9A401 Orange-Yellow		
+* #7d7d7d Light Grey Text
 */
+* {
+  box-sizing:border-box;
+}
+.clearfix {
+	clear: both;
+}
+.index__post-container {
+	max-width: 800px;
+	margin-left:auto;
+	margin-right:auto;
+	background: white;
+}
+._row {
+  width: 100%;
+}
 
+.img-responsive {
+  width: 100%;
+}
+.author__image {
+	float: left;
+}
+.index__author-avatar {
+  border-radius:5px;
+	height:43px;
+	width: 43px;
+	margin-right:15px;
+}
+.col__1 {
+  float:left;
+  width:8%;
+}
+.col__2 {
+  float: left;
+  width: 16%;
+}
+.col__3 {
+  float:left;
+  width:24%;
+}
+.col__4 {
+  float: left;
+  width: 32%;
+}
+.col__5 {
+  float:left;
+  width:40%;
+}
+.col__6 {
+  float: left;
+  width: 48%;
+}
+.col__7 {
+	float: left;
+	width: 56%;
+}
+.col__8 {
+  float: left;
+  width:66.66%;
+}
+.col__9 {
+	float: left;
+	width: 74%;
+}
+.col__10 {
+	float: left;
+	width: 83.33%
+}
+.col__11 {
+	float: left;
+	width: 91.66%;
+}
+.col__12 {
+	float: left;
+	width: 100%;
+}
+/*
+.row::after {
+  content: "";
+  clear: both;
+  display:table;
+}
+
+.postcontainerinner::after {
+  content: "";
+  clear: both;
+}
+*/
 /* Reviews Page CSS */
 .reviewsheader {
   height:30rem;
@@ -644,7 +730,9 @@ body {
 }
 .postsubheading {
   color: rgba(0,0,0,.8);
-	font-size:22px;
+	font-size:1rem;
+  font-weight:100;
+  color: #7d7d7d;
 }
 .postscontainer {
   width:65%;
