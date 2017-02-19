@@ -7,6 +7,13 @@ background-size: cover">
 <div class="postscontainer">
   <div class="postcontainer" *ngFor="let review of reviews; let i = index">
     <div class="postcontainerinner" *ngIf="i < 10">
+      <div class="posts__author__date--wrapper">
+        <div class="posts__author">
+        </div>
+        <div class="posts__date">
+
+        </div>
+      </div>
       <h1 [routerLink]="['/review/' + review.title]">{{ review.title }}</h1>
       <div class="postsubheading"> testing subheading </div>
     </div><!-- end ngIf -->
