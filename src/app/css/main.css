@@ -15,6 +15,15 @@
 .clearfix {
 	clear: both;
 }
+.posts__likes {
+  float: left;
+  width: 20%;
+}
+
+.posts__discussion {
+  float: right;
+  width: 20%;
+}
 .index__post-container {
 	max-width: 800px;
 	margin-left:auto;
@@ -24,6 +33,12 @@
 ._row {
   width: 100%;
 }
+._row__posts-likes {
+  margin-top: 10px;
+  font-size: .9rem;
+  color: #7d7d7d;
+}
+
 .posts__author {
 	color: #31b0d5;
 	font-size: 1rem;
@@ -734,6 +749,7 @@ body {
   color:#333;
 	cursor:pointer;
 	font-weight:600;
+	margin-top:10px;
 }
 .postsubheading {
   color: rgba(0,0,0,.8);
@@ -745,6 +761,9 @@ body {
 .postscontainer {
   width:65%;
   margin: 50px auto;
+	max-width: 710px;
+  margin-right: auto;
+  margin-left: auto;
 }
 .postcontainer:hover{
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
