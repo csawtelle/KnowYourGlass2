@@ -5,7 +5,7 @@
     style="background:url('../images/icon.png');background-size: 50px;" 
     class="kygicon"
   />
-  <ul class="navbar-nav ml-auto">
+  <ul class="navbar-nav ml-auto _navbar-right">
     <li *ngIf="!this.tokenService.currentToken" class="nav-item">
       <a class="nav-link whitefont" routerLink="/reviews" routerLinkActive="active">Reviews</a>
     </li>
@@ -18,7 +18,7 @@
       <search-bar></search-bar>
   </ul>
 </nav>
-
+<div class="clearfix"></div>
 <div>
   <router-outlet></router-outlet>
 </div>

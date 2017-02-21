@@ -19,7 +19,10 @@
   float: left;
   width: 20%;
 }
-
+.index__img {
+	border-radius: 5px;
+	box-shadow: 0px 3px 10px rgba(136, 136, 136, 0.56)
+}
 .posts__discussion {
   float: right;
   width: 20%;
@@ -194,6 +197,9 @@
   top:0px;
   z-index: 20;
   min-height:4rem !important;
+}
+._navbar-right {
+	float: right;
 }
 .list-hover-highlight {
   background-color: transparent; 
@@ -743,6 +749,7 @@ body {
   width: 50px;
   height: 50px;
   background-size: 50px;
+	float: left;
 }
 /* recent posts index css */
 .postscontainer h1 {
@@ -769,8 +776,9 @@ body {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .postcontainerinner{
-    padding-left: 6%;
-    padding-top: 4%;
+  padding-left: 6%;
+  padding-top: 4%;
+	padding-right: 3%;
 }
 .postcontainer {
 	margin-top:20px;
