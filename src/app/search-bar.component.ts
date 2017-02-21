@@ -19,7 +19,7 @@ export class SearchBarComponent implements OnInit {
     this.reviews = this.searchTerms
       .debounceTime(150)
       .distinctUntilChanged()
-      .switchMap(term => term ? this.reviewService.reviewSearch(term): Observable.of<Review[]>([]))
+      .switchMap(term => term.length > 0 ? this.reviewService.reviewSearch(term): Observable.of<Review[]>([]))
       .catch(error => {
         console.log(error);
         return Observable.of<Review[]>([]);
