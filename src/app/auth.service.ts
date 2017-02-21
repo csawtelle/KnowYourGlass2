@@ -24,7 +24,8 @@ export class AuthService {
   }
 
   getToken(user: string, password: string): Observable<any> {
-    this.isLoggedIn = true;
+    // commenting this out, this should not be here
+    //    this.isLoggedIn = true;
     this.username = user;
     this.password = password;
     let body = ({'username':this.username,'password':this.password});

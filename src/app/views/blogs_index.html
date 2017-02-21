@@ -1,0 +1,52 @@
+<div class="reviewsheader" style="background: url('../images/stacy-22.jpg');
+background-size: cover">
+  <div class="reviewsheader_overlay">
+    <h1>Blogs Index</h1>
+  </div>
+</div>
+<div class="postscontainer">
+  <div class="postcontainer" *ngFor="let review of Blogs; let i = index">
+    <div class="postcontainerinner" *ngIf="i < 10">
+      <div class="posts__author__date--wrapper">
+        <div class="_row">
+          <div class="author__image">
+          <img class="img-responsive index__author-avatar" src="https://avatars3.githubusercontent.com/u/12061655?v=3&s=460">
+          </div><!-- end author__image -->
+          <div class="col__8">
+          <div class="posts__author">
+            {{ review.author }} 
+          </div>
+          <div class="posts__date">
+            Feb 17, 2017
+          </div>
+          </div><!-- end col__8 -->
+        </div><!-- end row -->
+        <div class="clearfix"></div>
+      </div>
+      <div class="_row">
+        <div class="col__8">
+          <h1 [routerLink]="['/blog/' + review.title]">{{ review.title }}</h1>
+          <div class="postsubheading">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+          </div>
+        </div><!-- end col__8 -->
+        <div class="col__4">
+          <img class="img-responsive index__img" src="https://c1.staticflickr.com/1/605/23539777310_0b03859723_k.jpg">
+        </div>
+      </div><!-- end row-->
+      <div class="clearfix"></div>
+      <div class="_row _row__posts-likes">
+        <div class="posts__likes">
+          <i class="fa fa-heart-o" aria-hidden="true">  </i> 42
+        </div>
+        <div class="posts__discussion">
+        Join the discussion
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div><!-- end ngIf -->
+    <hr class="postshr">
+  </div><!-- end ngFor -->
+</div><!-- end postscontainer -->
+
+
