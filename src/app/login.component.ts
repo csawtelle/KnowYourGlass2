@@ -7,8 +7,6 @@ import { TokenService } from './token.service';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
- 
-
 @Component ({ 
   selector: 'login',
   templateUrl: './views/login.html'
@@ -24,25 +22,28 @@ export class LoginComponent implements OnInit {
   persistPassErr: string;
   registered: boolean = true;
   verifying: boolean = false;
-
   userExists: Observable<any>;
   private searchTerms = new Subject<string>();
-
   term: any;
   public response: any;
   public token: any;
  
   constructor(public tokenService: TokenService, private router: Router, private fb: FormBuilder, public authService: AuthService){
     this.userExists = this.searchTerms
-      .debounceTime(150)
+      .debounceTime(500)
       .distinctUntilChanged()
       .switchMap(term => term ? this.authService.accountSearch(term): Observable.of<any>([]))
       .catch(error => {
         console.log(error);
         return Observable.of<any>([]);
       });
+      
+      this.token = '';
+  }
 
-    this.token = '';
+  existingUserSearch(search: string): void {
+    this.searchTerms.next(search);
+    this.userExists.subscribe(user => console.log(user));
   }
 
   ngOnInit(){
@@ -73,11 +74,6 @@ export class LoginComponent implements OnInit {
         this.emailErr = null;
       }
     });
-  }
-
-  existingUserSearch(search: string): void {
-    this.searchTerms.next(search);
-    console.log(this.userExists);
   }
 
   swapForm(registered: boolean){

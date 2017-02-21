@@ -19,7 +19,9 @@ module.exports = {
 
   module: {
     loaders: [ 
-     {
+      { test: /\.jpg$/, loader: "file-loader" },
+      { test: /\.png$/, loader: "url-loader?mimetype=image/png" }
+      {
         test: /\.html$/,
         loader: 'html-loader'
       },
@@ -93,9 +95,6 @@ module.exports = {
     }),
     new sh({
       onBuildStart: ['mkdir /build/KnowYourGlass2/public'],
-      onBuildEnd:[
-        'ln -s /build/KnowYourGlass2/src/app/images /build/KnowYourGlass2/public/images'
-      ]
     })
   ]
 };

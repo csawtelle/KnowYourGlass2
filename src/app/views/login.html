@@ -12,12 +12,13 @@
             type="text" 
             class="form-control inputform" 
             name="username" 
-		        #username 
+		        #username
             required
             formControlName="username" 
             placeholder="Enter your Username"
 		        (keyup)="existingUserSearch(username.value)"
           >
+          {{ userExists | async }}
           <span class="help-block" *ngIf="usernameErr">
           {{ usernameErr }}
           </span>
