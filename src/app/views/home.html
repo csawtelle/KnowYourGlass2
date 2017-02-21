@@ -1,35 +1,22 @@
-<div class="intro-header" style="background:url('../images/stacy-7.jpg');background-size:cover"> 
-  <div class="intro-message">
+<div class="newheader" style="background:url('../images/stacy-7.jpg');background-size:cover">
+  <div class="headerimg__text-content">
     <h1>{{ title }}</h1>
     <hr class="intro-divider">
-    <h3>Honest, but not average, lens reviews.</h3>
-    <p class="socialcontainer">
-      <a href="https://twitter.com/knowyourglass">
-        <i class="fa fa-twitter fa-3x socialicons"></i>
-      </a>
-      <a href="https://www.facebook.com/knowyourglass">
-        <i class="fa fa-facebook fa-3x socialicons"></i>
-      </a>
-      <a href="https://www.instagram.com/knowyourglass/">
-        <i class="fa fa-instagram fa-3x socialicons"></i>
-      </a>
-    </p>
-  </div><!-- end intro-message -->
-</div><!-- end main header -->
+    <h2>Honest, but not average, lens reviews.</h2> 
+      <p class="socialcontainer">
+        <a href="https://twitter.com/knowyourglass">
+          <i class="fa fa-twitter fa-3x socialicons"></i>
+        </a>
+        <a href="https://www.facebook.com/knowyourglass">
+          <i class="fa fa-facebook fa-3x socialicons"></i>
+        </a>
+        <a href="https://www.instagram.com/knowyourglass/">
+          <i class="fa fa-instagram fa-3x socialicons"></i>
+        </a>
+      </p>
+  </div>
+</div>
 
-<!-- start new posts list -->
-
-<div class="postscontainer">
-  <div class="postcontainer" *ngFor="let review of reviews; let i = index">
-    <div class="postcontainerinner" *ngIf="i < 10">
-      <h1 [routerLink]="['/review/' + review.title]">{{ review.title }}</h1>
-			<div class="postsubheading"> testing subheading </div>
-    </div><!-- end ngIf -->
-		<hr class="postshr">
-  </div><!-- end ngFor -->
-</div><!-- end postscontainer -->
-
-<!-- end new posts list -->
 
 <div style="height:100%">
   <div *ngFor="let review of reviews; let i = index">

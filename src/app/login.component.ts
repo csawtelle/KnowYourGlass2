@@ -3,7 +3,6 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from './token.service';
-
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 

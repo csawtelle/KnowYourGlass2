@@ -5,12 +5,12 @@
     style="background:url('../images/icon.png');background-size: 50px;" 
     class="kygicon"
   />
-  <ul class="navbar-nav ml-auto">
+  <ul class="navbar-nav ml-auto _navbar-right">
     <li *ngIf="!this.tokenService.currentToken" class="nav-item">
-      <a class="nav-link whitefont" routerLink="/Reviews" routerLinkActive="active">Reviews</a>
+      <a class="nav-link whitefont" routerLink="/reviews" routerLinkActive="active">Reviews</a>
     </li>
     <li *ngIf="!this.tokenService.currentToken" class="nav-item">
-      <a class="nav-link whitefont" routerLink="/Blogs" routerLinkActive="active">Blogs</a>
+      <a class="nav-link whitefont" routerLink="/blogs" routerLinkActive="active">Blogs</a>
     </li>
     <li class="nav-item" *ngIf="this.tokenService.currentToken" (click)="logout()">
       <a class="nav-link whitefont" routerLinkActive="active">Logout</a>
@@ -18,7 +18,7 @@
       <search-bar></search-bar>
   </ul>
 </nav>
-
+<div class="clearfix"></div>
 <div>
   <router-outlet></router-outlet>
 </div>

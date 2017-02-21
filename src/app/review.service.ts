@@ -11,8 +11,6 @@ export class ReviewService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private apiUrl = 'api/reviews';  // URL to web api
   constructor(public tokenService: TokenService, public http: Http) { 
-    // probably going to take this out, no reason to call the function
-    //    this.reviews = this.getReviews();
   }
 
   reviewSearch (terms: string): Observable<Review[]> {
