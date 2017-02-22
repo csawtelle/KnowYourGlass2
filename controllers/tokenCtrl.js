@@ -60,7 +60,8 @@ exports.returnUsers = function(req, res) {
   } else {
     console.log("User query succeeded.");
     User.find({}, function(err, users) {
-      return res.json(users);
+//      return res.json(users);
+        return res.json("User not found.");
     });
   }
 };

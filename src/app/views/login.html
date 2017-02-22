@@ -12,7 +12,7 @@
             type="text" 
             class="form-control inputform" 
             name="username" 
-		        #username 
+		        #username
             required
             formControlName="username" 
             placeholder="Enter your Username"
@@ -51,8 +51,8 @@
           </span>
         </div>        
         <div class="form-group text-center">
-          <input type="button" (click)="processAccountForm()" class="btn btn-info" *ngIf="registered"/>Login
-          <input type="button" (click)="processAccountForm()" class="btn btn-info" *ngIf="!registered"/>Register
+          <input value="Login" type="button" (click)="processAccountForm()" class="btn btn-info" *ngIf="registered"/>
+          <input value="Register" type="button" (click)="processAccountForm()" class="btn btn-info" [ngClass]="{disabled: userExists }" *ngIf="!registered"/>
         </div>
         <div (click)="swapForm(registered)" class="text-center" *ngIf="!registered">
           <button class="btn btn-link">Already registered?</button>
