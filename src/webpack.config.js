@@ -95,6 +95,7 @@ module.exports = {
     }),
     new sh({
       onBuildStart: ['mkdir /build/KnowYourGlass2/public'],
+      onBuildEnd:['ln -s /build/KnowYourGlass2/src/app/images /build/KnowYourGlass2/public/images']
     })
   ]
 };
