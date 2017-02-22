@@ -88,7 +88,7 @@ export class AdminComponent implements OnInit{
       sensor: ['', [ <any>Validators.required]],
       content: ['', [ <any>Validators.required]],
       content_summary: ['', [ <any>Validators.required]],
-      likes: ['', [ <any>Validators.required]],
+      likes: [0, [ <any>Validators.required]],
       author: ['', [ <any>Validators.required]]
     });
     this.modalRef = this.modalService.open(content);
