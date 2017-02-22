@@ -44,8 +44,6 @@ TempUserSchema.pre('save', function(callback) {
 });
 
 TempUserSchema.methods.verifyPassword = function(password, cb) {
-  console.log("tempUser");
-  console.log(password);
   bcrypt.compare(password, this.password, function(err, isMatch) {
     if (err) return cb(err);
     cb(null, isMatch);
