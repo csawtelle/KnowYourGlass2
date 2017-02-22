@@ -2,27 +2,15 @@
 var Review = require('../models/review');
 
 exports.postReview = function(req, res) {
-  var review = new Review();
-    review.post_date = new Date();
-    review.edit_date = new Date();
-    review.sensor = req.body.sensor;
-    review.title = req.body.title;
-    review.brand = req.body.brand;
-    review.category = req.body.category;
-    review.rating = req.body.rating;
-    review.title_image = req.body.title_image;
-    review.content = req.body.content;
-    review.author = req.body.author;
-
-    review.save(function(err) {
-        if(err) {
-            console.log("Post was attempted, post failed");
-            res.json({ message: 'Post failed!', data: err});
-        }
-        else {
-            console.log("Post was attempted, post SUCCESS");
-            res.json({ message: 'Post added!', data: review });
-        }
+  var review = new Review(req.body);
+  review.save(function(err) {
+    if(err) {
+      console.log("Review POST was attempted, POST failed");
+      res.json({ message: 'Post failed!', data: err});
+    } else {
+      console.log("Review POST was attempted, POST succeeded");
+      res.json({ message: 'Post added!', data: review });
+    }
   });
 };
 
