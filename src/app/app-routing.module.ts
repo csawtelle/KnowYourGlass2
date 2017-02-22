@@ -8,12 +8,12 @@ import { LoginComponent } from './login.component';
 import { AuthGuard } from './auth-guard.service';
 import { SearchComponent } from './search.component';
 import { UploaderComponent } from './uploader.component';
-import { ReviewsIndexComponent } from './reviews_index';
+import { ReviewIndexComponent } from './review-index';
 import { BlogsIndexComponent } from './components/blogs_index';
 import { BlogSingleComponent } from './components/blogs_single';
 
 const appRoutes: Routes = [
-  { path: 'admin', canActivate: [AuthGuard], component: AdminComponent },
+  { path: 'admin', /*canActivate: [AuthGuard],*/ component: AdminComponent },
   { path: 'uploader', component: UploaderComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'review/:id', component: ReviewComponent },

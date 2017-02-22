@@ -10,4 +10,6 @@ export class Review {
   rating: string;
   content: string;
   author: string;
+  content_summary: string;
+  likes: number;
 }
