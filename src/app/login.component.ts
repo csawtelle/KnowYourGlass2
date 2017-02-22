@@ -21,17 +21,18 @@ export class LoginComponent implements OnInit {
   persistPassErr: string;
   registered: boolean = true;
   verifying: boolean = false;
-  userExists: Observable<any>;
+  user: Observable<any>;
+  userExists: boolean = false;
   private searchTerms = new Subject<string>();
   term: any;
   public response: any;
   public token: any;
  
   constructor(public tokenService: TokenService, private router: Router, private fb: FormBuilder, public authService: AuthService){
-    this.userExists = this.searchTerms
+    this.user = this.searchTerms
       .debounceTime(500)
       .distinctUntilChanged()
-      .switchMap(term => term ? this.authService.accountSearch(term): Observable.of<any>([]))
+      .switchMap(term => term.length > 0 ? this.authService.accountSearch(term): Observable.of<any>([]))
       .catch(error => {
         console.log(error);
         return Observable.of<any>([]);
@@ -42,7 +43,13 @@ export class LoginComponent implements OnInit {
 
   existingUserSearch(search: string): void {
     this.searchTerms.next(search);
-    this.userExists.subscribe(user => console.log(user));
+    this.user.subscribe(result => {
+      if(result.success = false) {
+        this.userExists = false
+      } else {
+        this.userExists = true
+      }    
+    });
   }
 
   ngOnInit(){
@@ -92,7 +99,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/admin']);
         }
       });
-    } else {
+    } else if(!this.registered && !this.userExists) {
       this.authService.register(this.accountForm.value.username, this.accountForm.value.email).subscribe(response => this.response = response);
       this.verificationForm = this.fb.group({
         username: this.accountForm.value.username,
@@ -129,7 +136,7 @@ export class LoginComponent implements OnInit {
         }
       });
       this.verifying = true;
-    }
+    } else {}
   }
   
   processVerificationForm() {

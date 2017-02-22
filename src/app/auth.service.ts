@@ -20,7 +20,7 @@ export class AuthService {
     let options = new RequestOptions({ headers: headers });
     return this.http
       .get('/api/user' + '?search=' + terms, options)
-      .map((r: Response) => r.json().data as any);
+      .map((r: Response) => r.json() as any);
   }
 
   getToken(user: string, password: string): Observable<any> {

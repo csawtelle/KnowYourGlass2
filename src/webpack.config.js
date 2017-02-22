@@ -94,7 +94,7 @@ module.exports = {
       Util: "exports?Util!bootstrap/js/dist/util",
     }),
     new sh({
-      onBuildStart: ['mkdir /build/KnowYourGlass2/public'],
+      onBuildStart: ['mkdir /build/dev/KnowYourGlass2/public'],
     })
   ]
 };

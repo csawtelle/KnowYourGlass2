@@ -18,7 +18,6 @@
             placeholder="Enter your Username"
 		        (keyup)="existingUserSearch(username.value)"
           >
-          {{ userExists | async }}
           <span class="help-block" *ngIf="usernameErr">
           {{ usernameErr }}
           </span>
@@ -52,8 +51,8 @@
           </span>
         </div>        
         <div class="form-group text-center">
-          <input type="button" (click)="processAccountForm()" class="btn btn-info" *ngIf="registered"/>Login
-          <input type="button" (click)="processAccountForm()" class="btn btn-info" *ngIf="!registered"/>Register
+          <input value="Login" type="button" (click)="processAccountForm()" class="btn btn-info" *ngIf="registered"/>
+          <input value="Register" type="button" (click)="processAccountForm()" class="btn btn-info" [ngClass]="{disabled: userExists }" *ngIf="!registered"/>
         </div>
         <div (click)="swapForm(registered)" class="text-center" *ngIf="!registered">
           <button class="btn btn-link">Already registered?</button>
