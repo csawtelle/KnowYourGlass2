@@ -14,14 +14,14 @@ export class HomeComponent {
   unsortedReviews: any;
   response: any;
   constructor(private router: Router, private authService: AuthService, private reviewService: ReviewService) { 
-    PageScrollConfig.defaultDuration = 2000;
+    PageScrollConfig.defaultDuration = 1250;
     PageScrollConfig.defaultEasingLogic = {
 			ease: (t: number, b: number, c: number, d: number): number => {
-      	if (t === 0) return b;
-      	if (t === d) return b + c;
-      	if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
-      	return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
-    	}
+        t /= d/2;
+        if (t < 1) return c/2*t*t*t*t + b;
+          t -= 2;
+        return -c/2 * (t*t*t*t - 2) + b;
+      }
 		}
 
     this.reviewService.getReviews()
