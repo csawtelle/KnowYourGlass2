@@ -862,16 +862,11 @@ body {
   font-size: 4rem;
 }
 .modal-outer {
-  position: relative;
-  width: 40%;
-  height: 120px;
-  margin: 20px auto;
-  border: 2px solid #c00;
+  position: absolute;
+  top:5%;
+  width: 100%;
 }
 .modal-inner {	
-  position: absolute;
-  left: 30px;
-  top: 0px;
-  right: 30px;
-  background-color: #00c;
+  margin-right:auto;
+  margin-left:auto;
 }
