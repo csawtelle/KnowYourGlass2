@@ -32,7 +32,11 @@ export class SearchBarComponent implements OnInit {
   }
 
   partialSearch(search: string): void {
-    this.searchTerms.next(search);
+    if(search && search != '&search=') {
+      this.searchTerms.next(search);
+    } else {
+      this.searchTerms.next('');
+    }
   }
 
   openReview(name: string) {

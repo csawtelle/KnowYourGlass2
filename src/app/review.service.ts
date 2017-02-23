@@ -17,7 +17,7 @@ export class ReviewService {
     let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token":this.tokenService.currentToken });
     let options = new RequestOptions({ headers: headers });
     return this.http
-      .get(this.apiUrl + '?search=1' + terms, options)
+      .get(this.apiUrl + '?' + terms, options)
       .map((r: Response) => r.json().data as Review[]);
   }
 

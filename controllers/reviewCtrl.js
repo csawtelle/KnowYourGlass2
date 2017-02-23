@@ -16,63 +16,23 @@ exports.postReview = function(req, res) {
 
 exports.getReviews = function(req, res) {
   if(req.query.search){
-    var searchArray = [];
-    var textArray = [];
-    for (var key in req.query) {
-      if(key == "text") {
-        var textQuery = {}
-        textQuery['content'] = { 
-          "$regex": req.query[key],
-          "$options": "i"
-        };
-        textArray.push(textQuery);
-        textQuery['title'] = { 
-          "$regex": req.query[key],
-          "$options": "i"
-        };
-        textArray.push(textQuery);
-      } else {
-        if(key != "usertitle" && key != "password" && key != "search" && key != "text") {
-          var obj = req.query[key];
-          var paramQuery = {}
-          paramQuery[key] = { 
-            "$regex": obj,
-            "$options": "i"
-          };
-          searchArray.push(paramQuery);
-        }
-      }
-    }
-    var query = {};
-    query['$and'] = [];
-    if(searchArray.length != 0) {
-      query['$and'].push({
-        '$and': searchArray
-      })
-    }
-    if(textArray.length != 0) {
-      query['$and'].push({
-        '$or': textArray
-      })
-    }
+    query = { 'title': { $regex: new RegExp(req.query.search, "ig") }};
     Review.find(query, function(err, review) {
-            console.log("Finding a single");
-            if(err) {
-                console.log("Multiple Review Query FAILED");
-                res.json({ message: 'Get failed!', data: err});
-            }
-            else {
-                console.log("Multiple Review Query SUCCEEDED");
-                res.json({ message: 'Get succeeded!', data: review });
-            }
-      });
+      console.log("Finding a single");
+      if(err) {
+          console.log("Multiple Review Query FAILED");
+          res.json({ message: 'Get failed!', data: err});
+      } else {
+          console.log("Multiple Review Query SUCCEEDED");
+          res.json({ message: 'Get succeeded!', data: review });
+      }
+    });
   } else {
     Review.find({}, function(err, reviews) {
         if(err) {
             console.log("Multiple Review Query FAILED");
             res.json({ message: 'Get failed!', data: err});
-        }
-        else {
+        } else {
             console.log("Multiple Review Query SUCCEEDED");
             res.json({ message: 'Get succeeded!', data: reviews });
         }

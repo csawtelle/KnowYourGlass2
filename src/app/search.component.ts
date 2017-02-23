@@ -69,14 +69,7 @@ export class SearchComponent implements OnInit {
   }
 
   search(text: string, searchParams: any) {
-    var searchString = '';
-    for (var key in searchParams) {
-      var value = searchParams[key];
-      searchString = searchString + '&' + key + '=' + value;
-    }
-    if(text) {
-      searchString = searchString + '&text=' + text;
-    }
+    var searchString = 'search=' + text;
     this.searchTerms.next(searchString);
   }
 

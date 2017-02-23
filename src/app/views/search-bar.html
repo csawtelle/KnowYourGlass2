@@ -6,7 +6,7 @@
 		id="search-box" 
 		autocomplete="off" 
 		placeholder="Search" 
-		(keyup)="partialSearch('&text=' + searchBox.value)"
+		(keyup)="partialSearch('&search=' + searchBox.value)"
 	/>
   <button class="fa fa-search btn btn-outline-info" (click)="search(searchBox.value); searchBox.value=''"></button>
   <div *ngIf="ShowDropDown" class="search-results">
