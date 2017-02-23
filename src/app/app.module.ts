@@ -23,7 +23,7 @@ import { KeysPipe } from './filters/keys.pipe';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SafeHtmlPipe } from './filters/safehtml.pipe';
 import { DisqusModule } from './modules/disqus.module';
-import { ReviewsIndexComponent } from './reviews_index';
+import { ReviewIndexComponent } from './review-index';
 import { BlogsIndexComponent } from './components/blogs_index';
 import { BlogService } from './services/blogs.service';
 import { BlogSingleComponent } from './components/blogs_single';
@@ -53,7 +53,7 @@ import { BlogSingleComponent } from './components/blogs_single';
     UploaderComponent,
     SafeHtmlPipe,
     KeysPipe,
-    ReviewsIndexComponent,
+    ReviewIndexComponent,
     BlogsIndexComponent,
     BlogSingleComponent
  ],

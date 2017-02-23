@@ -36,7 +36,9 @@ exports.putBlog = function(req, res) {
     date: req.body.date,
     title_image: req.body.title_image,
     content: req.body.content,
-    author: req.body.author
+    author: req.body.author,
+    content_summary: req.body.content_summary,
+    likes: req.body.likes
 
   }, function(err, num, raw) {
     if(err) {

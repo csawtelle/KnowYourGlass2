@@ -4,7 +4,7 @@ import { ReviewService } from './review.service';
 import { AuthService } from './auth.service';
 
 @Component({
-  templateUrl: './views/reviews_index.html'
+  templateUrl: './views/review-index.html'
 })
 export class ReviewsIndexComponent { 
   reviews: any = [];
