@@ -17,7 +17,7 @@ const appRoutes: Routes = [
   { path: 'uploader', component: UploaderComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'review/:id', component: ReviewComponent },
-  { path: 'reviews', component: ReviewsIndexComponent },
+  { path: 'reviews', component: ReviewIndexComponent },
   { path: 'blogs', component: BlogsIndexComponent },
   { path: 'blog/:title', component: BlogSingleComponent },
   { path: 'search', component: SearchComponent },

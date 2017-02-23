@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
 @Component({
   templateUrl: './views/review-index.html'
 })
-export class ReviewsIndexComponent { 
+export class ReviewIndexComponent { 
   reviews: any = [];
   unsortedReviews: any;
   response: any;
