@@ -13,7 +13,7 @@ import { BlogsIndexComponent } from './components/blogs_index';
 import { BlogSingleComponent } from './components/blogs_single';
 
 const appRoutes: Routes = [
-  { path: 'admin', /*canActivate: [AuthGuard],*/ component: AdminComponent },
+  { path: 'admin', canActivate: [AuthGuard], component: AdminComponent },
   { path: 'uploader', component: UploaderComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'review/:id', component: ReviewComponent },
