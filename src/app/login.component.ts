@@ -97,7 +97,6 @@ export class LoginComponent implements OnInit {
         if (this.tokenService.currentToken) {
           this.token = "Login Success! Redirecting";
           this.router.navigate(['/admin']);
-          this.closeModal();
         }
       });
     } else if(!this.registered && !this.userExists) {
