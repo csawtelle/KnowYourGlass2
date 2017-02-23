@@ -22,7 +22,7 @@ const appRoutes: Routes = [
   { path: 'blog/:title', component: BlogSingleComponent },
   { path: 'search', component: SearchComponent },
   { path: 'search/:id', component: SearchComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, outlet: 'modaloutlet'},
   { path: '', component: HomeComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

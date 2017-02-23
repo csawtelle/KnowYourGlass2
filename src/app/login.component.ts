@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
 import { TokenService } from './token.service';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 @Component ({ 
   selector: 'login',
-  templateUrl: './views/login.html'
+  templateUrl: './views/login.html',
 })
 
 export class LoginComponent implements OnInit {
@@ -149,4 +149,8 @@ export class LoginComponent implements OnInit {
 
     this.router.navigate(['/admin']);
   } 
+
+  closeModal( ) {
+    this.router.navigate([{outlets: {modaloutlet: null}}]);
+  }
 }

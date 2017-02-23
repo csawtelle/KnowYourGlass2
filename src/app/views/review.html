@@ -1,4 +1,14 @@
 <div *ngIf="review" class="reviewheadercontainer">
+  <button class="slide-button fa fa-comments fa-3" (click)="toggleSlideState()"></button>
+  <div class="slide-menu" [@slide]="sideBarState">
+    <disqus 
+      [shortname]="disqusShortName" 
+      [identifier]="review._id" 
+      [title]="review.title" 
+      [url]="pageUrl" 
+      [lang]="'en'"
+    ></disqus> 
+  </div>
   <div class="reviewpostheader">
     <div class="reviewheadercontent">
       <h1>{{ review.title }}</h1>
@@ -27,50 +37,6 @@
 			</ul>
 
      <div [innerHtml]="review.content | safeHtml"></div>
-  </div>
-</div>
-<div *ngIf="review">
-  <div class="container">
-    <div class="row">
-      <div class="reviewbody">
-        <div class="postheader" [ngStyle]="{'background-image':'url(../images/'+review.title_image+')', 'background-size':'cover', 'background-position':'center'}">
-          <h1 class="reviewheadertop">{{ review.title }}</h1>
-          <p class="reviewheaderbottom">Posted On: {{review.date}}<br />
-          Author: {{ review.author }}</p>
-        </div>
-        <div class="postbody">
-          <ul class="list-group row">
-            <div class="col-xs-6">
-              <li class="list-group-item">
-                Rating: {{review.rating}}
-              </li>
-              <li class="list-group-item">
-                Brand: {{review.brand}}
-              </li>
-            </div>
-            <div class="col-xs-6">
-              <li class="list-group-item">
-                Category: {{review.category}}
-              </li>
-              <li class="list-group-item">
-                Sensor: {{review.sensor}}
-              </li>
-            </div>
-          </ul>
-          <div [innerHtml]="review.content | safeHtml"></div>
-        </div>
-      </div>
-      <button class="slide-button fa fa-comments fa-3" (click)="toggleSlideState()"></button>
-      <div class="slide-menu" [@slide]="sideBarState">
-        <disqus 
-          [shortname]="disqusShortName" 
-          [identifier]="review._id" 
-          [title]="review.title" 
-          [url]="pageUrl" 
-          [lang]="'en'"
-        ></disqus> 
-      </div>
-    </div>
   </div>
 </div>
 <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=20a7c607-b24a-4181-9c34-0c3ffdcbd119&storeId=kyg-20"></script>

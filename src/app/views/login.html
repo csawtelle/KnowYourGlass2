@@ -1,129 +1,129 @@
-<div class="loginbg">
-  <div class="container">
-    <div class="logincontainer col-xs-6 offset-xs-3">
-      <div class="loginheaderpadding text-center">
-        <h4>Welcome to the</h4>
-        <h1>Login</h1>
-      </div>
-      <form [formGroup]="accountForm" class="loginarea" *ngIf="!verifying">
-        <div class="form-group">
-          <label class="userandpass" for="username">Username</label>
-          <input 
-            type="text" 
-            class="form-control inputform" 
-            name="username" 
-		        #username
-            required
-            formControlName="username" 
-            placeholder="Enter your Username"
-		        (keyup)="existingUserSearch(username.value)"
-          >
-          <span class="help-block" *ngIf="usernameErr">
-          {{ usernameErr }}
-          </span>
-        </div>
-        <div class="form-group" *ngIf="registered" >
-          <label class="userandpass" for="password">Password</label>
-          <input 
-            type="text" 
-            class="form-control inputform" 
-            name="password" 
-            required
-            formControlName="password"
-            placeholder="Enter your Password"
-          >
-          <span class="help-block" *ngIf="passErr">
-          {{ passErr }}
-          </span>
-        </div>
-        <div class="form-group" *ngIf="!registered" >
-          <label class="userandpass" for="email">E-Mail: You will be e-mailed a temporary password.</label>
-          <input 
-            type="text" 
-            class="form-control inputform" 
-            name="email"
-            required
-            formControlName="email"
-            placeholder="name@example.com"
-          >
-          <span class="help-block" *ngIf="emailErr">
-          {{ emailErr }}
-          </span>
-        </div>        
-        <div class="form-group text-center">
-          <input value="Login" type="submit" (click)="processAccountForm()" class="btn btn-info" *ngIf="registered"/>
-          <input value="Register" type="submit" (click)="processAccountForm()" class="btn btn-info" [ngClass]="{disabled: userExists }" *ngIf="!registered"/>
-        </div>
-        <div (click)="swapForm(registered)" class="text-center" *ngIf="!registered">
-          <button class="btn btn-link">Already registered?</button>
-        </div>
-        <div (click)="swapForm(registered)" class="text-center" *ngIf="registered">
-          <button class="btn btn-link">Not registered?</button>
-        </div>
-      </form>
-      <!--verification-->
-      <form [formGroup]="verificationForm" class="loginarea" *ngIf="verifying">
-        <div class="form-group">
-          <label class="userandpass" for="username">Username</label>
-          <input 
-            type="text" 
-            class="form-control inputform" 
-            name="username" 
-            required
-            formControlName="username" 
-            placeholder="Enter your Username"
-          >
-          <span class="help-block" *ngIf="usernameErr">
-          {{ usernameErr }}
-          </span>
-        </div>
-        <div class="form-group">
-          <label class="userandpass" for="tempPassword">Temporary Password</label>
-          <input 
-            type="text" 
-            class="form-control inputform" 
-            name="tempPassword" 
-            required
-            formControlName="tempPassword"
-            placeholder="Enter your Password"
-          >
-          <span class="help-block" *ngIf="tempPassErr">
-          {{ tempPassErr }}
-          </span>
-        </div>
-        <div class="form-group">
-          <label class="userandpass" for="persistPassword">New Password</label>
-          <input 
-            type="text" 
-            class="form-control inputform"
-            name="persistPassword" 
-            required
-            formControlName="persistPassword"
-            placeholder="Enter your Password"
-          >
-          <span class="help-block" *ngIf="persistPassErr">
-          {{ persistPassErr }}
-          </span>
-        </div>
-
-        <div class="form-group">
-          <label class="userandpass" for="email">E-Mail</label>
-          <input 
-            type="text" 
-            class="form-control inputform" 
-            name="email"
-            required
-            formControlName="email"
-            placeholder="name@example.com"
-          >
-          <span class="help-block" *ngIf="emailErr">
-          {{ emailErr }}
-          </span>
-        </div>        
-        <div class="form-group text-center">
-          <button (click)="processVerificationForm()" class="btn btn-info">Verify Account</button>
-        </div>
-      </form>
-    </div><!-- end col -->
-  </div> <!-- end container -->
-</div><!-- end loginbg -->
+<div class="outer">
+  <div class="inner">
+   <div class="container">
+     <button type="button" class="close" aria-label="Cloose" (click)="closeModal()">
+       <span aria-hidden="true">&times;</span>
+     </button>
+     <div class="logincontainer col-xs-6 offset-xs-3">
+        <form [formGroup]="accountForm" class="loginarea" *ngIf="!verifying">
+          <div class="form-group">
+            <label class="userandpass" for="username">Username</label>
+            <input 
+              type="text" 
+              class="form-control inputform" 
+              name="username" 
+              #username
+              required
+              formControlName="username" 
+              placeholder="Enter your Username"
+              (keyup)="existingUserSearch(username.value)"
+            >
+            <span class="help-block" *ngIf="usernameErr">
+            {{ usernameErr }}
+            </span>
+          </div>
+          <div class="form-group" *ngIf="registered" >
+            <label class="userandpass" for="password">Password</label>
+            <input 
+              type="text" 
+              class="form-control inputform" 
+              name="password" 
+              required
+              formControlName="password"
+              placeholder="Enter your Password"
+            >
+            <span class="help-block" *ngIf="passErr">
+            {{ passErr }}
+            </span>
+          </div>
+          <div class="form-group" *ngIf="!registered" >
+            <label class="userandpass" for="email">E-Mail: You will be e-mailed a temporary password.</label>
+            <input 
+              type="text" 
+              class="form-control inputform" 
+              name="email"
+              required
+              formControlName="email"
+              placeholder="name@example.com"
+            >
+            <span class="help-block" *ngIf="emailErr">
+            {{ emailErr }}
+            </span>
+          </div>        
+          <div class="form-group text-center">
+            <input value="Login" type="submit" (click)="processAccountForm()" class="btn btn-info" *ngIf="registered"/>
+            <input value="Register" type="submit" (click)="processAccountForm()" class="btn btn-info" [ngClass]="{disabled: userExists }" *ngIf="!registered"/>
+          </div>
+          <div (click)="swapForm(registered)" class="text-center" *ngIf="!registered">
+            <button class="btn btn-link">Already registered?</button>
+          </div>
+          <div (click)="swapForm(registered)" class="text-center" *ngIf="registered">
+            <button class="btn btn-link">Not registered?</button>
+          </div>
+        </form>
+        <!--verification-->
+        <form [formGroup]="verificationForm" class="loginarea" *ngIf="verifying">
+          <div class="form-group">
+            <label class="userandpass" for="username">Username</label>
+            <input 
+              type="text" 
+              class="form-control inputform" 
+              name="username" 
+              required
+              formControlName="username" 
+              placeholder="Enter your Username"
+            >
+            <span class="help-block" *ngIf="usernameErr">
+            {{ usernameErr }}
+            </span>
+          </div>
+          <div class="form-group">
+            <label class="userandpass" for="tempPassword">Temporary Password</label>
+            <input 
+              type="text" 
+              class="form-control inputform" 
+              name="tempPassword" 
+              required
+              formControlName="tempPassword"
+              placeholder="Enter your Password"
+            >
+            <span class="help-block" *ngIf="tempPassErr">
+            {{ tempPassErr }}
+            </span>
+          </div>
+          <div class="form-group">
+            <label class="userandpass" for="persistPassword">New Password</label>
+            <input 
+              type="text" 
+              class="form-control inputform"
+              name="persistPassword" 
+              required
+              formControlName="persistPassword"
+              placeholder="Enter your Password"
+            >
+            <span class="help-block" *ngIf="persistPassErr">
+            {{ persistPassErr }}
+            </span>
+          </div>
+          <div class="form-group">
+            <label class="userandpass" for="email">E-Mail</label>
+            <input 
+              type="text" 
+              class="form-control inputform" 
+              name="email"
+              required
+              formControlName="email"
+              placeholder="name@example.com"
+            >
+            <span class="help-block" *ngIf="emailErr">
+            {{ emailErr }}
+            </span>
+          </div>        
+          <div class="form-group text-center">
+            <button (click)="processVerificationForm()" class="btn btn-info">Verify Account</button>
+          </div>
+        </form>
+      </div><!-- end col -->
+    </div> <!-- end container -->
+  </div>
+</div>

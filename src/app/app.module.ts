@@ -27,6 +27,7 @@ import { ReviewsIndexComponent } from './reviews_index';
 import { BlogsIndexComponent } from './components/blogs_index';
 import { BlogService } from './services/blogs.service';
 import { BlogSingleComponent } from './components/blogs_single';
+
 @NgModule({
   imports:  [ 
     DisqusModule,
