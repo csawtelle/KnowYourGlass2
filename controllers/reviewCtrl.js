@@ -16,7 +16,7 @@ exports.postReview = function(req, res) {
 
 exports.getReviews = function(req, res) {
   if(req.query.search){
-    var text = req.query.search.replace(/[^a-zA-Z\s]/,'');
+    var text = req.query.search.replace(/[^a-zA-Z0-9\s]/,'');
     query = { 'title': { $regex: new RegExp(text, "ig") }};
     Review.find(query, function(err, review) {
       console.log("Finding a single");
