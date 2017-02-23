@@ -1,4 +1,5 @@
-<div class="newheader" style="background:url('../images/stacy-7.jpg');background-size:cover">
+<div class="newheader" style="background:url('https://c1.staticflickr.com/3/2141/32929395441_61bb0ed63f_z.jpg');background-size:cover">
+  <div class="header__wrapper">
   <div class="headerimg__text-content">
     <h1>{{ title }}</h1>
     <hr class="intro-divider">
@@ -15,10 +16,14 @@
         </a>
       </p>
   </div>
+  <div class="header__lowerbar" 
+    (mouseover)='testBtn.click()'>
+    <a pageScroll href="#test" class="more" #testBtn></a><i class="fa fa-arrow-down header__lowerbar__arrow" aria-hidden="true"></i></div>
+  </div><!-- end header wrapper -->
 </div>
 
 
-<div style="height:100%">
+<div style="height:100%" id="test">
   <div *ngFor="let review of reviews; let i = index">
     <div *ngIf="i < 4" class="text-center postblocks" [ngStyle]="{'padding':'0','background-image': 'url(../images/'+review.title_image+')','background-size':'cover','background-position':'center'}">
       <a style="color:#fff" [routerLink]="['/review/' + review.title]"><h2 class="latestposttext">{{review.title}}</h2></a>

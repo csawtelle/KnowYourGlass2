@@ -13,5 +13,4 @@ import 'rxjs' ;
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-loader';
 import 'font-awesome-webpack2';
-import 'ng2-awesome-disqus';
 import 'ng2-file-upload';

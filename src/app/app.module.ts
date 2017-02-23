@@ -27,6 +27,7 @@ import { ReviewIndexComponent } from './review-index';
 import { BlogsIndexComponent } from './components/blogs_index';
 import { BlogService } from './services/blogs.service';
 import { BlogSingleComponent } from './components/blogs_single';
+import {Ng2PageScrollModule} from 'ng2-page-scroll';
 
 @NgModule({
   imports:  [ 
@@ -38,7 +39,8 @@ import { BlogSingleComponent } from './components/blogs_single';
     HttpModule,
     NgbModule.forRoot(),
     FileUploadModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    Ng2PageScrollModule.forRoot()
   ],
 
   declarations: [ 
