@@ -1,6 +1,9 @@
 <div class="modal-outer">
   <div class="modal-inner">
     <div class="container">
+      <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
       <div class="logincontainer col-xs-6 offset-xs-3">
         <form [formGroup]="accountForm" class="loginarea" *ngIf="!verifying">
           <div class="form-group">
