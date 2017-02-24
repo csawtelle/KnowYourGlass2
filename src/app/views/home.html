@@ -1,33 +1,37 @@
-<div class="newheader" style="background:url('https://c1.staticflickr.com/3/2141/32929395441_61bb0ed63f_z.jpg');background-size:cover">
-  <div class="header__wrapper">
-    <div class="headerimg__text-content">
-      <h1>{{ title }}</h1>
-      <hr class="intro-divider">
-      <h2>Honest, but not average, lens reviews.</h2> 
-        <p class="socialcontainer">
-          <a href="https://twitter.com/knowyourglass">
-            <i class="fa fa-twitter fa-3x socialicons"></i>
-          </a>
-          <a href="https://www.facebook.com/knowyourglass">
-            <i class="fa fa-facebook fa-3x socialicons"></i>
-          </a>
-          <a href="https://www.instagram.com/knowyourglass/">
-            <i class="fa fa-instagram fa-3x socialicons"></i>
-          </a>
-        </p>
-    </div>
-    <div class="header__lowerbar">
-      <a pageScroll href="#test" class="more" #testBtn></a>
-      <i class="fa fa-arrow-down header__lowerbar__arrow" aria-hidden="true" (mouseover)='testBtn.click()'></i>
-    </div>
-  </div><!-- end header wrapper -->
+<div mouseWheel (mouseWheelUp)='goToHash()' (mouseWheelDown)='goToHash()'>
+  <div class="newheader" style="background:url('https://c1.staticflickr.com/3/2141/32929395441_61bb0ed63f_z.jpg');background-size:cover">
+    <div class="header__wrapper">
+      <div class="headerimg__text-content">
+        <h1>{{ title }}</h1>
+        <hr class="intro-divider">
+        <h2>Honest, but not average, lens reviews.</h2> 
+          <p class="socialcontainer">
+            <a href="https://twitter.com/knowyourglass">
+              <i class="fa fa-twitter fa-3x socialicons"></i>
+            </a>
+            <a href="https://www.facebook.com/knowyourglass">
+              <i class="fa fa-facebook fa-3x socialicons"></i>
+            </a>
+            <a href="https://www.instagram.com/knowyourglass/">
+              <i class="fa fa-instagram fa-3x socialicons"></i>
+            </a>
+          </p>
+      </div>
+      <div class="header__lowerbar">
+        <a pageScroll href="#recent_posts" class="more" #scrollElement></a>
+        <i class="fa fa-arrow-down header__lowerbar__arrow" aria-hidden="true" (mouseover)='goToHash()'></i>
+      </div>
+    </div><!-- end header wrapper -->
+  </div>
+
+
+  <div style="height:100%" id="recent_posts">
+    <div *ngFor="let review of reviews; let i = index">
+      <div *ngIf="i < 4" class="text-center postblocks" [ngStyle]="{'padding':'0','background-image': 'url(../images/'+review.title_image+')','background-size':'cover','background-position':'center'}">
+        <a class="latestposttext" style="color:#fff" [routerLink]="['/review/' + review.title]">
+          {{review.title}}
+        </a>
+      </div><!-- end ngif -->
+    </div><!-- end ngfor -->
+  </div><!-- end latest posts body -->
 </div>
-
-
-<div style="height:100%" id="test">
-  <div *ngFor="let review of reviews; let i = index">
-    <div *ngIf="i < 4" class="text-center postblocks" [ngStyle]="{'padding':'0','background-image': 'url(../images/'+review.title_image+')','background-size':'cover','background-position':'center'}">
-      <a style="color:#fff" [routerLink]="['/review/' + review.title]"><h2 class="latestposttext">{{review.title}}</h2></a>
-    </div><!-- end ngif -->
-  </div><!-- end ngfor -->
-</div><!-- end latest posts body -->
