@@ -27,7 +27,6 @@ import { BlogsIndexComponent } from './components/blogs_index';
 import { BlogService } from './services/blogs.service';
 import { BlogSingleComponent } from './components/blogs_single';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
-import { MouseWheelDirective  } from './mouse.directive';
 
 @NgModule({
   imports:  [ 
@@ -58,7 +57,6 @@ import { MouseWheelDirective  } from './mouse.directive';
     ReviewIndexComponent,
     BlogsIndexComponent,
     BlogSingleComponent,
-    MouseWheelDirective 
  ],
 
   providers: [ 
