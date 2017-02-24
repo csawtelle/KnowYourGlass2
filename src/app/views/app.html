@@ -1,22 +1,33 @@
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" 
+    type="button" 
+    data-toggle="collapse" 
+    data-target="#navbarSupportedContent" 
+    aria-controls="navbarSupportedContent" 
+    aria-expanded="false" 
+    aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
   <img 
     routerLink="/" 
     routerLinkActive="active"
-    style="background:url('../images/icon.png');background-size: 50px;" 
+    style="background:url('../images/icon.png');background-size: 50px; background-repeat: no-repeat;" 
     class="kygicon"
   />
-  <ul class="navbar-nav ml-auto _navbar-right">
-    <li *ngIf="!this.tokenService.currentToken" class="nav-item">
-      <a class="nav-link whitefont" routerLink="/reviews" routerLinkActive="active">Reviews</a>
-    </li>
-    <li *ngIf="!this.tokenService.currentToken" class="nav-item">
-      <a class="nav-link whitefont" routerLink="/blogs" routerLinkActive="active">Blogs</a>
-    </li>
-    <li class="nav-item" *ngIf="this.tokenService.currentToken" (click)="logout()">
-      <a class="nav-link whitefont" routerLinkActive="active">Logout</a>
-    </li>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link whitefont" routerLink="/reviews" routerLinkActive="active">Reviews</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link whitefont" routerLink="/blogs" routerLinkActive="active">Blogs</a>
+      </li>
+      <li class="nav-item" *ngIf="" (click)="logout()">
+        <a class="nav-link whitefont" routerLinkActive="active">Logout</a>
+      </li>
       <search-bar></search-bar>
-  </ul>
+    </ul>
+  </div>
 </nav>
 <div class="clearfix"></div>
 <div>

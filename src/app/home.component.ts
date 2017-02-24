@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Review } from './models/review';
 import { ReviewService } from './review.service';
 import { AuthService } from './auth.service';
@@ -6,13 +6,14 @@ import { Router }from '@angular/router';
 import { PageScrollConfig } from 'ng2-page-scroll';
 @Component({
   selector: 'home-page',
-  templateUrl: './views/home.html',
+  templateUrl: './views/home.html'
 })
 export class HomeComponent { 
   title = "Know Your Glass";
   reviews: any = [];
   unsortedReviews: any;
   response: any;
+  @ViewChild('scrollElement') scrollElement:ElementRef;
   constructor(private router: Router, private authService: AuthService, private reviewService: ReviewService) { 
     PageScrollConfig.defaultDuration = 1250;
     PageScrollConfig.defaultEasingLogic = {
@@ -33,4 +34,9 @@ export class HomeComponent {
         }
       });
   }
-}
+
+  goToHash() {
+    console.log("Did it");
+    this.scrollElement.nativeElement.click();
+  }
+};

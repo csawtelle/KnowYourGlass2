@@ -65,7 +65,7 @@ export class AuthService {
 
   logout(): void {
     this.isLoggedIn = false;
-    console.log("Loggedin was set to false!");
+    localStorage.removeItem('currentUser');
   }
 
   public extractData(res: Response) {

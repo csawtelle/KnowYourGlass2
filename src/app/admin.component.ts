@@ -4,7 +4,6 @@ import { Review } from './models/review';
 import { ReviewService } from './review.service';
 import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { TokenService } from './token.service';
 @Component({
   selector: 'admin',
   templateUrl: './views/admin.html',
@@ -19,11 +18,9 @@ export class AdminComponent implements OnInit{
   public response: any;
   public oldName: any;
   public varinadmin: any;
-  public token: any;
   public unsortedReviews: any;  
   public today: string = new Date().toLocaleString();
   constructor(
-    public tokenService: TokenService,
     private authService: AuthService, 
     private reviewService: ReviewService, 
     public modalService: NgbModal, 
@@ -39,9 +36,8 @@ export class AdminComponent implements OnInit{
       });
   }
   
-  ngOnInit(){
-    this.token = this.tokenService.grabToken();
-  }
+  ngOnInit(){}
+
   private list = {
     'brands': [
       {'text': 'Nikon', 'value': 'Nikon'},
