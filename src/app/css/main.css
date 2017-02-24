@@ -739,8 +739,11 @@ a {
   position: fixed;
   left: auto;
   z-index: 9999;
+  border-radius:1%;
 }
-
+#disqus_thread {
+  margin:2%
+}
 /* SEARCH */
 .search-result{
   border-bottom: 1px solid gray;
@@ -875,3 +878,4 @@ body {
   margin-left:auto;
   z-index:999;
 }
+
