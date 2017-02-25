@@ -4,6 +4,7 @@ import { ReviewService } from './review.service';
 import { AuthService } from './auth.service';
 import 'rxjs/Rx';
 import './css/main.css';
+import './css/home.css';
 
 
 const platform = platformBrowserDynamic();
