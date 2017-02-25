@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { TokenService } from '../token.service';
 
 @Injectable()
 export class BlogService {

@@ -4,7 +4,8 @@ import { Review } from './models/review';
 import { ReviewService } from './review.service';
 import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { TokenService } from './token.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 @Component({
   selector: 'admin',
   templateUrl: './views/admin.html',
@@ -19,17 +20,16 @@ export class AdminComponent implements OnInit{
   public response: any;
   public oldName: any;
   public varinadmin: any;
-  public token: any;
   public unsortedReviews: any;  
   public today: string = new Date().toLocaleString();
   constructor(
-    public tokenService: TokenService,
     private authService: AuthService, 
     private reviewService: ReviewService, 
     public modalService: NgbModal, 
-    public _fb: FormBuilder
+    public _fb: FormBuilder,
+    public router: Router
   ) {
-    this.reviewService.getReviews()
+   this.reviewService.getReviews()
       .subscribe(reviews => {
         this.unsortedReviews = reviews;
         let reviewsLength = this.unsortedReviews.length;
@@ -40,8 +40,9 @@ export class AdminComponent implements OnInit{
   }
   
   ngOnInit(){
-    this.token = this.tokenService.grabToken();
+    this.router.navigate([{outlets: {modaloutlet: null}}]);
   }
+
   private list = {
     'brands': [
       {'text': 'Nikon', 'value': 'Nikon'},

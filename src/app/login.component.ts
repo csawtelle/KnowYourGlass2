@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter, } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { TokenService } from './token.service';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit {
   public response: any;
   public token: any;
  
-  constructor(public tokenService: TokenService, private router: Router, private fb: FormBuilder, public authService: AuthService){
+  constructor(private router: Router, private fb: FormBuilder, public authService: AuthService){
     this.user = this.searchTerms
       .debounceTime(500)
       .distinctUntilChanged()
@@ -91,14 +90,11 @@ export class LoginComponent implements OnInit {
   }
   processAccountForm() {
     if (this.registered) {
-      this.token = "Logging in...";
-      this.tokenService.getToken(this.accountForm.value.username, this.accountForm.value.password);
-      this.tokenService.loginDelay().subscribe(() => {
-        if (this.tokenService.currentToken) {
-          this.token = "Login Success! Redirecting";
-          this.router.navigate(['/admin']);
-        }
-      });
+      this.authService.createToken(
+        this.accountForm.value.username, 
+        this.accountForm.value.password
+      ).subscribe(response => {this.authService.token = true});
+      this.router.navigate(['/admin', {outlets: {primary: 'c', modaloutlet: null}}])
     } else if(!this.registered && !this.userExists) {
       this.authService.register(this.accountForm.value.username, this.accountForm.value.email).subscribe(response => this.response = response);
       this.verificationForm = this.fb.group({
@@ -146,11 +142,10 @@ export class LoginComponent implements OnInit {
       this.verificationForm.value.persistPassword, 
       this.verificationForm.value.email
     ).subscribe(response => this.response = response);
-
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin', {outlets: {primary: 'c', modaloutlet: null}}])
   } 
 
-  closeModal( ) {
+  closeModal() {
     this.router.navigate([{outlets: {modaloutlet: null}}]);
   }
 }

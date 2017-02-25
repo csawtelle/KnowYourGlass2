@@ -14,7 +14,6 @@ import { SearchComponent } from './search.component';
 import { SearchBarComponent } from './search-bar.component';
 import { UploaderComponent } from './uploader.component';
 import { ReviewService } from './review.service';
-import { TokenService } from './token.service';
 import { AppRouter } from './app-routing.module';
 import { Review } from './models/review';
 import { AuthGuard } from './auth-guard.service';
@@ -27,7 +26,7 @@ import { ReviewIndexComponent } from './review-index';
 import { BlogsIndexComponent } from './components/blogs_index';
 import { BlogService } from './services/blogs.service';
 import { BlogSingleComponent } from './components/blogs_single';
-import {Ng2PageScrollModule} from 'ng2-page-scroll';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 @NgModule({
   imports:  [ 
@@ -57,14 +56,13 @@ import {Ng2PageScrollModule} from 'ng2-page-scroll';
     KeysPipe,
     ReviewIndexComponent,
     BlogsIndexComponent,
-    BlogSingleComponent
+    BlogSingleComponent,
  ],
 
   providers: [ 
     AuthService, 
     ReviewService, 
     AuthGuard,
-    TokenService,
     BlogService
   ],
   bootstrap: [ AppComponent ]
