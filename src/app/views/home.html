@@ -17,17 +17,22 @@
         </p>
     </div>
     <div class="header__lowerbar">
-      <a pageScroll href="#test" class="more" #testBtn></a>
+      <a pageScroll href="#recent-posts" class="more" #testBtn></a>
       <i class="fa fa-arrow-down header__lowerbar__arrow" aria-hidden="true" (mouseover)='testBtn.click()'></i>
     </div>
   </div><!-- end header wrapper -->
 </div>
 
 
-<div style="height:100%" id="test">
+<div class="recent-posts" id="recent-posts">
   <div *ngFor="let review of reviews; let i = index">
-    <div *ngIf="i < 4" class="text-center postblocks" [ngStyle]="{'padding':'0','background-image': 'url(../images/'+review.title_image+')','background-size':'cover','background-position':'center'}">
-      <a style="color:#fff" [routerLink]="['/review/' + review.title]"><h2 class="latestposttext">{{review.title}}</h2></a>
-    </div><!-- end ngif -->
-  </div><!-- end ngfor -->
-</div><!-- end latest posts body -->
+    <a [routerLink]="['/review/' + review.title]">
+      <div 
+        *ngIf="i < 4" 
+        class="recent-posts__block"
+        [ngStyle]="{'padding':'0','background-image': 'url(../images/'+review.title_image+')','background-size':'cover','background-position':'center'}">
+          <h2 class="recent-posts__block__text">{{review.title}}</h2>
+      </div>
+    </a>
+  </div>
+</div>
