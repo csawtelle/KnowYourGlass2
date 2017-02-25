@@ -9,11 +9,10 @@ export class ReviewService {
   token: any;
   private headers = new Headers({'Content-Type': 'application/json'});
   private apiUrl = 'api/reviews';  // URL to web api
-  constructor(public http: Http) { 
-  }
+  constructor(public http: Http) { }
 
   reviewSearch (terms: string): Observable<Review[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json', "X-Access-Token": this.token });
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token": this.token });
     let options = new RequestOptions({ headers: headers });
     return this.http
       .get(this.apiUrl + '?' + terms, options)
@@ -21,15 +20,14 @@ export class ReviewService {
   }
 
   getReview (name: string): Observable<Review[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json', "X-Access-Token":  this.token });
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token":  this.token });
     let options = new RequestOptions({ headers: headers });
-    console.log("Options for single get review is: " + options);
     return this.http.get(this.apiUrl + '/' + name, options)
       .map((r: Response) => r.json().data as any)
       .catch(this.handleError);
   }
   getReviews (): Observable<Review[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json', "X-Access-Token": this.token });
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token": this.token });
     let options = new RequestOptions({ headers: headers });
     return this.http.get(this.apiUrl + '/', options)
       .map((r: Response) => r.json().data as any);
@@ -37,7 +35,7 @@ export class ReviewService {
 
   postReview (object: any): Observable<Review[]> {
     let body = JSON.stringify( object );
-    let headers = new Headers({ 'Content-Type': 'application/json', "X-Access-Token": this.token });
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token": this.token });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.apiUrl, body, options)
       .map(this.extractData)
@@ -46,7 +44,7 @@ export class ReviewService {
 
   putReview (oldName: string, object: any): Observable<Review[]> {
     let body = JSON.stringify(object);
-    let headers = new Headers({ 'Content-Type': 'application/json', "X-Access-Token": this.token });
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token": this.token });
     let options = new RequestOptions({ headers: headers });
     return this.http.put(this.apiUrl + '/' + oldName, body, options)
       .map(this.extractData)
@@ -54,7 +52,7 @@ export class ReviewService {
   }
 
   deleteReview (name: string): Observable<Review[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json', "X-Access-Token": this.token });
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token": this.token });
     let options = new RequestOptions({ headers: headers });
     return this.http.delete(this.apiUrl + '/' + name, options)
       .map(this.extractData)
@@ -63,12 +61,10 @@ export class ReviewService {
 
   private extractData(res: Response) {
     let body = res.json();
-    console.log(body);
     return body || { };
   }
 
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
 

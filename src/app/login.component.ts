@@ -90,7 +90,11 @@ export class LoginComponent implements OnInit {
   }
   processAccountForm() {
     if (this.registered) {
-
+      this.authService.createToken(
+        this.accountForm.value.username, 
+        this.accountForm.value.password
+      ).subscribe(response => {this.authService.token = true});
+      this.router.navigate(['/admin', {outlets: {primary: 'c', modaloutlet: null}}])
     } else if(!this.registered && !this.userExists) {
       this.authService.register(this.accountForm.value.username, this.accountForm.value.email).subscribe(response => this.response = response);
       this.verificationForm = this.fb.group({
@@ -138,11 +142,10 @@ export class LoginComponent implements OnInit {
       this.verificationForm.value.persistPassword, 
       this.verificationForm.value.email
     ).subscribe(response => this.response = response);
-
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin', {outlets: {primary: 'c', modaloutlet: null}}])
   } 
 
-  closeModal( ) {
+  closeModal() {
     this.router.navigate([{outlets: {modaloutlet: null}}]);
   }
 }

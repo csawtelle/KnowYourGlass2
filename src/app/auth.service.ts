@@ -4,13 +4,12 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class AuthService {
-  isLoggedIn: boolean;
   username: string;
   password: string;
   tempPassword: string;
   persistPassword: string;
   email: string;
-  token: string;
+  token: boolean;
 
   constructor(public http: Http) { 
   } //end constructor
@@ -22,33 +21,58 @@ export class AuthService {
       .get('/api/user' + '?search=' + terms, options)
       .map((r: Response) => r.json() as any);
   }
-
-  getToken(user: string, password: string): Observable<any> {
+  //this should be a promise not observable
+  createToken(user: string, password: string) {
     this.username = user;
     this.password = password;
     let body = ({'username':this.username,'password':this.password});
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
     return this.http.post('api/user/authenticate', body, options)
-      .map((res: Response) => res.json() as any)
+      .map((res: Response) => {
+        var response = res.json();
+        this.token = response.success;
+        localStorage.setItem(
+          'user', 
+          JSON.stringify({
+            username: this.username,
+            token: response.token
+          })
+        )
+      })
       .catch(this.handleError);
   }
-
+  //this should be a promise not observable
+  validateToken() {
+    if (localStorage.getItem('user')) {
+      var user = JSON.parse(localStorage.getItem('user'));
+      let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token": user.token });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.post('api/user/verify', '', options)
+        .map((res: Response) => {
+          var response = res.json();
+          console.log("Token valid?");
+          console.log(response);
+          console.log(response.success);
+          this.token = response.success;
+          console.log(this.token);
+        })
+        .catch(this.handleError);
+    }
+  }
+  //this should be a promise not observable
   register(username: string, email: string): Observable<any> {
-    console.log("Called Register");
     this.username = username;
     this.email = email;
     let body = ({'username':this.username, 'email':this.email});
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
-    console.log("The body is: " + JSON.stringify(body));
-    console.log("The header are: " + JSON.stringify(headers));
-    console.log("The options: " + JSON.stringify(options));
     return this.http.post('api/user/register', body, options)
       .map((res: Response) => res.json() as any)
       .catch(this.handleError);
   }
 
+  //this should be a promise not observable
   confirmRegister(username: string, tempPassword: string, persistPassword: string, email: string): Observable<any> {
     this.username = username;
     this.tempPassword = tempPassword;
@@ -64,30 +88,17 @@ export class AuthService {
   }
 
   logout(): void {
-    this.isLoggedIn = false;
-    localStorage.removeItem('currentUser');
+    console.log("Logging out");
+    localStorage.removeItem('user');
+    this.token = false;
   }
 
   public extractData(res: Response) {
     let body = res.json();
-    console.log("Extract Data: ");
-    console.log(body);
     return body || { };
   }
 
-  public saveToken(res: Response) {
-    console.log(res);
-    let body = res.json();
-    console.log(body);
-    this.token = body.token;
-    console.log(this.token)
-    return body || { };
-  }
-  showToken(){
-    return this.token;
-  }
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
 

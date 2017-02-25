@@ -60,6 +60,8 @@ router.route('/api')
   .get(tokenCtrl.apiWelcome);
 router.route('/api/user')
   .get(tokenCtrl.returnUsers);
+router.route('/api/user/verify')
+  .post(tokenCtrl.verifyToken);
 router.route('/api/user/authenticate')
   .post(tokenCtrl.tokenRequest);
 router.route('/api/user/register')
@@ -92,4 +94,4 @@ app.get('*', function(req, res) {
 });
 
 console.log('Listening - KYG Server has been started');
-app.listen(8080);
+app.listen(8081);

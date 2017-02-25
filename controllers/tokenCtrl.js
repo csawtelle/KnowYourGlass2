@@ -66,6 +66,27 @@ exports.returnUsers = function(req, res) {
   }
 };
 
+exports.verifyToken = function(req, res, next) {
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  if (token) {
+    jwt.verify(token, 'superSecret', function(err, decoded) {
+      if (err) {
+        return res.json({ success: false, message: 'Token unverifiable.' });
+      } else {
+        return res.json({
+          success: true,
+          message: 'Valid Token.'
+        })
+      }
+    });
+  } else {
+    return res.status(403).send({
+        success: false,
+        message: 'No token provided.'
+    });
+  }
+};
+
 exports.jwtCheck = function(req, res, next) {
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
   if (token) {
