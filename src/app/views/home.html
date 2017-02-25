@@ -1,4 +1,4 @@
-<div class="newheader" style="background:url('https://c1.staticflickr.com/3/2141/32929395441_61bb0ed63f_z.jpg');background-size:cover">
+<div class="newheader" style="background:url('../images/lens_photo.jpg');background-size:cover">
   <div class="header__wrapper">
   <div class="headerimg__text-content">
     <h1>{{ title }}</h1>
@@ -21,6 +21,17 @@
     <a pageScroll href="#test" class="more" #testBtn></a><i class="fa fa-arrow-down header__lowerbar__arrow" aria-hidden="true"></i></div>
   </div><!-- end header wrapper -->
 </div>
+
+<!-- new 4blocks -->
+<div style="height:100%" id="test">
+  <div>
+    <div class="text-center postblocks" [ngStyle]="{'padding':'0','background-image': 'url(../images/18036553460_4db59cae24_o.jpg)','background-size':'cover','background-position':'center'}">
+      <a style="color:#fff"><h2 class="latestposttext">Test text</h2></a>
+    </div><!-- end ngif -->
+  </div><!-- end ngfor -->
+</div><!-- end latest posts body -->
+
+<!-- end new 4blocks test -->
 
 
 <div style="height:100%" id="test">
