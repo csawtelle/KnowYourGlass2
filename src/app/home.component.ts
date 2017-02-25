@@ -36,7 +36,6 @@ export class HomeComponent {
   }
 
   goToHash() {
-    console.log("Did it");
     this.scrollElement.nativeElement.click();
   }
 };

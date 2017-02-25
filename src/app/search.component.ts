@@ -58,7 +58,6 @@ export class SearchComponent implements OnInit {
       .distinctUntilChanged()
       .switchMap(searchString => searchString ? this.reviewService.reviewSearch(searchString): Observable.of<Review[]>([]))
       .catch(error => {
-        console.log(error);
         return Observable.of<Review[]>([]);
       });
   }
@@ -74,6 +73,5 @@ export class SearchComponent implements OnInit {
   }
 
   itemSelected(item: string) {
-    console.log(item);
   }
 }

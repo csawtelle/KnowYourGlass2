@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
       .distinctUntilChanged()
       .switchMap(term => term.length > 0 ? this.authService.accountSearch(term): Observable.of<any>([]))
       .catch(error => {
-        console.log(error);
         return Observable.of<any>([]);
       });
       

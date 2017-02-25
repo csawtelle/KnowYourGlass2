@@ -43,15 +43,13 @@ export class DisqusComponent implements AfterViewInit, AfterViewChecked, OnDestr
         this._window.DISQUS.reset({ 
           reload: true,
           config: function () {
-            this.page.url = "http://christophersawtelle.com/review/test3test3test"; //this.validateUrl(_self.url);
-            this.page.identifier = "testtest3"; //_self.identifier;
-            this.page.category_id = ""; //_self.categoryId;
-            this.language = "en"; //_self.lang;
-            this.page.title = "BestTitle3"; //_self.title;
+            this.page.url = this.validateUrl(_self.url);
+            this.page.identifier = _self.identifier;
+            this.page.category_id = _self.categoryId;
+            this.language = _self.lang;
+            this.page.title = _self.title;
           }
         });
-        console.log("this window disqus after");
-        console.log(this._window.DISQUS);
         this.reset = 1;
       }
     }

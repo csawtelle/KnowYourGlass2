@@ -35,7 +35,6 @@ export class ReviewComponent implements OnInit {
     private reviewService: ReviewService,
     private route: ActivatedRoute,
     private router: Router) {
-      console.log(router) 
     }
 
   ngOnInit() {
@@ -45,8 +44,6 @@ export class ReviewComponent implements OnInit {
   }
 
   toggleSlideState() {
-    console.log(this.sideBarState);
-    console.log(this.review._id);
     if(this.sideBarState == "out") {
       this.sideBarState = "in";
     } else if (this.sideBarState == "in") {

@@ -120,7 +120,6 @@ export class AdminComponent implements OnInit{
   }
 
   save(model: Review, isValid: boolean) {
-    console.log(model);
     if(this.newPost) {
       this.reviewService.postReview(model).subscribe(response => this.response = response);
     } else {

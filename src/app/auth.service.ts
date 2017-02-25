@@ -51,11 +51,7 @@ export class AuthService {
       return this.http.post('api/user/verify', '', options)
         .map((res: Response) => {
           var response = res.json();
-          console.log("Token valid?");
-          console.log(response);
-          console.log(response.success);
           this.token = response.success;
-          console.log(this.token);
         })
         .catch(this.handleError);
     }
@@ -88,7 +84,6 @@ export class AuthService {
   }
 
   logout(): void {
-    console.log("Logging out");
     localStorage.removeItem('user');
     this.token = false;
   }
