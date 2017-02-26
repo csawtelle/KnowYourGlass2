@@ -44,17 +44,15 @@ export class AuthService {
   }
   //this should be a promise not observable
   validateToken() {
-    if (localStorage.getItem('user')) {
-      var user = JSON.parse(localStorage.getItem('user'));
-      let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token": user.token });
-      let options = new RequestOptions({ headers: headers });
-      return this.http.post('api/user/verify', '', options)
-        .map((res: Response) => {
-          var response = res.json();
-          this.token = response.success;
-        })
-        .catch(this.handleError);
-    }
+    var user = JSON.parse(localStorage.getItem('user'));
+    let headers = new Headers({ 'Content-Type': 'application/json', "x-access-token": user.token });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post('api/user/verify', '', options)
+      .map((res: Response) => {
+        var response = res.json();
+        this.token = response.success;
+      })
+      .catch(this.handleError);
   }
   //this should be a promise not observable
   register(username: string, email: string): Observable<any> {

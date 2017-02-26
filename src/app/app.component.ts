@@ -8,7 +8,9 @@ import { AuthService } from './auth.service';
 export class AppComponent { 
   
   constructor( private authService: AuthService ) {
-    this.authService.validateToken().subscribe();
+    if (localStorage.getItem('user')) {
+      this.authService.validateToken().subscribe();
+    }
   }
   logout(){
     this.authService.logout();
