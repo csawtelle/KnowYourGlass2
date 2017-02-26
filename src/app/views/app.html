@@ -1,34 +1,30 @@
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" 
-    type="button" 
-    data-toggle="collapse" 
-    data-target="#navbarSupportedContent" 
-    aria-controls="navbarSupportedContent" 
-    aria-expanded="false" 
-    aria-label="Toggle navigation">
-	  <span class="navbar-toggler-icon"></span>
-	</button>
+<nav class="navbar navbar-light bg-faded">
   <img 
     routerLink="/" 
     routerLinkActive="active"
     style="background:url('../images/icon.png');background-size: 50px; background-repeat: no-repeat;" 
     class="kygicon"
   />
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
+  <div class="site-header__menu-icon">
+    <div class="site-header__menu-icon__top"></div>
+    <div class="site-header__menu-icon__middle"></div>
+    <div class="site-header__menu-icon__bottom"></div>
+  </div>
+  <div>
+    <ul class="gnav">
+      <li class="gnav-item">
         <a class="nav-link whitefont" routerLink="/reviews" routerLinkActive="active">Reviews</a>
       </li>
-      <li class="nav-item">
+      <li class="gnav-item">
         <a class="nav-link whitefont" routerLink="/blogs" routerLinkActive="active">Blogs</a>
       </li>
-      <li class="nav-item" >
+      <li class="gnav-item" >
         <a class="nav-link whitefont" routerLink="/admin" routerlinkactive="active">login</a>
       </li>
-      <li class="nav-item" (click)="logout()">
+      <li class="gnav-item" (click)="logout()">
         <a class="nav-link whitefont" routerLink="/" routerlinkactive="active">logout</a>
       </li>
-      <search-bar></search-bar>
+      <search-bar class="gnav-item"></search-bar>
     </ul>
   </div>
 </nav>

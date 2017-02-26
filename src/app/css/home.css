@@ -3,7 +3,7 @@
 .recent-posts__block {
   height: 50%;
   position: relative;
-  width: 50%;
+  width: 100% !important;
   float: left;
 }
 .recent-posts__block__text {
@@ -17,4 +17,8 @@
   font-size: 2rem;
   padding-top: .8rem;
   padding-bottom: .8rem;
+}
+
+.fa-3x {
+  font-size:2rem !important;
 }
