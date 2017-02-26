@@ -1,7 +1,7 @@
 .recent-posts {
 }
 .recent-posts__block {
-  height: 50%;
+  height: 100%;
   position: relative;
   width: 100% !important;
   float: left;
@@ -14,7 +14,7 @@
   background: linear-gradient(to left, rgba(0,0,0,0) , rgba(43, 43, 43, 0.82));
   padding-left: 2%;
   padding-right: 10%;
-  font-size: 2rem;
+  font-size: 1.3rem;
   padding-top: .8rem;
   padding-bottom: .8rem;
 }

@@ -5,10 +5,28 @@
     style="background:url('../images/icon.png');background-size: 50px; background-repeat: no-repeat;" 
     class="kygicon"
   />
-  <div class="site-header__menu-icon">
+  <div (click)="toggleMenu()" class="site-header__menu-icon">
     <div class="site-header__menu-icon__top"></div>
     <div class="site-header__menu-icon__middle"></div>
     <div class="site-header__menu-icon__bottom"></div>
+  
+    <div [ngClass]="{'gnav__show': show}" class="site-header__menu-icon__content">
+			<ul class="gnav__collapsed">
+				<li class="gnav-item__collapsed">
+					<a class="nav-link whitefont" routerLink="/reviews" routerLinkActive="active">Reviews</a>
+				</li>
+				<li class="gnav-item__collapsed">
+					<a class="nav-link whitefont" routerLink="/blogs" routerLinkActive="active">Blogs</a>
+				</li>
+				<li class="gnav-item__collapsed" >
+					<a class="nav-link whitefont" routerLink="/admin" routerlinkactive="active">login</a>
+				</li>
+				<li class="gnav-item__collapsed" (click)="logout()">
+					<a class="nav-link whitefont" routerLink="/" routerlinkactive="active">logout</a>
+				</li>
+				<search-bar class="gnav-item__collapsed"></search-bar>
+			</ul>
+    </div>
   </div>
   <div>
     <ul class="gnav">

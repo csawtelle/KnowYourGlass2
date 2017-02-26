@@ -1,4 +1,17 @@
 @media (min-width:700px) {
+	.site-header__menu-icon__content {
+  	display:block;
+  	position:absolute;
+  	top:10px;
+  	right:10px;
+  	z-index: 2;
+	}
+	.site-header__menu-icon__content.gnav__show {
+  	display:block !important;
+	}	
+  .recent-posts__block__text {
+    font-size:2rem;
+  }
   .site-header__menu-icon {
     display:none;
   }
