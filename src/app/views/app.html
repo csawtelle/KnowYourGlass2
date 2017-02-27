@@ -9,6 +9,9 @@
     <div class="site-header__menu-icon__top"></div>
     <div class="site-header__menu-icon__middle"></div>
     <div class="site-header__menu-icon__bottom"></div>
+    <div class="underlay">
+      
+    </div>
   </div><!-- end collapse button -->
   <div><!-- start button content -->  
     <div [ngClass]="{'gnav__show': show}" class="site-header__menu-icon__content">
@@ -25,7 +28,7 @@
 				<li class="gnav-item__collapsed" (click)="logout()">
 					<a class="nav-link whitefont" routerLink="/" routerlinkactive="active">logout</a>
 				</li>
-				<search-bar class="gnav-item__collapsed"></search-bar>
+				<search-bar class="gnav-item__collapsed search__collapsed"></search-bar>
 			</ul>
     </div>
   </div>

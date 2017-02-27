@@ -68,6 +68,10 @@
   position: absolute;
   right: -9px;
   top: 19px;
+  border-radius: 0 0 0 6px;
+}
+.search-container__collapsed {
+  padding-bottom:7px;
 }
 .site-header__menu-icon__content.gnav__show {
 	visibility: visible;
