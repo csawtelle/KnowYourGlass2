@@ -1,0 +1,41 @@
+@media (min-width:700px) {
+	.site-header__menu-icon__content {
+  	display:block;
+  	position:absolute;
+  	top:10px;
+  	right:10px;
+  	z-index: 2;
+	}
+	.site-header__menu-icon__content.gnav__show {
+  	display:block !important;
+	}	
+  .recent-posts__block__text {
+    font-size:2rem;
+  }
+  .site-header__menu-icon {
+    display:none;
+  }
+	.collapsebtn {
+		display:block;
+	}
+  .headerimg__text-content > h1 {
+  	font-size: 5rem;
+	}
+	.headerimg__text-content h2 {
+		font-size:1.5rem !important;
+	}
+	.fa-3x {
+		font-size:3rem !important;
+	}
+
+	.gnav {
+		display:inline !important;
+	}
+}
+
+@media (min-width:900px) {
+	.recent-posts__block {
+    width:50% !important;
+    height:50%;
+  }
+}

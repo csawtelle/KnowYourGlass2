@@ -170,6 +170,7 @@
 .newheader {
   height:100%;
   position:relative;
+  background-position: 50% 0 !important;
 }
 .headerimg__text-content {
   position:absolute;
@@ -182,7 +183,7 @@
 .headerimg__text-content > h1 {
 	margin: 0;
   text-shadow: 3px 5px 3px rgba(0,0,0,0.6);
-  font-size: 5rem;
+  font-size: 3rem;
   font-family: 'Lato', sans-serif;
   letter-spacing: 0px;
   font-weight: 600;
@@ -191,7 +192,7 @@
 .headerimg__text-content h2 {
 	text-shadow: 3px 3px 3px rgba(0,0,0,0.6);
   letter-spacing: -1px;
-  font-size: 1.5rem !important;
+  font-size: 1.3rem !important;
   margin-bottom: 20px;
   color: white;
 }
@@ -844,7 +845,7 @@ body {
 }
 
 .reviewpostcontent {
-  width:70%;
+  width:700px;
   margin-left:auto;
   margin-right:auto;
 }

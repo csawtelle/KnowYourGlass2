@@ -5,7 +5,8 @@ import { AuthService } from './auth.service';
 import 'rxjs/Rx';
 import './css/main.css';
 import './css/home.css';
-
+import './css/mobile_view.css';
+import './css/navbar.css';
 
 const platform = platformBrowserDynamic();
 platform.bootstrapModule(AppModule, [AuthService, ReviewService]);
