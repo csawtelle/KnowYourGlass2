@@ -776,6 +776,9 @@ body {
   height: 50px;
   background-size: 50px;
 	float: left;
+  background:url('../images/icon.png');
+  background-size: 50px;
+  background-repeat: no-repeat;
 }
 /* recent posts index css */
 .postscontainer h1 {

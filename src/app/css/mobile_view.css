@@ -31,6 +31,9 @@
 	.gnav {
 		display:inline !important;
 	}
+  .gnav__collapsed {
+    display:none;
+  }
 }
 
 @media (min-width:900px) {
