@@ -788,18 +788,18 @@ body {
 	cursor:pointer;
 	font-weight:600;
 	margin-top:10px;
+  font-size:2.9rem;
 }
 .postsubheading {
   color: rgba(0,0,0,.8);
-	font-size:1rem;
+	font-size:1.3rem;
   font-weight:100;
   color: #7d7d7d;
 	letter-spacing: -.01rem;
 }
 .postscontainer {
-  width:65%;
   margin: 50px auto;
-	max-width: 710px;
+	max-width: 58rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -843,16 +843,17 @@ body {
   margin-top:66px;
 }
 .reviewheadercontent p {
-  font-size:16px;
+  font-size:1.2rem;
   margin-bottom:0px;
   color: rgba(0,0,0,.44);
   font-weight:600;
 }
 
 .reviewpostcontent {
-  width:700px;
+  width:58rem;
   margin-left:auto;
   margin-right:auto;
+  font-size:1.4rem;
 }
 
 .specstable {
@@ -868,7 +869,7 @@ body {
 
 .reviewheadercontent h1 {
 	font-weight:700;
-  font-size: 4rem;
+  font-size: 5rem;
 }
 .modal-outer {
   position: absolute;
