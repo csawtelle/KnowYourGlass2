@@ -5,6 +5,9 @@
   position: relative;
   width: 100% !important;
   float: left;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
 }
 .recent-posts__block__text {
   color: #FFFFFF;

@@ -1,4 +1,4 @@
-<div class="newheader" style="background:url('https://c1.staticflickr.com/3/2141/32929395441_61bb0ed63f_z.jpg');background-size:cover">
+<div class="newheader">
   <div class="header__wrapper">
     <div class="headerimg__text-content">
       <h1>{{ title }}</h1>
@@ -30,7 +30,7 @@
       <div 
         *ngIf="i < 4" 
         class="recent-posts__block"
-        [ngStyle]="{'padding':'0','background-image': 'url(../images/'+review.title_image+')','background-size':'cover','background-position':'center'}">
+        [ngStyle]="{'background-image': 'url(../images/'+review.title_image+')'}">
           <h2 class="recent-posts__block__text">{{review.title}}</h2>
       </div>
     </a>
