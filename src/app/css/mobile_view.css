@@ -19,13 +19,13 @@
 		display:block;
 	}
   .headerimg__text-content > h1 {
-  	font-size: 7rem;
+  	font-size: 6rem;
 	}
 	.headerimg__text-content h2 {
-		font-size:2.5rem !important;
+		font-size:2.2rem !important;
 	}
 	.fa-3x {
-		font-size:3.5rem !important;
+		font-size:3.0rem !important;
 	}
 
 	.gnav {
@@ -41,4 +41,22 @@
     width:50% !important;
     height:50%;
   }
+}
+
+@media(min-width: 1200px) {
+  .headerimg__text-content > h1 {
+    font-size: 7rem;
+  }
+  .headerimg__text-content h2 {
+    font-size: 2.5rem !important;
+  }
+  .fa-3x {
+    font-size: 3.5rem !important;
+  } 
+	.gnav-item {
+		font-size: 1.5rem !important;
+	}
+	.navbar {
+		min-height: 5rem !important;
+	}
 }
