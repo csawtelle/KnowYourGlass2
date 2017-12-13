@@ -1,2 +1,2 @@
 # KnowYourGlass2
-MEAN stack framework for a photography review website. Utilized Angular2 in typescript.
+Deprecated. Code kept for posterity. MEAN stack framework for a photography review website. Utilized Angular2 in typescript.
